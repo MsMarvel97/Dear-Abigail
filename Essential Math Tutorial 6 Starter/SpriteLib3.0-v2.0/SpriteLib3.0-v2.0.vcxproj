@@ -145,6 +145,9 @@
     <ClInclude Include="CameraSystem.h" />
     <ClInclude Include="CanJump.h" />
     <ClInclude Include="CollisionFlag.h" />
+    <ClInclude Include="Crumble.h" />
+    <ClInclude Include="CrumblingSequence.h" />
+    <ClInclude Include="DestroyPlatformTrigger.h" />
     <ClInclude Include="DestroyTrigger.h" />
     <ClInclude Include="ECS.h" />
     <ClInclude Include="EffectManager.h" />
@@ -215,6 +218,9 @@
     <ClCompile Include="CameraSystem.cpp" />
     <ClCompile Include="CanJump.cpp" />
     <ClCompile Include="CollisionFlag.cpp" />
+    <ClCompile Include="Crumble.cpp" />
+    <ClCompile Include="CrumblingSequence.cpp" />
+    <ClCompile Include="DestroyPlatformTrigger.cpp" />
     <ClCompile Include="DestroyTrigger.cpp" />
     <ClCompile Include="ECS.cpp" />
     <ClCompile Include="EffectManager.cpp" />

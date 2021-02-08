@@ -26,6 +26,8 @@
 #include "RecheckConditions.h"
 #include "ShrinkTrigger.h"
 #include "EndTrigger.h"
+#include "CrumblingSequence.h"
+#include "DestroyPlatformTrigger.h"
 
 
 class ECS abstract

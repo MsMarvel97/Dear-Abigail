@@ -5,6 +5,7 @@
 #include "FirstCreation.h"
 #include "PhysicsPlayground.h"
 #include "AnimationSpritePlayground.h"
-#include "Crumble.h"
+#include "TutorialLevel.h"
+#include "DenialLevel.h"
 
 #endif // !__SCENES_H__

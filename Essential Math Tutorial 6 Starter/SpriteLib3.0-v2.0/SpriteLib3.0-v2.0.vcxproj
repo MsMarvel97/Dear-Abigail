@@ -148,6 +148,7 @@
     <ClInclude Include="Crumble.h" />
     <ClInclude Include="CrumblingSequence.h" />
     <ClInclude Include="DestroyPlatformTrigger.h" />
+    <ClInclude Include="DenialLevel.h" />
     <ClInclude Include="DestroyTrigger.h" />
     <ClInclude Include="ECS.h" />
     <ClInclude Include="EffectManager.h" />
@@ -198,6 +199,7 @@
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TranslateTrigger.h" />
     <ClInclude Include="Trigger.h" />
+    <ClInclude Include="TutorialLevel.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="VanishTrigger.h" />
@@ -221,6 +223,7 @@
     <ClCompile Include="Crumble.cpp" />
     <ClCompile Include="CrumblingSequence.cpp" />
     <ClCompile Include="DestroyPlatformTrigger.cpp" />
+    <ClCompile Include="DenialLevel.cpp" />
     <ClCompile Include="DestroyTrigger.cpp" />
     <ClCompile Include="ECS.cpp" />
     <ClCompile Include="EffectManager.cpp" />
@@ -269,6 +272,7 @@
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="TranslateTrigger.cpp" />
     <ClCompile Include="Trigger.cpp" />
+    <ClCompile Include="TutorialLevel.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="Utilities.cpp" />
     <ClCompile Include="VanishTrigger.cpp" />

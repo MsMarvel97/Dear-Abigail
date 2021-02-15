@@ -231,6 +231,12 @@
     <ClInclude Include="DestroyPlatformTrigger.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="TutorialLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DenialLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\imgui\imgui.cpp">
@@ -438,6 +444,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DestroyPlatformTrigger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TutorialLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DenialLevel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

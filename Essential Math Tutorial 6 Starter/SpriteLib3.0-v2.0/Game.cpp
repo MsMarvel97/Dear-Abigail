@@ -38,7 +38,8 @@ void Game::InitGame()
 	m_scenes.push_back(new FirstCreation("FIRST SCENE!!!!"));
 	m_scenes.push_back(new PhysicsPlayground("MISSION CLAMPOSSIBLE"));
 	m_scenes.push_back(new AnimationSpritePlayground("Animation TIEM!!!!"));
-	m_scenes.push_back(new Crumble("Crumble TIEM"));
+	m_scenes.push_back(new TutorialLevel("This is a cry for help."));
+	m_scenes.push_back(new DenialLevel("pspspsps xiao pls come home"));
 	 
 	//Sets active scene reference to our scene
 	m_activeScene = m_scenes[3];

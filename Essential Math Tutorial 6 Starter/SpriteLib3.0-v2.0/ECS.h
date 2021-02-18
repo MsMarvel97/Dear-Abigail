@@ -28,6 +28,7 @@
 #include "EndTrigger.h"
 #include "CrumblingSequence.h"
 #include "DestroyPlatformTrigger.h"
+#include "TestBulet.h"
 
 
 class ECS abstract

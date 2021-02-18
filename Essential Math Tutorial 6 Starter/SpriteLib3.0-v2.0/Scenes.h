@@ -6,5 +6,7 @@
 #include "PhysicsPlayground.h"
 #include "AnimationSpritePlayground.h"
 #include "Crumble.h"
+#include "Shadow.h"
+#include "ShadowV2.h"
 
 #endif // !__SCENES_H__

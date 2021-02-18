@@ -190,8 +190,11 @@
     <ClInclude Include="SelectiveColorEffect.h" />
     <ClInclude Include="SepiaEffect.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="Shadow.h" />
+    <ClInclude Include="ShadowV2.h" />
     <ClInclude Include="ShrinkTrigger.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="TestBulet.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Timer.h" />
@@ -261,8 +264,11 @@
     <ClCompile Include="SelectiveColorEffect.cpp" />
     <ClCompile Include="SepiaEffect.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Shadow.cpp" />
+    <ClCompile Include="ShadowV2.cpp" />
     <ClCompile Include="ShrinkTrigger.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="TestBulet.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Timer.cpp" />

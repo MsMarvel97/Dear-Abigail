@@ -8,5 +8,7 @@
 #include "Crumble.h"
 #include "Shadow.h"
 #include "ShadowV2.h"
+#include "Shield.h"
+#include "DenialRough.h"
 
 #endif // !__SCENES_H__

@@ -39,10 +39,10 @@ void Game::InitGame()
 	m_scenes.push_back(new PhysicsPlayground("MISSION CLAMPOSSIBLE"));
 	m_scenes.push_back(new AnimationSpritePlayground("Animation TIEM!!!!"));
 	m_scenes.push_back(new TutorialLevel("This is a cry for help."));
-	m_scenes.push_back(new DenialLevel("pspspsps xiao pls come home"));
+	m_scenes.push_back(new DenialLevel("pspspsps venti & childe rerun pls"));
 	 
 	//Sets active scene reference to our scene
-	m_activeScene = m_scenes[3];
+	m_activeScene = m_scenes[4];
 
 	m_activeScene->InitScene(float(BackEnd::GetWindowWidth()), float(BackEnd::GetWindowHeight()));
 

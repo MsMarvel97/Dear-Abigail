@@ -15,5 +15,8 @@ public:
 
 protected:
 	PhysicsPlaygroundListener listener;
+
+	vec3 playerVel; //track player velocity to get y value
+	b2Vec2 playerPos; //track player's position
 };
 

@@ -43,7 +43,6 @@ void PhysicsPlaygroundListener::BeginContact(b2Contact* contact)
 			ECS::GetComponent<CanJump>((int)fixtureB->GetBody()->GetUserData()).m_canJump = true;
 		}
 	}
-
 }
 
 void PhysicsPlaygroundListener::EndContact(b2Contact* contact)

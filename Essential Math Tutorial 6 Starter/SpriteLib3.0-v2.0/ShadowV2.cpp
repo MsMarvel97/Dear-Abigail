@@ -76,7 +76,7 @@ void ShadowV2::InitScene(float windowWidth, float windowHeight)
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetHeight() / 2.f), vec2(0.f, 0.f), false, PLAYER, ENVIRONMENT | ENEMY | PICKUP | TRIGGER | HEXAGON | OBJECTS, 0.5f, 3.f);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetHeight() / 2.f), vec2(0.f, 0.f), false, PLAYER, ENVIRONMENT | ENEMY | PICKUP | TRIGGER | HEXAGON | OBJECTS, 0.5f, 1.f);
 
 		tempPhsBody.SetRotationAngleDeg(0.f);
 		tempPhsBody.SetFixedRotation(true);
@@ -206,32 +206,14 @@ void ShadowV2::InitScene(float windowWidth, float windowHeight)
 
 void ShadowV2::Update()
 {
+	auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
+	player.Update();
 	ShadowV2::ReattachCamera();
 }
 
 void ShadowV2::KeyboardHold()
 {
 	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
-
-	float speed = 1.f;
-	b2Vec2 vel = b2Vec2(0.f, 0.f);
-
-	if (Input::GetKey(Key::Shift))
-	{
-		speed *= 5.f;
-	}
-
-	if (Input::GetKey(Key::A))
-	{
-		player.GetBody()->ApplyForceToCenter(b2Vec2(-150000.f * speed, 0.f), true);
-		//player.SetPosition(b2Vec2(player.GetPosition().x - 0.5, player.GetPosition().y));
-	}
-	if (Input::GetKey(Key::D))
-	{
-		player.GetBody()->ApplyForceToCenter(b2Vec2(150000.f * speed, 0.f), true);
-		//player.SetPosition(b2Vec2(player.GetPosition().x + 0.5, player.GetPosition().y));
-
-	}
 
 	//Change physics body size for circle
 	if (Input::GetKey(Key::O))
@@ -249,15 +231,17 @@ void ShadowV2::KeyboardDown()
 	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
 	auto& canJump = ECS::GetComponent<CanJump>(MainEntities::MainPlayer());
 
+	float jump = 30000.f;
+
 	if (Input::GetKeyDown(Key::T))
 	{
 		PhysicsBody::SetDraw(!PhysicsBody::GetDraw());
 	}
-	if (canJump.m_canJump)
+	if (player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001)
 	{
 		if (Input::GetKeyDown(Key::Space))
 		{
-			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0.f, 16000000000.f), true);
+			player.SetVelocity(vec3(0.f, jump, 0.f));
 			canJump.m_canJump = false;
 		}
 	}

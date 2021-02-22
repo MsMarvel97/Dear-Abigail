@@ -8,5 +8,6 @@
 #include "Crumble.h"
 #include "Shadow.h"
 #include "ShadowV2.h"
+#include "AngerLevel.h"
 
 #endif // !__SCENES_H__

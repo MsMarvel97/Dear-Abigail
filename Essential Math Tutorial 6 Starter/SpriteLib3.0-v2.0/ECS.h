@@ -29,6 +29,10 @@
 #include "CrumblingSequence.h"
 #include "DestroyPlatformTrigger.h"
 #include "TestBulet.h"
+#include "ShieldMechanic.h"
+#include "Health.h"
+#include "BulletTrigger.h"
+#include "Kinematics.h"
 
 
 class ECS abstract

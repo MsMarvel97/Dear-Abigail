@@ -5,9 +5,8 @@
 DenialLevel::DenialLevel(std::string name)
 	: Scene(name)
 {
-	//No gravity - top down scene
-	//m_gravity = b2Vec2(0.f, -98.f);
-	//m_physicsWorld->SetGravity(m_gravity);
+	m_gravity = b2Vec2(0.f, -98.f);
+	m_physicsWorld->SetGravity(m_gravity);
 	m_physicsWorld->SetContactListener(&listener);
 }
 
@@ -1309,7 +1308,7 @@ void DenialLevel::KeyboardHold()
 	b2Vec2 vel = b2Vec2(0.f, 0.f);
 	vec3 velocity = vec3(0.f, 0.f, 0.f);
 
-	if (Input::GetKey(Key::Shift))
+	/*if (Input::GetKey(Key::Shift))
 	{
 		speed *= 5.f;
 	}
@@ -1336,7 +1335,7 @@ void DenialLevel::KeyboardHold()
 		velocity = velocity + vec3(0.f, -5.f, 0.f);
 	}
 
-	player.SetVelocity(velocity);
+	player.SetVelocity(velocity);*/
 
 }
 

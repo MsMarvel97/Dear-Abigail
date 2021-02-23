@@ -175,6 +175,18 @@ void Player::MovementUpdate()
 		}
 	}
 
+	if (Input::GetKeyDown(Key::Space))
+	{
+		if (player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001)
+		{
+			if (Input::GetKeyDown(Key::Space))
+			{
+				player.SetVelocity(vec3(0.f, 8000.f, 0.f));
+				canJump.m_canJump = false;
+			}
+		}
+	}
+
 	// Old Movement Code \\
 
 	//	if (m_hasPhysics)

@@ -40,7 +40,6 @@ void Game::InitGame()
 	m_scenes.push_back(new AnimationSpritePlayground("Animation TIEM!!!!"));
 	m_scenes.push_back(new TutorialLevel("Tutorial"));
 	m_scenes.push_back(new DenialLevel("Denial"));
-	m_scenes.push_back(new MovingPlatform("Test"));
 	 
 	//Sets active scene reference to our scene
 	m_activeScene = m_scenes[4];

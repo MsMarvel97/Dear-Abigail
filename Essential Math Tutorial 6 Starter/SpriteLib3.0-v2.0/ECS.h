@@ -28,6 +28,10 @@
 #include "EndTrigger.h"
 #include "CrumblingSequence.h"
 #include "DestroyPlatformTrigger.h"
+#include "MovingClass.h"
+#include "MovingTrigger.h"
+#include "MovingPlatform.h"
+#include "Kinematics.h"
 
 
 class ECS abstract

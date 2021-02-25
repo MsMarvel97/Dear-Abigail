@@ -86,6 +86,21 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
 	}
 
+	//Level layout
+	{
+		auto entity = ECS::CreateEntity();
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+
+		//Sets up components
+		std::string fileName = "levelartTutDen.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 130, 42);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+	}
+
 	// STATIC PLATFORMS \\
 
 	//Platform A (bottom 0-30)
@@ -297,7 +312,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "boxSprite.jpg";
+		std::string fileName = "platformG.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 2, 16 * 1);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -759,7 +774,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "boxSprite.jpg";
+		std::string fileName = "platformG.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 13, 16 * 1);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 

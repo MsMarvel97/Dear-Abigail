@@ -7,5 +7,6 @@
 #include "AnimationSpritePlayground.h"
 #include "TutorialLevel.h"
 #include "DenialLevel.h"
+#include "MovingPlatform.h"
 
 #endif // !__SCENES_H__

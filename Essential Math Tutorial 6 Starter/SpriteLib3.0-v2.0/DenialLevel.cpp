@@ -835,7 +835,6 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 		tempPhsBody.SetFixedRotation(true);
-
 	}
 
 	//Platform M2 (crumbling platform)

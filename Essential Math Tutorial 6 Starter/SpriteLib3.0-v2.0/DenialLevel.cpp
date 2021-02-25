@@ -43,11 +43,12 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 	}
 
 
-	//Rat entity
+	//Abigail entity
 	{
 
 		auto entity = ECS::CreateEntity();
 		ECS::SetIsMainPlayer(entity, true);
+		player = entity;
 
 		//Add components
 		ECS::AttachComponent<Player>(entity);
@@ -84,6 +85,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetRotationAngleDeg(0.f);
 		tempPhsBody.SetFixedRotation(true);
 		tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
+		tempPhsBody.SetGravityScale(0.75);
 	}
 
 	////Level layout
@@ -803,6 +805,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 	{
 		//Creates entity
 		auto entity = ECS::CreateEntity();
+		movingPlat = entity;
 
 		//Add components
 		ECS::AttachComponent<Sprite>(entity);
@@ -810,7 +813,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
+		std::string fileName = "test.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 5, 16 * 1);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -821,7 +824,9 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		float shrinkY = 0.f;
 		b2Body* tempBody;
 		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
+		tempDef.type = b2_dynamicBody;
+		float platX = (16 * 22.f) + (16 * 5 / 2);
+		float platY = (16 * 10.f) + (16 * 1 / 2);
 		tempDef.position.Set(float32((16 * 22.f) + (16 * 5 / 2)), float32((16 * 10.f) + (16 * 1 / 2)));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
@@ -829,6 +834,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		tempPhsBody.SetFixedRotation(true);
 
 	}
 
@@ -1313,6 +1319,7 @@ void DenialLevel::Update()
 {
 	auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
 	player.Update();
+	MovePlatform();
 }
 
 void DenialLevel::KeyboardHold()
@@ -1352,6 +1359,59 @@ void DenialLevel::KeyboardHold()
 	player.SetVelocity(velocity);*/
 
 }
+
+void DenialLevel::MovePlatform()
+{
+	//auto& moveTrig = ECS::GetComponent<MovingClass>(player);
+	auto& playerBody = ECS::GetComponent<PhysicsBody>(player);
+	auto& plat = ECS::GetComponent<PhysicsBody>(movingPlat);
+	int platX = plat.GetPosition().x;
+	int platY = plat.GetPosition().y;
+	int playerX = playerBody.GetPosition().x;
+	int playerY = playerBody.GetPosition().y;
+	
+	if (platX > 500)
+	{
+		switchDir = true;
+	}
+	if (platX < 0)
+	{
+		switchDir = false;
+	}
+	if (switchDir == false)
+	{
+		platX += 1;
+		//plat.SetPosition(b2Vec2(platX, platY)); 
+		plat.SetVelocity(vec3(2000, 0, 0));
+		//if (moveTrig.GetMoving() == true)
+		//{
+		//	playerX += 1;
+		//	if (!Input::GetKey(Key::A))
+		//	{
+		//		playerBody.SetVelocity(vec3(5000, 0, 0));
+		//	}
+		//	//playerBody.SetPosition(b2Vec2(playerX, playerY));
+		//}
+	}
+	else if (switchDir == true)
+	{
+		platX -= 1;
+		//plat.SetPosition(b2Vec2(platX, platY));
+		plat.SetVelocity(vec3(-2000, 0, 0));
+		//if (moveTrig.GetMoving() == true)
+		//{
+		//	if (!Input::GetKey(Key::D)) 
+		//	{
+		//		playerBody.SetVelocity(vec3(-5000, 0, 0));
+		//	}
+		//	playerX -= 1;
+		//	
+		//	//playerBody.SetPosition(b2Vec2(playerX, playerY));
+		//}
+	}
+	
+}
+
 
 void DenialLevel::KeyboardUp()
 {

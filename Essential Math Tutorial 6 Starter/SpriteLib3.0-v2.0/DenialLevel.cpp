@@ -58,18 +58,18 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<CanJump>(entity);
 
 		//Sets up the components
-		std::string fileName = "spritesheets/ratspritesheet.png";
-		std::string animations = "rat.json";
+		std::string fileName = "spritesheets/abigailSpritesheet.png";
+		std::string animations = "abigailAnimations.json";
 
-		ECS::GetComponent<Player>(entity).InitPlayer(fileName, animations, 30, 30, &ECS::GetComponent<Sprite>(entity),
+		ECS::GetComponent<Player>(entity).InitPlayer(fileName, animations, 25, 25, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity));
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 30.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 6.f;
-		float shrinkY = 17.f;
+		float shrinkX = 8.f;
+		float shrinkY = 3.f;
 
 		b2Body* tempBody;
 		b2BodyDef tempDef;

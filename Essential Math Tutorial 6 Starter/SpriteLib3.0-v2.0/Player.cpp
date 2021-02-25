@@ -34,48 +34,29 @@ void Player::InitPlayer(std::string& fileName, std::string& animationJSON, int w
 	//Loads in the animations json file
 	nlohmann::json animations = File::LoadJSON(animationJSON);
 
-	//IDLE ANIMATIONS\\
+	//RUN ANIMATIONS\\
 	
-	//Idle Left
-	m_animController->AddAnimation(animations["IdleLeft"].get<Animation>());
+	//Run Right
+	m_animController->AddAnimation(animations["RunRight"].get<Animation>());
+	//Run Left
+	m_animController->AddAnimation(animations["RunLeft"].get<Animation>());
+
+	//JUMP Animations\\
+
+	//Jump Right
+	m_animController->AddAnimation(animations["JumpRight"].get<Animation>());
+	//Jump Left
+	m_animController->AddAnimation(animations["JumpLeft"].get<Animation>());
+
+	//IDLE Animations\\
+
 	//Idle Right
 	m_animController->AddAnimation(animations["IdleRight"].get<Animation>());
-#ifdef TOPDOWN
-	//Idle Up
-	m_animController->AddAnimation(animations["IdleUp"].get<Animation>());
-	//Idle Down
-	m_animController->AddAnimation(animations["IdleDown"].get<Animation>());
-#endif
-
-	//Walk Animations\\
-
-	//WalkLeft
-	m_animController->AddAnimation(animations["WalkLeft"].get<Animation>());
-	//WalkRight
-	m_animController->AddAnimation(animations["WalkRight"].get<Animation>());
-#ifdef TOPDOWN
-	//WalkUP
-	m_animController->AddAnimation(animations["WalkUp"].get<Animation>());
-	//WalkDown
-	m_animController->AddAnimation(animations["WalkDown"].get<Animation>());
-#endif
-
-	//Attack Animations\\
-
-	//AttackLeft
-	//m_animController->AddAnimation(animations["AttackLeft"].get<Animation>());
-	//AttackRight
-	//m_animController->AddAnimation(animations["AttackRight"].get<Animation>());
-#ifdef TOPDOWN
-	//AttackUp
-	m_animController->AddAnimation(animations["AttackUp"].get<Animation>());
-	//AttackDown
-	m_animController->AddAnimation(animations["AttackDown"].get<Animation>());
-#endif
+	//Idle Left
+	m_animController->AddAnimation(animations["IdleLeft"].get<Animation>());
 
 	//Set Default Animation
 	m_animController->SetActiveAnim(IDLELEFT);
-
 
 }
 
@@ -89,7 +70,7 @@ void Player::Update()
 		MovementUpdate();
 	}
 
-	//AnimationUpdate();
+	AnimationUpdate();
 }
 
 void Player::MovementUpdate()
@@ -276,27 +257,15 @@ void Player::MovementUpdate()
 void Player::AnimationUpdate()
 {
 	int activeAnimation = 0;
+	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
 
-	if (m_moving)
+	if (!(player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001))
 	{
-		//Puts it into the WALK category
-		activeAnimation = WALK;
+		activeAnimation = JUMP;
 	}
-	else if (m_attacking)
+	else if (m_moving)
 	{
-		activeAnimation = ATTACK;
-
-		//Check if the attack animation is done
-		if (m_animController->GetAnimation(m_animController->GetActiveAnim()).GetAnimationDone())
-		{
-			//Will auto set to idle
-			m_locked = false;
-			m_attacking = false;
-			//Resets the attack animation
-			m_animController->GetAnimation(m_animController->GetActiveAnim()).Reset();
-
-			activeAnimation = IDLE;
-		}
+		activeAnimation = RUN;
 	}
 	else
 	{

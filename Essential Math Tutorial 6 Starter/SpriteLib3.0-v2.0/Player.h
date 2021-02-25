@@ -7,32 +7,14 @@
 
 enum AnimEnums
 {
-	IDLELEFT,
+	RUNRIGHT,
+	RUNLEFT,
+
+	JUMPRIGHT,
+	JUMPLEFT,
+	
 	IDLERIGHT,
-	
-	//Only in Top down
-#ifdef TOPDOWN
-	IDLEUP,
-	IDLEDOWN,
-#endif
-
-	WALKLEFT,
-	WALKRIGHT,
-
-	//Only in Top down
-#ifdef TOPDOWN
-	WALKUP,
-	WALKDOWN,
-#endif
-	
-	ATTACKLEFT,
-	ATTACKRIGHT,
-
-	//Only in Top down
-#ifdef TOPDOWN
-	ATTACKUP,
-	ATTACKDOWN
-#endif
+	IDLELEFT,
 };
 
 enum AnimTypes
@@ -43,21 +25,16 @@ enum AnimTypes
 	ATTACK = 8
 #endif
 #ifndef TOPDOWN
-	IDLE = 0,
-	WALK = 2,
-	ATTACK = 4
+	RUN = 0,
+	JUMP = 2,
+	IDLE = 4
 #endif
 };
 
 enum AnimDir
 {
-	LEFT,
 	RIGHT,
-	//Only in Top Down
-#ifdef TOPDOWN
-	UP,
-	DOWN
-#endif
+	LEFT,
 };
 
 class Player
@@ -80,8 +57,8 @@ private:
 
 	//Basically, any animation OTHER than moving will not have a cancel, and we'll be checking whether or not that animation is done
 	bool m_moving = false;
-	//Are you currently attacking?????
-	bool m_attacking = false;
+	//Are you currently jumping?
+	bool m_jumping = false;
 	//Have we locked the player from moving during this animation?
 	bool m_locked = false;
 

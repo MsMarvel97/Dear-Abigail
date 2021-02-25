@@ -1282,6 +1282,21 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 	// STATIC BACKGROUND TILES \\
 
+	// TILE 0-1
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+		//Sets up components
+		std::string fileName = "backgrounds/white.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (8 - 16), 16.f * (5), 2.f));
+	}
+
 	// TILE 1-1
 	{
 		//Creates entity
@@ -1385,6 +1400,96 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		std::string fileName = "backgrounds/denial7-1.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (88 + 8), 16.f * (5), 2.f));
+	}
+
+	// TILE 0-2
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+		//Sets up components
+		std::string fileName = "backgrounds/white.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (8 - 16), 16.f * (16 + 5), 2.f));
+	}
+
+	// TILE 1-2
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+		//Sets up components
+		std::string fileName = "backgrounds/white.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (8), 16.f * (16 + 5), 2.f));
+	}
+
+	// TILE 2-2
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+		//Sets up components
+		std::string fileName = "backgrounds/white.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (16 + 8), 16.f * (16 + 5), 2.f));
+	}
+
+	// TILE 3-2
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+		//Sets up components
+		std::string fileName = "backgrounds/white.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (32 + 8), 16.f * (16 + 5), 2.f));
+	}
+
+	// TILE 4-2
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+		//Sets up components
+		std::string fileName = "backgrounds/white.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (48 + 8), 16.f * (16 + 5), 2.f));
+	}
+
+	// TILE 5-2
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+		//Sets up components
+		std::string fileName = "backgrounds/white.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (64 + 8), 16.f * (16 + 5), 2.f));
 	}
 
 	// TILE 6-2

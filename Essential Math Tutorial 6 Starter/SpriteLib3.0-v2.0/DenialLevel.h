@@ -13,6 +13,12 @@ public:
 	void KeyboardUp() override;
 	void KeyboardDown() override;
 
+	void MovePlatform();
+
+	int player;
+	int movingPlat;
+	bool switchDir = false;
+
 protected:
 	PhysicsPlaygroundListener listener;
 

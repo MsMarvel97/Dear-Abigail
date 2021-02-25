@@ -81,6 +81,9 @@ void Player::InitPlayer(std::string& fileName, std::string& animationJSON, int w
 
 void Player::Update()
 {
+
+	FrictionUpdate();
+
 	if (!m_locked)
 	{
 		MovementUpdate();
@@ -94,20 +97,12 @@ void Player::MovementUpdate()
 	m_moving = false;
 
 	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
+	auto& transformer = ECS::GetComponent<Player>(MainEntities::MainPlayer());
 	auto& canJump = ECS::GetComponent<CanJump>(MainEntities::MainPlayer());
 
 	static float sprint = 0.f;
-	static float vel = -5000;
-	static float vel2 = 5000;
-
-	if (player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001)
-	{
-		player.GetBody()->SetLinearDamping(1.f);
-	}
-	else
-	{
-		player.GetBody()->SetLinearDamping(0.f);
-	}
+	static float vel = -2000;
+	static float vel2 = 2000;
 
 	if (Input::GetKey(Key::Shift) && player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001)
 	{
@@ -138,7 +133,7 @@ void Player::MovementUpdate()
 		m_facing = LEFT;
 		m_moving = true;
 		player.SetVelocity(vec3((vel - sprint) * Timer::deltaTime, player.GetVelocity().y, 0.f));
-		if (vel >= -6000)
+		if (vel >= -5000)
 		{
 			float subtractVel = 1000 * Timer::deltaTime;
 			vel -= subtractVel;
@@ -147,15 +142,15 @@ void Player::MovementUpdate()
 
 	if (!Input::GetKey(Key::A))
 	{
-		if (vel < -5000.f)
+		if (vel < -2000.f)
 		{
 			float slowingVel = 2000 * Timer::deltaTime;
 			vel += slowingVel;
 		}
 
-		if (vel > -3000.f)
+		if (vel > -2000.f)
 		{
-			vel = -3000.f;
+			vel = -2000.f;
 		}
 	}
 
@@ -164,7 +159,7 @@ void Player::MovementUpdate()
 		m_facing = RIGHT;
 		m_moving = true;
 		player.SetVelocity(vec3((vel2 + sprint) * Timer::deltaTime, player.GetVelocity().y, 0.f));
-		if (vel2 <= 6000)
+		if (vel2 <= 5000)
 		{
 			float addVel = 1000 * Timer::deltaTime;
 			vel2 += addVel;
@@ -172,28 +167,22 @@ void Player::MovementUpdate()
 	}
 	if (!Input::GetKey(Key::D))
 	{
-		if (vel2 > 3000.f)
+		if (vel2 > 2000.f)
 		{
 			float slowingVel2 = 2000 * Timer::deltaTime;
 			vel2 -= slowingVel2;
 		}
 
-		if (vel2 < 5000.f)
+		if (vel2 < 2000.f)
 		{
-			vel2 = 3000.f;
+			vel2 = 2000.f;
 		}
 	}
 
-	if (Input::GetKeyDown(Key::Space))
+	if (Input::GetKeyDown(Key::Space) && (player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001))
 	{
-		if (player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001)
-		{
-			if (Input::GetKeyDown(Key::Space))
-			{
-				player.SetVelocity(vec3(0.f, 20000.f * Timer::deltaTime, 0.f));
-				canJump.m_canJump = false;
-			}
-		}
+		float jump = 30000.f;
+		player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0.f, jump), true);
 	}
 
 	// Old Movement Code \\
@@ -315,6 +304,20 @@ void Player::AnimationUpdate()
 	}
 
 	SetActiveAnimation(activeAnimation + (int)m_facing);
+}
+
+void Player::FrictionUpdate()
+{
+	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
+	
+	if (player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001)
+	{
+		player.GetBody()->SetLinearDamping(5.f);
+	}
+	else
+	{
+		player.GetBody()->SetLinearDamping(0.f);
+	}
 }
 
 void Player::SetActiveAnimation(int anim)

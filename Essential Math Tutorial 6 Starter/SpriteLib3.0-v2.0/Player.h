@@ -73,6 +73,7 @@ public:
 	void Update();
 	void MovementUpdate();
 	void AnimationUpdate();
+	void FrictionUpdate();
 
 private:
 	void SetActiveAnimation(int anim);

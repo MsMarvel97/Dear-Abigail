@@ -6,8 +6,8 @@ TutorialLevel::TutorialLevel(std::string name)
 	: Scene(name)
 {
 	//No gravity - top down scene
-	//m_gravity = b2Vec2(0.f, -98.f);
-	//m_physicsWorld->SetGravity(m_gravity);
+	m_gravity = b2Vec2(0.f, -98.f);
+	m_physicsWorld->SetGravity(m_gravity);
 	m_physicsWorld->SetContactListener(&listener);
 }
 

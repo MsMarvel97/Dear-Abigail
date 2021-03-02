@@ -45,7 +45,6 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 	//Abigail entity
 	{
-
 		auto entity = ECS::CreateEntity();
 		ECS::SetIsMainPlayer(entity, true);
 		player = entity;
@@ -57,6 +56,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<AnimationController>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
 		ECS::AttachComponent<CanJump>(entity);
+		ECS::AttachComponent<MovingClass>(entity);
 
 		//Sets up the components
 		std::string fileName = "spritesheets/abigailSpritesheet.png";
@@ -825,7 +825,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "test.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 5, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 5, 16 * 0.5);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -835,10 +835,11 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		float shrinkY = 0.f;
 		b2Body* tempBody;
 		b2BodyDef tempDef;
-		tempDef.type = b2_dynamicBody;
+		//tempDef.type = b2_dynamicBody;
+		tempDef.type = b2_staticBody;
 		float platX = (16 * 22.f) + (16 * 5 / 2);
 		float platY = (16 * 10.f) + (16 * 1 / 2);
-		tempDef.position.Set(float32((16 * 22.f) + (16 * 5 / 2)), float32((16 * 10.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32((16 * 22.f) + (16 * 5 / 2)), float32((16 * 10.f) + (16 * 1 / 2) - 20));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -846,6 +847,51 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 		tempPhsBody.SetFixedRotation(true);
+		tempPhsBody.SetGravityScale(0.f);
+	}
+
+
+	//Trigger M1 (moving platform 1 trigger) *currently in leftmost position*
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		kinTrigger = entity;
+
+		//Add components
+		ECS::AttachComponent<Trigger*>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Kinematics>(entity);
+
+		//Sets up components
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+
+		ECS::GetComponent<Kinematics>(entity).SetParent(movingPlat);
+		ECS::GetComponent<Kinematics>(entity).SetChild(entity);
+
+		ECS::GetComponent<Trigger*>(entity) = new MovingTrigger;
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		//tempDef.type = b2_dynamicBody;
+		tempDef.type = b2_staticBody;
+
+		tempDef.position.Set(float32((16 * 22.f) + (16 * 5 / 2)), float32((16 * 10.f) + (16 * 1 / 2) - 20));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 5 - shrinkX),
+			float(16 * 0.5 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		tempPhsBody.SetFixedRotation(true);
+		tempPhsBody.SetGravityScale(0.f);
 	}
 
 	//Platform M2 (crumbling platform)
@@ -1568,8 +1614,19 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 void DenialLevel::Update()
 {
+	auto& playerBody = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
 	auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
+	auto& moveTrig = ECS::GetComponent<MovingClass>(MainEntities::MainPlayer());
+	auto& kinTrig = ECS::GetComponent<Kinematics>(kinTrigger);
+	
+	kinTrig.UpdatePosition();
 	player.Update();
+	
+	if (moveTrig.GetRight() == true)
+	{
+		std::cout << "Right\n";
+	}
+	
 	MovePlatform();
 }
 
@@ -1613,27 +1670,41 @@ void DenialLevel::KeyboardHold()
 
 void DenialLevel::MovePlatform()
 {
-	//auto& moveTrig = ECS::GetComponent<MovingClass>(player);
+	auto& moveTrig = ECS::GetComponent<MovingClass>(player);
 	auto& playerBody = ECS::GetComponent<PhysicsBody>(player);
 	auto& plat = ECS::GetComponent<PhysicsBody>(movingPlat);
-	int platX = plat.GetPosition().x;
-	int platY = plat.GetPosition().y;
+	float platX = plat.GetPosition().x;
+	float platY = plat.GetPosition().y;
 	int playerX = playerBody.GetPosition().x;
 	int playerY = playerBody.GetPosition().y;
 	
-	if (platX > 500)
+	if (platX > 680)
 	{
 		switchDir = true;
+
 	}
-	if (platX < 0)
+	if (platX < 380)
 	{
 		switchDir = false;
+
 	}
 	if (switchDir == false)
 	{
-		platX += 1;
-		//plat.SetPosition(b2Vec2(platX, platY)); 
-		plat.SetVelocity(vec3(2000, 0, 0));
+		platX += 0.5;
+		plat.SetPosition(b2Vec2(platX, platY)); 
+		moveTrig.SetRight(true);
+		moveTrig.SetLeft(false);
+		//if (moveTrig.GetMoving())
+		//{
+		//	/*playerBody.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(57000.f * Timer::deltaTime, 0.f), true);*/
+		//}
+
+		//if (moveTrig.GetMoving() == true)
+		//{
+
+		//}
+
+		//plat.SetVelocity(vec3(1250 * Timer::deltaTime, 0, 0));
 		//if (moveTrig.GetMoving() == true)
 		//{
 		//	playerX += 1;
@@ -1646,18 +1717,12 @@ void DenialLevel::MovePlatform()
 	}
 	else if (switchDir == true)
 	{
-		platX -= 1;
-		//plat.SetPosition(b2Vec2(platX, platY));
-		plat.SetVelocity(vec3(-2000, 0, 0));
+		platX -= 0.5;
+		plat.SetPosition(b2Vec2(platX, platY));
 		//if (moveTrig.GetMoving() == true)
 		//{
-		//	if (!Input::GetKey(Key::D)) 
-		//	{
-		//		playerBody.SetVelocity(vec3(-5000, 0, 0));
-		//	}
-		//	playerX -= 1;
-		//	
-		//	//playerBody.SetPosition(b2Vec2(playerX, playerY));
+			moveTrig.SetLeft(true);
+			moveTrig.SetRight(false);
 		//}
 	}
 	
@@ -1687,10 +1752,10 @@ void DenialLevel::KeyboardDown()
 	playerVel = player.GetVelocity();
 	playerPos = player.GetPosition();
 
-	if (Input::GetKeyDown(Key::M)) {
+	if (Input::GetKeyDown(Key::M)) 
+	{
 		std::cout << "X Pos: " << playerPos.x << std::endl;
 		std::cout << "Y Pos: " << playerPos.y << std::endl << std::endl;
-
 	}
 
 }

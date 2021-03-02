@@ -80,17 +80,36 @@ void Player::MovementUpdate()
 	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
 	auto& transformer = ECS::GetComponent<Player>(MainEntities::MainPlayer());
 	auto& canJump = ECS::GetComponent<CanJump>(MainEntities::MainPlayer());
+	auto& moving = ECS::GetComponent<MovingClass>(MainEntities::MainPlayer());
 
 	static float sprint = 0.f;
 	static float vel = -2000;
 	static float vel2 = 2000;
+	float time = Timer::deltaTime;
+	static float jumping = 1000000.f;
+	float platform = 0.f;
+
+	if (moving.GetMoving())
+	{
+		platform = 2000.f;
+
+		if (!Input::GetKey(Key::D) && !Input::GetKey(Key::A))
+		{
+			float passiveMovement = 57000.f;
+
+			if (moving.GetLeft() == true)
+			{
+				passiveMovement *= -1;
+			}
+			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(passiveMovement * Timer::deltaTime, 0.f), true);
+		}
+	}
 
 	if (Input::GetKey(Key::Shift) && player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001)
 	{
 		if (sprint <= 3000.f)
 		{
 			float sprinting = 1000 * Timer::deltaTime;
-
 			sprint += sprinting;
 		}
 	}
@@ -113,7 +132,9 @@ void Player::MovementUpdate()
 	{
 		m_facing = LEFT;
 		m_moving = true;
-		player.SetVelocity(vec3((vel - sprint) * Timer::deltaTime, player.GetVelocity().y, 0.f));
+
+		player.SetVelocity(vec3((vel - sprint - platform) * Timer::deltaTime, player.GetVelocity().y, 0.f));
+
 		if (vel >= -5000)
 		{
 			float subtractVel = 1000 * Timer::deltaTime;
@@ -139,7 +160,9 @@ void Player::MovementUpdate()
 	{
 		m_facing = RIGHT;
 		m_moving = true;
-		player.SetVelocity(vec3((vel2 + sprint) * Timer::deltaTime, player.GetVelocity().y, 0.f));
+
+		player.SetVelocity(vec3((vel2 + sprint + platform) * Timer::deltaTime, player.GetVelocity().y, 0.f));
+
 		if (vel2 <= 5000)
 		{
 			float addVel = 1000 * Timer::deltaTime;
@@ -160,86 +183,38 @@ void Player::MovementUpdate()
 		}
 	}
 
+	if (Input::GetKey(Key::C) && (player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001))
+	{
+		if (jumping <= 1800000)
+		{
+			float building = 1500000.f * Timer::deltaTime;
+			jumping += building;
+		}
+		else
+		{
+			jumping = 1800000;
+		}
+	}
+
 	if (Input::GetKeyDown(Key::Space) && (player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001))
 	{
-		float jump = 30000.f;
-		player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0.f, jump), true);
+		float jump = 1000000 * Timer::deltaTime;
+		float jumpCharged = 1800000 * Timer::deltaTime;
+
+		if (Input::GetKey(Key::Shift))
+		{
+			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0.f, jumpCharged), true);
+		}
+
+		else
+		{
+			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0.f, jump), true);
+		}
+		jumping = 1000000.f;
 	}
 
 	// Old Movement Code \\
 
-	//	if (m_hasPhysics)
-	//	{
-	//		float speed = 10.f;
-	//		vec3 vel = vec3(0.f, 0.f, 0.f);
-	//
-	//		if (Input::GetKey(Key::Shift))
-	//		{
-	//			speed *= 7.f;
-	//		}
-	//
-	//#ifdef TOPDOWN
-	//		if (Input::GetKey(Key::W))
-	//		{
-	//			vel = vel + vec3(0.f, 1.f, 0.f);
-	//			m_facing = UP;
-	//			m_moving = true;
-	//		}
-	//		if (Input::GetKey(Key::S))
-	//		{
-	//			vel = vel + vec3(0.f, -1.f, 0.f);
-	//			m_facing = DOWN;
-	//			m_moving = true;
-	//		}
-	//#endif
-	//
-	//		if (Input::GetKey(Key::A))
-	//		{
-	//			vel = vel + vec3(-1.f, 0.f, 0.f);
-	//
-	//		}
-	//		if (Input::GetKey(Key::D))
-	//		{
-	//			vel = vel + vec3(1.f, 0.f, 0.f);
-	//
-	//		}
-	//
-	//		m_physBody->SetVelocity(vel * speed);
-	//	}
-	//	else
-	//	{
-	//		//Regular Movement
-	//		float speed = 15.f;
-	//
-	//#ifdef TOPDOWN
-	//		if (Input::GetKey(Key::W))
-	//		{
-	//			m_transform->SetPositionY(m_transform->GetPositionY() + (speed * Timer::deltaTime));
-	//			m_facing = UP;
-	//			m_moving = true;
-	//		}
-	//		if (Input::GetKey(Key::S))
-	//		{
-	//			m_transform->SetPositionY(m_transform->GetPositionY() - (speed * Timer::deltaTime));
-	//			m_facing = DOWN;
-	//			m_moving = true;
-	//		}
-	//#endif
-	//
-	//		if (Input::GetKey(Key::A))
-	//		{
-	//			m_transform->SetPositionX(m_transform->GetPositionX() - (speed * Timer::deltaTime));
-	//			m_facing = LEFT;
-	//			m_moving = true;
-	//		}
-	//		if (Input::GetKey(Key::D))
-	//		{
-	//			m_transform->SetPositionX(m_transform->GetPositionX() + (speed * Timer::deltaTime));
-	//			m_facing = RIGHT;
-	//			m_moving = true;
-	//		}
-	//	}
-	//
 	//	if (Input::GetKeyDown(Key::Space))
 	//	{
 	//		/*m_moving = false;

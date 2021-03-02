@@ -15,4 +15,6 @@ void MovingTrigger::OnExit()
 {
 	Trigger::OnExit();
 	ECS::GetComponent<MovingClass>(m_targetEntities[0]).SetMoving(false);
+	ECS::GetComponent<MovingClass>(m_targetEntities[0]).SetLeft(false);
+	ECS::GetComponent<MovingClass>(m_targetEntities[0]).SetRight(false);
 }

@@ -178,16 +178,13 @@ public:
 
 	//Call this function every frame to keep keyboard functionality going
 	//Do it in the Game run loop
-	static void ResetKeys();
+	static void UpdateKeys();
+	static char m_keyPressedPreviousFlag[256];
 
-	//Keeps track of pressed keys
-	static char m_keyPressedFlag[256];
-	//Keeps track of released key
-	static char m_keyReleasedFlag[256];
+
 	//Keeps track of which keys were pressed
 	static char m_keyWasPressed[256];
-	//Keeps track of which keys have been previously processed
-	static char m_keyHandledFlag[256];
+
 
 	//Does the window have keyboard focus
 	static bool m_windowFocus;

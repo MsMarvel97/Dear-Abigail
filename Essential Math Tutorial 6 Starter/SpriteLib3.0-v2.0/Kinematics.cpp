@@ -1,7 +1,7 @@
 #include "Kinematics.h"
 #include "ECS.h"
 
-void Kinematics::SetPosition()
+void Kinematics::UpdatePosition()
 {
 	float parentX = ECS::GetComponent<PhysicsBody>(kinParent).GetPosition().x;
 	float parentY = ECS::GetComponent<PhysicsBody>(kinParent).GetPosition().y;
@@ -10,9 +10,7 @@ void Kinematics::SetPosition()
 	float childY = ECS::GetComponent<Transform>(kinChild).GetPosition().y;
 	float childZ = ECS::GetComponent<Transform>(kinChild).GetPosition().z;
 
-
-
-	ECS::GetComponent<Transform>(kinChild).SetPosition(vec3(parentX + offsetX, parentY + offsetY, childZ));
+	ECS::GetComponent<PhysicsBody>(kinChild).SetPosition(b2Vec2(parentX + offsetX, parentY + offsetY), true);
 }
 
 void Kinematics::SetParent(int parent)

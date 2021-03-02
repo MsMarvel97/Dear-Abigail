@@ -146,7 +146,7 @@ void Game::AcceptInput()
 
 	//Resets the key flags
 	//Must be done once per frame for input to work
-	Input::ResetKeys();
+	Input::UpdateKeys();
 }
 
 void Game::GamepadInput()

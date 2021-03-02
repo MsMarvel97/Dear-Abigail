@@ -61,6 +61,8 @@ private:
 	bool m_jumping = false;
 	//Have we locked the player from moving during this animation?
 	bool m_locked = false;
+	//float to hold the strength of the jump
+	float m_jump = 1500000.f * Timer::deltaTime;
 
 	//A reference to our sprite
 	Sprite* m_sprite = nullptr;

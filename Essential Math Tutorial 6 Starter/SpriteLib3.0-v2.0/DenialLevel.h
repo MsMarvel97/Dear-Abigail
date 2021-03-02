@@ -17,6 +17,7 @@ public:
 
 	int player;
 	int movingPlat;
+	int kinTrigger;
 	bool switchDir = false;
 
 protected:

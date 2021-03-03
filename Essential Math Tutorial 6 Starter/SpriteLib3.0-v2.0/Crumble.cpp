@@ -440,44 +440,16 @@ void Crumble::PleaseHelp(int entity)
 	if (ECS::GetComponent<CrumblingSequence>(entity).disablePlatform() != -1)
 	{
 		if (ECS::GetComponent<CrumblingSequence>(entity).disablePlatform() == 0)
-		{
-			/*auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-			auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-			float shrinkX = 0.f;
-			float shrinkY = 0.f;
-			b2Body* tempBody;
-			b2BodyDef tempDef;
-			tempDef.type = b2_staticBody;
-			tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-			tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-				float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | OBJECTS | HEXAGON);*/
-			
+		{	
 			ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 			ECS::GetComponent<PhysicsBody>(entity).GetBody()->SetActive(true);
 			ECS::GetComponent<CrumblingSequence>(entity).disable = false;
 		}
 		else if (ECS::GetComponent<CrumblingSequence>(entity).disablePlatform() == 1)
 		{
-			/*auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-			auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-			float shrinkX = 0.f;
-			float shrinkY = 0.f;
-			b2Body* tempBody;
-			b2BodyDef tempDef;
-			tempDef.type = b2_staticBody;
-			tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-			tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-				float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, ENEMY, OBJECTS | HEXAGON);*/
-
 			ECS::GetComponent<Sprite>(entity).SetTransparency(0.4f);
 			ECS::GetComponent<PhysicsBody>(entity).GetBody()->SetActive(false);
 			ECS::GetComponent<CrumblingSequence>(entity).disable = false;
-
 		}
 	}
-	
 }

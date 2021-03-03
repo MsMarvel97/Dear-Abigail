@@ -13,12 +13,16 @@ public:
 	void KeyboardUp() override;
 	void KeyboardDown() override;
 
+	void CrumblingPlatforms(int entity);
 	void MovePlatform();
 
 	int player;
 	int movingPlat;
+	int vertMovingPlat;
 	int kinTrigger;
 	bool switchDir = false;
+	int cPlatforms[8];
+	int cTriggers[8];
 
 protected:
 	PhysicsPlaygroundListener listener;

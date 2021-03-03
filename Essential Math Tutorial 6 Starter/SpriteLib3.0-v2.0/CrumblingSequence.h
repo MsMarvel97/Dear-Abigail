@@ -15,5 +15,7 @@ public:
 	int disablePlatform();
 	bool disable = false;
 	int operation = 0;
+
+	float startTime = 0.f;
 };
 

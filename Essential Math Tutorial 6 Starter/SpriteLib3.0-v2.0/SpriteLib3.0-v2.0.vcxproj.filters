@@ -222,15 +222,6 @@
     <ClInclude Include="EndTrigger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Crumble.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CrumblingSequence.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DestroyPlatformTrigger.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="TutorialLevel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -247,6 +238,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Kinematics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Crumble.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DestroyPlatformTrigger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CrumblingSequence.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

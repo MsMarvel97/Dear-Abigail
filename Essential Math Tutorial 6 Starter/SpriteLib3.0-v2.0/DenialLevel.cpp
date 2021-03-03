@@ -75,8 +75,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_dynamicBody;
-		tempDef.position.Set(float32(0.f), float32(30.f));
-
+		//tempDef.position.Set(float32(0.f), float32(30.f));
+		tempDef.position.Set(float32(744.5), float32(187.5));
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
 		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX), float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, PLAYER, ENEMY | OBJECTS | PICKUP | TRIGGER | SNAIL, 0.f, 1.f);
@@ -898,11 +898,13 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 	{
 		//Creates entity
 		auto entity = ECS::CreateEntity();
+		cPlatforms[0] = entity;
 
 		//Add components
 		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<CrumblingSequence>(entity);
 
 		//Sets up components
 		std::string fileName = "platform.png";
@@ -927,15 +929,54 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 	}
 
-	//Platform M3 (crumbling platform)
+	//Trigger M2 (crumbling trigger)
 	{
 		//Creates entity
 		auto entity = ECS::CreateEntity();
+		cTriggers[0] = entity;
 
 		//Add components
 		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Trigger*>(entity);
+
+		//Sets up components
+		std::string fileName = "platform.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[0]);
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32((16 * 53.f) + (16 * 3 / 2)), float32((16 * 13.f) + (16 * 2 / 2)));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	}
+
+	//Platform M3 (crumbling platform)
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		cPlatforms[1] = entity;
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<CrumblingSequence>(entity);
 
 		//Sets up components
 		std::string fileName = "platform.png";
@@ -960,15 +1001,54 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 	}
 
-	//Platform M4 (crumbling platform)
+	//Trigger M3 (crumbling trigger)
 	{
 		//Creates entity
 		auto entity = ECS::CreateEntity();
+		cTriggers[1] = entity;
 
 		//Add components
 		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Trigger*>(entity);
+
+		//Sets up components
+		std::string fileName = "platform.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[1]);
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32((16 * 58.f) + (16 * 3 / 2)), float32((16 * 14.f) + (16 * 2 / 2)));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	}
+
+	//Platform M4 (crumbling platform)
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		cPlatforms[2] = entity;
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<CrumblingSequence>(entity);
 
 		//Sets up components
 		std::string fileName = "platform.png";
@@ -990,18 +1070,56 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	}
 
+	//Trigger M4 (crumbling trigger)
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		cTriggers[2] = entity;
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Trigger*>(entity);
+
+		//Sets up components
+		std::string fileName = "platform.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[2]);
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32((16 * 68.f) + (16 * 3 / 2)), float32((16 * 16.f) + (16 * 2 / 2)));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
 	//Platform M5 (crumbling platform)
 	{
 		//Creates entity
 		auto entity = ECS::CreateEntity();
+		cPlatforms[3] = entity;
 
 		//Add components
 		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<CrumblingSequence>(entity);
 
 		//Sets up components
 		std::string fileName = "platform.png";
@@ -1023,18 +1141,56 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	}
 
+	//Trigger M5 (crumbling trigger)
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		cTriggers[3] = entity;
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Trigger*>(entity);
+
+		//Sets up components
+		std::string fileName = "platform.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[3]);
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32((16 * 73.f) + (16 * 3 / 2)), float32((16 * 18.f) + (16 * 2 / 2)));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
 	//Platform M6 (crumbling platform)
 	{
 		//Creates entity
 		auto entity = ECS::CreateEntity();
+		cPlatforms[4] = entity;
 
 		//Add components
 		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<CrumblingSequence>(entity);
 
 		//Sets up components
 		std::string fileName = "platform.png";
@@ -1056,18 +1212,56 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	}
 
+	//Trigger M6 (crumbling trigger)
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		cTriggers[4] = entity;
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Trigger*>(entity);
+
+		//Sets up components
+		std::string fileName = "platform.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[4]);
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32((16 * 100.f) + (16 * 3 / 2)), float32((16 * 23.f) + (16 * 2 / 2)));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
 	//Platform M7 (crumbling platform)
 	{
 		//Creates entity
 		auto entity = ECS::CreateEntity();
+		cPlatforms[5] = entity;
 
 		//Add components
 		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<CrumblingSequence>(entity);
 
 		//Sets up components
 		std::string fileName = "platform.png";
@@ -1089,13 +1283,50 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	}
 
+	//Trigger M7 (crumbling trigger)
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		cTriggers[5] = entity;
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Trigger*>(entity);
+
+		//Sets up components
+		std::string fileName = "platform.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[5]);
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32((16 * 105.f) + (16 * 3 / 2)), float32((16 * 25.f) + (16 * 2 / 2)));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
 	//Platform M8 (moving platform) *currently in lowest position of path*
 	{
 		//Creates entity
 		auto entity = ECS::CreateEntity();
+		vertMovingPlat = entity;
 
 		//Add components
 		ECS::AttachComponent<Sprite>(entity);
@@ -1122,18 +1353,19 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-
 	}
 
 	//Platform M9 (crumbling platform)
 	{
 		//Creates entity
 		auto entity = ECS::CreateEntity();
+		cPlatforms[6] = entity;
 
 		//Add components
 		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<CrumblingSequence>(entity);
 
 		//Sets up components
 		std::string fileName = "platform.png";
@@ -1155,18 +1387,56 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	}
 
+	//Trigger M9 (crumbling trigger)
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		cTriggers[6] = entity;
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Trigger*>(entity);
+
+		//Sets up components
+		std::string fileName = "platform.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[6]);
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32((16 * 100.f) + (16 * 3 / 2)), float32((16 * 36.f) + (16 * 2 / 2)));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
 	//Platform M10 (crumbling platform)
 	{
 		//Creates entity
 		auto entity = ECS::CreateEntity();
+		cPlatforms[7] = entity;
 
 		//Add components
 		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<CrumblingSequence>(entity);
 
 		//Sets up components
 		std::string fileName = "platform.png";
@@ -1188,9 +1458,44 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-
 	}
 
+	//Trigger M10 (crumbling trigger)
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		cTriggers[7] = entity;
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Trigger*>(entity);
+
+		//Sets up components
+		std::string fileName = "platform.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[7]);
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32((16 * 107.f) + (16 * 3 / 2)), float32((16 * 36.f) + (16 * 2 / 2)));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	}
 
 	// SHADOWS \\
 
@@ -1621,12 +1926,16 @@ void DenialLevel::Update()
 	
 	kinTrig.UpdatePosition();
 	player.Update();
-	
-	if (moveTrig.GetRight() == true)
+
+	for (int i = 0; i <= 7; i++)
 	{
-		std::cout << "Right\n";
+		ECS::GetComponent<CrumblingSequence>(cPlatforms[i]).Crumble();
+		CrumblingPlatforms(cPlatforms[i]);
 	}
-	
+
+	//std::cout << playerBody.GetPosition().x << std::endl;
+	//std::cout << playerBody.GetPosition().y << std::endl;
+
 	MovePlatform();
 }
 
@@ -1673,11 +1982,32 @@ void DenialLevel::MovePlatform()
 	auto& moveTrig = ECS::GetComponent<MovingClass>(player);
 	auto& playerBody = ECS::GetComponent<PhysicsBody>(player);
 	auto& plat = ECS::GetComponent<PhysicsBody>(movingPlat);
+	auto& vert = ECS::GetComponent<PhysicsBody>(vertMovingPlat);
 	float platX = plat.GetPosition().x;
 	float platY = plat.GetPosition().y;
 	int playerX = playerBody.GetPosition().x;
 	int playerY = playerBody.GetPosition().y;
-	
+
+	static bool vertSwitch = false;
+
+	if (vert.GetPosition().y <= 408)
+	{
+		vertSwitch = false;
+	}
+	if (vert.GetPosition().y >= 808)
+	{
+		vertSwitch = true;
+	}
+
+	if (vertSwitch == false)
+	{
+		vert.SetPosition(b2Vec2(vert.GetPosition().x, vert.GetPosition().y + 0.5));
+	}
+	else
+	{
+		vert.SetPosition(b2Vec2(vert.GetPosition().x, vert.GetPosition().y - 0.5));
+	}
+
 	if (platX > 680)
 	{
 		switchDir = true;
@@ -1694,15 +2024,6 @@ void DenialLevel::MovePlatform()
 		plat.SetPosition(b2Vec2(platX, platY)); 
 		moveTrig.SetRight(true);
 		moveTrig.SetLeft(false);
-		//if (moveTrig.GetMoving())
-		//{
-		//	/*playerBody.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(57000.f * Timer::deltaTime, 0.f), true);*/
-		//}
-
-		//if (moveTrig.GetMoving() == true)
-		//{
-
-		//}
 
 		//plat.SetVelocity(vec3(1250 * Timer::deltaTime, 0, 0));
 		//if (moveTrig.GetMoving() == true)
@@ -1719,13 +2040,30 @@ void DenialLevel::MovePlatform()
 	{
 		platX -= 0.5;
 		plat.SetPosition(b2Vec2(platX, platY));
-		//if (moveTrig.GetMoving() == true)
-		//{
-			moveTrig.SetLeft(true);
-			moveTrig.SetRight(false);
-		//}
+		moveTrig.SetLeft(true);
+		moveTrig.SetRight(false);
 	}
 	
+}
+
+
+void DenialLevel::CrumblingPlatforms(int entity)
+{
+	if (ECS::GetComponent<CrumblingSequence>(entity).disablePlatform() != -1)
+	{
+		if (ECS::GetComponent<CrumblingSequence>(entity).disablePlatform() == 0)
+		{
+			ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
+			ECS::GetComponent<PhysicsBody>(entity).GetBody()->SetActive(true);
+			ECS::GetComponent<CrumblingSequence>(entity).disable = false;
+		}
+		else if (ECS::GetComponent<CrumblingSequence>(entity).disablePlatform() == 1)
+		{
+			ECS::GetComponent<Sprite>(entity).SetTransparency(0.4f);
+			ECS::GetComponent<PhysicsBody>(entity).GetBody()->SetActive(false);
+			ECS::GetComponent<CrumblingSequence>(entity).disable = false;
+		}
+	}
 }
 
 

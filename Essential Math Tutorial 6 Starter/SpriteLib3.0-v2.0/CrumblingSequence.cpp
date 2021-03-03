@@ -2,7 +2,6 @@
 
 void CrumblingSequence::Crumble()
 {
-	static float startTime = 0.f;
 	if (sequenceStart == false)
 	{
 		startTime = Timer::time;
@@ -18,13 +17,11 @@ void CrumblingSequence::Crumble()
 		{
 			operation = 1;
 			disable = true;
-			//ECS::GetComponent<Sprite>(entity).SetTransparency(0.4f);
 		}
 		else if (currentTime >= 5)
 		{
 			operation = 0;
 			disable = true;
-			//ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 			startTime = 0;
 			sequenceStart = false;
 		}

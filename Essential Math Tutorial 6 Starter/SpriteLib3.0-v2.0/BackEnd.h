@@ -15,6 +15,7 @@
 #include "Scenes.h"
 #include "UI.h"
 
+
 //Mouse Motion event
 typedef SDL_MouseMotionEvent MotionEvent;
 //Mouse Button event

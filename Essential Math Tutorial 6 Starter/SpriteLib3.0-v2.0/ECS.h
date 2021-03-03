@@ -28,7 +28,15 @@
 #include "EndTrigger.h"
 #include "CrumblingSequence.h"
 #include "DestroyPlatformTrigger.h"
+<<<<<<< Updated upstream
 
+=======
+#include "MovingClass.h"
+#include "MovingTrigger.h"
+#include "MovingPlatform.h"
+#include "Kinematics.h"
+#include "ToneFire.h"
+>>>>>>> Stashed changes
 
 class ECS abstract
 {

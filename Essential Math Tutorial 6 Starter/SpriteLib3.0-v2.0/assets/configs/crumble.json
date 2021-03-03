@@ -1,0 +1,14 @@
+{
+    "Solid":{
+        "Frame0":[1.0,128.0,192.0,1.0],
+        "NumFrames":4,"Repeating":false,"SecsPerFrame":0.25
+    },
+    "Crumble":{
+        "Frame0":[1.0,256.0,192.0,129.0],"Frame1":[129.0,256.0,384.0,129.0],"Frame2":[257.0,256.0,576.0,129.0],"Frame3":[385.0,256.0,768.0,129.0],
+        "NumFrames":4,"Repeating":false,"SecsPerFrame":0.25
+    },
+    "Gone":{
+        "Frame0":[1.0,384.0,192.0,257.0],
+        "NumFrames":1,"Repeating":false,"SecsPerFrame":0.25
+    },
+}

@@ -1,5 +1,6 @@
 #include "DenialLevel.h"
 #include "Utilities.h"
+//#include "ToneFire.h"
 
 
 DenialLevel::DenialLevel(std::string name)
@@ -42,7 +43,16 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<VerticalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
 	}
 
+	//music created and looped 
+	{
+		//ToneFire::CoreSound BGM("denialBGM.wav", FMOD_LOOP_NORMAL); 
+		ToneFire::CoreSound test2{ "TURKEYSONG8000.mp3",false,false,true };
+		
+		//BGM.Play(); 
+		test2.Play();
 
+		test2.SetVolume(1.0f);
+	}
 	//Abigail entity
 	{
 		auto entity = ECS::CreateEntity();
@@ -136,7 +146,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-
+		
 	}
 
 	//Platform B (bottom 30-50)
@@ -2240,6 +2250,7 @@ void DenialLevel::Update()
 	
 	kinTrig.UpdatePosition();
 	player.Update();
+	fmod.Update();
 
 	for (int i = 0; i <= 7; i++)
 	{

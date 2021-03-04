@@ -32,6 +32,7 @@
 #include "MovingTrigger.h"
 #include "MovingPlatform.h"
 #include "Kinematics.h"
+#include "ToneFire.h"
 
 
 class ECS abstract

@@ -824,7 +824,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "test.png";
+		std::string fileName = "movingplatform.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 5, 16 * 0.5);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -905,9 +905,11 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
 		ECS::AttachComponent<CrumblingSequence>(entity);
+		ECS::AttachComponent<AnimationController>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
+		std::string JSONFile = "crumble.json";
+		std::string fileName = "spritesheets/crumblingPlatform.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 

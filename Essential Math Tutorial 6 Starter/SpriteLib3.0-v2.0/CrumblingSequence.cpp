@@ -3,9 +3,9 @@
 
 void CrumblingSequence::Crumble()
 {
-	auto& sprite = ECS::GetComponent<Sprite>(entity);
-	std::string spritesheet = "spritesheets/crumblingPlatform.png";
-	std::string animations = "crumble.json";
+	//auto& sprite = ECS::GetComponent<Sprite>(entity);
+	//std::string spritesheet = "spritesheets/crumblingPlatform.png";
+	//std::string animations = "crumble.json";
 
 	if (sequenceStart == false)
 	{
@@ -16,7 +16,7 @@ void CrumblingSequence::Crumble()
 	{
 		if (currentTime < 3)
 		{
-			sprite.LoadSprite(spritesheet, sprite.GetWidth(), sprite.GetHeight());
+			//sprite.LoadSprite(spritesheet, sprite.GetWidth(), sprite.GetHeight());
 		}
 		else if (currentTime >= 3 && currentTime < 5)
 		{

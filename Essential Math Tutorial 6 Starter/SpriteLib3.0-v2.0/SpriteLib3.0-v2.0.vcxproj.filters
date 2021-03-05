@@ -249,6 +249,9 @@
     <ClInclude Include="CrumblingSequence.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ToneFire.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\imgui\imgui.cpp">

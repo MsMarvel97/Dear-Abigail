@@ -200,6 +200,7 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="ToneFire.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TranslateTrigger.h" />
     <ClInclude Include="Trigger.h" />

@@ -46,12 +46,12 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 	//music created and looped 
 	{
 		//ToneFire::CoreSound BGM("denialBGM.wav", FMOD_LOOP_NORMAL); 
-		ToneFire::CoreSound test2{ "TURKEYSONG8000.mp3",false,false,true };
-		
-		//BGM.Play(); 
-		test2.Play();
+		//ToneFire::CoreSound test2{ "TURKEYSONG8000.mp3",false,false,true };
+		//
+		////BGM.Play(); 
+		//test2.Play();
 
-		test2.SetVolume(1.0f);
+		//test2.SetVolume(1.0f);
 	}
 	//Abigail entity
 	{
@@ -74,6 +74,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		ECS::GetComponent<Player>(entity).InitPlayer(fileName, animations, 25, 25, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity));
+
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 30.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -925,14 +926,17 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
 		ECS::AttachComponent<CrumblingSequence>(entity);
-		//ECS::AttachComponent<AnimationController>(entity);
+		ECS::AttachComponent<AnimationController>(entity);
 
 		//Sets up components
-		//std::string JSONFile = "crumble.json";
-		//std::string fileName = "spritesheets/crumblingPlatform.png";
-		std::string fileName = "test.png";
+
+		std::string fileName = "spritesheets/crumblingPlatform.png";
+		std::string JSONFile = "crumble.json";		
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, &ECS::GetComponent<Sprite>(entity),
+			&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity), false, &ECS::GetComponent<PhysicsBody>(entity));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);

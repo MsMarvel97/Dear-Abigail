@@ -340,7 +340,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 75.f) + (16 * 12 / 2)), float32((16 * 2.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32((16 * 75.f) + (16 * 12 / 2)), float32((16 * 2.f) + (16 * 1 / 2)));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -561,7 +561,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 25, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 24, 16 * 1);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -604,7 +604,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 112.f) + (16 * 12 / 2)), float32((16 * 2.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32((16 * 116.f) + (16 * 4 / 2)), float32((16 * 2.f) + (16 * 1 / 2)));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -1385,6 +1385,25 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 	}
 	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
+
+	// BACKGROUND TILES \\
+
+	{
+		//Tile 1-1
+		{
+			//Creates entity 
+			auto entity = ECS::CreateEntity();
+
+			//Add components 
+			ECS::AttachComponent<Sprite>(entity);
+			ECS::AttachComponent<Transform>(entity);
+
+			//Sets up components 
+			std::string fileName = "backgrounds/anger/anger1-1.png";
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3((0.f + (16 * 7)), (0.f + (16 * 5)), 2.f));
+		}
+	}
 }
 
 void AngerLevel::Update()

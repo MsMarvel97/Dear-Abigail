@@ -264,7 +264,12 @@ void Player::FrictionUpdate()
 	}
 }
 
+void Player::UpdateAninControllerRef(AnimationController* ref)
+{
+	m_animController = ref;
+}
+
 void Player::SetActiveAnimation(int anim)
 {
-	m_animController->SetActiveAnim(anim);
+	ECS::GetComponent<AnimationController>(MainEntities::MainPlayer()).SetActiveAnim(anim);
 }

@@ -14,10 +14,10 @@ public:
 	};
 
 	CrumblingSequence();
-	CrumblingSequence(std::string& fileName, std::string& animationJSON, int width, int height,
+	CrumblingSequence(std::string& fileName, std::string& animationJSON, int width, int height, int entityNum,
 		Sprite* sprite, AnimationController* controller, Transform* transform, bool hasPhys = false, PhysicsBody* body = nullptr);
 
-	void InitPlatform(std::string& fileName, std::string& animationJSON, int width, int height,
+	void InitPlatform(std::string& fileName, std::string& animationJSON, int width, int height, int entityNum,
 		Sprite* sprite, AnimationController* controller, Transform* transform, bool hasPhys = false, PhysicsBody* body = nullptr);
 
 	void Crumble();

@@ -51,6 +51,7 @@ public:
 	void MovementUpdate();
 	void AnimationUpdate();
 	void FrictionUpdate();
+	void UpdateAninControllerRef(AnimationController* ref);
 
 private:
 	void SetActiveAnimation(int anim);

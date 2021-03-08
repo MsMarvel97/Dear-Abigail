@@ -145,6 +145,10 @@ public:
 	void SetActiveAnim(int anim);
 	//Sets the VAO that the UV VBO is connected to
 	void SetVAO(GLuint vao);
+
+	//for resetting UVs of an animation
+	void ResetUVs(float first, float second, float third, float fourth);
+
 private:
 	//Active animation
 	int m_activeAnimation = 0;

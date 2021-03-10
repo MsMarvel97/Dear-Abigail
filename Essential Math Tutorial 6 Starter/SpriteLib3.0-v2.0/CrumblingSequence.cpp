@@ -48,7 +48,7 @@ void CrumblingSequence::InitPlatform(std::string& fileName, std::string& animati
 	animator->SetActiveAnim(RESTING);
 }
 
-void CrumblingSequence::Crumble()
+void CrumblingSequence::Crumble(int ent)
 {
 	if (sequenceStart == false)
 	{
@@ -59,24 +59,24 @@ void CrumblingSequence::Crumble()
 
 	if (sequenceStart == true)
 	{
-		if (currentTime < 2)
+		if (currentTime < 1)
 		{
-			ECS::GetComponent<AnimationController>(entity).SetActiveAnim(RESTING);
+			ECS::GetComponent<AnimationController>(ent).SetActiveAnim(RESTING);
 		}
-		else if (currentTime >= 2 && currentTime <= 4)
+		else if (currentTime >= 1 && currentTime < 3)
 		{
-			//ECS::GetComponent<AnimationController>(entity).GetAnimations()[CRUMBLING].Reset();
-			ECS::GetComponent<AnimationController>(entity).SetActiveAnim(CRUMBLING);
+			ECS::GetComponent<AnimationController>(ent).SetActiveAnim(CRUMBLING);
+		}
+
+		else if (currentTime >= 3 && currentTime < 5)
+		{
+			ECS::GetComponent<AnimationController>(ent).SetActiveAnim(GONE);
 			operation = 1;
 			disable = true;
 		}
-		else if (currentTime > 4 && currentTime < 6)
+		else if (currentTime >= 5)
 		{
-			ECS::GetComponent<AnimationController>(entity).SetActiveAnim(GONE);
-		}
-		else if (currentTime >= 6)
-		{
-			ECS::GetComponent<AnimationController>(entity).SetActiveAnim(RESTING);
+			ECS::GetComponent<AnimationController>(ent).SetActiveAnim(RESTING);
 			operation = 0;
 			disable = true;
 			startTime = 0;

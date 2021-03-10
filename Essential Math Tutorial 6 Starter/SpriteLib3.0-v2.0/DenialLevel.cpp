@@ -68,6 +68,11 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<CanJump>(entity);
 		ECS::AttachComponent<MovingClass>(entity);
 		ECS::AttachComponent<AnimationController>(entity);
+		ECS::AttachComponent<ShadowSense>(entity);
+		ECS::AttachComponent<ShadowTime>(entity);
+		ECS::AttachComponent<AttackMechanic>(entity);
+		ECS::AttachComponent<Health>(entity);
+		ECS::AttachComponent<KnockBack>(entity);
 
 		//Sets up the components
 		std::string fileName = "spritesheets/abigailSpritesheet.png";
@@ -77,7 +82,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity));
 		ECS::GetComponent<Player>(MainEntities::MainPlayer()).UpdateAninControllerRef(&ECS::GetComponent<AnimationController>(MainEntities::MainPlayer()));
 
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 30.f, 2.f));
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 30.f, 5.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
@@ -100,21 +105,6 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
 		tempPhsBody.SetGravityScale(0.75);
 	}
-
-	////Level layout
-	//{
-	//	auto entity = ECS::CreateEntity();
-
-	//	//Add components
-	//	ECS::AttachComponent<Sprite>(entity);
-	//	ECS::AttachComponent<Transform>(entity);
-
-
-	//	//Sets up components
-	//	std::string fileName = "levelartTutDen.png";
-	//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 130, 42);
-	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
-	//}
 
 	// STATIC PLATFORMS \\
 
@@ -233,7 +223,6 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		//Sets up components
 		std::string fileName = "platformD.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 8, 16 * 2);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -251,7 +240,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-
+		tempSpr.SetTransparency(0.f);
 	}
 
 	//Platform E (raised platform stacked)
@@ -267,7 +256,6 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		//Sets up components
 		std::string fileName = "platformE.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -285,7 +273,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-
+		tempSpr.SetTransparency(0.f);
 	}
 
 	//Platform F (floating platform)
@@ -301,7 +289,6 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		//Sets up components
 		std::string fileName = "platformF.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 9, 16 * 1);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -335,7 +322,6 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		//Sets up components
 		std::string fileName = "platformG.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 2, 16 * 1);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -369,7 +355,6 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		//Sets up components
 		std::string fileName = "platformH.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 1);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -605,9 +590,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "boxSprite.jpg";
+		std::string fileName = "platformO.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 1);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -707,9 +691,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "boxSprite.jpg";
+		std::string fileName = "platformR.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 4, 16 * 1);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -741,9 +724,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "boxSprite.jpg";
+		std::string fileName = "platformS.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 5, 16 * 1);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -775,9 +757,9 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "boxSprite.jpg";
+		std::string fileName = "platformT.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 8, 16 * 1);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
+		//ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -809,9 +791,9 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "platformG.png";
+		std::string fileName = "platformU.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 13, 16 * 1);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
+		//ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -1010,15 +992,12 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		std::string fileName = "spritesheets/crumblingPlatform.png";
 		std::string JSONFile = "crumble.json";
 
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-
-		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, tempSpr.GetWidth(), tempSpr.GetHeight(), entity, &ECS::GetComponent<Sprite>(entity),
-			&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity), false, &ECS::GetComponent<PhysicsBody>(entity));
-
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, entity, &ECS::GetComponent<Sprite>(entity),
+			&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity), false, &ECS::GetComponent<PhysicsBody>(entity));
 
 		float shrinkX = 0.f;
 		float shrinkY = 0.f;
@@ -1029,8 +1008,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
+			float(16 * 2 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
@@ -1042,20 +1021,16 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		cTriggers[1] = entity;
 
 		//Add components
-		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
 		ECS::AttachComponent<Trigger*>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[1]);
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
 		float shrinkX = 0.f;
@@ -1067,8 +1042,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
+			float(16 * 2 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1083,14 +1058,17 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
 		ECS::AttachComponent<CrumblingSequence>(entity);
+		ECS::AttachComponent<AnimationController>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
+		std::string fileName = "spritesheets/crumblingPlatform.png";
+		std::string JSONFile = "crumble.json";
+
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, entity, &ECS::GetComponent<Sprite>(entity),
+			&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity), false, &ECS::GetComponent<PhysicsBody>(entity));
 
 		float shrinkX = 0.f;
 		float shrinkY = 0.f;
@@ -1101,8 +1079,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
+			float(16 * 2 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1113,20 +1091,16 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		cTriggers[2] = entity;
 
 		//Add components
-		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
 		ECS::AttachComponent<Trigger*>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[2]);
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
 		float shrinkX = 0.f;
@@ -1138,8 +1112,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
+			float(16 * 2 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1154,14 +1128,17 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
 		ECS::AttachComponent<CrumblingSequence>(entity);
+		ECS::AttachComponent<AnimationController>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
+		std::string fileName = "spritesheets/crumblingPlatform.png";
+		std::string JSONFile = "crumble.json";
+
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, entity, &ECS::GetComponent<Sprite>(entity),
+			&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity), false, &ECS::GetComponent<PhysicsBody>(entity));
 
 		float shrinkX = 0.f;
 		float shrinkY = 0.f;
@@ -1172,8 +1149,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
+			float(16 * 2 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1184,20 +1161,16 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		cTriggers[3] = entity;
 
 		//Add components
-		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
 		ECS::AttachComponent<Trigger*>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[3]);
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
 		float shrinkX = 0.f;
@@ -1209,8 +1182,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
+			float(16 * 2 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1227,12 +1200,17 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<CrumblingSequence>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
+		ECS::AttachComponent<AnimationController>(entity);
+
+		//Sets up components
+		std::string fileName = "spritesheets/crumblingPlatform.png";
+		std::string JSONFile = "crumble.json";
+
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, entity, &ECS::GetComponent<Sprite>(entity),
+			&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity), false, &ECS::GetComponent<PhysicsBody>(entity));
 
 		float shrinkX = 0.f;
 		float shrinkY = 0.f;
@@ -1243,8 +1221,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
+			float(16 * 2 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1255,20 +1233,16 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		cTriggers[4] = entity;
 
 		//Add components
-		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
 		ECS::AttachComponent<Trigger*>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[4]);
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
 		float shrinkX = 0.f;
@@ -1280,8 +1254,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
+			float(16 * 2 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1296,14 +1270,17 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
 		ECS::AttachComponent<CrumblingSequence>(entity);
+		ECS::AttachComponent<AnimationController>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
+		std::string fileName = "spritesheets/crumblingPlatform.png";
+		std::string JSONFile = "crumble.json";
+
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, entity, &ECS::GetComponent<Sprite>(entity),
+			&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity), false, &ECS::GetComponent<PhysicsBody>(entity));
 
 		float shrinkX = 0.f;
 		float shrinkY = 0.f;
@@ -1314,8 +1291,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
+			float(16 * 2 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1326,20 +1303,16 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		cTriggers[5] = entity;
 
 		//Add components
-		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
 		ECS::AttachComponent<Trigger*>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[5]);
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
 		float shrinkX = 0.f;
@@ -1351,8 +1324,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
+			float(16 * 2 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1400,14 +1373,17 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
 		ECS::AttachComponent<CrumblingSequence>(entity);
+		ECS::AttachComponent<AnimationController>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
+		std::string fileName = "spritesheets/crumblingPlatform.png";
+		std::string JSONFile = "crumble.json";
+
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, entity, &ECS::GetComponent<Sprite>(entity),
+			&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity), false, &ECS::GetComponent<PhysicsBody>(entity));
 
 		float shrinkX = 0.f;
 		float shrinkY = 0.f;
@@ -1418,8 +1394,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
+			float(16 * 2 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1430,20 +1406,16 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		cTriggers[6] = entity;
 
 		//Add components
-		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
 		ECS::AttachComponent<Trigger*>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[6]);
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
 		float shrinkX = 0.f;
@@ -1455,8 +1427,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
+			float(16 * 2 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1473,14 +1445,17 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
 		ECS::AttachComponent<CrumblingSequence>(entity);
+		ECS::AttachComponent<AnimationController>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
+		std::string fileName = "spritesheets/crumblingPlatform.png";
+		std::string JSONFile = "crumble.json";
+
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, entity, &ECS::GetComponent<Sprite>(entity),
+			&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity), false, &ECS::GetComponent<PhysicsBody>(entity));
 
 		float shrinkX = 0.f;
 		float shrinkY = 0.f;
@@ -1491,8 +1466,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
+			float(16 * 2 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1503,20 +1478,16 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		cTriggers[7] = entity;
 
 		//Add components
-		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
 		ECS::AttachComponent<Trigger*>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[7]);
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
 		float shrinkX = 0.f;
@@ -1528,27 +1499,32 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
+			float(16 * 2 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
 	// SHADOWS \\
 
-	//E1 (enemy 1)
+	//Shadow 1
 	{
 		//Creates entity
 		auto entity = ECS::CreateEntity();
+		shadows[0] = entity;
 
 		//Add components
 		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Trigger*>(entity);
 
 		//Sets up components
-		std::string fileName = "dwaynetherockfloor.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 3);
+		std::string fileName = "shadow2.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 2, 16 * 2);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
@@ -1563,10 +1539,49 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
 		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
+	//Shadow area trigger 1 entity
+	{
+		auto entity = ECS::CreateEntity();
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Trigger*>(entity);
+
+		//Sets up components
+		std::string fileName = "sandFloor.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 30, 16 * 6);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(3510.f, 200.f, 0.1));
+		ECS::GetComponent<Trigger*>(entity) = new ShadowAreaTrigger();
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+		ECS::GetComponent<Trigger*>(entity)->SetShadowZone(1);
+		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32(16* 15), float32(16 * 2.5));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	}
+
+\
 
 	//E2 (enemy 2)
 	{
@@ -1667,9 +1682,9 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 	}
 
+	// STATIC BACKGROUND TILES \\
+	
 	{
-		// STATIC BACKGROUND TILES \\
-
 		// TILE 0-0
 		{
 			//Creates entity
@@ -2210,6 +2225,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (120 + 8), 16.f * (48 + 5), 2.f));
 		}
 	}
+
 	//SPECIAL TRIGGERS \\
 
 	//Switch
@@ -2260,22 +2276,41 @@ void DenialLevel::Update()
 	auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
 	auto& moveTrig = ECS::GetComponent<MovingClass>(MainEntities::MainPlayer());
 	auto& kinTrig = ECS::GetComponent<Kinematics>(kinTrigger);
-	
+	auto& isKnocked = ECS::GetComponent<KnockBack>(MainEntities::MainPlayer());
+	auto& shadowTime = ECS::GetComponent<ShadowTime>(MainEntities::MainPlayer());
+	auto& sprite = ECS::GetComponent<Sprite>(MainEntities::MainPlayer());
+
 	kinTrig.UpdatePosition();
-	player.Update();
+	isKnocked.RunKnockBackTime();
+
+	if (isKnocked.GetCanMove() == true)
+	{
+		player.Update();
+	}
+
 	fmod.Update();
 
 	for (int i = 0; i <= 7; i++)
 	{
-		ECS::GetComponent<CrumblingSequence>(cPlatforms[i]).Crumble();
+		ECS::GetComponent<CrumblingSequence>(cPlatforms[i]).Crumble(cPlatforms[i]);
 		CrumblingPlatforms(cPlatforms[i]);
 	}
 
+	//for (int i = 0; i <= 3; i++)
+	//{
+	//	ActivateShadow(shadows[i]);
+	//}
+	shadowTime.RunShadowTime();
+	ActivateShadow(shadows[0]);
 	//std::cout << playerBody.GetPosition().x << std::endl;
 	//std::cout << playerBody.GetPosition().y << std::endl;
-
+	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
+	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
+	sprite.SetTransparency(1.f);
 	MovePlatform();
 }
+
+
 
 void DenialLevel::KeyboardHold()
 {
@@ -2362,17 +2397,6 @@ void DenialLevel::MovePlatform()
 		plat.SetPosition(b2Vec2(platX, platY)); 
 		moveTrig.SetRight(true);
 		moveTrig.SetLeft(false);
-
-		//plat.SetVelocity(vec3(1250 * Timer::deltaTime, 0, 0));
-		//if (moveTrig.GetMoving() == true)
-		//{
-		//	playerX += 1;
-		//	if (!Input::GetKey(Key::A))
-		//	{
-		//		playerBody.SetVelocity(vec3(5000, 0, 0));
-		//	}
-		//	//playerBody.SetPosition(b2Vec2(playerX, playerY));
-		//}
 	}
 	else if (switchDir == true)
 	{
@@ -2382,6 +2406,80 @@ void DenialLevel::MovePlatform()
 		moveTrig.SetRight(false);
 	}
 	
+}
+
+void DenialLevel::SpawnBullet(int shadow)
+{
+	auto& shadowBody = ECS::GetComponent<PhysicsBody>(shadow);
+	float tempX = shadowBody.GetBody()->GetPosition().x; //directly subbing in the GetBody line throws an error
+	float tempY = shadowBody.GetBody()->GetPosition().y;
+	//Creates entity
+	auto entity = ECS::CreateEntity();
+	bullet = entity;
+
+	//Add components
+	ECS::AttachComponent<Sprite>(entity);
+	ECS::AttachComponent<Transform>(entity);
+	ECS::AttachComponent<PhysicsBody>(entity);
+	ECS::AttachComponent<Trigger*>(entity);
+
+	//Set up components
+	std::string fileName = "bullet.png";
+	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 5, 5);
+	ECS::GetComponent<Transform>(entity).SetPosition(vec3(tempX, tempY, 2.f));
+	ECS::GetComponent<Trigger*>(entity) = new BulletTrigger();
+	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+	ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
+
+	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+	float shrinkX = 0.f;
+	float shrinkY = 0.f;
+	b2Body* tempBody;
+	b2BodyDef tempDef;
+	tempDef.type = b2_staticBody;
+	tempDef.position.Set(tempX, tempY);
+
+	tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+
+	tempPhsBody.SetGravityScale(0.f); //ensures no bullet drop and bullet reaches the player
+}
+
+void DenialLevel::ShootBullet()
+{
+	auto& bulletBody = ECS::GetComponent<PhysicsBody>(bullet);
+	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
+
+	float deltaX = 0, deltaY = 0;
+	deltaX = player.GetBody()->GetPosition().x - bulletBody.GetBody()->GetPosition().x;
+	deltaY = player.GetBody()->GetPosition().y - bulletBody.GetBody()->GetPosition().y;
+	float n_deltaX = 0, n_deltaY = 0;
+	n_deltaX = deltaX / (deltaX * deltaX + deltaY * deltaY);
+	n_deltaY = deltaY / (deltaX * deltaX + deltaY * deltaY);
+	bulletBody.GetBody()->SetType(b2BodyType::b2_dynamicBody);
+	bulletBody.GetBody()->SetLinearVelocity(b2Vec2(deltaX * 100000000, deltaY * 100000000));
+}
+
+void DenialLevel::ActivateShadow(int shadow)
+{
+	//Checks to see if the appropriate amount of seconds of passed between now and the last shot. 
+	//If so, a bullet is fired from a shadow determined by the player's location.
+	auto& theTime = ECS::GetComponent<ShadowTime>(MainEntities::MainPlayer());
+	auto& theLoc = ECS::GetComponent<ShadowSense>(MainEntities::MainPlayer());
+	if (theTime.fire == true)
+	{
+		if (theLoc.getLoc() == 1)
+		{
+			SpawnBullet(shadow);
+			ShootBullet();
+		}
+		//add additional else if statements for additional shadows
+	}
 }
 
 
@@ -2397,7 +2495,7 @@ void DenialLevel::CrumblingPlatforms(int entity)
 		}
 		else if (ECS::GetComponent<CrumblingSequence>(entity).disablePlatform() == 1)
 		{
-			ECS::GetComponent<Sprite>(entity).SetTransparency(0.4f);
+			//ECS::GetComponent<Sprite>(entity).SetTransparency(0.4f);
 			ECS::GetComponent<PhysicsBody>(entity).GetBody()->SetActive(false);
 			ECS::GetComponent<CrumblingSequence>(entity).disable = false;
 		}

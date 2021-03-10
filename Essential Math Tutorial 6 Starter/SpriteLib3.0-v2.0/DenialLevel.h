@@ -16,6 +16,10 @@ public:
 	void CrumblingPlatforms(int entity);
 	void MovePlatform();
 
+	void SpawnBullet(int bullet);
+	void ShootBullet();
+	void ActivateShadow(int shadow);
+
 	int player;
 	int movingPlat;
 	int vertMovingPlat;
@@ -23,6 +27,9 @@ public:
 	bool switchDir = false;
 	int cPlatforms[8];
 	int cTriggers[8];
+	int shadows[4];
+	int bullet = 0;
+
 
 protected:
 	PhysicsPlaygroundListener listener;

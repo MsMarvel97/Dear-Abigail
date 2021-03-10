@@ -97,6 +97,16 @@ void Trigger::SetTrueTarget(int target)
 	m_trueTarget = target;
 }
 
+void Trigger::SetShadowZone(int newZone)
+{
+	shadowZone = newZone;
+}
+
+int Trigger::GetShadowZone()
+{
+	return shadowZone;
+}
+
 std::vector<int> Trigger::GetTargetEntities()
 {
 	return m_targetEntities;

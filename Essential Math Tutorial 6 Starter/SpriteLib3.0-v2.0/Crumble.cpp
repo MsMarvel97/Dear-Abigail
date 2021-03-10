@@ -279,11 +279,11 @@ void Crumble::InitScene(float windowWidth, float windowHeight)
 
 void Crumble::Update()
 {
-	ECS::GetComponent<CrumblingSequence>(cPlatforms[1]).Crumble();
-	ECS::GetComponent<CrumblingSequence>(cPlatforms[2]).Crumble();
-	Crumble::PleaseHelp(cPlatforms[1]);
-	Crumble::PleaseHelp(cPlatforms[2]);
-	Crumble::ReattachCamera();
+	//ECS::GetComponent<CrumblingSequence>(cPlatforms[1]).Crumble();
+	//ECS::GetComponent<CrumblingSequence>(cPlatforms[2]).Crumble();
+	//Crumble::PleaseHelp(cPlatforms[1]);
+	//Crumble::PleaseHelp(cPlatforms[2]);
+	//Crumble::ReattachCamera();
 }
 
 void Crumble::KeyboardHold()

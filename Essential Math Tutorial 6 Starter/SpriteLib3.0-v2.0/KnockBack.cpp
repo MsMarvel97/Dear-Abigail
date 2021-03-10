@@ -18,7 +18,7 @@ void KnockBack::RunKnockBackTime()
 		else
 		{
 			canMove = true;
-			SetSequenceStart(false);
+			sequenceStart = false;
 		}
 	}
 }

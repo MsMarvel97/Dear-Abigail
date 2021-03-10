@@ -20,7 +20,7 @@ public:
 	void InitPlatform(std::string& fileName, std::string& animationJSON, int width, int height, int entityNum,
 		Sprite* sprite, AnimationController* controller, Transform* transform, bool hasPhys = false, PhysicsBody* body = nullptr);
 
-	void Crumble();
+	void Crumble(int ent);
 	bool sequenceStart = false;
 	int entity = 0;
 

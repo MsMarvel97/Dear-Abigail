@@ -33,6 +33,15 @@
 #include "MovingPlatform.h"
 #include "Kinematics.h"
 #include "ToneFire.h"
+#include "ShadowAreaTrigger.h"
+#include "ShadowLoop.h"
+#include "ShadowSense.h"
+#include "ShadowTime.h"
+#include "KnockBackTrigger.h"
+#include "KnockBack.h"
+#include "Health.h"
+#include "AttackMechanic.h"
+#include "BulletTrigger.h"
 
 
 class ECS abstract

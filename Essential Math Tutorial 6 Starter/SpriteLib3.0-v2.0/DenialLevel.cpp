@@ -65,14 +65,12 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<CanJump>(entity);
 		ECS::AttachComponent<MovingClass>(entity);
 		ECS::AttachComponent<AnimationController>(entity);
-		ECS::AttachComponent<ShadowSense>(entity);
-		ECS::AttachComponent<ShadowTime>(entity);
-		ECS::AttachComponent<AttackMechanic>(entity);
-		ECS::AttachComponent<Health>(entity);
-		ECS::AttachComponent<KnockBack>(entity);
+		ECS::AttachComponent<PlayerMechanics>(entity);
+		//ECS::AttachComponent<AttackMechanic>(entity);
+		//ECS::AttachComponent<Health>(entity);
+		//ECS::AttachComponent<KnockBack>(entity);
 
 		//Sets up the components
 		std::string fileName = "spritesheets/abigailSpritesheet.png";
@@ -2276,14 +2274,14 @@ void DenialLevel::Update()
 	auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
 	auto& moveTrig = ECS::GetComponent<MovingClass>(MainEntities::MainPlayer());
 	auto& kinTrig = ECS::GetComponent<Kinematics>(kinTrigger);
-	auto& isKnocked = ECS::GetComponent<KnockBack>(MainEntities::MainPlayer());
-	auto& shadowTime = ECS::GetComponent<ShadowTime>(MainEntities::MainPlayer());
+	//auto& isKnocked = ECS::GetComponent<KnockBack>(MainEntities::MainPlayer());
+	auto& pMechanics = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
 	auto& sprite = ECS::GetComponent<Sprite>(MainEntities::MainPlayer());
 
 	kinTrig.UpdatePosition();
-	isKnocked.RunKnockBackTime();
+	pMechanics.RunKnockBackTime();
 
-	if (isKnocked.GetCanMove() == true)
+	if (pMechanics.GetCanMove() == true)
 	{
 		player.Update();
 	}
@@ -2300,10 +2298,10 @@ void DenialLevel::Update()
 	//{
 	//	ActivateShadow(shadows[i]);
 	//}
-	shadowTime.RunShadowTime();
+
+	pMechanics.RunShadowTime();
 	ActivateShadow(shadows[0]);
-	//std::cout << playerBody.GetPosition().x << std::endl;
-	//std::cout << playerBody.GetPosition().y << std::endl;
+
 	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 	sprite.SetTransparency(1.f);
@@ -2469,11 +2467,11 @@ void DenialLevel::ActivateShadow(int shadow)
 {
 	//Checks to see if the appropriate amount of seconds of passed between now and the last shot. 
 	//If so, a bullet is fired from a shadow determined by the player's location.
-	auto& theTime = ECS::GetComponent<ShadowTime>(MainEntities::MainPlayer());
-	auto& theLoc = ECS::GetComponent<ShadowSense>(MainEntities::MainPlayer());
-	if (theTime.fire == true)
+	auto& pMechanics = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
+	//auto& theLoc = ECS::GetComponent<PlayerShad>(MainEntities::MainPlayer());
+	if (pMechanics.GetFiring() == true)
 	{
-		if (theLoc.getLoc() == 1)
+		if (pMechanics.GetShadowLoc() == 1)
 		{
 			SpawnBullet(shadow);
 			ShootBullet();
@@ -2510,7 +2508,6 @@ void DenialLevel::KeyboardUp()
 void DenialLevel::KeyboardDown()
 {
 	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
-	auto& canJump = ECS::GetComponent<CanJump>(MainEntities::MainPlayer());
 	float speed = 1.f;
 	b2Vec2 vel = b2Vec2(0.f, 0.f);
 

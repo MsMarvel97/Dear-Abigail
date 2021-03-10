@@ -69,7 +69,6 @@ void Crumble::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<CanJump>(entity);
 		//ECS::AttachComponent<DelayDestroy>(entity);
 
 		//Set up components
@@ -322,36 +321,34 @@ void Crumble::KeyboardHold()
 		player.ScaleBody(-1.3 * Timer::deltaTime, 0);
 	}
 }
-
+//
 void Crumble::KeyboardDown()
 {
-	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
-	auto& canJump = ECS::GetComponent<CanJump>(MainEntities::MainPlayer());
-	//auto& crumbling = ECS::GetComponent<DelayDestroy>(MainEntities::MainPlayer());
-	if (Input::GetKeyDown(Key::T))
-	{
-		PhysicsBody::SetDraw(!PhysicsBody::GetDraw());
-	}
-	if (canJump.m_canJump)
-	{
-		if (Input::GetKeyDown(Key::Space))
-		{
-			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0.f, 14000.f), true);
-			canJump.m_canJump = false;
-		}
-	}
-
-	//if (crumbling.GetDestroyFlag() > 0)
-	//{
-	//	if (startTime == 0)
+	//	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
+	//	//auto& crumbling = ECS::GetComponent<DelayDestroy>(MainEntities::MainPlayer());
+	//	if (Input::GetKeyDown(Key::T))
 	//	{
-	//		startTime = Timer::time;
-	//		//startTime = Timer::StopWatch(timer) + 5;
-	//		respawnTime = startTime + 5;
-	//	}		
-	//	Crumble::TestFunction(crumbling.GetDestroyFlag(), crumbling.GetDestroyFlag());
-	//}
-	
+	//		PhysicsBody::SetDraw(!PhysicsBody::GetDraw());
+	//	}
+	//	if (canJump.m_canJump)
+	//	{
+	//		if (Input::GetKeyDown(Key::Space))
+	//		{
+	//			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0.f, 14000.f), true);
+	//			canJump.m_canJump = false;
+	//		}
+	//	}
+
+		//if (crumbling.GetDestroyFlag() > 0)
+		//{
+		//	if (startTime == 0)
+		//	{
+		//		startTime = Timer::time;
+		//		//startTime = Timer::StopWatch(timer) + 5;
+		//		respawnTime = startTime + 5;
+		//	}		
+		//	Crumble::TestFunction(crumbling.GetDestroyFlag(), crumbling.GetDestroyFlag());
+		//}
 }
 
 void Crumble::KeyboardUp()

@@ -56,7 +56,6 @@ void TutorialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<AnimationController>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<CanJump>(entity);
 
 		//Sets up the components
 		std::string fileName = "spritesheets/ratspritesheet.png";
@@ -707,7 +706,6 @@ void TutorialLevel::KeyboardUp()
 void TutorialLevel::KeyboardDown()
 {
 	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
-	auto& canJump = ECS::GetComponent<CanJump>(MainEntities::MainPlayer());
 	float speed = 1.f;
 	b2Vec2 vel = b2Vec2(0.f, 0.f);
 

@@ -35,15 +35,15 @@ void Game::InitGame()
 
 	//Creates a new scene.
 	//Replace this with your own scene.
-	m_scenes.push_back(new FirstCreation("FIRST SCENE!!!!"));
-	m_scenes.push_back(new PhysicsPlayground("MISSION CLAMPOSSIBLE"));
-	m_scenes.push_back(new AnimationSpritePlayground("Animation TIEM!!!!"));
+	//m_scenes.push_back(new FirstCreation("FIRST SCENE!!!!"));
+	//m_scenes.push_back(new PhysicsPlayground("MISSION CLAMPOSSIBLE"));
+	//m_scenes.push_back(new AnimationSpritePlayground("Animation TIEM!!!!"));
 	m_scenes.push_back(new TutorialLevel("Tutorial"));
 	m_scenes.push_back(new DenialLevel("Denial"));
-	m_scenes.push_back(new Crumble("Test"));
+	//m_scenes.push_back(new Crumble("Test"));
 	 
 	//Sets active scene reference to our scene
-	m_activeScene = m_scenes[4];
+	m_activeScene = m_scenes[1];
 
 	m_activeScene->InitScene(float(BackEnd::GetWindowWidth()), float(BackEnd::GetWindowHeight()));
 

@@ -203,6 +203,7 @@
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShadowAreaTrigger.h" />
     <ClInclude Include="ShadowLoop.h" />
+    <ClInclude Include="PlayerMechanics.h" />
     <ClInclude Include="ShadowSense.h" />
     <ClInclude Include="ShadowTime.h" />
     <ClInclude Include="ShieldMechanic.h" />
@@ -292,6 +293,7 @@
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShadowAreaTrigger.cpp" />
     <ClCompile Include="ShadowLoop.cpp" />
+    <ClCompile Include="PlayerMechanics.cpp" />
     <ClCompile Include="ShadowSense.cpp" />
     <ClCompile Include="ShadowTime.cpp" />
     <ClCompile Include="ShieldMechanic.cpp" />

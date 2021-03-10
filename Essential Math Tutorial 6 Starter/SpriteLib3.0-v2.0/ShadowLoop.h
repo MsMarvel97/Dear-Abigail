@@ -16,6 +16,5 @@ public:
 	bool isShadowAlive = true;
 private:
 	bool sequenceStart = false;
-
 };
 

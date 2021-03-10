@@ -9,15 +9,15 @@ void BulletTrigger::OnTrigger()
 void BulletTrigger::OnEnter()
 {
 	Trigger::OnEnter();
-	if (ECS::GetComponent<Health>(m_targetEntities[0]).getShield() == true) //checks to see if the player's shield is on
+	if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetShield() == true) //checks to see if the player's shield is on
 	{
 		std::cout << "Shield protected player. No health lost. \n";
 	}
 	else //runs if player shield isn't on when the bullet hits the player
 	{
 		std::cout << "Player hit by projectile. Health lost. \n";
-		ECS::GetComponent<Health>(m_targetEntities[0]).HealthLost();
-		std::cout << "Current Health: " << ECS::GetComponent<Health>(m_targetEntities[0]).GetHealth() << "\n";
+		ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).HealthLost();
+		std::cout << "Current Health: " << ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetHealth() << "\n";
 	}
 	PhysicsBody::m_bodiesToDelete.push_back(m_triggerEntity);
 }

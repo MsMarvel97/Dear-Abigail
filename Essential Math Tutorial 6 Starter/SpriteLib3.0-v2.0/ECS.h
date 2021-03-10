@@ -20,7 +20,7 @@
 #include "RotationTrigger.h"
 #include "VanishTrigger.h"
 #include "HorizontalScroll.h"
-#include "CanJump.h"
+//#include "CanJump.h"
 #include "CollisionFlag.h"
 #include "FlaggedTrigger.h"
 #include "RecheckConditions.h"
@@ -35,14 +35,14 @@
 #include "ToneFire.h"
 #include "ShadowAreaTrigger.h"
 #include "ShadowLoop.h"
-#include "ShadowSense.h"
-#include "ShadowTime.h"
+//#include "ShadowSense.h"
+//#include "ShadowTime.h"
 #include "KnockBackTrigger.h"
-#include "KnockBack.h"
-#include "Health.h"
-#include "AttackMechanic.h"
+//#include "KnockBack.h"
+//#include "Health.h"
+//#include "AttackMechanic.h"
 #include "BulletTrigger.h"
-
+#include "PlayerMechanics.h"
 
 class ECS abstract
 {

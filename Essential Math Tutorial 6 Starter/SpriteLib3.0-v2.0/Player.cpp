@@ -79,7 +79,6 @@ void Player::MovementUpdate()
 
 	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
 	auto& transformer = ECS::GetComponent<Player>(MainEntities::MainPlayer());
-	auto& canJump = ECS::GetComponent<CanJump>(MainEntities::MainPlayer());
 	auto& moving = ECS::GetComponent<MovingClass>(MainEntities::MainPlayer());
 
 	static float sprint = 0.f;
@@ -268,6 +267,8 @@ void Player::UpdateAninControllerRef(AnimationController* ref)
 {
 	m_animController = ref;
 }
+
+
 
 void Player::SetActiveAnimation(int anim)
 {

@@ -59,7 +59,6 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<AnimationController>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<CanJump>(entity);
 
 		//Sets up the components
 		std::string fileName = "ClamSpritesheet.png";
@@ -3005,20 +3004,19 @@ void PhysicsPlayground::KeyboardHold()
 void PhysicsPlayground::KeyboardDown()
 {
 	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
-	auto& canJump = ECS::GetComponent<CanJump>(MainEntities::MainPlayer());
 
 	if (Input::GetKeyDown(Key::T))
 	{
 		PhysicsBody::SetDraw(!PhysicsBody::GetDraw());
 	}
-	if (canJump.m_canJump)
+	/*if (canJump.m_canJump)
 	{
 		if (Input::GetKeyDown(Key::Space))
 		{
 			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0.f, 10000000.f), true);
 			canJump.m_canJump = false;
 		}
-	}
+	}*/
 }
 
 void PhysicsPlayground::KeyboardUp()

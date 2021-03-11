@@ -33,9 +33,9 @@ void KnockBackTrigger::OnEnter()
 
 	if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetAttacking() == true)
 	{
-		if (ECS::GetComponent<ShadowLoop>(m_triggerEntity).s_resting == true || ECS::GetComponent<ShadowLoop>(m_triggerEntity).s_charging == true)
+		if (ECS::GetComponent<ShadowLoop>(m_triggerEntity).GetShadowAnim() == 0 || ECS::GetComponent<ShadowLoop>(m_triggerEntity).GetShadowAnim() == 6)
 		{
-			ECS::GetComponent<ShadowLoop>(m_triggerEntity).isShadowAlive = false;		
+/*			ECS::GetComponent<ShadowLoop>(m_triggerEntity).isShadowAlive = false;	*/	
 			std::cout << "Shadow attacked\n";
 		}
 		else //player is attacking when the shadow is attacking and shadow deals damage to player

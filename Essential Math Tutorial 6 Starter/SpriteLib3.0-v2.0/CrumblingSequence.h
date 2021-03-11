@@ -10,15 +10,13 @@ public:
 	{
 		RESTING,
 		CRUMBLING,
+		CRACKING,
 		GONE
 	};
 
 	CrumblingSequence();
-	CrumblingSequence(std::string& fileName, std::string& animationJSON, int width, int height, int entityNum,
-		Sprite* sprite, AnimationController* controller, Transform* transform, bool hasPhys = false, PhysicsBody* body = nullptr);
 
-	void InitPlatform(std::string& fileName, std::string& animationJSON, int width, int height, int entityNum,
-		Sprite* sprite, AnimationController* controller, Transform* transform, bool hasPhys = false, PhysicsBody* body = nullptr);
+	void InitPlatform(std::string& fileName, std::string& animationJSON, int width, int height, Sprite* sprite, AnimationController* controller);
 
 	void Crumble(int ent);
 	bool sequenceStart = false;

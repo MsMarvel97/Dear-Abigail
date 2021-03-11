@@ -218,6 +218,7 @@
     <ClInclude Include="Trigger.h" />
     <ClInclude Include="TutorialLevel.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="UIComponents.h" />
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="VanishTrigger.h" />
     <ClInclude Include="Vector.h" />
@@ -307,6 +308,7 @@
     <ClCompile Include="Trigger.cpp" />
     <ClCompile Include="TutorialLevel.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="UIComponents.cpp" />
     <ClCompile Include="Utilities.cpp" />
     <ClCompile Include="VanishTrigger.cpp" />
     <ClCompile Include="Vector.cpp" />

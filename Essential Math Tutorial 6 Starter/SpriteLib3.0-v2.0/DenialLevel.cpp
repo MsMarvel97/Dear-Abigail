@@ -21,6 +21,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 	//Sets up aspect ratio for the camera
 	float aspectRatio = windowWidth / windowHeight;
+	wWidth = windowWidth;
+	wHeight = windowHeight;
 
 	//Setup MainCamera Entity
 	{
@@ -68,9 +70,6 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<MovingClass>(entity);
 		ECS::AttachComponent<AnimationController>(entity);
 		ECS::AttachComponent<PlayerMechanics>(entity);
-		//ECS::AttachComponent<AttackMechanic>(entity);
-		//ECS::AttachComponent<Health>(entity);
-		//ECS::AttachComponent<KnockBack>(entity);
 
 		//Sets up the components
 		std::string fileName = "spritesheets/abigailSpritesheet.png";
@@ -915,8 +914,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		std::string fileName = "spritesheets/crumblingPlatform.png";
 		std::string JSONFile = "crumble.json";		
 
-		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, entity, &ECS::GetComponent<Sprite>(entity),
-			&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity), false, &ECS::GetComponent<PhysicsBody>(entity));
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, &ECS::GetComponent<Sprite>(entity), 
+			&ECS::GetComponent<AnimationController>(entity));
 
 
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
@@ -994,8 +993,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, entity, &ECS::GetComponent<Sprite>(entity),
-			&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity), false, &ECS::GetComponent<PhysicsBody>(entity));
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, &ECS::GetComponent<Sprite>(entity),
+			&ECS::GetComponent<AnimationController>(entity));
 
 		float shrinkX = 0.f;
 		float shrinkY = 0.f;
@@ -1065,8 +1064,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, entity, &ECS::GetComponent<Sprite>(entity),
-			&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity), false, &ECS::GetComponent<PhysicsBody>(entity));
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, &ECS::GetComponent<Sprite>(entity),
+			&ECS::GetComponent<AnimationController>(entity));
 
 		float shrinkX = 0.f;
 		float shrinkY = 0.f;
@@ -1135,8 +1134,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, entity, &ECS::GetComponent<Sprite>(entity),
-			&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity), false, &ECS::GetComponent<PhysicsBody>(entity));
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, &ECS::GetComponent<Sprite>(entity),
+			&ECS::GetComponent<AnimationController>(entity));
 
 		float shrinkX = 0.f;
 		float shrinkY = 0.f;
@@ -1207,8 +1206,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, entity, &ECS::GetComponent<Sprite>(entity),
-			&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity), false, &ECS::GetComponent<PhysicsBody>(entity));
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, &ECS::GetComponent<Sprite>(entity),
+			&ECS::GetComponent<AnimationController>(entity));
 
 		float shrinkX = 0.f;
 		float shrinkY = 0.f;
@@ -1277,8 +1276,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, entity, &ECS::GetComponent<Sprite>(entity),
-			&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity), false, &ECS::GetComponent<PhysicsBody>(entity));
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, &ECS::GetComponent<Sprite>(entity),
+			&ECS::GetComponent<AnimationController>(entity));
 
 		float shrinkX = 0.f;
 		float shrinkY = 0.f;
@@ -1380,8 +1379,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, entity, &ECS::GetComponent<Sprite>(entity),
-			&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity), false, &ECS::GetComponent<PhysicsBody>(entity));
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, &ECS::GetComponent<Sprite>(entity),
+			&ECS::GetComponent<AnimationController>(entity));
 
 		float shrinkX = 0.f;
 		float shrinkY = 0.f;
@@ -1452,8 +1451,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, entity, &ECS::GetComponent<Sprite>(entity),
-			&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity), false, &ECS::GetComponent<PhysicsBody>(entity));
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, &ECS::GetComponent<Sprite>(entity),
+			&ECS::GetComponent<AnimationController>(entity));
 
 		float shrinkX = 0.f;
 		float shrinkY = 0.f;
@@ -1515,31 +1514,39 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
 		ECS::AttachComponent<Trigger*>(entity);
+		ECS::AttachComponent<ShadowLoop>(entity);
+		ECS::AttachComponent<AnimationController>(entity);
 
 		//Sets up components
-		std::string fileName = "shadow2.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 2, 16 * 2);
+		std::string fileName = "spritesheets/ShadowSpritesheet.png";
+		std::string JSONfile = "Shadow.json";
+
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+
 		ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		ECS::GetComponent<ShadowLoop>(entity).InitRangedShadow(fileName, JSONfile, 16 * 2, 16 * 2, &ECS::GetComponent<Sprite>(entity),
+			&ECS::GetComponent<AnimationController>(entity));
+		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(16 * 17, 16 * 3);
+
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
 		float shrinkX = 0.f;
 		float shrinkY = 0.f;
 		b2Body* tempBody;
 		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
+		tempDef.type = b2_dynamicBody;
 		tempDef.position.Set(float32((16 * 14.f) + (16 * 3 / 2)), float32((16 * 4.f) + (16 * 3 / 2)));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 2 - shrinkX),
+			float(16 * 2 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
 
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		tempPhsBody.SetGravityScale(0.f);
 
 	}
 	//Shadow area trigger 1 entity
@@ -1555,11 +1562,15 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		//Sets up components
 		std::string fileName = "sandFloor.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 30, 16 * 6);
+
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(3510.f, 200.f, 0.1));
+
 		ECS::GetComponent<Trigger*>(entity) = new ShadowAreaTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+		//ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(shadows[0]);
 		ECS::GetComponent<Trigger*>(entity)->SetShadowZone(1);
+
 		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -2274,7 +2285,6 @@ void DenialLevel::Update()
 	auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
 	auto& moveTrig = ECS::GetComponent<MovingClass>(MainEntities::MainPlayer());
 	auto& kinTrig = ECS::GetComponent<Kinematics>(kinTrigger);
-	//auto& isKnocked = ECS::GetComponent<KnockBack>(MainEntities::MainPlayer());
 	auto& pMechanics = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
 	auto& sprite = ECS::GetComponent<Sprite>(MainEntities::MainPlayer());
 
@@ -2298,6 +2308,8 @@ void DenialLevel::Update()
 	//{
 	//	ActivateShadow(shadows[i]);
 	//}
+
+	std::cout << ECS::GetComponent<PhysicsBody>(shadows[0]).GetPosition().x << std::endl;
 
 	pMechanics.RunShadowTime();
 	ActivateShadow(shadows[0]);
@@ -2468,7 +2480,11 @@ void DenialLevel::ActivateShadow(int shadow)
 	//Checks to see if the appropriate amount of seconds of passed between now and the last shot. 
 	//If so, a bullet is fired from a shadow determined by the player's location.
 	auto& pMechanics = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
+	auto& shade = ECS::GetComponent<ShadowLoop>(shadow);
 	//auto& theLoc = ECS::GetComponent<PlayerShad>(MainEntities::MainPlayer());
+
+	shade.ShadowRoutine(shadow);
+
 	if (pMechanics.GetFiring() == true)
 	{
 		if (pMechanics.GetShadowLoc() == 1)

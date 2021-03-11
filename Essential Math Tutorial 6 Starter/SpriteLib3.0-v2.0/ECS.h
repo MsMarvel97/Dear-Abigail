@@ -35,12 +35,7 @@
 #include "ToneFire.h"
 #include "ShadowAreaTrigger.h"
 #include "ShadowLoop.h"
-//#include "ShadowSense.h"
-//#include "ShadowTime.h"
 #include "KnockBackTrigger.h"
-//#include "KnockBack.h"
-//#include "Health.h"
-//#include "AttackMechanic.h"
 #include "BulletTrigger.h"
 #include "PlayerMechanics.h"
 

@@ -288,6 +288,9 @@
     <ClInclude Include="PlayerMechanics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UIComponents.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\imgui\imgui.cpp">
@@ -549,6 +552,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PlayerMechanics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UIComponents.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -82,42 +82,42 @@ void Player::MovementUpdate()
 	auto& moving = ECS::GetComponent<MovingClass>(MainEntities::MainPlayer());
 
 	static float sprint = 0.f;
-	static float vel = -2000;
-	static float vel2 = 2000;
+	static float vel = -20;
+	static float vel2 = 20;
 	float time = Timer::deltaTime;
 	static float jumping = 1000000.f;
 	float platform = 0.f;
 
 	if (moving.GetMoving())
 	{
-		platform = 2000.f;
+		//platform = 200.f;
 
 		if (!Input::GetKey(Key::D) && !Input::GetKey(Key::A))
 		{
-			float passiveMovement = 57000.f;
+			float passiveMovement = 950;
 
 			if (moving.GetLeft() == true)
 			{
 				passiveMovement *= -1;
 			}
-			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(passiveMovement * Timer::deltaTime, 0.f), true);
+			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(passiveMovement, 0.f), true);
 		}
 	}
 
-	if (Input::GetKey(Key::Shift) && player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001)
+	if (Input::GetKey(Key::Shift) && player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001 && !moving.GetMoving())
 	{
-		if (sprint <= 3000.f)
+		if (sprint <= 30.f)
 		{
-			float sprinting = 1000 * Timer::deltaTime;
+			float sprinting = 5;
 			sprint += sprinting;
 		}
 	}
 
-	if (!Input::GetKey(Key::Shift) || !(player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001))
+	if (!Input::GetKey(Key::Shift) || !(player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001) || moving.GetMoving())
 	{
 		if (sprint > 0.f)
 		{
-			float slowing = 2000 * Timer::deltaTime;
+			float slowing = 20;
 			sprint -= slowing;
 		}
 
@@ -132,26 +132,33 @@ void Player::MovementUpdate()
 		m_facing = LEFT;
 		m_moving = true;
 
-		player.SetVelocity(vec3((vel - sprint - platform) * Timer::deltaTime, player.GetVelocity().y, 0.f));
+		player.SetVelocity(vec3((vel - sprint), player.GetVelocity().y, 0.f));
 
-		if (vel >= -5000)
+		if (!moving.GetMoving())
 		{
-			float subtractVel = 1000 * Timer::deltaTime;
-			vel -= subtractVel;
+			if (vel >= -50)
+			{
+				float subtractiveVel = 5;
+				vel -= subtractiveVel;
+			}
+		}
+		else
+		{
+			vel = -60;
 		}
 	}
 
 	if (!Input::GetKey(Key::A))
 	{
-		if (vel < -2000.f)
+		if (vel < -20.f)
 		{
-			float slowingVel = 2000 * Timer::deltaTime;
+			float slowingVel = 5;
 			vel += slowingVel;
 		}
 
-		if (vel > -2000.f)
+		if (vel > -20.f)
 		{
-			vel = -2000.f;
+			vel = -20.f;
 		}
 	}
 
@@ -160,72 +167,64 @@ void Player::MovementUpdate()
 		m_facing = RIGHT;
 		m_moving = true;
 
-		player.SetVelocity(vec3((vel2 + sprint + platform) * Timer::deltaTime, player.GetVelocity().y, 0.f));
+		player.SetVelocity(vec3((vel2 + sprint), player.GetVelocity().y, 0.f));
 
-		if (vel2 <= 5000)
+		if (!moving.GetMoving())
 		{
-			float addVel = 1000 * Timer::deltaTime;
-			vel2 += addVel;
+			if (vel2 <= 50)
+			{
+				float addVel = 5;
+				vel2 += addVel;
+			}
+		}
+		else
+		{
+			vel2 = 60;
 		}
 	}
+
 	if (!Input::GetKey(Key::D))
 	{
-		if (vel2 > 2000.f)
+		if (vel2 > 20.f)
 		{
-			float slowingVel2 = 2000 * Timer::deltaTime;
+			float slowingVel2 = 5;
 			vel2 -= slowingVel2;
 		}
 
-		if (vel2 < 2000.f)
+		if (vel2 < 20.f)
 		{
-			vel2 = 2000.f;
+			vel2 = 20.f;
 		}
 	}
 
-	if (Input::GetKey(Key::C) && (player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001))
+	/*if (Input::GetKey(Key::C) && (player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001))
 	{
-		if (jumping <= 1800000)
+		if (jumping <= 180000)
 		{
-			float building = 1500000.f * Timer::deltaTime;
+			float building = 150000.f;
 			jumping += building;
 		}
 		else
 		{
-			jumping = 1800000;
+			jumping = 180000;
 		}
-	}
+	}*/
 
 	if (Input::GetKeyDown(Key::Space) && (player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001))
 	{
-		float jump = 1000000 * Timer::deltaTime;
-		float jumpCharged = 1800000 * Timer::deltaTime;
+		float jump = 16000;
+		float jumpCharged = 30000;
 
 		if (Input::GetKey(Key::Shift))
 		{
-			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0.f, jumpCharged), true);
+			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0, jumpCharged), true);
 		}
 
 		else
 		{
-			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0.f, jump), true);
+			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0, jump), true);
 		}
-		jumping = 1000000.f;
 	}
-
-	// Old Movement Code \\
-
-	//	if (Input::GetKeyDown(Key::Space))
-	//	{
-	//		/*m_moving = false;
-	//
-	//		if (m_hasPhysics)
-	//		{
-	//			m_physBody->SetVelocity(vec3());
-	//		}
-	//
-	//		m_attacking = true;
-	//		m_locked = true;*/
-	//	} 
 }
 
 void Player::AnimationUpdate()

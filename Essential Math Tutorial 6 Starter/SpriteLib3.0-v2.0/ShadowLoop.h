@@ -56,7 +56,8 @@ public:
 
 	void SetAnimation(int facing, int animation, int entity);
 
-	void SetMovementBoundaries(float max, float min) { maxX = max; minX = min; };
+	void SetMovementBoundaries(float min, float max) { minX = min; maxX = max; };
+
 	void SetShadowSequence(bool start) { sequenceStart = start; };
 	
 	bool GetShadowSequence() { return sequenceStart; };

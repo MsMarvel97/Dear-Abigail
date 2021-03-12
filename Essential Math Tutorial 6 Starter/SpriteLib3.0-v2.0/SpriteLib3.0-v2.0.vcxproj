@@ -171,6 +171,7 @@
     <ClInclude Include="JSON.h" />
     <ClInclude Include="Kinematics.h" />
     <ClInclude Include="MainEntities.h" />
+    <ClInclude Include="MasterSound.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="MoveTrigger.h" />
     <ClInclude Include="MoveTriggerOneWay.h" />
@@ -249,6 +250,7 @@
     <ClCompile Include="Kinematics.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainEntities.cpp" />
+    <ClCompile Include="MasterSound.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="MoveTrigger.cpp" />
     <ClCompile Include="MoveTriggerOneWay.cpp" />

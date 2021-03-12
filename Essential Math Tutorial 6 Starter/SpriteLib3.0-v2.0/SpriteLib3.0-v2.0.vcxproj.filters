@@ -249,6 +249,9 @@
     <ClInclude Include="CrumblingSequence.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MasterSound.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\imgui\imgui.cpp">
@@ -474,6 +477,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Kinematics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MasterSound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

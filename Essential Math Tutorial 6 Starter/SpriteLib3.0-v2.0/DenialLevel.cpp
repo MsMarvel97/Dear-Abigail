@@ -116,7 +116,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platformA.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 30, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 480, 16);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -128,7 +128,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(0.f + (16 * 30 / 2)), float32(0.f + (16 / 2)));
+		tempDef.position.Set(float32(240.f), float32(8.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -150,7 +150,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platformB.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 20, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 320, 16);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -162,7 +162,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 30.f) + (16 * 20 / 2)), float32((16 * 0.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(640.f), float32(8.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -184,7 +184,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platformC.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 10);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 48, 160);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -196,7 +196,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 50.f) + (16 * 3 / 2)), float32((16 * 0.f) + (16 * 10 / 2)));
+		tempDef.position.Set(float32(824.f), float32(80.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -218,7 +218,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platformD.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 8, 16 * 2);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 128, 32);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -229,7 +229,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 42.f) + (16 * 8 / 2)), float32((16 * 1.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(736.f), float32(32.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -251,7 +251,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platformE.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 48, 32);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -262,7 +262,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 47.f) + (16 * 3 / 2)), float32((16 * 3.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(776.f), float32(64.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -284,7 +284,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platformF.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 9, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 144, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -295,7 +295,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 36.f) + (16 * 9 / 2)), float32((16 * 6.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(648.f), float32(104.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -317,7 +317,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platformG.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 2, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -328,7 +328,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 31.f) + (16 * 2 / 2)), float32((16 * 6.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(512.f), float32(104.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -350,7 +350,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platformH.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 48, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -361,7 +361,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 26.f) + (16 * 3 / 2)), float32((16 * 6.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(440.f), float32(104.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -383,7 +383,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platformI.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 2, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 16);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -395,7 +395,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 21.f) + (16 * 2 / 2)), float32((16 * 6.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(352.f), float32(104.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -417,7 +417,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platformJ.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 2, 16 * 3);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 48);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -429,7 +429,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 19.f) + (16 * 2 / 2)), float32((16 * 6.f) + (16 * 3 / 2)));
+		tempDef.position.Set(float32(320.f), float32(120.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -451,7 +451,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platformK.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 30, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 480, 16);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -463,7 +463,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 46.f) + (16 * 30 / 2)), float32((16 * 10.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(976.f), float32(168));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -485,7 +485,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "boxSprite.jpg";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 14, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 224, 16);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -497,7 +497,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 76.f) + (16 * 14 / 2)), float32((16 * 10.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(1328), float32(168.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -519,7 +519,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "boxSprite.jpg";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 9);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 48, 144);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -531,7 +531,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 90.f) + (16 * 3 / 2)), float32((16 * 10.f) + (16 * 9 / 2)));
+		tempDef.position.Set(float32(1464.f), float32(232));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -553,7 +553,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "boxSprite.jpg";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 2, 16 * 2);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 32);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -565,7 +565,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 49.f) + (16 * 2 / 2)), float32((16 * 11.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(800.f), float32(192.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -587,7 +587,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platformO.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 48, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -598,7 +598,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 63.f) + (16 * 3 / 2)), float32((16 * 16.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(1032.f), float32(264.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -620,7 +620,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "boxSprite.jpg";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 30, 16 * 2);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 480, 32);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -632,7 +632,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 79.f) + (16 * 30 / 2)), float32((16 * 19.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(1504), float32(320.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -654,7 +654,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "boxSprite.jpg";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 21, 16 * 2);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 336, 32);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -666,7 +666,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 109.f) + (16 * 21 / 2)), float32((16 * 19.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(1912.f), float32(320.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -688,7 +688,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platformR.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 4, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 64, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -699,7 +699,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 94.f) + (16 * 4 / 2)), float32((16 * 22.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(1536), float32(360.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -721,7 +721,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platformS.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 5, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 80, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -732,7 +732,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 110.f) + (16 * 5 / 2)), float32((16 * 28.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(1800.f), float32(246.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -754,7 +754,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platformT.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 8, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 128, 16);
 		//ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -766,7 +766,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 119.f) + (16 * 8 / 2)), float32((16 * 28.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(1968), float32(456.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -788,7 +788,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platformU.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 13, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 208, 16);
 		//ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -800,7 +800,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 114.f) + (16 * 13 / 2)), float32((16 * 38.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(1928.f), float32(616.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -826,7 +826,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "movingplatform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 5, 16 * 0.5);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 80, 8);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -838,9 +838,9 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		//tempDef.type = b2_dynamicBody;
 		tempDef.type = b2_staticBody;
-		float platX = (16 * 22.f) + (16 * 5 / 2);
-		float platY = (16 * 10.f) + (16 * 1 / 2);
-		tempDef.position.Set(float32((16 * 22.f) + (16 * 5 / 2)), float32((16 * 10.f) + (16 * 1 / 2) - 20));
+		float platX = 392.f;
+		float platY = 168.f;
+		tempDef.position.Set(float32(392.f), float32(148.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -884,7 +884,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		//tempDef.type = b2_dynamicBody;
 		tempDef.type = b2_staticBody;
 
-		tempDef.position.Set(float32((16 * 22.f) + (16 * 5 / 2)), float32((16 * 10.f) + (16 * 1 / 2) - 20));
+		tempDef.position.Set(float32(392.f), float32(148.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -913,11 +913,11 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		std::string fileName = "spritesheets/crumblingPlatform.png";
 		std::string JSONFile = "crumble.json";		
 
-		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, &ECS::GetComponent<Sprite>(entity), 
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 48, 32, &ECS::GetComponent<Sprite>(entity), 
 			&ECS::GetComponent<AnimationController>(entity));
 
 
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 3, 16 * 2);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 48, 32);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -928,7 +928,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 53.f) + (16 * 3 / 2)), float32((16 * 13.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(872.f), float32(224.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -962,12 +962,12 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 53.f) + (16 * 3 / 2)), float32((16 * 13.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(872.f), float32(224.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float((16 * 3) - shrinkX),
-			float((16 * 2) - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+			float(32 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -992,7 +992,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, &ECS::GetComponent<Sprite>(entity),
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 48, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
 
 		float shrinkX = 0.f;
@@ -1000,12 +1000,12 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 58.f) + (16 * 3 / 2)), float32((16 * 14.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(952.f), float32(240.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
-			float(16 * 2 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+			float(32 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
@@ -1034,12 +1034,12 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 58.f) + (16 * 3 / 2)), float32((16 * 14.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(952.f), float32(240.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
-			float(16 * 2 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+			float(32 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1063,7 +1063,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, &ECS::GetComponent<Sprite>(entity),
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 48, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
 
 		float shrinkX = 0.f;
@@ -1071,12 +1071,12 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 68.f) + (16 * 3 / 2)), float32((16 * 16.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(1112.f), float32(272.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
-			float(16 * 2 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+			float(32 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1104,12 +1104,12 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 68.f) + (16 * 3 / 2)), float32((16 * 16.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(1112.f), float32(272.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
-			float(16 * 2 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+			float(32 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1133,7 +1133,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, &ECS::GetComponent<Sprite>(entity),
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 48, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
 
 		float shrinkX = 0.f;
@@ -1141,12 +1141,12 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 73.f) + (16 * 3 / 2)), float32((16 * 18.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(1192.f), float32(304.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
-			float(16 * 2 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+			float(32 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1174,12 +1174,12 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 73.f) + (16 * 3 / 2)), float32((16 * 18.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(1192.f), float32(304.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
-			float(16 * 2 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+			float(32 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1205,7 +1205,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, &ECS::GetComponent<Sprite>(entity),
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 48, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
 
 		float shrinkX = 0.f;
@@ -1213,12 +1213,12 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 100.f) + (16 * 3 / 2)), float32((16 * 23.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(1624.f), float32(384.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
-			float(16 * 2 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+			float(32 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1246,11 +1246,11 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 100.f) + (16 * 3 / 2)), float32((16 * 23.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(1624.f), float32(384.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
+		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
 			float(16 * 2 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
@@ -1275,7 +1275,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, &ECS::GetComponent<Sprite>(entity),
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 48, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
 
 		float shrinkX = 0.f;
@@ -1283,12 +1283,12 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 105.f) + (16 * 3 / 2)), float32((16 * 25.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(1704.f), float32(416.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
-			float(16 * 2 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+			float(32 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1316,12 +1316,12 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 105.f) + (16 * 3 / 2)), float32((16 * 25.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(1704.f), float32(416.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
-			float(16 * 2 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+			float(32 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1338,7 +1338,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 6, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 96, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -1349,7 +1349,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 91.f) + (16 * 6 / 2)), float32((16 * 25.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(1504.f), float32(408.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -1378,7 +1378,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, &ECS::GetComponent<Sprite>(entity),
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 48, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
 
 		float shrinkX = 0.f;
@@ -1386,12 +1386,12 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 100.f) + (16 * 3 / 2)), float32((16 * 36.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(1624.f), float32(592.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
-			float(16 * 2 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+			float(32 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1419,12 +1419,12 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 100.f) + (16 * 3 / 2)), float32((16 * 36.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(1624.f), float32(592.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
-			float(16 * 2 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+			float(32 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1450,7 +1450,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 16 * 3, 16 * 2, &ECS::GetComponent<Sprite>(entity),
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 48, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
 
 		float shrinkX = 0.f;
@@ -1458,12 +1458,12 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 107.f) + (16 * 3 / 2)), float32((16 * 36.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(1736.f), float32(592.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
-			float(16 * 2 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+			float(32 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1491,12 +1491,12 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 107.f) + (16 * 3 / 2)), float32((16 * 36.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(1736.f), float32(592));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 3 - shrinkX),
-			float(16 * 2 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+			float(32 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -1526,9 +1526,9 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
 
-		ECS::GetComponent<ShadowLoop>(entity).InitRangedShadow(fileName, JSONfile, 16 * 2, 16 * 2, &ECS::GetComponent<Sprite>(entity),
+		ECS::GetComponent<ShadowLoop>(entity).InitRangedShadow(fileName, JSONfile, 32, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
-		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(16 * 3, 16 * 17);
+		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(48, 272);
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
@@ -1537,11 +1537,11 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_dynamicBody;
-		tempDef.position.Set(float32((16 * 14.f) + (16 * 3 / 2)), float32((16 * 4.f) + (16 * 3 / 2)));
+		tempDef.position.Set(float32(248.f), float32(88.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 2), float(16 * 2), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(32), float(32), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
 
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 		tempPhsBody.SetGravityScale(0.f);
@@ -1559,7 +1559,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "sandFloor.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 30, 16 * 6);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 480, 96);
 
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(3510.f, 200.f, 0.1));
 
@@ -1578,7 +1578,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(16* 15), float32(16 * 2.5));
+		tempDef.position.Set(float32(240.f), float32(40.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -1613,9 +1613,9 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
 
-		ECS::GetComponent<ShadowLoop>(entity).InitRangedShadow(fileName, JSONfile, 16 * 2, 16 * 2, &ECS::GetComponent<Sprite>(entity),
+		ECS::GetComponent<ShadowLoop>(entity).InitRangedShadow(fileName, JSONfile, 32, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
-		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(16 * 3, 16 * 17);
+		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(48, 272);
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
@@ -1624,11 +1624,11 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 23.f) + (16 * 3 / 2)), float32((16 * 12.f) + (16 * 3 / 2)));
+		tempDef.position.Set(float32(392.f), float32(216.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 2), float(16 * 2), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(32), float(32), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
@@ -1657,9 +1657,9 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
 
-		ECS::GetComponent<ShadowLoop>(entity).InitRangedShadow(fileName, JSONfile, 16 * 2, 16 * 2, &ECS::GetComponent<Sprite>(entity),
+		ECS::GetComponent<ShadowLoop>(entity).InitRangedShadow(fileName, JSONfile, 32, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
-		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(16 * 17, 16 * 3);
+		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(272, 48);
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
@@ -1668,11 +1668,11 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 75.f) + (16 * 3 / 2)), float32((16 * 13.f) + (16 * 3 / 2)));
+		tempDef.position.Set(float32(1224.f), float32(232.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 2), float(16 * 2), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(32), float(32), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
@@ -1701,9 +1701,9 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
 
-		ECS::GetComponent<ShadowLoop>(entity).InitRangedShadow(fileName, JSONfile, 16 * 2, 16 * 2, &ECS::GetComponent<Sprite>(entity),
+		ECS::GetComponent<ShadowLoop>(entity).InitRangedShadow(fileName, JSONfile, 32, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
-		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(16 * 17, 16 * 3);
+		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(272, 48);
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
@@ -1712,11 +1712,11 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 108.f) + (16 * 3 / 2)), float32((16 * 32.f) + (16 * 3 / 2)));
+		tempDef.position.Set(float32(1752.f), float32(536.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 2), float(16 * 2), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(32), float(32), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
@@ -1735,8 +1735,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial0-0.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (8 - 16), 16.f * (5 - 16), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(-128.f, -176.f, 2.f));
 		}
 
 		// TILE 1-0
@@ -1750,8 +1750,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial1-0.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (8), 16.f * (5 - 16), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(128.f, -176.f, 2.f));
 		}
 
 		// TILE 2-0
@@ -1765,8 +1765,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial2-0.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (8 + 16), 16.f * (5 - 16), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(384.f, -176.f, 2.f));
 		}
 
 		// TILE 3-0
@@ -1780,8 +1780,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial3-0.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (8 + 32), 16.f * (5 - 16), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(640.f, -176.f, 2.f));
 		}
 
 		// TILE 4-0
@@ -1795,8 +1795,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial4-0.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (8 + 48), 16.f * (5 - 16), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(896, -176, 2.f));
 		}
 
 		// TILE 5-0
@@ -1810,8 +1810,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial5-0.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (8 + 64), 16.f * (5 - 16), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1152.f, -176, 2.f));
 		}
 
 		// TILE 6-0
@@ -1825,8 +1825,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial6-0.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (8 + 72), 16.f * (5 - 16), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1280.f, -176, 2.f));
 		}
 
 		// TILE 7-0
@@ -1840,8 +1840,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial7-0.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (8 + 88), 16.f * (5 - 16), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1536.f, -176, 2.f));
 		}
 
 		// TILE 0-1
@@ -1855,8 +1855,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial0-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (8 - 16), 16.f * (5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(-128, 80.f, 2.f));
 		}
 
 		// TILE 1-1
@@ -1870,8 +1870,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial1-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (8), 16.f * (5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(128.f, 80.f, 2.f));
 		}
 
 		// TILE 2-1
@@ -1885,8 +1885,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial2-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (16 + 8), 16.f * (5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(384.f, 80.f, 2.f));
 		}
 
 		// TILE 3-1
@@ -1900,8 +1900,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial3-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (32 + 8), 16.f * (5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(640.f, 80, 2.f));
 		}
 
 		// TILE 4-1
@@ -1915,8 +1915,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial4-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (48 + 8), 16.f * (5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256,256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(896.f, 80.f, 2.f));
 		}
 
 		// TILE 5-1
@@ -1930,8 +1930,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial5-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (64 + 8), 16.f * (5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1152.f, 80.f, 2.f));
 		}
 
 		// TILE 6-1
@@ -1945,8 +1945,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial6-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (72 + 8), 16.f * (5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1280.f, 80.f, 2.f));
 		}
 
 		// TILE 7-1
@@ -1960,8 +1960,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial7-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (88 + 8), 16.f * (5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1536.f, 80.f, 2.f));
 		}
 
 		// TILE 8-1
@@ -1975,8 +1975,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial8-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (104 + 8), 16.f * (5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1792.f, 80.f, 2.f));
 		}
 
 		// TILE 9-1
@@ -1990,8 +1990,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial9-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (120 + 8), 16.f * (5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(2048.f, 50, 2.f));
 		}
 
 		// TILE 0-2
@@ -2005,8 +2005,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial0-2.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (8 - 16), 16.f * (16 + 5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(-128.f, 336.f, 2.f));
 		}
 
 		// TILE 1-2
@@ -2020,8 +2020,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial1-2.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (8), 16.f * (16 + 5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(128.f, 336.f, 2.f));
 		}
 
 		// TILE 2-2
@@ -2035,8 +2035,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial2-2.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (16 + 8), 16.f * (16 + 5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(384.f, 336.f, 2.f));
 		}
 
 		// TILE 3-2
@@ -2050,8 +2050,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial3-2.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (32 + 8), 16.f * (16 + 5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(640.f, 336.f, 2.f));
 		}
 
 		// TILE 4-2
@@ -2065,8 +2065,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial4-2.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (48 + 8), 16.f * (16 + 5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(896.f, 336.f, 2.f));
 		}
 
 		// TILE 5-2
@@ -2080,8 +2080,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial5-2.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (64 + 8), 16.f * (16 + 5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1152.f, 336, 2.f));
 		}
 
 		// TILE 6-2
@@ -2095,8 +2095,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial6-2.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (72 + 8), 16.f * (16 + 5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1280.f, 336.f, 2.f));
 		}
 
 		// TILE 7-2
@@ -2110,8 +2110,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial7-2.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (88 + 8), 16.f * (16 + 5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1536.f, 336.f, 2.f));
 		}
 
 		// TILE 8-2
@@ -2125,8 +2125,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial8-2.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (104 + 8), 16.f * (16 + 5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1792.f, 336.f, 2.f));
 		}
 
 		// TILE 9-2
@@ -2140,8 +2140,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial9-2.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (120 + 8), 16.f * (16 + 5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(2048.f, 336, 2.f));
 		}
 
 		// TILE 6-3
@@ -2155,8 +2155,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial6-3.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (72 + 8), 16.f * (32 + 5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1280.f, 592.f, 2.f));
 		}
 
 		// TILE 7-3
@@ -2170,8 +2170,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial7-3.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (88 + 8), 16.f * (32 + 5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1536.f, 592.f, 2.f));
 		}
 
 		// TILE 8-3
@@ -2185,8 +2185,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial8-3.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (104 + 8), 16.f * (32 + 5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1792.f, 592.f, 2.f));
 		}
 
 		// TILE 9-3
@@ -2200,8 +2200,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial9-3.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (120 + 8), 16.f * (32 + 5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(2048.f, 592.f, 2.f));
 		}
 
 		// TILE 6-4
@@ -2215,8 +2215,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial6-4.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (72 + 8), 16.f * (48 + 5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1280.f, 848.f, 2.f));
 		}
 
 		// TILE 7-4
@@ -2230,8 +2230,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial7-4.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (88 + 8), 16.f * (48 + 5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1536.f, 848.f, 2.f));
 		}
 
 		// TILE 8-4
@@ -2245,8 +2245,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial8-4.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (104 + 8), 16.f * (48 + 5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1792, 848.f, 2.f));
 		}
 
 		// TILE 9-4
@@ -2260,8 +2260,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial9-4.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(16.f * (120 + 8), 16.f * (48 + 5), 2.f));
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(2048.f, 848.f, 2.f));
 		}
 	}
 
@@ -2279,8 +2279,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "nachoFish.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 2, 16 * 3);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(float32((16 * 121.f) + (16 * 2 / 2)), float32((16 * 29.f) + (16 * 3 / 2)), 2.f));
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 48);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(float32(1952.f), float32(488.f), 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 
@@ -2298,8 +2298,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "nachoFish.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 2, 16 * 3);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(float32((16 * 121.f) + (16 * 2 / 2)), float32((16 * 38.f) + (16 * 3 / 2)), 2.f));
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 48);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(float32(1952.f), float32(632.f), 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 

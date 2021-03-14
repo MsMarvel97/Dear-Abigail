@@ -2436,8 +2436,8 @@ void DenialLevel::SpawnBullet(int shadow)
 
 	//Set up components
 	std::string fileName = "bullet.png";
-	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 8, 4);
-	ECS::GetComponent<Transform>(entity).SetPosition(vec3(tempX, tempY, 2.f));
+	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 4, 8);
+	ECS::GetComponent<Transform>(entity).SetPosition(vec3(tempX, tempY, 4.f));
 	ECS::GetComponent<Trigger*>(entity) = new BulletTrigger();
 	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 	ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
@@ -2469,11 +2469,10 @@ void DenialLevel::ShootBullet(int bullet)
 
 	b2Vec2 angle = CalculateAngle(MainEntities::MainPlayer(), bullet);
 
-	float dirAngle = atan2(angle.x, angle.y) * 180 / PI;
+	float dirAngle = atan(angle.x/angle.y) * (180 / PI);
 
-	ECS::GetComponent<PhysicsBody>(bullet).SetRotationAngleDeg(dirAngle);
+	ECS::GetComponent<PhysicsBody>(bullet).SetRotationAngleDeg(dirAngle *-1);
 	ECS::GetComponent<PhysicsBody>(bullet).GetBody()->SetLinearVelocity(b2Vec2(angle.x * 100000000, angle.y * 100000000));
-
 }
 
 void DenialLevel::ActivateShadow(int shadow)

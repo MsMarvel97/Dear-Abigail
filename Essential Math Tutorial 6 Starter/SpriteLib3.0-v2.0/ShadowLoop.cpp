@@ -100,7 +100,7 @@ void ShadowLoop::ShadowRoutine(int entity)
 	{
 		if (facing == LEFT)
 		{
-			shadow.SetVelocity(vec3(-1000.f * Timer::deltaTime, 0.f, 0.f));
+			shadow.SetVelocity(vec3(-30, 0.f, 0.f));
 			if (shadow.GetPosition().x <= minX)
 			{
 				facing = RIGHT;
@@ -108,7 +108,7 @@ void ShadowLoop::ShadowRoutine(int entity)
 		}
 		else
 		{
-			shadow.SetVelocity(vec3(1000.f * Timer::deltaTime, 0.f, 0.f));
+			shadow.SetVelocity(vec3(30, 0.f, 0.f));
 			if (shadow.GetPosition().x >= maxX)
 			{
 				facing = LEFT;

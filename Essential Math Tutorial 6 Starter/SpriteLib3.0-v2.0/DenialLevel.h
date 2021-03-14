@@ -16,9 +16,11 @@ public:
 	void CrumblingPlatforms(int entity);
 	void MovePlatform();
 
-	void SpawnBullet(int bullet);
-	void ShootBullet();
+	void SpawnBullet(int shadow);
+	void ShootBullet(int bullet);
 	void ActivateShadow(int shadow);
+
+	b2Vec2 CalculateAngle(int entityOne, int entityTwo);
 
 	int player;
 	int movingPlat;

@@ -11,6 +11,11 @@ public:
 protected:
 
 };
+<<<<<<< HEAD
+
+=======
+>>>>>>> AngerLevel
+
 <<<<<<< Updated upstream
 =======
 <<<<<<< HEAD

@@ -78,19 +78,6 @@ void Player::MovementUpdate()
 	m_moving = false;
 
 <<<<<<< HEAD
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-	if (m_hasPhysics)
-	{
-		//platform = 200.f;
-
-		if (!Input::GetKey(Key::D) && !Input::GetKey(Key::A))
-		{
-			speed *= 7.f;
-=======
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
 	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
 	auto& transformer = ECS::GetComponent<Player>(MainEntities::MainPlayer());
 	auto& canJump = ECS::GetComponent<CanJump>(MainEntities::MainPlayer());

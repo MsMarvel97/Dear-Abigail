@@ -78,6 +78,22 @@ void Player::MovementUpdate()
 	m_moving = false;
 
 <<<<<<< HEAD
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+	if (m_hasPhysics)
+	{
+		//platform = 200.f;
+
+		if (!Input::GetKey(Key::D) && !Input::GetKey(Key::A))
+		{
+			speed *= 7.f;
+=======
+=======
+<<<<<<< HEAD
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
 	auto& transformer = ECS::GetComponent<Player>(MainEntities::MainPlayer());
 	auto& canJump = ECS::GetComponent<CanJump>(MainEntities::MainPlayer());
@@ -317,6 +333,7 @@ void Player::MovementUpdate()
 		m_attacking = true;
 		m_locked = true;*/
 >>>>>>> AngerLevel
+<<<<<<< Updated upstream
 	}
 =======
 	if (Input::GetKey(Key::C) && (player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001))
@@ -331,6 +348,22 @@ void Player::MovementUpdate()
 			jumping = 1800000;
 		}
 	}
+=======
+	}
+=======
+	if (Input::GetKey(Key::C) && (player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001))
+	{
+		if (jumping <= 1800000)
+		{
+			float building = 1500000.f * Timer::deltaTime;
+			jumping += building;
+		}
+		else
+		{
+			jumping = 1800000;
+		}
+	}
+>>>>>>> Stashed changes
 
 	if (Input::GetKeyDown(Key::Space) && (player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001))
 	{

@@ -78,6 +78,7 @@ void Player::MovementUpdate()
 	m_moving = false;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	if (m_hasPhysics)
 	{
 		//platform = 200.f;
@@ -86,6 +87,9 @@ void Player::MovementUpdate()
 		{
 			speed *= 7.f;
 =======
+=======
+<<<<<<< HEAD
+>>>>>>> Stashed changes
 	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
 	auto& transformer = ECS::GetComponent<Player>(MainEntities::MainPlayer());
 	auto& canJump = ECS::GetComponent<CanJump>(MainEntities::MainPlayer());
@@ -130,6 +134,7 @@ void Player::MovementUpdate()
 #ifdef TOPDOWN
 		if (Input::GetKey(Key::W))
 		{
+<<<<<<< HEAD
 			float sprinting = 5;
 			sprint += sprinting;
 =======
@@ -271,16 +276,33 @@ void Player::MovementUpdate()
 	}
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		if (Input::GetKey(Key::A))
 =======
 	if (Input::GetKey(Key::D))
 	{
+=======
+<<<<<<< HEAD
+	if (!Input::GetKey(Key::D))
+	{
+		if (vel2 > 20.f)
+=======
+<<<<<<< Updated upstream
+		if (Input::GetKey(Key::A))
+=======
+	if (Input::GetKey(Key::D))
+	{
+>>>>>>> Stashed changes
 		m_facing = RIGHT;
 		m_moving = true;
 
 		player.SetVelocity(vec3((vel2 + sprint + platform) * Timer::deltaTime, player.GetVelocity().y, 0.f));
 
 		if (vel2 <= 5000)
+>>>>>>> Stashed changes
+<<<<<<< Updated upstream
+=======
+>>>>>>> AngerLevel
 >>>>>>> Stashed changes
 		{
 			float slowingVel2 = 5;
@@ -317,6 +339,7 @@ void Player::MovementUpdate()
 		}
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		m_attacking = true;
 		m_locked = true;*/
 	}
@@ -349,6 +372,48 @@ void Player::MovementUpdate()
 			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0.f, jumpCharged), true);
 		}
 
+=======
+<<<<<<< HEAD
+>>>>>>> Stashed changes
+		else
+		{
+			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0.f, jump), true);
+		}
+<<<<<<< Updated upstream
+		jumping = 1000000.f;
+	}
+
+=======
+=======
+<<<<<<< Updated upstream
+		m_attacking = true;
+		m_locked = true;*/
+>>>>>>> AngerLevel
+	}
+=======
+	if (Input::GetKey(Key::C) && (player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001))
+	{
+		if (jumping <= 1800000)
+		{
+			float building = 1500000.f * Timer::deltaTime;
+			jumping += building;
+		}
+		else
+		{
+			jumping = 1800000;
+		}
+	}
+
+	if (Input::GetKeyDown(Key::Space) && (player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001))
+	{
+		float jump = 1000000 * Timer::deltaTime;
+		float jumpCharged = 1800000 * Timer::deltaTime;
+
+		if (Input::GetKey(Key::Shift))
+		{
+			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0.f, jumpCharged), true);
+		}
+
 		else
 		{
 			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0.f, jump), true);
@@ -356,6 +421,7 @@ void Player::MovementUpdate()
 		jumping = 1000000.f;
 	}
 
+>>>>>>> Stashed changes
 	if (Input::GetKey(Key::W))
 	{
 		player.SetVelocity(vec3(0.f, 100.f, 0.f));
@@ -402,7 +468,15 @@ void Player::AnimationUpdate()
 void Player::FrictionUpdate()
 {
 	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
+<<<<<<< Updated upstream
 
+=======
+<<<<<<< HEAD
+	
+=======
+
+>>>>>>> AngerLevel
+>>>>>>> Stashed changes
 	if (player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001)
 	{
 		player.GetBody()->SetLinearDamping(5.f);
@@ -418,6 +492,14 @@ void Player::UpdateAninControllerRef(AnimationController* ref)
 	m_animController = ref;
 }
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> AngerLevel
+>>>>>>> Stashed changes
 void Player::SetActiveAnimation(int anim)
 {
 	ECS::GetComponent<AnimationController>(MainEntities::MainPlayer()).SetActiveAnim(anim);

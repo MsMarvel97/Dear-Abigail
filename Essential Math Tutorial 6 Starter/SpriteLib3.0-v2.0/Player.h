@@ -12,7 +12,15 @@ enum AnimEnums
 
 	JUMPRIGHT,
 	JUMPLEFT,
+<<<<<<< Updated upstream
 
+=======
+<<<<<<< HEAD
+	
+=======
+
+>>>>>>> AngerLevel
+>>>>>>> Stashed changes
 	IDLERIGHT,
 	IDLELEFT,
 };

@@ -100,15 +100,6 @@
 #include "MovingClass.h"
 #include "RespawnTrigger.h"
 #include "PlayerMechanics.h"
-=======
-#include "TestBulet.h"
-<<<<<<< Updated upstream
-#include "TestBulet.h"
-#include "OutburstTrigger.h"
-#include "BreakableWallTrigger.h"
-=======
-#include "TestBulet.h"
-<<<<<<< Updated upstream
 
 =======
 #include "ShieldMechanic.h"

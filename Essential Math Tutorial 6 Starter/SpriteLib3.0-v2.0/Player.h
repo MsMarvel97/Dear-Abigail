@@ -12,7 +12,11 @@ enum AnimEnums
 
 	JUMPRIGHT,
 	JUMPLEFT,
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> AngerLevel
 	IDLERIGHT,
 	IDLELEFT,
 };

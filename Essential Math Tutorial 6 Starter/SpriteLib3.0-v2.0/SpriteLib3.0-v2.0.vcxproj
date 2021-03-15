@@ -191,6 +191,7 @@
     <ClInclude Include="include\imgui\imstb_truetype.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="JSON.h" />
+<<<<<<< HEAD
     <ClInclude Include="Kinematics.h" />
     <ClInclude Include="KnockBack.h" />
     <ClInclude Include="KnockBackTrigger.h" />
@@ -200,25 +201,6 @@
     <ClInclude Include="Kinematics.h" />
     <ClInclude Include="KnockBack.h" />
     <ClInclude Include="KnockBackTrigger.h" />
->>>>>>> Stashed changes
->>>>>>> AngerLevel
-=======
-<<<<<<< Updated upstream
-=======
-    <ClInclude Include="Kinematics.h" />
-    <ClInclude Include="KnockBack.h" />
-    <ClInclude Include="KnockBackTrigger.h" />
-=======
-    <ClInclude Include="Kinematics.h" />
-    <ClInclude Include="KnockBack.h" />
-    <ClInclude Include="KnockBackTrigger.h" />
-=======
-<<<<<<< Updated upstream
-=======
-    <ClInclude Include="Kinematics.h" />
-    <ClInclude Include="KnockBack.h" />
-    <ClInclude Include="KnockBackTrigger.h" />
->>>>>>> Stashed changes
 >>>>>>> Stashed changes
 >>>>>>> AngerLevel
     <ClInclude Include="MainEntities.h" />
@@ -345,9 +327,18 @@
     <ClCompile Include="include\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="JSON.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="Kinematics.cpp" />
     <ClCompile Include="KnockBack.cpp" />
     <ClCompile Include="KnockBackTrigger.cpp" />
+=======
+<<<<<<< Updated upstream
+=======
+    <ClCompile Include="Kinematics.cpp" />
+    <ClCompile Include="KnockBack.cpp" />
+    <ClCompile Include="KnockBackTrigger.cpp" />
+>>>>>>> Stashed changes
+>>>>>>> AngerLevel
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainEntities.cpp" />
     <ClCompile Include="Matrix.cpp" />

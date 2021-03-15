@@ -28,4 +28,8 @@ bool MovingClass::GetRight()
 void MovingClass::SetRight(bool newRight)
 {
     right = newRight;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> AngerLevel

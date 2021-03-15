@@ -18,7 +18,11 @@ void KnockBack::RunKnockBackTime()
 		else
 		{
 			canMove = true;
+<<<<<<< HEAD
+			sequenceStart = false;
+=======
 			SetSequenceStart(false);
+>>>>>>> AngerLevel
 		}
 	}
 }

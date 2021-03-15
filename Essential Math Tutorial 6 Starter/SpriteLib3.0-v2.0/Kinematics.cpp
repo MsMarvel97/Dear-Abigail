@@ -1,6 +1,8 @@
 #include "Kinematics.h"
 #include "ECS.h"
 
+<<<<<<< HEAD
+=======
 void Kinematics::SetPosition()
 {
 	float parentX = ECS::GetComponent<PhysicsBody>(kinParent).GetPosition().x;
@@ -15,6 +17,7 @@ void Kinematics::SetPosition()
 	ECS::GetComponent<Transform>(kinChild).SetPosition(vec3(parentX + offsetX, parentY + offsetY, childZ));
 }
 
+>>>>>>> AngerLevel
 void Kinematics::UpdatePosition()
 {
 	float parentX = ECS::GetComponent<PhysicsBody>(kinParent).GetPosition().x;

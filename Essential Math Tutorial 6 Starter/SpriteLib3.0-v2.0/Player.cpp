@@ -99,6 +99,10 @@ void Player::MovementUpdate()
 	float platform = 0.f;
 
 	if (moving.GetMoving())
+=======
+<<<<<<< Updated upstream
+	if (m_hasPhysics)
+>>>>>>> AngerLevel
 	{
 		platform = 2000.f;
 
@@ -128,6 +132,45 @@ void Player::MovementUpdate()
 		{
 			float sprinting = 5;
 			sprint += sprinting;
+=======
+			speed *= 7.f;
+=======
+	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
+	auto& transformer = ECS::GetComponent<Player>(MainEntities::MainPlayer());
+	auto& canJump = ECS::GetComponent<CanJump>(MainEntities::MainPlayer());
+	auto& moving = ECS::GetComponent<MovingClass>(MainEntities::MainPlayer());
+
+	static float sprint = 0.f;
+	static float vel = -2000;
+	static float vel2 = 2000;
+	float time = Timer::deltaTime;
+	static float jumping = 1000000.f;
+	float platform = 0.f;
+
+	if (moving.GetMoving())
+	{
+		platform = 2000.f;
+
+		if (!Input::GetKey(Key::D) && !Input::GetKey(Key::A))
+		{
+			float passiveMovement = 57000.f; //57000.f
+
+			if (moving.GetLeft() == true)
+			{
+				passiveMovement *= -1;
+			}
+			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(passiveMovement * Timer::deltaTime, 0.f), true);
+		}
+	}
+
+	if (Input::GetKey(Key::Shift) && player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001)
+	{
+		if (sprint <= 3000.f)
+		{
+			float sprinting = 1000 * Timer::deltaTime;
+			sprint += sprinting;
+>>>>>>> Stashed changes
+>>>>>>> AngerLevel
 		}
 	}
 
@@ -161,6 +204,7 @@ void Player::MovementUpdate()
 		m_facing = LEFT;
 		m_moving = true;
 
+<<<<<<< HEAD
 		player.SetVelocity(vec3((vel - sprint), player.GetVelocity().y, 0.f));
 
 		if (!moving.GetMoving())
@@ -172,6 +216,20 @@ void Player::MovementUpdate()
 			}
 		}
 		else
+=======
+<<<<<<< Updated upstream
+		if (Input::GetKey(Key::A))
+=======
+	if (Input::GetKey(Key::A))
+	{
+		m_facing = LEFT;
+		m_moving = true;
+
+		player.SetVelocity(vec3((vel - sprint - platform) * Timer::deltaTime, player.GetVelocity().y, 0.f));
+
+		if (vel >= -5000)
+>>>>>>> Stashed changes
+>>>>>>> AngerLevel
 		{
 			vel = -60;
 		}
@@ -274,6 +332,11 @@ void Player::MovementUpdate()
 		{
 			jumping = 1800000;
 		}
+=======
+<<<<<<< Updated upstream
+		m_attacking = true;
+		m_locked = true;*/
+>>>>>>> AngerLevel
 	}
 
 	if (Input::GetKeyDown(Key::Space) && (player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001))

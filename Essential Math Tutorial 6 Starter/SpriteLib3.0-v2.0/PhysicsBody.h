@@ -30,6 +30,7 @@ enum EntityCategories
 	TRIGGER		= 0x0008,
 	HEXAGON		= 0x0009,
 	SNAIL		= 0x0010
+	
 };
 
 

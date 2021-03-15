@@ -9,5 +9,14 @@
 #include "DenialLevel.h"
 #include "MovingPlatform.h"
 #include "Crumble.h"
+#include "Shadow.h"
+#include "ShadowV2.h"
+<<<<<<< Updated upstream
+=======
+#include "Shield.h"
+#include "DenialRough.h"
+#include "AttackScene.h"
+>>>>>>> Stashed changes
+#include "AngerLevel.h"
 
 #endif // !__SCENES_H__

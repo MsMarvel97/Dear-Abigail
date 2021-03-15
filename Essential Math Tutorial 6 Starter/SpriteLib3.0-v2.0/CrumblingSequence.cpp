@@ -5,11 +5,24 @@ CrumblingSequence::CrumblingSequence()
 {
 }
 
-void CrumblingSequence::InitPlatform(std::string& fileName, std::string& animationJSON, int width, int height, Sprite* sprite, AnimationController* controller)
+CrumblingSequence::CrumblingSequence(std::string& fileName, std::string& animationJSON, int width, int height, int entityNum, Sprite* sprite, AnimationController* controller, Transform* transform, bool hasPhys, PhysicsBody* body)
+{
+	InitPlatform(fileName, animationJSON, width, height, entityNum, sprite, controller, transform, hasPhys, body);
+}
+
+void CrumblingSequence::InitPlatform(std::string& fileName, std::string& animationJSON, int width, int height, int entityNum, Sprite* sprite, AnimationController* controller, Transform* transform, bool hasPhys, PhysicsBody* body)
 {
 	//Store references to the components
 	sprites = sprite;
 	animator = controller;
+	transformer = transform;
+	physics = hasPhys;
+	entity = entityNum;
+
+	if (hasPhys)
+	{
+		physicsBody = body;
+	}
 
 	//Initialize UVs
 	animator->InitUVs(fileName);
@@ -27,9 +40,7 @@ void CrumblingSequence::InitPlatform(std::string& fileName, std::string& animati
 	//Resting state
 	animator->AddAnimation(animations["Solid"].get<Animation>());
 	//Crumbling
-	animator->AddAnimation(animations["Crumbling"].get<Animation>());
-	//Intense crumbling
-	animator->AddAnimation(animations["Cracking"].get<Animation>());
+	animator->AddAnimation(animations["Crumble"].get<Animation>());
 	//Disappearing
 	animator->AddAnimation(animations["Gone"].get<Animation>());
 
@@ -52,14 +63,9 @@ void CrumblingSequence::Crumble(int ent)
 		{
 			ECS::GetComponent<AnimationController>(ent).SetActiveAnim(RESTING);
 		}
-		else if (currentTime >= 1 && currentTime < 2)
+		else if (currentTime >= 1 && currentTime < 3)
 		{
 			ECS::GetComponent<AnimationController>(ent).SetActiveAnim(CRUMBLING);
-		}
-
-		else if (currentTime >= 2 && currentTime < 3)
-		{
-			ECS::GetComponent<AnimationController>(ent).SetActiveAnim(CRACKING);
 		}
 
 		else if (currentTime >= 3 && currentTime < 5)
@@ -105,4 +111,3 @@ int CrumblingSequence::disablePlatform()
 		return -1;
 	}
 }
-

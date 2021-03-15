@@ -24,3 +24,13 @@ void Health::setShield(bool newShield)
 {
     isShieldOn = newShield;
 }
+
+bool Health::GetRespawn()
+{
+    return respawn;
+}
+
+void Health::SetRespawn(bool newRespawn)
+{
+    respawn = newRespawn;
+}

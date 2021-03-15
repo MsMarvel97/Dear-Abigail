@@ -3,6 +3,7 @@
 class Kinematics
 {
 public:
+	void SetPosition();
 	void UpdatePosition();
 	void SetParent(int parent);
 	void SetChild(int child);

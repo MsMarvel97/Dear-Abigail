@@ -28,16 +28,33 @@
 #include "EndTrigger.h"
 #include "CrumblingSequence.h"
 #include "DestroyPlatformTrigger.h"
-#include "MovingClass.h"
-#include "MovingTrigger.h"
-#include "MovingPlatform.h"
-#include "Kinematics.h"
-#include "ToneFire.h"
-#include "ShadowAreaTrigger.h"
-#include "ShadowLoop.h"
-#include "KnockBackTrigger.h"
+#include "TestBulet.h"
+<<<<<<< Updated upstream
+
+=======
+#include "ShieldMechanic.h"
+#include "Health.h"
 #include "BulletTrigger.h"
+#include "Kinematics.h"
+#include "ShadowSense.h"
+#include "ShadowAreaTrigger.h"
+#include "ShadowTime.h"
+#include "AttackTrigger.h"
+#include "AttackMechanic.h"
+#include "KnockBackTrigger.h"
+#include "Movement.h"
+#include "KnockBack.h"
+#include "ShadowLoop.h"
+#include "CoolDown.h"
+#include "OrbTrigger.h"
+#include "BossLevel.h"
+#include "MovingTrigger.h"
+#include "MovingClass.h"
+#include "RespawnTrigger.h"
 #include "PlayerMechanics.h"
+#include "OutburstTrigger.h"
+#include "BreakableWallTrigger.h"
+>>>>>>> Stashed changes
 
 class ECS abstract
 {

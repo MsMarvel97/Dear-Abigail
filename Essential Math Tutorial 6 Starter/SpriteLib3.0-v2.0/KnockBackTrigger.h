@@ -1,7 +1,5 @@
 #pragma once
 #include "Trigger.h"
-#include "ECS.h"
-
 class KnockBackTrigger : public Trigger
 {
 public:

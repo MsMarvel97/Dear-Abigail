@@ -14,11 +14,13 @@ public:
 	void SetShadowSequence(bool start) { shadowSequence = start; };
 
 	void SetFiring(bool firing) { fire = firing; };
-	bool GetFiring() { return fire; };
+	bool GetFiring() { return fire; }; //new one?
 
 
 	//Attack mechanic
 	void Attacking();
+
+	bool GetAttackSequence(); //new one
 
 	void SetAttackSequence(bool attack) { attackSequence = attack; };
 	
@@ -32,15 +34,24 @@ public:
 
 	bool GetCanMove() { return canMove; };	
 
+	void SetCanMove(bool newMove) { canMove = newMove; }; //new one
+
 
 	//Health and shielding
 	void HealthLost(); //reduces player hearts by 1
 
 	int GetHealth() { return hearts; };
+	void SetHealth(int newHealth) { hearts = newHealth; }; //new one
 	
 	void SetShield(bool shielding) { shield = shielding; };
 	bool GetShield() { return shield; };
+	void SetRespawn(bool newRespawn) { respawn = newRespawn; }; //new one
+	bool GetRespawn() { return respawn; }; //new one
 
+	//Breakable wall
+	void CheckWallStatus(int wallEntity, int trigEntity);
+	void ReduceWallHealth() { wallHealth -= 1; };
+	int GetWallHealth() { return wallHealth; };
 protected:
 	//vars for shadows and bullets
 	double target = 4;
@@ -65,5 +76,10 @@ protected:
 	//vars for health and shielding
 	int hearts = 3; //player's life points
 	bool shield = false; //used by the bullet trigger
+	bool respawn = false; //new one
+
+	//var3 for breakable wall
+	int wallHealth = 3;
+	std::string wallSprites[3] = { "veryCracked.png", "cracked.png", "maxHealth.png" };
 };
 

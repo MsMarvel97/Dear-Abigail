@@ -12,7 +12,7 @@ enum AnimEnums
 
 	JUMPRIGHT,
 	JUMPLEFT,
-	
+
 	IDLERIGHT,
 	IDLELEFT,
 };
@@ -41,10 +41,10 @@ class Player
 {
 public:
 	Player();
-	Player(std::string& fileName, std::string& animationJSON, int width, int height, 
+	Player(std::string& fileName, std::string& animationJSON, int width, int height,
 		Sprite* sprite, AnimationController* controller, Transform* transform, bool hasPhys = false, PhysicsBody* body = nullptr);
 
-	void InitPlayer(std::string& fileName, std::string& animationJSON, int width, int height, 
+	void InitPlayer(std::string& fileName, std::string& animationJSON, int width, int height,
 		Sprite* sprite, AnimationController* controller, Transform* transform, bool hasPhys = false, PhysicsBody* body = nullptr);
 
 	void Update();

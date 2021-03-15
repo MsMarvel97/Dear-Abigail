@@ -3,16 +3,12 @@
         "Frame0":[1.0,128.0,192.0,1.0],
         "NumFrames":1,"Repeating":true,"SecsPerFrame":0.25
     },
-    "Crumbling":{
-        "Frame0":[1.0,256.0,192.0,129.0],"Frame1":[193.0,256.0,384.0,129.0],"Frame2":[385.0,256.0,576.0,129.0],"Frame3":[577.0,256.0,768.0,129.0],
-        "NumFrames":4,"Repeating":true,"SecsPerFrame":0.25
-    },
-    "Cracking":{
-        "Frame0":[1.0,384.0,192.0,257.0],"Frame1":[193.0,384.0,384.0,257.0],"Frame2":[385.0,384.0,576.0,257.0],"Frame3":[577.0,384.0,768.0,257.0],
+    "Crumble":{
+        "Frame0":[1.0,256.0,192.0,129.0],"Frame1":[193.0,256.0,384.0,129.0],"Frame2":[385.0,256.0,575.0,129.0],"Frame3":[576.0,256.0,767.0,129.0],
         "NumFrames":4,"Repeating":true,"SecsPerFrame":0.25
     },
     "Gone":{
-        "Frame0":[1.0,512.0,192.0,385.0],
-        "NumFrames":1,"Repeating":true,"SecsPerFrame":1
+        "Frame0":[1.0,384.0,192.0,257.0],
+        "NumFrames":1,"Repeating":true,"SecsPerFrame":0.25
     }
 }

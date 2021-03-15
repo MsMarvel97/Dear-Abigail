@@ -15,6 +15,7 @@ protected:
 
 =======
 >>>>>>> AngerLevel
+<<<<<<< Updated upstream
 
 <<<<<<< HEAD
 
@@ -27,4 +28,6 @@ protected:
 
 =======
 >>>>>>> AngerLevel
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

@@ -16,6 +16,11 @@ protected:
 =======
 >>>>>>> AngerLevel
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> AngerLevel
+
 <<<<<<< Updated upstream
 =======
 <<<<<<< HEAD

@@ -7,32 +7,14 @@
 
 enum AnimEnums
 {
-	IDLELEFT,
+	RUNRIGHT,
+	RUNLEFT,
+
+	JUMPRIGHT,
+	JUMPLEFT,
+
 	IDLERIGHT,
-	
-	//Only in Top down
-#ifdef TOPDOWN
-	IDLEUP,
-	IDLEDOWN,
-#endif
-
-	WALKLEFT,
-	WALKRIGHT,
-
-	//Only in Top down
-#ifdef TOPDOWN
-	WALKUP,
-	WALKDOWN,
-#endif
-	
-	ATTACKLEFT,
-	ATTACKRIGHT,
-
-	//Only in Top down
-#ifdef TOPDOWN
-	ATTACKUP,
-	ATTACKDOWN
-#endif
+	IDLELEFT,
 };
 
 enum AnimTypes
@@ -43,46 +25,45 @@ enum AnimTypes
 	ATTACK = 8
 #endif
 #ifndef TOPDOWN
-	IDLE = 0,
-	WALK = 2,
-	ATTACK = 4
+	RUN = 0,
+	JUMP = 2,
+	IDLE = 4
 #endif
 };
 
 enum AnimDir
 {
-	LEFT,
 	RIGHT,
-	//Only in Top Down
-#ifdef TOPDOWN
-	UP,
-	DOWN
-#endif
+	LEFT,
 };
 
 class Player
 {
 public:
 	Player();
-	Player(std::string& fileName, std::string& animationJSON, int width, int height, 
+	Player(std::string& fileName, std::string& animationJSON, int width, int height,
 		Sprite* sprite, AnimationController* controller, Transform* transform, bool hasPhys = false, PhysicsBody* body = nullptr);
 
-	void InitPlayer(std::string& fileName, std::string& animationJSON, int width, int height, 
+	void InitPlayer(std::string& fileName, std::string& animationJSON, int width, int height,
 		Sprite* sprite, AnimationController* controller, Transform* transform, bool hasPhys = false, PhysicsBody* body = nullptr);
 
 	void Update();
 	void MovementUpdate();
 	void AnimationUpdate();
+	void FrictionUpdate();
+	void UpdateAninControllerRef(AnimationController* ref);
 
 private:
 	void SetActiveAnimation(int anim);
 
 	//Basically, any animation OTHER than moving will not have a cancel, and we'll be checking whether or not that animation is done
 	bool m_moving = false;
-	//Are you currently attacking?????
-	bool m_attacking = false;
+	//Are you currently jumping?
+	bool m_jumping = false;
 	//Have we locked the player from moving during this animation?
 	bool m_locked = false;
+	//float to hold the strength of the jump
+	float m_jump = 1500000.f * Timer::deltaTime;
 
 	//A reference to our sprite
 	Sprite* m_sprite = nullptr;

@@ -40,11 +40,21 @@ void Game::InitGame()
 	m_scenes.push_back(new Crumble("Crumble TIEM"));
 	m_scenes.push_back(new Shadow("Projectile TIEM"));
 	m_scenes.push_back(new ShadowV2("Shadow TIEM"));
+<<<<<<< Updated upstream
 	m_scenes.push_back(new AngerLevel("Anger Level YAY"));
 
 	 
 	//Sets active scene reference to our scene
 	m_activeScene = m_scenes[6];
+=======
+	m_scenes.push_back(new Shield("Shield TIEM"));
+	m_scenes.push_back(new DenialRough("Denial Rough TIEM"));
+	m_scenes.push_back(new AttackScene("Attack TIEM"));
+	m_scenes.push_back(new AngerLevel("Anger TIEM"));
+	 
+	//Sets active scene reference to our scene
+	m_activeScene = m_scenes[9];
+>>>>>>> Stashed changes
 
 	m_activeScene->InitScene(float(BackEnd::GetWindowWidth()), float(BackEnd::GetWindowHeight()));
 

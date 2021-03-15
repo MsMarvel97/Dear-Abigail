@@ -152,7 +152,7 @@ void PhysicsSystem::Run(b2World & world)
 	int32 positionIterations = 3;
 
 	//steps through the world
-	world.Step(timeStep, velocityIterations, positionIterations);
+	world.Step(Timer::deltaTime, velocityIterations, positionIterations);
 
 	CleanupBodies();
 }

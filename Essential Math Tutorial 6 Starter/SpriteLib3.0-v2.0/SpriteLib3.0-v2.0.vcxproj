@@ -140,12 +140,22 @@
     <ClInclude Include="AnimationController.h" />
     <ClInclude Include="AnimationSpritePlayground.h" />
     <ClInclude Include="AnimationSystem.h" />
+    <ClInclude Include="AttackMechanic.h" />
+    <ClInclude Include="AttackScene.h" />
+    <ClInclude Include="AttackTrigger.h" />
     <ClInclude Include="BackEnd.h" />
     <ClInclude Include="BloomEffect.h" />
+<<<<<<< Updated upstream
+=======
+    <ClInclude Include="BossLevel.h" />
+    <ClInclude Include="BreakableWallTrigger.h" />
+    <ClInclude Include="BulletTrigger.h" />
+>>>>>>> Stashed changes
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraSystem.h" />
     <ClInclude Include="CanJump.h" />
     <ClInclude Include="CollisionFlag.h" />
+    <ClInclude Include="CoolDown.h" />
     <ClInclude Include="Crumble.h" />
     <ClInclude Include="CrumblingSequence.h" />
     <ClInclude Include="DestroyPlatformTrigger.h" />
@@ -169,21 +179,34 @@
     <ClInclude Include="include\imgui\imstb_truetype.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="JSON.h" />
+<<<<<<< Updated upstream
+=======
+    <ClInclude Include="Kinematics.h" />
+    <ClInclude Include="KnockBack.h" />
+    <ClInclude Include="KnockBackTrigger.h" />
+>>>>>>> Stashed changes
     <ClInclude Include="MainEntities.h" />
     <ClInclude Include="Matrix.h" />
+    <ClInclude Include="Movement.h" />
     <ClInclude Include="MoveTrigger.h" />
     <ClInclude Include="MoveTriggerOneWay.h" />
+    <ClInclude Include="MovingClass.h" />
+    <ClInclude Include="MovingTrigger.h" />
+    <ClInclude Include="OrbTrigger.h" />
     <ClInclude Include="OtherEntities.h" />
+    <ClInclude Include="OutburstTrigger.h" />
     <ClInclude Include="PhysicsBody.h" />
     <ClInclude Include="PhysicsPlayground.h" />
     <ClInclude Include="PhysicsPlaygroundListener.h" />
     <ClInclude Include="PhysicsSystem.h" />
     <ClInclude Include="PixelateEffect.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerMechanics.h" />
     <ClInclude Include="PostEffect.h" />
     <ClInclude Include="RecheckConditions.h" />
     <ClInclude Include="RenderingSystem.h" />
     <ClInclude Include="ResizeTrigger.h" />
+    <ClInclude Include="RespawnTrigger.h" />
     <ClInclude Include="RotationTrigger.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scenes.h" />
@@ -192,6 +215,10 @@
     <ClInclude Include="SepiaEffect.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Shadow.h" />
+    <ClInclude Include="ShadowAreaTrigger.h" />
+    <ClInclude Include="ShadowLoop.h" />
+    <ClInclude Include="ShadowSense.h" />
+    <ClInclude Include="ShadowTime.h" />
     <ClInclude Include="ShadowV2.h" />
     <ClInclude Include="ShrinkTrigger.h" />
     <ClInclude Include="Sprite.h" />
@@ -217,12 +244,22 @@
     <ClCompile Include="AnimationController.cpp" />
     <ClCompile Include="AnimationSpritePlayground.cpp" />
     <ClCompile Include="AnimationSystem.cpp" />
+    <ClCompile Include="AttackMechanic.cpp" />
+    <ClCompile Include="AttackScene.cpp" />
+    <ClCompile Include="AttackTrigger.cpp" />
     <ClCompile Include="BackEnd.cpp" />
     <ClCompile Include="BloomEffect.cpp" />
+<<<<<<< Updated upstream
+=======
+    <ClCompile Include="BossLevel.cpp" />
+    <ClCompile Include="BreakableWallTrigger.cpp" />
+    <ClCompile Include="BulletTrigger.cpp" />
+>>>>>>> Stashed changes
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraSystem.cpp" />
     <ClCompile Include="CanJump.cpp" />
     <ClCompile Include="CollisionFlag.cpp" />
+    <ClCompile Include="CoolDown.cpp" />
     <ClCompile Include="Crumble.cpp" />
     <ClCompile Include="CrumblingSequence.cpp" />
     <ClCompile Include="DestroyPlatformTrigger.cpp" />
@@ -244,22 +281,35 @@
     <ClCompile Include="include\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="JSON.cpp" />
+<<<<<<< Updated upstream
+=======
+    <ClCompile Include="Kinematics.cpp" />
+    <ClCompile Include="KnockBack.cpp" />
+    <ClCompile Include="KnockBackTrigger.cpp" />
+>>>>>>> Stashed changes
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainEntities.cpp" />
     <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="Movement.cpp" />
     <ClCompile Include="MoveTrigger.cpp" />
     <ClCompile Include="MoveTriggerOneWay.cpp" />
+    <ClCompile Include="MovingClass.cpp" />
+    <ClCompile Include="MovingTrigger.cpp" />
+    <ClCompile Include="OrbTrigger.cpp" />
     <ClCompile Include="OtherEntities.cpp" />
+    <ClCompile Include="OutburstTrigger.cpp" />
     <ClCompile Include="PhysicsBody.cpp" />
     <ClCompile Include="PhysicsPlayground.cpp" />
     <ClCompile Include="PhysicsPlaygroundListener.cpp" />
     <ClCompile Include="PhysicsSystem.cpp" />
     <ClCompile Include="PixelateEffect.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerMechanics.cpp" />
     <ClCompile Include="PostEffect.cpp" />
     <ClCompile Include="RecheckConditions.cpp" />
     <ClCompile Include="RenderingSystem.cpp" />
     <ClCompile Include="ResizeTrigger.cpp" />
+    <ClCompile Include="RespawnTrigger.cpp" />
     <ClCompile Include="RotationTrigger.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Selectable.cpp" />
@@ -267,6 +317,10 @@
     <ClCompile Include="SepiaEffect.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Shadow.cpp" />
+    <ClCompile Include="ShadowAreaTrigger.cpp" />
+    <ClCompile Include="ShadowLoop.cpp" />
+    <ClCompile Include="ShadowSense.cpp" />
+    <ClCompile Include="ShadowTime.cpp" />
     <ClCompile Include="ShadowV2.cpp" />
     <ClCompile Include="ShrinkTrigger.cpp" />
     <ClCompile Include="Sprite.cpp" />

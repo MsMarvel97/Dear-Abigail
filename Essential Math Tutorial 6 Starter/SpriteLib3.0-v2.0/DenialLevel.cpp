@@ -1528,8 +1528,12 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		ECS::GetComponent<ShadowLoop>(entity).InitRangedShadow(fileName, JSONfile, 32, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
+<<<<<<< HEAD
 
 		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(0, 272);
+=======
+		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(48, 272);
+>>>>>>> AngerLevel
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 

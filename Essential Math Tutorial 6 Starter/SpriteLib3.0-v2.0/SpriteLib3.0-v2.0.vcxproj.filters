@@ -393,6 +393,75 @@
     <ClInclude Include="OutburstTrigger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Shadow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TestBulet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShadowV2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AngerLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShadowSense.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShadowAreaTrigger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShadowTime.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackTrigger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackMechanic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KnockBackTrigger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Movement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KnockBack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShadowLoop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoolDown.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OrbTrigger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BossLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AngerLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingTrigger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RespawnTrigger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMechanics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OutburstTrigger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="BreakableWallTrigger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -605,7 +674,6 @@
     <ClCompile Include="DestroyPlatformTrigger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Shadow.cpp">
 <<<<<<< HEAD
     <ClCompile Include="TutorialLevel.cpp">
       <Filter>Source Files</Filter>
@@ -661,6 +729,26 @@
     <ClCompile Include="ShadowAreaTrigger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ShadowLoop.cpp">
+=======
+    <ClCompile Include="Shadow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestBulet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShadowV2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AngerLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShadowSense.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShadowAreaTrigger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="ShadowTime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -683,7 +771,6 @@
     <ClCompile Include="KnockBack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ShadowLoop.cpp">
 <<<<<<< HEAD
     <ClCompile Include="Health.cpp">
 =======
@@ -694,7 +781,6 @@
     <ClCompile Include="CoolDown.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OrbTrigger.cpp">
 <<<<<<< HEAD
     <ClCompile Include="AttackMechanic.cpp">
       <Filter>Source Files</Filter>
@@ -706,15 +792,6 @@
     <ClCompile Include="BulletTrigger.cpp">
 =======
     <ClCompile Include="OrbTrigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MovingTrigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MovingClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RespawnTrigger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BossLevel.cpp">
@@ -736,14 +813,10 @@
     <ClCompile Include="PlayerMechanics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OutburstTrigger.cpp">
 <<<<<<< HEAD
     <ClCompile Include="UIComponents.cpp">
 =======
     <ClCompile Include="OutburstTrigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BreakableWallTrigger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BreakableWallTrigger.cpp">

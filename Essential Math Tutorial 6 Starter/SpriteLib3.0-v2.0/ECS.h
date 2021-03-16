@@ -28,7 +28,6 @@
 #include "EndTrigger.h"
 #include "CrumblingSequence.h"
 #include "DestroyPlatformTrigger.h"
-<<<<<<< HEAD
 #include "MovingClass.h"
 #include "MovingTrigger.h"
 #include "MovingPlatform.h"
@@ -49,11 +48,10 @@
 #include "MovingClass.h"
 #include "RespawnTrigger.h"
 #include "PlayerMechanics.h"
-=======
-#include "TestBulet.h"
-<<<<<<< Updated upstream
 
-=======
+
+
+
 #include "ShieldMechanic.h"
 #include "Health.h"
 #include "BulletTrigger.h"
@@ -76,10 +74,8 @@
 #include "PlayerMechanics.h"
 #include "OutburstTrigger.h"
 #include "BreakableWallTrigger.h"
->>>>>>> Stashed changes
->>>>>>> AngerLevel
 
-=======
+
 #include "ShieldMechanic.h"
 #include "Health.h"
 #include "BulletTrigger.h"
@@ -100,11 +96,31 @@
 #include "MovingClass.h"
 #include "RespawnTrigger.h"
 #include "PlayerMechanics.h"
-=======
+
+
+
+
+#include "ShieldMechanic.h"
+#include "Health.h"
+#include "BulletTrigger.h"
+#include "Kinematics.h"
+#include "ShadowSense.h"
+#include "ShadowAreaTrigger.h"
+#include "ShadowTime.h"
+#include "AttackTrigger.h"
+#include "AttackMechanic.h"
+#include "KnockBackTrigger.h"
+#include "Movement.h"
+#include "KnockBack.h"
+#include "ShadowLoop.h"
+#include "CoolDown.h"
+#include "OrbTrigger.h"
+#include "BossLevel.h"
+#include "MovingTrigger.h"
+#include "MovingClass.h"
+#include "RespawnTrigger.h"
+#include "PlayerMechanics.h"
 #include "TestBulet.h"
-<<<<<<< Updated upstream
-
-=======
 #include "ShieldMechanic.h"
 #include "Health.h"
 #include "BulletTrigger.h"
@@ -125,38 +141,8 @@
 #include "MovingClass.h"
 #include "RespawnTrigger.h"
 #include "PlayerMechanics.h"
-<<<<<<< Updated upstream
-=======
-=======
-#include "TestBulet.h"
-<<<<<<< Updated upstream
-
-=======
-#include "ShieldMechanic.h"
-#include "Health.h"
-#include "BulletTrigger.h"
-#include "Kinematics.h"
-#include "ShadowSense.h"
-#include "ShadowAreaTrigger.h"
-#include "ShadowTime.h"
-#include "AttackTrigger.h"
-#include "AttackMechanic.h"
-#include "KnockBackTrigger.h"
-#include "Movement.h"
-#include "KnockBack.h"
-#include "ShadowLoop.h"
-#include "CoolDown.h"
-#include "OrbTrigger.h"
-#include "BossLevel.h"
-#include "MovingTrigger.h"
-#include "MovingClass.h"
-#include "RespawnTrigger.h"
-#include "PlayerMechanics.h"
->>>>>>> Stashed changes
 #include "OutburstTrigger.h"
 #include "BreakableWallTrigger.h"
->>>>>>> Stashed changes
->>>>>>> AngerLevel
 
 class ECS abstract
 {

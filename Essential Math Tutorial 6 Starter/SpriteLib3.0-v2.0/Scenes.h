@@ -11,12 +11,10 @@
 #include "Crumble.h"
 #include "Shadow.h"
 #include "ShadowV2.h"
-<<<<<<< Updated upstream
-=======
-#include "Shield.h"
-#include "DenialRough.h"
-#include "AttackScene.h"
->>>>>>> Stashed changes
+//#include "Shield.h"
+//#include "DenialRough.h"
+//#include "AttackScene.h"
 #include "AngerLevel.h"
+#include "CanJump.h"
 
 #endif // !__SCENES_H__

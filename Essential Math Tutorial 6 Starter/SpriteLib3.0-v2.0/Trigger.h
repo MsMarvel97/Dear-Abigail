@@ -39,14 +39,11 @@ public:
 	std::vector<int> GetTargetEntities();
 	b2Vec2 movement = (b2Vec2(0.f, 0.f));
 
-	void SetShadowZone(int newZone); //used for determining which shadow existing area the player is in
-	int GetShadowZone();
 
 	void SetSpike(bool newSpike) { spike = newSpike; };
 	bool GetSpike() { return spike; };
 
 protected:
-	int shadowZone = 0;
 	int m_targetTrigger = 0;
 	int m_triggerEntity;
 	//target of trigger being targeted

@@ -112,12 +112,4 @@ std::vector<int> Trigger::GetTargetEntities()
 	return m_targetEntities;
 }
 
-void Trigger::SetShadowZone(int newZone)
-{
-	shadowZone = newZone;
-}
 
-int Trigger::GetShadowZone()
-{
-	return shadowZone;
-}

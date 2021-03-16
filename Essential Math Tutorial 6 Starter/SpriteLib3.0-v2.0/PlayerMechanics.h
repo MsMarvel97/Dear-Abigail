@@ -14,21 +14,14 @@ public:
 	void SetShadowSequence(bool start) { shadowSequence = start; };
 
 	void SetFiring(bool firing) { fire = firing; };
-<<<<<<< HEAD
 	bool GetFiring() { return fire; };
-=======
-	bool GetFiring() { return fire; }; //new one?
->>>>>>> AngerLevel
 
 
 	//Attack mechanic
 	void Attacking();
 
-<<<<<<< HEAD
-=======
 	bool GetAttackSequence(); //new one
 
->>>>>>> AngerLevel
 	void SetAttackSequence(bool attack) { attackSequence = attack; };
 	
 	bool GetAttacking() { return isAttacking; };
@@ -41,26 +34,19 @@ public:
 
 	bool GetCanMove() { return canMove; };	
 
-<<<<<<< HEAD
-=======
 	void SetCanMove(bool newMove) { canMove = newMove; }; //new one
 
->>>>>>> AngerLevel
 
 	//Health and shielding
 	void HealthLost(); //reduces player hearts by 1
 
 	int GetHealth() { return hearts; };
-<<<<<<< HEAD
-	
 	void SetShield(bool shielding) { shield = shielding; };
 	bool GetShield() { return shield; };
 
-=======
 	void SetHealth(int newHealth) { hearts = newHealth; }; //new one
 	
-	void SetShield(bool shielding) { shield = shielding; };
-	bool GetShield() { return shield; };
+
 	void SetRespawn(bool newRespawn) { respawn = newRespawn; }; //new one
 	bool GetRespawn() { return respawn; }; //new one
 
@@ -68,7 +54,6 @@ public:
 	void CheckWallStatus(int wallEntity, int trigEntity);
 	void ReduceWallHealth() { wallHealth -= 1; };
 	int GetWallHealth() { return wallHealth; };
->>>>>>> AngerLevel
 protected:
 	//vars for shadows and bullets
 	double target = 4;
@@ -93,13 +78,10 @@ protected:
 	//vars for health and shielding
 	int hearts = 3; //player's life points
 	bool shield = false; //used by the bullet trigger
-<<<<<<< HEAD
-=======
 	bool respawn = false; //new one
 
 	//var3 for breakable wall
 	int wallHealth = 3;
 	std::string wallSprites[3] = { "veryCracked.png", "cracked.png", "maxHealth.png" };
->>>>>>> AngerLevel
 };
 

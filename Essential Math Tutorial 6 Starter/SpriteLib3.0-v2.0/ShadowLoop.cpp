@@ -1,6 +1,5 @@
 #include "ShadowLoop.h"
 
-<<<<<<< HEAD
 ShadowLoop::ShadowLoop()
 {
 }
@@ -47,10 +46,6 @@ void ShadowLoop::ShadowRoutine(int entity)
 	auto& shadow = ECS::GetComponent<PhysicsBody>(entity);
 	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
 
-=======
-void ShadowLoop::ShadowRoutine()
-{
->>>>>>> AngerLevel
 	if (sequenceStart == false)
 	{
 		startTime = Timer::time;
@@ -59,7 +54,6 @@ void ShadowLoop::ShadowRoutine()
 
 	if (sequenceStart == true) //this statement will run once the player has entered a ShadowAreaTrigger
 	{
-<<<<<<< HEAD
 		shadow.SetVelocity(vec3(0.f, 0.f, 0.f));
 
 		if (player.GetPosition().x > shadow.GetPosition().x)
@@ -70,26 +64,16 @@ void ShadowLoop::ShadowRoutine()
 		{
 			facing = LEFT;
 		}
-=======
->>>>>>> AngerLevel
 
 		if (currentTime >= 0 && currentTime < 3) //resting
 		{
 			//std::cout << "Resting" << "\n";
-<<<<<<< HEAD
 			animType = IDLE;
 
-=======
-			s_resting = true;
-			s_charging = false;
-			s_attacking = false;
-	
->>>>>>> AngerLevel
 		}
 		else if (currentTime > 3 && currentTime < 5) //charging 
 		{
 			//std::cout << "Charging" << "\n";
-<<<<<<< HEAD
 			if (ECS::GetComponent<ShadowLoop>(entity).GetShadowType() == RANGED)
 			{
 				animType = IDLE;
@@ -98,22 +82,11 @@ void ShadowLoop::ShadowRoutine()
 			{
 				animType = CHARGING;
 			}
-=======
-			s_resting = false;
-			s_charging = true;
-			s_attacking = false;
->>>>>>> AngerLevel
 		}
 		else if (currentTime > 5 && currentTime < 7) //attacking
 		{
 			//std::cout << "Attacking" << "\n";
-<<<<<<< HEAD
 			animType = ATTACKING;
-=======
-			s_resting = false;
-			s_charging = false;
-			s_attacking = true;
->>>>>>> AngerLevel
 		}
 		else
 		{
@@ -121,7 +94,6 @@ void ShadowLoop::ShadowRoutine()
 			startTime = Timer::time;
 		}
 	}
-<<<<<<< HEAD
 
 	//This will allow the shadow to move while it is not attacking the player
 	else if (sequenceStart == false)
@@ -147,24 +119,9 @@ void ShadowLoop::ShadowRoutine()
 	//animation will be set based on the shadow's current state
 	SetAnimation(facing, animType, entity);
 }
-void ShadowLoop::setSequenceStart(bool start)
-{
-    sequenceStart = start;
-}
 
-bool ShadowLoop::getSequenceStart()
+void ShadowLoop::SetAnimation(int facing, int animation, int entity)
 {
 	int choice = facing + animation;
 	ECS::GetComponent<AnimationController>(entity).SetActiveAnim(choice);
-=======
-}
-void ShadowLoop::setSequenceStart(bool start)
-{
-    sequenceStart = start;
-}
-
-bool ShadowLoop::getSequenceStart()
-{
-    return sequenceStart;
->>>>>>> AngerLevel
 }

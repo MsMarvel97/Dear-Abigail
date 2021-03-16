@@ -3,10 +3,9 @@
 class Kinematics
 {
 public:
-<<<<<<< HEAD
-=======
+
 	void SetPosition();
->>>>>>> AngerLevel
+
 	void UpdatePosition();
 	void SetParent(int parent);
 	void SetChild(int child);

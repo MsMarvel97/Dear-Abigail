@@ -18,23 +18,19 @@ void KnockBack::RunKnockBackTime()
 		else
 		{
 			canMove = true;
-<<<<<<< HEAD
 			sequenceStart = false;
-=======
-			SetSequenceStart(false);
->>>>>>> AngerLevel
 		}
 	}
 }
 
 void KnockBack::SetSequenceStart(bool start)
 {
-    sequenceStart = start;
+	sequenceStart = start;
 }
 
 bool KnockBack::GetSequenceStart()
 {
-    return sequenceStart;
+	return sequenceStart;
 }
 
 bool KnockBack::GetCanMove()

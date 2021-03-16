@@ -4,7 +4,6 @@
 class ShadowLoop
 {
 public:
-<<<<<<< HEAD
 	enum ShadowType
 	{
 		RANGED,
@@ -60,38 +59,24 @@ public:
 	void SetMovementBoundaries(float min, float max) { minX = min; maxX = max; };
 
 	void SetShadowSequence(bool start) { sequenceStart = start; };
-	
+
 	bool GetShadowSequence() { return sequenceStart; };
 
 	int GetShadowType() { return shadowType; };
-	
+
 	int GetShadowAnim() { return animType; };
 
 	float startTime = 0.f;
-
-	bool s_resting = true;
-	bool s_charging = true;
-	bool s_attacking = true;
-
 	bool isShadowAlive = true;
+
 private:
+	float maxX = 0;
+	float minX = 0;
+	int facing = 0;
+	int animType = 0;
+	int shadowType = 0;
 	bool sequenceStart = false;
 	Sprite* sprites;
 	AnimationController* animator;
-=======
-	void ShadowRoutine();
-	void setSequenceStart(bool start);
-	bool getSequenceStart();
-	float startTime = 0.f;
-
-	bool s_resting = true;
-	bool s_charging = true;
-	bool s_attacking = true;
-
-	bool isShadowAlive = true;
-private:
-	bool sequenceStart = false;
-
->>>>>>> AngerLevel
 };
 

@@ -11,23 +11,4 @@ public:
 protected:
 
 };
-<<<<<<< HEAD
 
-=======
->>>>>>> AngerLevel
-<<<<<<< Updated upstream
-
-<<<<<<< HEAD
-
-=======
->>>>>>> AngerLevel
-
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> AngerLevel
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes

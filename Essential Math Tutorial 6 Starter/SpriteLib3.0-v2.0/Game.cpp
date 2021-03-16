@@ -32,41 +32,24 @@ void Game::InitGame()
 	//Grabs the initialized window
 	m_window = BackEnd::GetWindow();
 
-	//Creates a new scene.
-	//Replace this with your own scene.
-<<<<<<< HEAD
-	//m_scenes.push_back(new FirstCreation("FIRST SCENE!!!!"));
-	//m_scenes.push_back(new PhysicsPlayground("MISSION CLAMPOSSIBLE"));
-	//m_scenes.push_back(new AnimationSpritePlayground("Animation TIEM!!!!"));
-	m_scenes.push_back(new TutorialLevel("Tutorial"));
-	m_scenes.push_back(new DenialLevel("Denial"));
-	//m_scenes.push_back(new Crumble("Test"));
-	 
-	//Sets active scene reference to our scene
-	m_activeScene = m_scenes[1];
-=======
 	m_scenes.push_back(new FirstCreation("FIRST SCENE!!!!"));
 	m_scenes.push_back(new PhysicsPlayground("MISSION CLAMPOSSIBLE"));
 	m_scenes.push_back(new AnimationSpritePlayground("Animation TIEM!!!!"));
 	m_scenes.push_back(new Crumble("Crumble TIEM"));
 	m_scenes.push_back(new Shadow("Projectile TIEM"));
 	m_scenes.push_back(new ShadowV2("Shadow TIEM"));
-<<<<<<< Updated upstream
-	m_scenes.push_back(new AngerLevel("Anger Level YAY"));
+
 
 	 
-	//Sets active scene reference to our scene
-	m_activeScene = m_scenes[6];
-=======
-	m_scenes.push_back(new Shield("Shield TIEM"));
-	m_scenes.push_back(new DenialRough("Denial Rough TIEM"));
-	m_scenes.push_back(new AttackScene("Attack TIEM"));
+
+	//m_scenes.push_back(new Shield("Shield TIEM"));
+	//m_scenes.push_back(new DenialRough("Denial Rough TIEM"));
+	//m_scenes.push_back(new AttackScene("Attack TIEM"));
 	m_scenes.push_back(new AngerLevel("Anger TIEM"));
 	 
 	//Sets active scene reference to our scene
-	m_activeScene = m_scenes[9];
->>>>>>> Stashed changes
->>>>>>> AngerLevel
+	m_activeScene = m_scenes[6];
+
 
 	m_activeScene->InitScene(float(BackEnd::GetWindowWidth()), float(BackEnd::GetWindowHeight()));
 

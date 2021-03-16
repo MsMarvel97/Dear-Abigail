@@ -135,7 +135,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-		
+
 	}
 
 	//Platform B (bottom 30-50)
@@ -911,9 +911,9 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		//Sets up components
 
 		std::string fileName = "spritesheets/crumblingPlatform.png";
-		std::string JSONFile = "crumble.json";		
+		std::string JSONFile = "crumble.json";
 
-		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 48, 32, &ECS::GetComponent<Sprite>(entity), 
+		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 48, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
 
 
@@ -1428,7 +1428,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
-	
+
 
 	//Platform M10 (crumbling platform)
 	{
@@ -1528,12 +1528,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		ECS::GetComponent<ShadowLoop>(entity).InitRangedShadow(fileName, JSONfile, 32, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
-<<<<<<< HEAD
 
 		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(0, 272);
-=======
-		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(48, 272);
->>>>>>> AngerLevel
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
@@ -1620,11 +1616,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		ECS::GetComponent<ShadowLoop>(entity).InitRangedShadow(fileName, JSONfile, 32, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
-<<<<<<< HEAD
 		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(322, 768);
-=======
-		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(48, 272);
->>>>>>> AngerLevel
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
@@ -1632,23 +1624,14 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		float shrinkY = 0.f;
 		b2Body* tempBody;
 		b2BodyDef tempDef;
-<<<<<<< HEAD
 		tempDef.type = b2_dynamicBody;
 		tempDef.position.Set(float32(545), float32(216));
-=======
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(392.f), float32(216.f));
->>>>>>> AngerLevel
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
 		tempPhsBody = PhysicsBody(entity, tempBody, float(32), float(32), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-<<<<<<< HEAD
 		tempPhsBody.SetGravityScale(0.f);
-=======
-
->>>>>>> AngerLevel
 	}
 
 	//E3 (enemy 3)
@@ -1677,11 +1660,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		ECS::GetComponent<ShadowLoop>(entity).InitRangedShadow(fileName, JSONfile, 32, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
-<<<<<<< HEAD
 		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(794, 1272);
-=======
-		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(272, 48);
->>>>>>> AngerLevel
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
@@ -1689,23 +1668,14 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		float shrinkY = 0.f;
 		b2Body* tempBody;
 		b2BodyDef tempDef;
-<<<<<<< HEAD
 		tempDef.type = b2_dynamicBody;
 		tempDef.position.Set(float32(1033), float32(430));
-=======
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(1224.f), float32(232.f));
->>>>>>> AngerLevel
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
 		tempPhsBody = PhysicsBody(entity, tempBody, float(32), float(32), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-<<<<<<< HEAD
 		tempPhsBody.SetGravityScale(0.f);
-=======
-
->>>>>>> AngerLevel
 	}
 
 	//E4 (enemy 4)
@@ -1734,11 +1704,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		ECS::GetComponent<ShadowLoop>(entity).InitRangedShadow(fileName, JSONfile, 32, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
-<<<<<<< HEAD
 		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(1652, 1852);
-=======
-		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(272, 48);
->>>>>>> AngerLevel
 
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
@@ -1746,22 +1712,14 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		float shrinkY = 0.f;
 		b2Body* tempBody;
 		b2BodyDef tempDef;
-<<<<<<< HEAD
 		tempDef.type = b2_dynamicBody;
-=======
-		tempDef.type = b2_staticBody;
->>>>>>> AngerLevel
 		tempDef.position.Set(float32(1752.f), float32(536.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
 		tempPhsBody = PhysicsBody(entity, tempBody, float(32), float(32), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-<<<<<<< HEAD
 		tempPhsBody.SetGravityScale(0.f);
-=======
-
->>>>>>> AngerLevel
 	}
 
 	// STATIC BACKGROUND TILES \\
@@ -1958,7 +1916,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 			//Sets up components
 			std::string fileName = "backgrounds/denial4-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256,256);
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
 			ECS::GetComponent<Transform>(entity).SetPosition(vec3(896.f, 80.f, 2.f));
 		}
 
@@ -2318,7 +2276,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		//Add components
 		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
-		
+
 
 		//Sets up components
 		std::string fileName = "nachoFish.png";
@@ -2369,7 +2327,7 @@ void DenialLevel::Update()
 		player.Update();
 	}
 
-	fmod.Update();
+	//fmod.Update();
 
 	for (int i = 0; i <= 7; i++)
 	{
@@ -2379,20 +2337,12 @@ void DenialLevel::Update()
 
 	pMechanics.RunShadowTime();
 
-<<<<<<< HEAD
 	for (int i = 0; i <= 3; i++)
-=======
-	for (int i = 0; i <= 0; i++)
->>>>>>> AngerLevel
 	{
 		ActivateShadow(shadows[i]);
 	}
 
-<<<<<<< HEAD
 	std::cout << ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).GetPosition().x << std::endl;
-=======
-	std::cout << ECS::GetComponent<PhysicsBody>(shadows[0]).GetPosition().x << std::endl;
->>>>>>> AngerLevel
 
 
 	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
@@ -2410,38 +2360,6 @@ void DenialLevel::KeyboardHold()
 	b2Vec2 vel = b2Vec2(0.f, 0.f);
 	vec3 velocity = vec3(0.f, 0.f, 0.f);
 
-<<<<<<< HEAD
-=======
-	/*if (Input::GetKey(Key::Shift))
-	{
-		speed *= 5.f;
-	}
-
-	if (Input::GetKey(Key::A))
-	{
-		player.GetBody()->SetLinearVelocity(b2Vec2(-10000.f * (speed * Timer::deltaTime), 0.f));
-		velocity = velocity + vec3(-10.f, 0.f, 0.f);
-	}
-	if (Input::GetKey(Key::D))
-	{
-		player.GetBody()->SetLinearVelocity(b2Vec2(10000.f * (speed * Timer::deltaTime), 0.f));
-		velocity = velocity + vec3(10.f, 0.f, 0.f);
-	}
-
-	if (Input::GetKey(Key::W))
-	{
-		player.GetBody()->SetLinearVelocity(b2Vec2(-10000.f * (speed * Timer::deltaTime), 0.f));
-		velocity = velocity + vec3(0.f, 5.f, 0.f);
-	}
-	if (Input::GetKey(Key::S))
-	{
-		player.GetBody()->SetAngularVelocity((10000.f * (speed * Timer::deltaTime), 0.f));
-		velocity = velocity + vec3(0.f, -5.f, 0.f);
-	}
-
-	player.SetVelocity(velocity);*/
-
->>>>>>> AngerLevel
 }
 
 void DenialLevel::MovePlatform()
@@ -2488,7 +2406,7 @@ void DenialLevel::MovePlatform()
 	if (switchDir == false)
 	{
 		platX += 0.5;
-		plat.SetPosition(b2Vec2(platX, platY)); 
+		plat.SetPosition(b2Vec2(platX, platY));
 		moveTrig.SetRight(true);
 		moveTrig.SetLeft(false);
 	}
@@ -2499,7 +2417,7 @@ void DenialLevel::MovePlatform()
 		moveTrig.SetLeft(true);
 		moveTrig.SetRight(false);
 	}
-	
+
 }
 
 void DenialLevel::SpawnBullet(int shadow)
@@ -2509,10 +2427,6 @@ void DenialLevel::SpawnBullet(int shadow)
 	float tempY = shadowBody.GetBody()->GetPosition().y;
 	//Creates entity
 	auto entity = ECS::CreateEntity();
-<<<<<<< HEAD
-=======
-	bullet = entity;
->>>>>>> AngerLevel
 
 	//Add components
 	ECS::AttachComponent<Sprite>(entity);
@@ -2521,15 +2435,9 @@ void DenialLevel::SpawnBullet(int shadow)
 	ECS::AttachComponent<Trigger*>(entity);
 
 	//Set up components
-<<<<<<< HEAD
 	std::string fileName = "bullet.png";
 	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 4, 8);
 	ECS::GetComponent<Transform>(entity).SetPosition(vec3(tempX, tempY, 4.f));
-=======
-	std::string fileName = "bulletSprite.png";
-	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 5, 5);
-	ECS::GetComponent<Transform>(entity).SetPosition(vec3(tempX, tempY, 2.f));
->>>>>>> AngerLevel
 	ECS::GetComponent<Trigger*>(entity) = new BulletTrigger();
 	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 	ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
@@ -2552,54 +2460,19 @@ void DenialLevel::SpawnBullet(int shadow)
 
 	tempPhsBody.SetGravityScale(0.f); //ensures no bullet drop and bullet reaches the player
 
-<<<<<<< HEAD
 	ShootBullet(entity);
 }
 
-void DenialLevel::ShootBullet()
+void DenialLevel::ShootBullet(int bullet)
 {
-	auto& bulletBody = ECS::GetComponent<PhysicsBody>(bullet);
-	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
+	ECS::GetComponent<PhysicsBody>(bullet).GetBody()->SetType(b2BodyType::b2_dynamicBody);
 
-	float deltaX = 0, deltaY = 0;
-	deltaX = player.GetBody()->GetPosition().x - bulletBody.GetBody()->GetPosition().x;
-	deltaY = player.GetBody()->GetPosition().y - bulletBody.GetBody()->GetPosition().y;
-	float n_deltaX = 0, n_deltaY = 0;
-	n_deltaX = deltaX / (deltaX * deltaX + deltaY * deltaY);
-	n_deltaY = deltaY / (deltaX * deltaX + deltaY * deltaY);
-	bulletBody.GetBody()->SetType(b2BodyType::b2_dynamicBody);
-	bulletBody.GetBody()->SetLinearVelocity(b2Vec2(deltaX * 100000000, deltaY * 100000000));
-	//test code below
-	float bulletAngle = atan(deltaX / deltaY) * (180 / 3.1415); //atan returns in radians but the added math converts it to degrees
-	bulletAngle *= -1; //it works when I do this?
-	bulletBody.SetRotationAngleDeg(bulletAngle);
+	b2Vec2 angle = CalculateAngle(MainEntities::MainPlayer(), bullet);
 
-	float dirAngle = atan(angle.x/angle.y) * (180 / PI);
+	float dirAngle = atan(angle.x / angle.y) * (180 / PI);
 
-	ECS::GetComponent<PhysicsBody>(bullet).SetRotationAngleDeg(dirAngle *-1);
+	ECS::GetComponent<PhysicsBody>(bullet).SetRotationAngleDeg(dirAngle * -1);
 	ECS::GetComponent<PhysicsBody>(bullet).GetBody()->SetLinearVelocity(b2Vec2(angle.x * 100000000, angle.y * 100000000));
-=======
-}
-
-void DenialLevel::ShootBullet()
-{
-	auto& bulletBody = ECS::GetComponent<PhysicsBody>(bullet);
-	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
-
-	float deltaX = 0, deltaY = 0;
-	deltaX = player.GetBody()->GetPosition().x - bulletBody.GetBody()->GetPosition().x;
-	deltaY = player.GetBody()->GetPosition().y - bulletBody.GetBody()->GetPosition().y;
-	float n_deltaX = 0, n_deltaY = 0;
-	n_deltaX = deltaX / (deltaX * deltaX + deltaY * deltaY);
-	n_deltaY = deltaY / (deltaX * deltaX + deltaY * deltaY);
-	bulletBody.GetBody()->SetType(b2BodyType::b2_dynamicBody);
-	bulletBody.GetBody()->SetLinearVelocity(b2Vec2(deltaX * 100000000, deltaY * 100000000));
-	//test code below
-	float bulletAngle = atan(deltaX / deltaY) * (180 / 3.1415); //atan returns in radians but the added math converts it to degrees
-	bulletAngle *= -1; //it works when I do this?
-	bulletBody.SetRotationAngleDeg(bulletAngle);
-
->>>>>>> AngerLevel
 }
 
 void DenialLevel::ActivateShadow(int shadow)
@@ -2608,10 +2481,6 @@ void DenialLevel::ActivateShadow(int shadow)
 	//If so, a bullet is fired from a shadow determined by the player's location.
 	auto& pMechanics = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
 	auto& shade = ECS::GetComponent<ShadowLoop>(shadow);
-<<<<<<< HEAD
-=======
-	//auto& theLoc = ECS::GetComponent<PlayerShad>(MainEntities::MainPlayer());
->>>>>>> AngerLevel
 
 	shade.ShadowRoutine(shadow);
 
@@ -2620,27 +2489,20 @@ void DenialLevel::ActivateShadow(int shadow)
 		if (pMechanics.GetShadowLoc() == 1)
 		{
 			SpawnBullet(shadow);
-<<<<<<< HEAD
-=======
-			ShootBullet();
->>>>>>> AngerLevel
 		}
 		//add additional else if statements for additional shadows
 	}
 }
 
-<<<<<<< HEAD
 b2Vec2 DenialLevel::CalculateAngle(int entityOne, int entityTwo)
 {
 	float deltaX = 0, deltaY = 0;
 	deltaX = ECS::GetComponent<PhysicsBody>(entityOne).GetBody()->GetPosition().x - ECS::GetComponent<PhysicsBody>(entityTwo).GetBody()->GetPosition().x;
 	deltaY = ECS::GetComponent<PhysicsBody>(entityOne).GetBody()->GetPosition().y - ECS::GetComponent<PhysicsBody>(entityTwo).GetBody()->GetPosition().y;
 
-	return b2Vec2(deltaX , deltaY);
+	return b2Vec2(deltaX, deltaY);
 }
 
-=======
->>>>>>> AngerLevel
 
 void DenialLevel::CrumblingPlatforms(int entity)
 {
@@ -2672,22 +2534,10 @@ void DenialLevel::KeyboardDown()
 	float speed = 1.f;
 	b2Vec2 vel = b2Vec2(0.f, 0.f);
 
-<<<<<<< HEAD
-=======
-	/*if (canJump.m_canJump)
-	{
-		if (Input::GetKeyDown(Key::Space))
-		{
-			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0.f, 10000000.f), true);
-			canJump.m_canJump = false;
-		}
-	}*/
-
->>>>>>> AngerLevel
 	playerVel = player.GetVelocity();
 	playerPos = player.GetPosition();
 
-	if (Input::GetKeyDown(Key::M)) 
+	if (Input::GetKeyDown(Key::M))
 	{
 		std::cout << "X Pos: " << playerPos.x << std::endl;
 		std::cout << "Y Pos: " << playerPos.y << std::endl << std::endl;

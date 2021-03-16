@@ -1,4 +1,4 @@
-
+#include "PlayerMechanics.h"
 void PlayerMechanics::RunShadowTime()
 {
 		if (shadowSequence == false)
@@ -47,14 +47,13 @@ void PlayerMechanics::Attacking()
 	}
 }
 
-<<<<<<< HEAD
-=======
+
 bool PlayerMechanics::GetAttackSequence()
 {
 	return attackSequence;
 }
 
->>>>>>> AngerLevel
+
 void PlayerMechanics::RunKnockBackTime()
 {
 	if (knockbackSequence == false)
@@ -82,8 +81,7 @@ void PlayerMechanics::HealthLost()
 {
 		hearts--;
 }
-<<<<<<< HEAD
-=======
+
 
 void PlayerMechanics::CheckWallStatus(int wallEntity, int trigEntity)
 {
@@ -95,4 +93,4 @@ void PlayerMechanics::CheckWallStatus(int wallEntity, int trigEntity)
 		ECS::GetComponent<Sprite>(wallEntity).SetTransparency(0.f);
 	}
 }
->>>>>>> AngerLevel
+

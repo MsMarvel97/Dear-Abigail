@@ -95,10 +95,10 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_dynamicBody;
-		tempDef.position.Set(float32(3216.f), float32(80.f)); //boss platform
+		//tempDef.position.Set(float32(3216.f), float32(80.f)); //boss platform
 		//tempDef.position.Set(float32(700), float32(80.f)); //bridge
 		//tempDef.position.Set(float32(1006), float32(80.f)); //spike
-		//tempDef.position.Set(float32(0), float32(80.f)); //bridge
+		tempDef.position.Set(float32(0), float32(80.f)); //beginning
 		//tempDef.position.Set(float32(2456), float32(120.f)); //beginning of crumbling platforms
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
@@ -111,6 +111,8 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
  
 		tempPhsBody.SetGravityScale(0.75f);
+		//tempPhsBody.SetMass(1.f);
+		std::cout << tempPhsBody.GetMass();
 	}
 
 

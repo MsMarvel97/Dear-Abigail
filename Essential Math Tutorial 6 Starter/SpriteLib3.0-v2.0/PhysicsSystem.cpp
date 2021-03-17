@@ -13,7 +13,7 @@ std::vector<std::string> m_bodyTypeMasks;
 void PhysicsSystem::Init()
 {
 	physicsDrawShader.Load("./assets/shader/StaticGeometry.vert", "./assets/shader/PhysicsColorDraw.frag");
-	 
+
 	if (!m_debugPlaneInit)
 	{
 		m_debugPlaneVBO = VertexManager::GetPlaneVertVBO();
@@ -22,7 +22,7 @@ void PhysicsSystem::Init()
 		InitDebugDrawPlaneVAO();
 		m_debugPlaneInit = true;
 	}
-	
+
 	m_bodyTypeMasks.push_back("SquareMask.png");
 	m_bodyTypeMasks.push_back("CircleMask.png");
 	m_bodyTypeMasks.push_back("TriangleMask.png");
@@ -57,7 +57,7 @@ void PhysicsSystem::InitDebugDrawPlaneVAO()
 	glBindVertexArray(GL_NONE);
 }
 
-void PhysicsSystem::Update(entt::registry * reg, b2World & world)
+void PhysicsSystem::Update(entt::registry* reg, b2World& world)
 {
 	auto view = reg->view<PhysicsBody, Transform>();
 
@@ -77,7 +77,7 @@ void PhysicsSystem::Update(entt::registry * reg, b2World & world)
 	Run(world);
 }
 
-void PhysicsSystem::Draw(entt::registry * reg)
+void PhysicsSystem::Draw(entt::registry* reg)
 {
 	auto view = reg->view<PhysicsBody, Transform>();
 	auto& cam = reg->get<Camera>(MainEntities::MainCamera());
@@ -109,7 +109,7 @@ void PhysicsSystem::Draw(entt::registry * reg)
 					fileName += m_bodyTypeMasks[i];
 				}
 			}
-			
+
 			Texture* mask = TextureManager::FindTexture(fileName);
 
 			//Binds the draw shader
@@ -139,7 +139,7 @@ void PhysicsSystem::Draw(entt::registry * reg)
 	}
 }
 
-void PhysicsSystem::Run(b2World & world)
+void PhysicsSystem::Run(b2World& world)
 {
 	//Timestep is constant, regardless of deltatime
 	float32 timeStep = 1.f / 60.f;
@@ -151,14 +151,46 @@ void PhysicsSystem::Run(b2World & world)
 	int32 velocityIterations = 8;
 	int32 positionIterations = 3;
 
-	//steps through the world
-	world.Step(Timer::deltaTime, velocityIterations, positionIterations);
+	static float remainder = 0;
+	static int steps = 0;
+	float timeCheck = Timer::deltaTime;
 
+	if (timeCheck < 1)
+	{
+		remainder += Timer::deltaTime;
+	}
+
+	while (remainder >= timeStep)
+	{
+		remainder -= timeStep;
+		steps++;
+	}
+
+	for (; steps >= 1; steps--)
+	{
+		world.Step(timeStep, velocityIterations, positionIterations);
+	}
+
+	//steps through the world
 	CleanupBodies();
 }
 
 void PhysicsSystem::CleanupBodies()
 {
+	if (PhysicsBody::m_bodiesToDelete.size() > 1)
+	{
+		for (int i = 0; i < PhysicsBody::m_bodiesToDelete.size(); i++)
+		{
+			for (int x = i + 1; x < PhysicsBody::m_bodiesToDelete.size(); x++)
+			{
+				if (PhysicsBody::m_bodiesToDelete[i] == PhysicsBody::m_bodiesToDelete[x])
+				{
+					PhysicsBody::m_bodiesToDelete.erase(PhysicsBody::m_bodiesToDelete.begin() + (x));
+				}
+			}
+		}
+	}
+
 	for (int i = 0; i < PhysicsBody::m_bodiesToDelete.size(); i++)
 	{
 		//Bodies to delete

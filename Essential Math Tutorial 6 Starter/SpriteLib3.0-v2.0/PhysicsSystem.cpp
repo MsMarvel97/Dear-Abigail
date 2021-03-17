@@ -150,10 +150,29 @@ void PhysicsSystem::Run(b2World & world)
 	//our timestep
 	int32 velocityIterations = 8;
 	int32 positionIterations = 3;
+	
+	static float remainder = 0;
+	static int steps = 0;
+	float wtfTime = Timer::deltaTime;
+
+	if (wtfTime < 1)
+	{
+		remainder += Timer::deltaTime;
+	}
+
+
+	while (remainder >= timeStep)
+	{
+		remainder -= timeStep;
+		steps++;
+	}
+
+	for (; steps >= 1; steps--)
+	{
+		world.Step(timeStep, velocityIterations, positionIterations);
+	}
 
 	//steps through the world
-	world.Step(Timer::deltaTime, velocityIterations, positionIterations);
-
 	CleanupBodies();
 }
 

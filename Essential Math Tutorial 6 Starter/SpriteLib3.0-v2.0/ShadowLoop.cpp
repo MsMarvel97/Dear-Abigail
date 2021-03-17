@@ -41,6 +41,30 @@ void ShadowLoop::InitRangedShadow(std::string& fileName, std::string& animationJ
 	animator->SetActiveAnim(FLOATLEFT);
 }
 
+//void ShadowLoop::RunShadowTime()
+//{
+//	if (shadowSequence == false)
+//	{
+//		target = 1;
+//		shadowStart = Timer::time;
+//	}
+//	float currentTime = Timer::StopWatch(shadowStart);
+//
+//	if (shadowSequence == true) //this statement will run once the player has entered a ShadowAreaTrigger
+//	{
+//
+//		if (currentTime > target)
+//		{
+//			fire = true;
+//			target += 1;
+//		}
+//		else
+//		{
+//			fire = false;
+//		}
+//	}
+//}
+
 void ShadowLoop::ShadowRoutine(int entity)
 {
 	auto& shadow = ECS::GetComponent<PhysicsBody>(entity);
@@ -60,18 +84,32 @@ void ShadowLoop::ShadowRoutine(int entity)
 		{
 			facing = RIGHT;
 		}
+
 		else
 		{
 			facing = LEFT;
 		}
 
-		if (currentTime >= 0 && currentTime < 3) //resting
+		if (ECS::GetComponent<ShadowLoop>(entity).GetShadowType() == RANGED)
+		{
+			if (currentTime >= shootingTime)
+			{
+				fire = true;
+				shootingTime += 1;
+			}
+			else
+			{
+				fire = false;
+			}
+		}
+
+		if (currentTime >= 0 && currentTime < 2) //resting
 		{
 			//std::cout << "Resting" << "\n";
 			animType = IDLE;
 
 		}
-		else if (currentTime > 3 && currentTime < 5) //charging 
+		else if (currentTime > 2 && currentTime < 4) //charging 
 		{
 			//std::cout << "Charging" << "\n";
 			if (ECS::GetComponent<ShadowLoop>(entity).GetShadowType() == RANGED)
@@ -83,16 +121,20 @@ void ShadowLoop::ShadowRoutine(int entity)
 				animType = CHARGING;
 			}
 		}
-		else if (currentTime > 5 && currentTime < 7) //attacking
+		else if (currentTime > 4 && currentTime < 6) //attacking
 		{
 			//std::cout << "Attacking" << "\n";
+			//fire = true;
 			animType = ATTACKING;
 		}
 		else
 		{
 			currentTime = 0.f;
 			startTime = Timer::time;
+			shootingTime = 1;
 		}
+
+
 	}
 
 	//This will allow the shadow to move while it is not attacking the player

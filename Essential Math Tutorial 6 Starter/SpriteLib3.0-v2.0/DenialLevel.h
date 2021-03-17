@@ -30,6 +30,7 @@ public:
 	int cPlatforms[8];
 	int cTriggers[8];
 	int shadows[4];
+	int sZones[4];
 	int bullet = 0;
 
 

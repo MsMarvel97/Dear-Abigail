@@ -4,7 +4,7 @@ void PlayerMechanics::RunShadowTime()
 {
 		if (shadowSequence == false)
 		{
-			target = 2;
+			target = 1;
 			shadowStart = Timer::time;
 		}
 		float currentTime = Timer::StopWatch(shadowStart);
@@ -15,7 +15,7 @@ void PlayerMechanics::RunShadowTime()
 			if (currentTime > target)
 			{
 				fire = true;
-				target += 2;
+				target += 1;
 			}
 			else
 			{

@@ -54,6 +54,8 @@ public:
 	//handles move and attack sequences depending on current state
 	void ShadowRoutine(int entity);
 
+	void RunShadowTime();
+
 	void SetAnimation(int facing, int animation, int entity);
 
 	void SetMovementBoundaries(float min, float max) { minX = min; maxX = max; };
@@ -61,6 +63,10 @@ public:
 	void SetShadowSequence(bool start) { sequenceStart = start; };
 	
 	bool GetShadowSequence() { return sequenceStart; };
+
+	void SetShootingTime(int shooting) { shootingTime = shooting; };
+
+	bool GetFiring() { return fire; };
 
 	int GetShadowType() { return shadowType; };
 	
@@ -74,6 +80,8 @@ private:
 	int facing = 0;
 	int animType = 0;
 	int shadowType = 0;
+	int shootingTime = 1;
+	bool fire = false;
 	bool sequenceStart = false;
 	Sprite* sprites;
 	AnimationController* animator;

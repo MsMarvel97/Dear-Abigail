@@ -9,7 +9,6 @@ void BulletTrigger::OnTrigger()
 void BulletTrigger::OnEnter()
 {
 	Trigger::OnEnter();
-	//if ()
 	if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetShield() == true) //checks to see if the player's shield is on
 	{
 		std::cout << "Shield protected player. No health lost. \n";

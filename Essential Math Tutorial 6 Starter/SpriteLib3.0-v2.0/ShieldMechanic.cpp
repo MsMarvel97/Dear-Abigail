@@ -6,15 +6,17 @@ void ShieldMechanic::activateShield()
 	{
 		startTime = Timer::time;
 	}
+
 	float currentTime = Timer::StopWatch(startTime);
+
 	if (sequenceStart == true)
 	{
-		if (currentTime < 3)
+		if (currentTime < 2)
 		{
 			shieldOn = true; //turn on shield
 			restart = false; //player can't spam shield
 		}
-		else if (currentTime >= 3 && currentTime < 5)
+		else if (currentTime >= 2 && currentTime < 5)
 		{
 			shieldOn = false; //turn shield off, this is the cool down period, player can't use the shield during the cool down period
 			//std::cout << "Shield Off\n";

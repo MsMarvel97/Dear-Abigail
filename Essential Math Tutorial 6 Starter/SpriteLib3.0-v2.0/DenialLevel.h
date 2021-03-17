@@ -17,7 +17,11 @@ public:
 	void MovePlatform();
 
 	void SpawnBullet(int shadow);
-	void ShootBullet(int bullet);
+	void SpawnBullet(int wall, float offsetX, float offsetY);
+
+	void ShootBullet(int bullet); //shoots bullets with an angle determined between player and origin
+	void ShootBullet(int bullet, float degrees); //shoots bullets at a fixed angle
+
 	void ActivateShadow(int shadow);
 
 	b2Vec2 CalculateAngle(int entityOne, int entityTwo);
@@ -31,6 +35,7 @@ public:
 	int cTriggers[8];
 	int shadows[4];
 	int sZones[4];
+	int bulletWalls[2];
 	int bullet = 0;
 
 

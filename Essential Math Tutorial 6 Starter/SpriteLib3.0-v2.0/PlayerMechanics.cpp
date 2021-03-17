@@ -1,28 +1,34 @@
 #include "PlayerMechanics.h"
 
-void PlayerMechanics::RunShadowTime()
+void PlayerMechanics::ActivateShield()
 {
-		if (shadowSequence == false)
+	if (shieldSequence == false)
+	{
+		shieldStart = Timer::time;
+	}
+
+	float currentTime = Timer::StopWatch(shieldStart);
+
+	if (shieldSequence == true)
+	{
+		if (currentTime < 2)
 		{
-			target = 1;
-			shadowStart = Timer::time;
+			shieldActive = true; //turn on shield
+			shieldAvailable = false; //player can't spam shield
 		}
-		float currentTime = Timer::StopWatch(shadowStart);
-
-		if (shadowSequence == true) //this statement will run once the player has entered a ShadowAreaTrigger
+		else if (currentTime >= 3 && currentTime < 5)
 		{
-
-			if (currentTime > target)
-			{
-				fire = true;
-				target += 1;
-			}
-			else
-			{
-				fire = false;
-			}
+			shieldActive = false; //turn shield off, this is the cool down period, player can't use the shield during the cool down period
+			//std::cout << "Shield Off\n";
+		}
+		else if (currentTime >= 5)
+		{
+			shieldAvailable = true; //shield can be activated again.
+			shieldSequence = false;
+			std::cout << "Shield cool down finished.\n";
 		}
 	}
+}
 
 void PlayerMechanics::Attacking()
 {

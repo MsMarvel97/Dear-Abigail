@@ -4,18 +4,12 @@
 class PlayerMechanics
 {
 public:
-	//New mechanics\\
-	//Shadow tracking
-	void RunShadowTime();
+	//shield mechanic
+	void ActivateShield();
 
-	void SetShadowLoc(int loc) { shadowLoc = loc; };
-	int GetShadowLoc() { return shadowLoc; };
+	void SetShieldSequence(bool start) { shieldSequence = start; };
 
-	void SetShadowSequence(bool start) { shadowSequence = start; };
-
-	void SetFiring(bool firing) { fire = firing; };
-	bool GetFiring() { return fire; };
-
+	bool GetShield() { return shieldActive; }; //checks whether the shield is active
 
 	//Attack mechanic
 	void Attacking();
@@ -28,27 +22,22 @@ public:
 	//Knockback mechanic
 	void RunKnockBackTime();
 
-	void SetKnockbackSequence(bool start) { knockbackSequence = start; };
+	void SetKnockbackSequence(bool start) { knockbackSequence = start; }; //starts the knockback sequence
 
-	bool GetCanMove() { return canMove; };	
+	bool GetCanMove() { return canMove; };	//checks if the player can move
 
 
 	//Health and shielding
-	void HealthLost(); //reduces player hearts by 1
+	void HealthLost(); //reduces player health by 1
 
-	int GetHealth() { return hearts; };
-	
-	void SetShield(bool shielding) { shield = shielding; };
-	bool GetShield() { return shield; };
+	int GetHealth() { return hearts; }; //checks player health
 
 protected:
-	//vars for shadows and bullets
-	double target = 4;
-	float shadowStart = 0.f;
-	int shadowLoc = 0;
-	bool shadowSequence = false;
-	bool fire = false;
-
+	//vars for shielding
+	float shieldStart = 0.f;
+	bool shieldSequence = false;
+	bool shieldActive = false;
+	bool shieldAvailable = false;
 
 	//vars for attacking
 	float attackStart = 0.f;
@@ -62,8 +51,7 @@ protected:
 	bool knockbackSequence = false;
 	bool canMove = true;
 
-	//vars for health and shielding
+	//var for health
 	int hearts = 3; //player's life points
-	bool shield = false; //used by the bullet trigger
 };
 

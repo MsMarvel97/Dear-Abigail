@@ -153,13 +153,12 @@ void PhysicsSystem::Run(b2World & world)
 	
 	static float remainder = 0;
 	static int steps = 0;
-	float wtfTime = Timer::deltaTime;
+	float timeCheck = Timer::deltaTime;
 
-	if (wtfTime < 1)
+	if (timeCheck < 1)
 	{
 		remainder += Timer::deltaTime;
 	}
-
 
 	while (remainder >= timeStep)
 	{
@@ -178,6 +177,20 @@ void PhysicsSystem::Run(b2World & world)
 
 void PhysicsSystem::CleanupBodies()
 {
+	if (PhysicsBody::m_bodiesToDelete.size() > 1)
+	{
+		for (int i = 0; i < PhysicsBody::m_bodiesToDelete.size(); i++)
+		{
+			for (int x = i + 1; x < PhysicsBody::m_bodiesToDelete.size(); x++)
+			{
+				if (PhysicsBody::m_bodiesToDelete[i] == PhysicsBody::m_bodiesToDelete[x])
+				{
+					PhysicsBody::m_bodiesToDelete.erase(PhysicsBody::m_bodiesToDelete.begin() + (x));
+				}
+			}
+		}
+	}
+
 	for (int i = 0; i < PhysicsBody::m_bodiesToDelete.size(); i++)
 	{
 		//Bodies to delete

@@ -60,11 +60,13 @@ public:
 
 	void SetMovementBoundaries(float min, float max) { minX = min; maxX = max; };
 
+	void SetPatrolVelocity(b2Vec2 vel) { patrolVelocity.x = vel.x; patrolVelocity.y = vel.y; }; //shadow speed - ALWAYS PASS POSITIVE VALUES
+
 	void SetShadowSequence(bool start) { sequenceStart = start; };
 	
 	bool GetShadowSequence() { return sequenceStart; };
 
-	void SetShootingTime(int shooting) { shootingTime = shooting; };
+	void SetShootingTime(float shooting) { shootingTime = shooting; };
 
 	bool GetFiring() { return fire; };
 
@@ -75,12 +77,17 @@ public:
 	float startTime = 0.f;
 
 private:
-	float maxX = 0;
-	float minX = 0;
+	//velocity vectors
+	b2Vec2 patrolVelocity = { 0.f, 0.f };
+
+	//boundaries of patrol
+	float maxX = 0; //max X position of patrol
+	float minX = 0; //min X position of patrol
+
 	int facing = 0;
 	int animType = 0;
 	int shadowType = 0;
-	int shootingTime = 1;
+	float shootingTime = 0.5;
 	bool fire = false;
 	bool sequenceStart = false;
 	Sprite* sprites;

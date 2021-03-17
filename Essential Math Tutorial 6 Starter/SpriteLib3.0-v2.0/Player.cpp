@@ -70,6 +70,7 @@ void Player::Update()
 		MovementUpdate();
 	}
 
+	ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).ActivateShield();
 	AnimationUpdate();
 }
 
@@ -90,8 +91,6 @@ void Player::MovementUpdate()
 
 	if (moving.GetMoving())
 	{
-		//platform = 200.f;
-
 		if (!Input::GetKey(Key::D) && !Input::GetKey(Key::A))
 		{
 			float passiveMovement = 950;
@@ -225,6 +224,12 @@ void Player::MovementUpdate()
 			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0, jump), true);
 		}
 	}
+
+	if (Input::GetKeyDown(Key::Q))
+	{
+		ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).SetShieldSequence(true);
+	}
+
 }
 
 void Player::AnimationUpdate()

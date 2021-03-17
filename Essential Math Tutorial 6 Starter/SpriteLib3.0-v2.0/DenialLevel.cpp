@@ -1969,7 +1969,36 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 	// STATIC BACKGROUND TILES \\
 	
-	{
+	{		// TILE -2-0
+		{
+			//Creates entity
+			auto entity = ECS::CreateEntity();
+
+			//Add components
+			ECS::AttachComponent<Sprite>(entity);
+			ECS::AttachComponent<Transform>(entity);
+
+			//Sets up components
+			std::string fileName = "backgrounds/denial0-0.png";
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(-640.f, -176.f, 1.f));
+		}
+
+		// TILE -1-0
+		{
+			//Creates entity
+			auto entity = ECS::CreateEntity();
+
+			//Add components
+			ECS::AttachComponent<Sprite>(entity);
+			ECS::AttachComponent<Transform>(entity);
+
+			//Sets up components
+			std::string fileName = "backgrounds/denial0-0.png";
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(-384.f, -176.f, 1.f));
+		}
+
 		// TILE 0-0
 		{
 			//Creates entity
@@ -1982,7 +2011,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial0-0.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(-128.f, -176.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(-128.f, -176.f, 1.f));
 		}
 
 		// TILE 1-0
@@ -1997,7 +2026,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial1-0.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(128.f, -176.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(128.f, -176.f, 1.f));
 		}
 
 		// TILE 2-0
@@ -2012,7 +2041,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial2-0.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(384.f, -176.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(384.f, -176.f, 1.f));
 		}
 
 		// TILE 3-0
@@ -2027,7 +2056,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial3-0.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(640.f, -176.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(640.f, -176.f, 1.f));
 		}
 
 		// TILE 4-0
@@ -2042,7 +2071,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial4-0.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(896, -176, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(896, -176.f, 1.f));
 		}
 
 		// TILE 5-0
@@ -2057,7 +2086,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial5-0.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1152.f, -176, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1152.f, -176.f, 1.f));
 		}
 
 		// TILE 6-0
@@ -2072,7 +2101,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial6-0.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1280.f, -176, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1408.f, -176.f, 1.f));
 		}
 
 		// TILE 7-0
@@ -2087,7 +2116,37 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial7-0.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1536.f, -176, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1664.f, -176.f, 1.f));
+		}
+
+		//TILE -2-1
+		{
+			//Creates entity
+			auto entity = ECS::CreateEntity();
+
+			//Add components
+			ECS::AttachComponent<Sprite>(entity);
+			ECS::AttachComponent<Transform>(entity);
+
+			//Sets up components
+			std::string fileName = "backgrounds/denial-2-1.png";
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(-640, 80.f, 1.f));
+		}
+
+		//TILE -1-1
+		{
+			//Creates entity
+			auto entity = ECS::CreateEntity();
+
+			//Add components
+			ECS::AttachComponent<Sprite>(entity);
+			ECS::AttachComponent<Transform>(entity);
+
+			//Sets up components
+			std::string fileName = "backgrounds/denial-1-1.png";
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(-384, 80.f, 1.f));
 		}
 
 		// TILE 0-1
@@ -2102,7 +2161,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial0-1.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(-128, 80.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(-128, 80.f, 1.f));
 		}
 
 		// TILE 1-1
@@ -2117,7 +2176,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial1-1.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(128.f, 80.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(128.f, 80.f, 1.f));
 		}
 
 		// TILE 2-1
@@ -2132,7 +2191,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial2-1.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(384.f, 80.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(384.f, 80.f, 1.f));
 		}
 
 		// TILE 3-1
@@ -2147,7 +2206,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial3-1.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(640.f, 80, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(640.f, 80.f, 1.f));
 		}
 
 		// TILE 4-1
@@ -2162,7 +2221,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial4-1.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256,256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(896.f, 80.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(896.f, 80.f, 1.f));
 		}
 
 		// TILE 5-1
@@ -2177,7 +2236,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial5-1.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1152.f, 80.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1152.f, 80.f, 1.f));
 		}
 
 		// TILE 6-1
@@ -2192,7 +2251,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial6-1.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1280.f, 80.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1408.f, 80.f, 1.f));
 		}
 
 		// TILE 7-1
@@ -2207,7 +2266,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial7-1.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1536.f, 80.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1664.f, 80.f, 1.f));
 		}
 
 		// TILE 8-1
@@ -2222,7 +2281,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial8-1.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1792.f, 80.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1920.f, 80.f, 1.f));
 		}
 
 		// TILE 9-1
@@ -2237,7 +2296,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial9-1.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(2048.f, 50, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(2176.f, 80.f, 1.f));
 		}
 
 		// TILE 0-2
@@ -2252,7 +2311,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial0-2.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(-128.f, 336.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(-128.f, 336.f, 1.f));
 		}
 
 		// TILE 1-2
@@ -2267,7 +2326,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial1-2.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(128.f, 336.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(128.f, 336.f, 1.f));
 		}
 
 		// TILE 2-2
@@ -2282,7 +2341,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial2-2.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(384.f, 336.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(384.f, 336.f, 1.f));
 		}
 
 		// TILE 3-2
@@ -2297,7 +2356,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial3-2.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(640.f, 336.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(640.f, 336.f, 1.f));
 		}
 
 		// TILE 4-2
@@ -2312,7 +2371,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial4-2.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(896.f, 336.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(896.f, 336.f, 1.f));
 		}
 
 		// TILE 5-2
@@ -2327,7 +2386,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial5-2.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1152.f, 336, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1152.f, 336, 1.f));
 		}
 
 		// TILE 6-2
@@ -2342,7 +2401,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial6-2.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1280.f, 336.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1408.f, 336.f, 1.f));
 		}
 
 		// TILE 7-2
@@ -2357,7 +2416,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial7-2.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1536.f, 336.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1664.f, 336.f, 1.f));
 		}
 
 		// TILE 8-2
@@ -2372,7 +2431,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial8-2.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1792.f, 336.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1920.f, 336.f, 1.f));
 		}
 
 		// TILE 9-2
@@ -2387,7 +2446,22 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial9-2.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(2048.f, 336, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(2176.f, 336, 1.f));
+		}
+
+		// TILE 5-3
+		{
+			//Creates entity
+			auto entity = ECS::CreateEntity();
+
+			//Add components
+			ECS::AttachComponent<Sprite>(entity);
+			ECS::AttachComponent<Transform>(entity);
+
+			//Sets up components
+			std::string fileName = "backgrounds/denial5-3.png";
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1152.f, 592.f, 1.f));
 		}
 
 		// TILE 6-3
@@ -2402,7 +2476,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial6-3.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1280.f, 592.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1408.f, 592.f, 1.f));
 		}
 
 		// TILE 7-3
@@ -2417,7 +2491,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial7-3.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1536.f, 592.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1664.f, 592.f, 1.f));
 		}
 
 		// TILE 8-3
@@ -2432,7 +2506,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial8-3.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1792.f, 592.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1920.f, 592.f, 1.f));
 		}
 
 		// TILE 9-3
@@ -2447,7 +2521,22 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial9-3.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(2048.f, 592.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(2176.f, 592.f, 1.f));
+		}
+
+		// TILE 5-4
+		{
+			//Creates entity
+			auto entity = ECS::CreateEntity();
+
+			//Add components
+			ECS::AttachComponent<Sprite>(entity);
+			ECS::AttachComponent<Transform>(entity);
+
+			//Sets up components
+			std::string fileName = "backgrounds/denial5-4.png";
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1152.f, 848.f, 1.f));
 		}
 
 		// TILE 6-4
@@ -2462,7 +2551,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial6-4.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1280.f, 848.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1408.f, 848.f, 1.f));
 		}
 
 		// TILE 7-4
@@ -2477,7 +2566,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial7-4.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1536.f, 848.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1664.f, 848.f, 1.f));
 		}
 
 		// TILE 8-4
@@ -2492,7 +2581,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial8-4.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1792, 848.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1920.f, 848.f, 1.f));
 		}
 
 		// TILE 9-4
@@ -2507,7 +2596,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 			//Sets up components
 			std::string fileName = "backgrounds/denial9-4.png";
 			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(2048.f, 848.f, 2.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(2176.f, 848.f, 1.f));
 		}
 	}
 

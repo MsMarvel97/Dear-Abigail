@@ -39,6 +39,8 @@ public:
 
 	void UpdateUI();
 
+	void TestUIUpdate();
+
 	std::string defaultPose = "testCube.png";
 	std::string attackPose = "testCube2.png";
 	bool switchDir = false;
@@ -71,4 +73,5 @@ protected:
 	int shieldUI = 0;
 	int attackUI = 0;
 	int ouchUI = 0;
+	int newTestSprite = 0;
 };

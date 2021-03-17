@@ -30,15 +30,9 @@ void KnockBackTrigger::OnEnter()
 	double vectorMagnitude = sqrt((vectorX * vectorX) + (vectorY * vectorY));
 	double normalX = vectorX / vectorMagnitude;
 	double normalY = vectorY / vectorMagnitude;
-
-	if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetAttacking() == true)
+	if (Trigger::GetSpike() == true) //edge case for spikes
 	{
-		if (ECS::GetComponent<ShadowLoop>(m_triggerEntity).GetShadowAnim() == 0 || ECS::GetComponent<ShadowLoop>(m_triggerEntity).GetShadowAnim() == 6)
-		{
-			ECS::GetComponent<ShadowLoop>(m_triggerEntity).isShadowAlive = false;
-			std::cout << "Shadow attacked\n";
-		}
-		else //player is attacking when the shadow is attacking and shadow deals damage to player
+		if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetShield() == false)
 		{
 			//ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).canMove = false;
 			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetKnockbackSequence(true);
@@ -46,21 +40,47 @@ void KnockBackTrigger::OnEnter()
 			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).HealthLost();
 			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetCanMove(false);
 		}
+		else if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetShield() == true)
+		{
+			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetKnockbackSequence(true);
+			ECS::GetComponent<PhysicsBody>(m_targetEntities[0]).GetBody()->SetLinearVelocity(b2Vec2(1000000000 * normalX, 1000000000 * normalY));
+			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetCanMove(false);
+		}
 	}
-	else if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetShield() == false)
+	else
 	{
-		//ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).canMove = false;
-		ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetKnockbackSequence(true);
-		ECS::GetComponent<PhysicsBody>(m_targetEntities[0]).GetBody()->SetLinearVelocity(b2Vec2(1000000000 * normalX, 1000000000 * normalY));
-		ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).HealthLost();
-		ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetCanMove(false);
+		if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetAttacking() == true)
+		{
+			if (ECS::GetComponent<ShadowLoop>(m_triggerEntity).GetShadowAnim() == 0 || ECS::GetComponent<ShadowLoop>(m_triggerEntity).GetShadowAnim() == 6)
+			{
+				ECS::GetComponent<ShadowLoop>(m_triggerEntity).isShadowAlive = false;
+				std::cout << "Shadow attacked\n";
+			}
+			else //player is attacking when the shadow is attacking and shadow deals damage to player
+			{
+				//ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).canMove = false;
+				ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetKnockbackSequence(true);
+				ECS::GetComponent<PhysicsBody>(m_targetEntities[0]).GetBody()->SetLinearVelocity(b2Vec2(1000000000 * normalX, 1000000000 * normalY));
+				ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).HealthLost();
+				ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetCanMove(false);
+			}
+		}
+		else if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetShield() == false)
+		{
+			//ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).canMove = false;
+			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetKnockbackSequence(true);
+			ECS::GetComponent<PhysicsBody>(m_targetEntities[0]).GetBody()->SetLinearVelocity(b2Vec2(1000000000 * normalX, 1000000000 * normalY));
+			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).HealthLost();
+			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetCanMove(false);
+		}
+		else if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetShield() == true)
+		{
+			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetKnockbackSequence(true);
+			ECS::GetComponent<PhysicsBody>(m_targetEntities[0]).GetBody()->SetLinearVelocity(b2Vec2(1000000000 * normalX, 1000000000 * normalY));
+			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetCanMove(false);
+		}
 	}
-	else if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetShield() == true)
-	{
-		ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetKnockbackSequence(true);
-		ECS::GetComponent<PhysicsBody>(m_targetEntities[0]).GetBody()->SetLinearVelocity(b2Vec2(1000000000 * normalX, 1000000000 * normalY));
-		ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetCanMove(false);
-	}
+	
 	std::cout << "Current Health: " << ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetHealth() << "\n";
 
 }

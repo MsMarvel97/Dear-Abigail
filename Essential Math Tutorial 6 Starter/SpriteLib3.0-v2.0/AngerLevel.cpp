@@ -59,21 +59,25 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
  
 		player = entity;
 		//Add components 
+		ECS::AttachComponent<Player>(entity);
 		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<CanJump>(entity);
-		//ECS::AttachComponent<AttackMechanic>(entity);//to remove
-		//ECS::AttachComponent<Health>(entity);//to remove
-		ECS::AttachComponent<Player>(entity);
-		//ECS::AttachComponent<KnockBack>(entity);//to remove
-		ECS::AttachComponent<CoolDown>(entity);
-		ECS::AttachComponent<BossLevel>(entity);
-		//ECS::AttachComponent<ShadowSense>(entity);//to remove
-		//ECS::AttachComponent<ShadowTime>(entity);//to remove
 		ECS::AttachComponent<MovingClass>(entity);
 		ECS::AttachComponent<AnimationController>(entity);
 		ECS::AttachComponent<PlayerMechanics>(entity);
+		ECS::AttachComponent<CoolDown>(entity); //denial exclusive?
+		ECS::AttachComponent<BossLevel>(entity); //denial exclusive
+		//ECS::AttachComponent<CanJump>(entity);
+		//ECS::AttachComponent<AttackMechanic>(entity);//to remove
+		//ECS::AttachComponent<Health>(entity);//to remove
+		
+		//ECS::AttachComponent<KnockBack>(entity);//to remove
+		
+		//ECS::AttachComponent<ShadowSense>(entity);//to remove
+		//ECS::AttachComponent<ShadowTime>(entity);//to remove
+		
+		
 
 		//Sets up the components 
 		std::string fileName = "spritesheets/abigailSpritesheet.png";
@@ -81,7 +85,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		ECS::GetComponent<Player>(entity).InitPlayer(fileName, animations, 25, 25, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity));
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 0.f, 2.f));
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 30.f, 5.f));
 		ECS::GetComponent<PlayerMechanics>(entity).SetHealth(3);
  
 
@@ -89,30 +93,29 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
  
-		float shrinkX = 6.f;
-		float shrinkY = 17.f;
+		float shrinkX = 8.f;
+		float shrinkY = 3.f;
 
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_dynamicBody;
+
+		tempDef.position.Set(float32(0), float32(80.f)); //beginning
 		//tempDef.position.Set(float32(3216.f), float32(80.f)); //boss platform
 		//tempDef.position.Set(float32(700), float32(80.f)); //bridge
 		//tempDef.position.Set(float32(1006), float32(80.f)); //spike
-		tempDef.position.Set(float32(0), float32(80.f)); //beginning
 		//tempDef.position.Set(float32(2456), float32(120.f)); //beginning of crumbling platforms
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(25), float(25), vec2(0.f, 0.f), false, PLAYER, ENEMY | OBJECTS | PICKUP | TRIGGER | SNAIL, 0.5f, 3.f);
- 
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX), float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, PLAYER, ENEMY | OBJECTS | PICKUP | TRIGGER | SNAIL, 0.f, 1.f);
+
 
 		tempPhsBody.SetRotationAngleDeg(0.f);
 		tempPhsBody.SetFixedRotation(true);
 		tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
  
 		tempPhsBody.SetGravityScale(0.75f);
-		//tempPhsBody.SetMass(1.f);
-		std::cout << tempPhsBody.GetMass();
 	}
 
 
@@ -1753,7 +1756,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(3480), float32(84));
+		tempDef.position.Set(float32(3480), float32(74));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -2231,72 +2234,16 @@ void AngerLevel::Update()
 		thePlayer.Update();
 	}
 	playerMech.Attacking();
-	//shadow1
-	if (ECS::GetComponent<ShadowLoop>(shadows[0]).isShadowAlive == true)
+
+	for (int i = 0; i < 6; i++) //shadows
 	{
-		/*AngerLevel::ChangeVisualState(shadows[0]);
-		ECS::GetComponent<ShadowLoop>(shadows[0]).ShadowRoutine();*/
+		if (ECS::GetComponent<ShadowLoop>(shadows[i]).isShadowAlive == false)
+		{
+			ECS::GetComponent<PhysicsBody>(shadows[i]).GetBody()->SetActive(false);
+			ECS::GetComponent<Sprite>(shadows[i]).SetTransparency(0.f);
+		}
 	}
-	else
-	{
-		ECS::GetComponent<PhysicsBody>(shadows[0]).GetBody()->SetActive(false);
-		ECS::GetComponent<Sprite>(shadows[0]).SetTransparency(0.f);
-	}
-	//shadow2
-	if (ECS::GetComponent<ShadowLoop>(shadows[1]).isShadowAlive == true)
-	{
-		/*AngerLevel::ChangeVisualState(shadows[1]);
-		ECS::GetComponent<ShadowLoop>(shadows[1]).ShadowRoutine();*/
-	}
-	else
-	{
-		ECS::GetComponent<PhysicsBody>(shadows[1]).GetBody()->SetActive(false);
-		ECS::GetComponent<Sprite>(shadows[1]).SetTransparency(0.f);
-	}
-	//shadow3
-	if (ECS::GetComponent<ShadowLoop>(shadows[2]).isShadowAlive == true)
-	{
-		/*AngerLevel::ChangeVisualState(shadows[2]);
-		ECS::GetComponent<ShadowLoop>(shadows[2]).ShadowRoutine();*/
-	}
-	else
-	{
-		ECS::GetComponent<PhysicsBody>(shadows[2]).GetBody()->SetActive(false);
-		ECS::GetComponent<Sprite>(shadows[2]).SetTransparency(0.f);
-	}
-	//shadow4
-	if (ECS::GetComponent<ShadowLoop>(shadows[3]).isShadowAlive == true)
-	{
-		/*AngerLevel::ChangeVisualState(shadows[3]);
-		ECS::GetComponent<ShadowLoop>(shadows[3]).ShadowRoutine();*/
-	}
-	else
-	{
-		ECS::GetComponent<PhysicsBody>(shadows[3]).GetBody()->SetActive(false);
-		ECS::GetComponent<Sprite>(shadows[3]).SetTransparency(0.f);
-	}
-	//shadow5
-	if (ECS::GetComponent<ShadowLoop>(shadows[4]).isShadowAlive == true)
-	{
-		/*AngerLevel::ChangeVisualState(shadows[4]);
-		ECS::GetComponent<ShadowLoop>(shadows[4]).ShadowRoutine();*/
-	}
-	else
-	{
-		ECS::GetComponent<PhysicsBody>(shadows[4]).GetBody()->SetActive(false);
-		ECS::GetComponent<Sprite>(shadows[4]).SetTransparency(0.f);
-	}
-	//shadow6
-	if (ECS::GetComponent<ShadowLoop>(shadows[5]).isShadowAlive == true)
-	{
-		/*AngerLevel::ChangeVisualState(shadows[5]);
-		ECS::GetComponent<ShadowLoop>(shadows[5]).ShadowRoutine();*/
-	}
-	else
-	{
-		ECS::GetComponent<PhysicsBody>(shadows[5]).GetBody()->SetActive(false);
-		ECS::GetComponent<Sprite>(shadows[5]).SetTransparency(0.f);
-	}
+	
 	/*if (attackComponent.isAttacking == true)
 	{
 		playerSprite.LoadSprite(attackPose, 20, 20);
@@ -2364,7 +2311,7 @@ void AngerLevel::KeyboardUp()
 void AngerLevel::KeyboardDown()
 {
 	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
-	auto& canJump = ECS::GetComponent<CanJump>(MainEntities::MainPlayer());
+	//auto& canJump = ECS::GetComponent<CanJump>(MainEntities::MainPlayer());
  
  
 	//auto& attackComponent = ECS::GetComponent<AttackMechanic>(MainEntities::MainPlayer());

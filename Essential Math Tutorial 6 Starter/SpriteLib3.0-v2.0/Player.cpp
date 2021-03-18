@@ -94,7 +94,7 @@ void Player::MovementUpdate()
 
 		if (!Input::GetKey(Key::D) && !Input::GetKey(Key::A))
 		{
-			float passiveMovement = 4000; //og 950
+			float passiveMovement = 950;
 
 			if (moving.GetLeft() == true)
 			{

@@ -1,4 +1,4 @@
-#include "CrumblingSequence.h"
+#include "PlatformMechanics.h"
 #include <string>
 
 CrumblingSequence::CrumblingSequence()
@@ -79,11 +79,6 @@ void CrumblingSequence::Crumble(int ent)
 	}
 }
 
-void CrumblingSequence::setEntity(int newEntity)
-{
-	entity = newEntity;
-}
-
 void CrumblingSequence::setSequenceStart(bool start)
 {
 	sequenceStart = start;
@@ -106,3 +101,32 @@ int CrumblingSequence::disablePlatform()
 	}
 }
 
+void MovingPlatform::MovePlatform(int entity)
+{
+	auto& platform = ECS::GetComponent<PhysicsBody>(entity);
+	float currentTime = Timer::StopWatch(verticalStart);
+
+	if (verticalSequence == true)
+	{
+		if (platform.GetPosition().y <= maxY)
+		{
+			platform.SetPosition(b2Vec2(platform.GetPosition().x, platform.GetPosition().y + 0.3));
+		}
+	}
+
+	if (platform.GetPosition().y >= maxY && verticalSequence == false)
+	{
+		if (resetTimer == 0.f)
+		{
+			resetTimer = Timer::time;
+		}
+
+		float currentTime = Timer::StopWatch(resetTimer);
+
+		if (currentTime >= 5)
+		{
+			platform.SetPosition(b2Vec2(platform.GetPosition().x, minY));
+			resetTimer = 0;
+		}
+	}
+}

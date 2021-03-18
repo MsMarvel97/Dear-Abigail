@@ -80,7 +80,7 @@ void Player::MovementUpdate()
 
 	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
 	auto& transformer = ECS::GetComponent<Player>(MainEntities::MainPlayer());
-	auto& moving = ECS::GetComponent<MovingClass>(MainEntities::MainPlayer());
+	auto& moving = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
 
 	static float sprint = 0.f;
 	static float vel = -20;

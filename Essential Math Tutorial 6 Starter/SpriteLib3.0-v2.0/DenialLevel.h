@@ -29,6 +29,7 @@ public:
 	int player;
 	int movingPlat;
 	int vertMovingPlat;
+	int vertPlatTrigger;
 	int kinTrigger;
 	bool switchDir = false;
 	int cPlatforms[8];

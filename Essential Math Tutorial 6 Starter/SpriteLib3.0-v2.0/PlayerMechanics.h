@@ -32,6 +32,18 @@ public:
 
 	int GetHealth() { return hearts; }; //checks player health
 
+
+	//functions for platform movement
+	bool GetMoving() { return moving; };
+	void SetMoving(bool newBool) { moving = newBool; };
+
+	bool GetLeft() { return left; };
+	void SetLeft(bool newLeft) { left = newLeft; };
+
+	bool GetRight() { return right; };
+	void SetRight(bool newRight) { right = newRight; };
+
+
 protected:
 	//vars for shielding
 	float shieldStart = 0.f;
@@ -50,6 +62,11 @@ protected:
 	float knockbackStart = 0.f;
 	bool knockbackSequence = false;
 	bool canMove = true;
+
+	//vars for platform movement
+	bool moving = false;
+	bool left = false;
+	bool right = false;
 
 	//var for health
 	int hearts = 3; //player's life points

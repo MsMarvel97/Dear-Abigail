@@ -20,7 +20,6 @@ public:
 
 	void Crumble(int ent);
 	bool sequenceStart = false;
-	int entity = 0;
 
 	void setEntity(int newEntity);
 	void setSequenceStart(bool start);
@@ -47,3 +46,26 @@ private:
 	bool physics = false;
 };
 
+class MovingPlatform
+{
+public:
+	enum PlatformType
+	{
+		Vertical,
+		Horizontal
+	};
+
+	void MovePlatform(int entity);
+	
+	void SetVertMovement(bool start) { verticalSequence = start; };
+	void ResetTimer() { resetTimer = 0.f; };
+	void SetMovementBoundaries(float min, float max) { minY = min; maxY = max; };
+
+private:
+	bool verticalSequence = false;
+	float verticalStart = 0.f;
+	float resetTimer = 0.f;
+	bool reset = false;
+	float minY = 0.f;
+	float maxY = 0.f;
+};

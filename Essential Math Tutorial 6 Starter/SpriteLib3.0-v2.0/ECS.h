@@ -26,7 +26,7 @@
 #include "RecheckConditions.h"
 #include "ShrinkTrigger.h"
 #include "EndTrigger.h"
-#include "CrumblingSequence.h"
+#include "PlatformMechanics.h"
 #include "DestroyPlatformTrigger.h"
 #include "MovingClass.h"
 #include "MovingTrigger.h"
@@ -38,6 +38,8 @@
 #include "KnockBackTrigger.h"
 #include "BulletTrigger.h"
 #include "PlayerMechanics.h"
+#include "PlatformMechanics.h"
+#include "PlatformTrigger.h"
 
 class ECS abstract
 {

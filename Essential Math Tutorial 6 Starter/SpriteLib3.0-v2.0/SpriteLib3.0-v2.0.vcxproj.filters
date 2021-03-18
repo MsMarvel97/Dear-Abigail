@@ -246,9 +246,6 @@
     <ClInclude Include="DestroyPlatformTrigger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CrumblingSequence.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ToneFire.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -289,6 +286,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UIComponents.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlatformTrigger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlatformMechanics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -494,9 +497,6 @@
     <ClCompile Include="Crumble.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CrumblingSequence.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DestroyPlatformTrigger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -555,6 +555,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UIComponents.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlatformTrigger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlatformMechanics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

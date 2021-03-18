@@ -90,7 +90,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_dynamicBody;
 		//tempDef.position.Set(float32(-450.f), float32(30.f));
-		tempDef.position.Set(float32(744.5), float32(187.5));
+		//tempDef.position.Set(float32(744.5), float32(187.5));
+		tempDef.position.Set(float32(1550), float32(447));
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
 		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX), float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, PLAYER, ENEMY | OBJECTS | PICKUP | TRIGGER | SNAIL, 0.f, 1.f);
@@ -1370,11 +1371,14 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<MovingPlatform>(entity);
 
 		//Sets up components
 		std::string fileName = "platform.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 96, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+
+		ECS::GetComponent<MovingPlatform>(entity).SetMovementBoundaries(408.f, 588.f);
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
@@ -1390,6 +1394,44 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	}
+
+	//Trigger M8 (moving trigger)
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		vertPlatTrigger = entity;
+
+		//Add components
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Trigger*>(entity);
+		ECS::AttachComponent<Kinematics>(entity);
+
+		//Sets up components
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		ECS::GetComponent<Trigger*>(entity) = new VerticalPlatformTrigger();
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(vertMovingPlat);
+
+		ECS::GetComponent<Kinematics>(entity).SetParent(vertMovingPlat);
+		ECS::GetComponent<Kinematics>(entity).SetChild(entity);
+		ECS::GetComponent<Kinematics>(entity).SetOffset(0.f, 20.f);
+
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32(1504.f), float32(428.f));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+			float(32 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
@@ -2648,12 +2690,13 @@ void DenialLevel::Update()
 {
 	auto& playerBody = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
 	auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
-	auto& moveTrig = ECS::GetComponent<MovingClass>(MainEntities::MainPlayer());
 	auto& kinTrig = ECS::GetComponent<Kinematics>(kinTrigger);
 	auto& pMechanics = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
 	auto& sprite = ECS::GetComponent<Sprite>(MainEntities::MainPlayer());
 
 	kinTrig.UpdatePosition();
+	ECS::GetComponent<Kinematics>(vertPlatTrigger).UpdatePosition();
+	ECS::GetComponent<MovingPlatform>(vertMovingPlat).MovePlatform(vertMovingPlat);
 	pMechanics.RunKnockBackTime();
 
 	if (pMechanics.GetCanMove() == true)
@@ -2699,8 +2742,8 @@ void DenialLevel::KeyboardHold()
 
 void DenialLevel::MovePlatform()
 {
-	auto& moveTrig = ECS::GetComponent<MovingClass>(player);
-	auto& playerBody = ECS::GetComponent<PhysicsBody>(player);
+	auto& moveTrig = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
+	auto& playerBody = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
 
 	auto& plat = ECS::GetComponent<PhysicsBody>(movingPlat);
 	auto& vert = ECS::GetComponent<PhysicsBody>(vertMovingPlat);
@@ -2713,7 +2756,7 @@ void DenialLevel::MovePlatform()
 
 	static bool vertSwitch = false;
 
-	if (vert.GetPosition().y <= 408)
+	/*if (vert.GetPosition().y <= 408)
 	{
 		vertSwitch = false;
 	}
@@ -2729,7 +2772,7 @@ void DenialLevel::MovePlatform()
 	else
 	{
 		vert.SetPosition(b2Vec2(vert.GetPosition().x, vert.GetPosition().y - 0.5));
-	}
+	}*/
 
 	if (platX > 680)
 	{

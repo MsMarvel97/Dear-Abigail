@@ -99,8 +99,8 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_dynamicBody;
 
-		//tempDef.position.Set(float32(0), float32(80.f)); //beginning
-		tempDef.position.Set(float32(3216.f), float32(80.f)); //boss platform
+		tempDef.position.Set(float32(0), float32(80.f)); //beginning
+		//tempDef.position.Set(float32(3216.f), float32(80.f)); //boss platform
 		//tempDef.position.Set(float32(700), float32(80.f)); //bridge
 		//tempDef.position.Set(float32(1006), float32(80.f)); //spike
 		//tempDef.position.Set(float32(2456), float32(120.f)); //beginning of crumbling platforms
@@ -2527,6 +2527,15 @@ void AngerLevel::Update()
 			ECS::GetComponent<Sprite>(shadows[i]).SetTransparency(0.f);
 		}
 	}
+	
+	/*if (attackComponent.isAttacking == true)
+	{
+		playerSprite.LoadSprite(attackPose, 20, 20);
+	}
+	else if (attackComponent.isAttacking == false)
+	{
+		playerSprite.LoadSprite(defaultPose, 20, 20);
+	}*/
 	theCoolDown.GlobalCoolDown();
 	angerBoss.CheckBossStatus();
 	playerMech.RunShadowTime();

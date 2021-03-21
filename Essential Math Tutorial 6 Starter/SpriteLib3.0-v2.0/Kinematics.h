@@ -3,10 +3,9 @@
 class Kinematics
 {
 public:
-
-	void SetPosition();
-
 	void UpdatePosition();
+	void UpdateTransform();
+	void UpdateUI();
 	void SetParent(int parent);
 	void SetChild(int child);
 	void SetOffset(float x, float y);

@@ -39,17 +39,23 @@ public:
 
 	void UpdateUI();
 
-	void TestUIUpdate();
-
 	std::string defaultPose = "testCube.png";
 	std::string attackPose = "testCube2.png";
+	std::string shieldOn = "ShieldOn.png";
+	std::string shieldOff = "ShieldOff.png";
+	std::string punchOn = "PunchOn.png";
+	std::string punchOff = "PunchOff.png";
 	bool switchDir = false;
-	int bossPlatforms[5] = { 0,0,0,0,0 };
-
+	int bossPlatforms[6] = { 0,0,0,0,0,0 }; //last index is reserved for platform ZA
+	int bossPlatformTriggers[6] = { 0,0,0,0,0,0 }; //last index is reserved for platform ZA
+	int bigBossPlat[10];
+	int bigBossPlatTrig[10];
 	int cPlatforms[4] = { 0,0,0,0 };
 	int cTriggers[4] = { 0,0,0,0 };
 	void CrumblingPlatforms(int entity);
 	int flyingPieces[6] = { 0, 0, 0, 0, 0, 0 };
+
+	void TestUpdatePosition(int cameraEntity, int bodyEntity, int tempOffsetX, int tempOffsetY);
 protected:
 	PhysicsPlaygroundListener listener;
 	vec3 playerVel;
@@ -69,9 +75,9 @@ protected:
 	bool canMove = true; //turns false for a few seconds when the player hits a Shadow and gets knocked back
 	int breakableWalls[1] = { 0 };
 	int breakableWallTriggers[1] = { 0 };
-	int testSprites[3] = { 0,0,0 };
+	int hearts[3] = { 0,0,0 };
 	int shieldUI = 0;
 	int attackUI = 0;
 	int ouchUI = 0;
-	int newTestSprite = 0;
+	int uiElements[6]; //[heart, heart, heart, shield, atttack, ouch]
 };

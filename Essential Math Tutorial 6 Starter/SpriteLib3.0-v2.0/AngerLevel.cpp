@@ -158,9 +158,9 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		//Sets up components 
 		std::string fileName = "platform.png";
  
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16*12, 16*1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 192, 16);
  
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 12, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 192, 16);
  
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -173,9 +173,9 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
  
-		tempDef.position.Set(float32(0.f+(16*12/2)), float32(0.f + (16 / 2)));
+		tempDef.position.Set(float32(96.f), float32(8.f));
  
-		tempDef.position.Set(float32(0.f + (16 * 12 / 2)), float32(0.f + (16 / 2)));
+		tempDef.position.Set(float32(96.f), float32(8.f));
  
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
@@ -197,7 +197,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 14, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 224, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -209,9 +209,9 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
  
-		tempDef.position.Set(float32((16 * 14.f) + (16 * 14/ 2)), float32((16 * 2.f) + (16 * 1/ 2)));
+		tempDef.position.Set(float32(336.f), float32(40.f));
  
-		tempDef.position.Set(float32((16 * 14.f) + (16 * 14 / 2)), float32((16 * 2.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(336.f), float32(40.f));
  
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
@@ -233,7 +233,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -244,7 +244,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 30.f) + (16 * 16 / 2)), float32((16 * 0.f) + (16 * 1 / 2))); //608,8
+		tempDef.position.Set(float32(608.f), float32(8.f)); //608,8
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -266,7 +266,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "boxSprite.jpg";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 1, 16 * 15);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16, 240);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -304,7 +304,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 1, 16 * 3);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16, 48);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -316,9 +316,9 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
  
-		tempDef.position.Set(float32((16 * 43.3f) + (16 * 1/ 2)), float32((16 * 0.f) + (16 * 3/ 2)));
+		tempDef.position.Set(float32(700.8f), float32(24.f));
  
-		tempDef.position.Set(float32((16 * 43.3f) + (16 * 1 / 2)), float32((16 * 0.f) + (16 * 3 / 2)));
+		tempDef.position.Set(float32(700.8f), float32(24.f));
  
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
@@ -345,7 +345,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		//Sets up components
 		std::string fileName = "platform.png";
  
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 0.5f, 16 *0.5f);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 8.f, 8.f);
  
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -357,7 +357,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 45.5f) + (16 * 0.5f / 2)), float32((16 * 1.f) + (16 * 0.5f / 2)));
+		tempDef.position.Set(float32(732.f), float32(20.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -379,7 +379,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 14, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 224, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -390,7 +390,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 59.f) + (16 * 14 / 2)), float32((16 * 0.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(1056.f), float32(8.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -411,7 +411,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 12, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 192, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -423,9 +423,9 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
  
-		tempDef.position.Set(float32((16 * 75.f) + (16 * 12 / 2)), float32((16 * 2.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(1296.f), float32(40.f));
  
-		tempDef.position.Set(float32((16 * 75.f) + (16 * 12 / 2)), float32((16 * 2.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(1296.f), float32(48.f));
  
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
@@ -435,9 +435,6 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
- 
-	
-	
  
 	//Platform M 
 	{
@@ -452,9 +449,9 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		//Sets up components
 		std::string fileName = "platform.png";
  
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 24, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 384, 16);
  
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 25, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 400, 16);
  
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -466,7 +463,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 89.f) + (16 * 24 / 2)), float32((16 * 0.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(1616.f), float32(8.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -487,7 +484,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 4, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 64, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -499,9 +496,9 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
  
-		tempDef.position.Set(float32((16 * 116.f) + (16 * 4 / 2)), float32((16 * 2.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(1888.f), float32(40.f));
  
-		tempDef.position.Set(float32((16 * 112.f) + (16 * 12 / 2)), float32((16 * 2.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(1888.f), float32(40.f));
  
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
@@ -523,7 +520,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 12, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 192, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -534,7 +531,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 123.f) + (16 * 12 / 2)), float32((16 * 4.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(2064.f), float32(72.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -555,7 +552,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 4, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 64, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -566,7 +563,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 137.f) + (16 * 4 / 2)), float32((16 * 1.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(2224.f), float32(24.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -587,7 +584,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 4, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 64, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -598,7 +595,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 144.f) + (16 * 4 / 2)), float32((16 * 3.2f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(2336.f), float32(59.2f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -619,7 +616,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 4, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName,64, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -630,7 +627,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 151.f) + (16 * 4 / 2)), float32((16 * 5.3f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(2448.f), float32(92.8));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -651,7 +648,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 4, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 64, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -662,7 +659,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 157.f) + (16 * 4 / 2)), float32((16 * 7.7f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(2544.f), float32(131.2f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -683,7 +680,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 4, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 64, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -694,7 +691,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 156.f) + (16 * 4 / 2)), float32((16 * 2.7f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(2528.f), float32(51.2f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -735,7 +732,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
  
-		tempDef.position.Set(float32((16 * 163.f) + (16 * 4 / 2)), float32((16 * 4.f) + (16 * 1 / 2))); //(2640,72)
+		tempDef.position.Set(float32(2640.f), float32(72.f)); //(2640,72)
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -810,7 +807,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
  
-		tempDef.position.Set(float32((16 * 169.f) + (16 * 4 / 2)), float32(60)); 
+		tempDef.position.Set(float32(2736.f), float32(60.f)); 
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -883,7 +880,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
 
-		tempDef.position.Set(float32((16 * 177.f) + (16 * 4 / 2)), float32((16 * 5.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(2864.f), float32(88.f));
 
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
@@ -1019,7 +1016,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		//Sets up components
 
 		std::string fileName = "dwaynethedarkerrockfloor.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 6, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 96, 16);
 
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -1072,7 +1069,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 240.f) + (16 * 1 / 2)), float32((16 * 5.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(3848.f), float32(96.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -1094,7 +1091,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		//Sets up components
 
 		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 2, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 16);
 
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -1107,9 +1104,9 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
 
-		tempDef.position.Set(float32((16 * 25.f) + (16 * 2 / 2)), float32((16 * 4.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(416.f), float32(80.f));
 
-		tempDef.position.Set(float32((16 * 200.f) + (16 * 2 / 2)), float32((16 * 2.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(3216.f), float32(40.f));
 
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
@@ -1132,7 +1129,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		//Sets up components
  
 		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 2, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 16);
  
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -1145,9 +1142,9 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
  
-		tempDef.position.Set(float32((16 * 40.f) + (16 * 2 / 2)), float32((16 * 2.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(656.f), float32(48.f));
  
-		tempDef.position.Set(float32((16 * 200.f) + (16 * 2 / 2)), float32((16 * 2.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(3216.f), float32(40.f));
  
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
@@ -1224,7 +1221,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
  
-		tempDef.position.Set(float32((16 * 130.f) + (16 * 2 / 2)), float32((16 * 6.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(2096.f), float32(112.f));
  
 		tempDef.position.Set(float32(3790), float32(120)); //(3520,40)
  
@@ -1247,7 +1244,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "platform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 5, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 80, 16);
  
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -1260,9 +1257,9 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
  
-		tempDef.position.Set(float32((16 * 158.f) + (16 * 2 / 2)), float32((16 * 10.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(2544.f), float32(176.f));
  
-		tempDef.position.Set(float32((16 * 238.f) + (16 * 5 / 2)), float32((16 * 4.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(3848.f), float32(72.f));
  
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
@@ -1285,7 +1282,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components 
 		std::string fileName = "justgotmarried.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 1, 16 * 2);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16, 32);
  
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -1298,9 +1295,9 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
  
-		tempDef.position.Set(float32((16 * 184.f) + (16 * 2 / 2)), float32((16 * 3.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(2960.f), float32(64.f));
  
-		tempDef.position.Set(float32((16 * 240.f) + (16 * 1 / 2)), float32((16 * 5.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(3848.f), float32(96.f));
  
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
@@ -1326,7 +1323,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "shadow2.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 2, 16 * 2);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 32);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
@@ -1343,7 +1340,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
 		
-		tempDef.position.Set(float32((16 * 25.f) + (16 * 2 / 2)), float32((16 * 4.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(416.f), float32(80.f));
 		
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
@@ -1367,7 +1364,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<ShadowLoop>(entity);
 		//Sets up components
 		std::string fileName = "shadow2.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 2, 16 * 2);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 32);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
@@ -1384,7 +1381,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
  
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 40.f) + (16 * 2 / 2)), float32((16 * 2.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(656.f), float32(48.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -1408,7 +1405,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "shadow2.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 2, 16 * 2);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 32);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
@@ -1423,7 +1420,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 83.f) + (16 * 2 / 2)), float32((16 * 5.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(1344.f), float32(96.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -1446,7 +1443,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "shadow2.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 2, 16 * 2);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 32);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
@@ -1461,7 +1458,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 130.f) + (16 * 2 / 2)), float32((16 * 6.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(2096.f), float32(112.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -1484,7 +1481,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "shadow2.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 2, 16 * 2);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 32);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
@@ -1499,7 +1496,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32((16 * 158.f) + (16 * 2 / 2)), float32((16 * 10.f) + (16 * 2 / 2)));
+		tempDef.position.Set(float32(2544.f), float32(176.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -1521,7 +1518,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<ShadowLoop>(entity);
 		//Sets up components
 		std::string fileName = "shadow2.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 2, 16 * 2);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 32);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
@@ -1558,7 +1555,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "shadow2.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 6, 16 * 6);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 96, 96);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 		
 
@@ -1631,7 +1628,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "spikes.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 1, 16 * 1);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16, 16);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
@@ -1647,7 +1644,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;//change to dynamic
-		tempDef.position.Set(float32((16 * 65.f) + (16 * 1 / 2)), float32((16 * 1.f) + (16 * 1 / 2)));
+		tempDef.position.Set(float32(1048.f), float32(24.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 

@@ -46,7 +46,6 @@ public:
 		float zNear, float zFar,
 		bool adjustAspect = true);
 
-
 	//Updates the camera
 	//*Updates the transform that the camera inherits from
 	//*Gets the fast inverse of the model matrix of the camera

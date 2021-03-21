@@ -26,6 +26,8 @@ public:
 
 	b2Vec2 CalculateAngle(int entityOne, int entityTwo);
 
+	int uiElements[7];
+	int shield = 0;
 	int player;
 	int movingPlat;
 	int vertMovingPlat;

@@ -100,6 +100,7 @@ void Scene::CreateCameraEntity(bool mainCamera, float windowWidth, float windowH
 		ECS::SetIsMainCamera(entity, false);
 
 		ECS::AttachComponent<Camera>(entity);
+
 		if (horizScroll)
 		{
 			ECS::AttachComponent<HorizontalScroll>(entity);

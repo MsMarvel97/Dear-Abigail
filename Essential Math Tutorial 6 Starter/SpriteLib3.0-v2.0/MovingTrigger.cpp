@@ -8,13 +8,13 @@ void MovingTrigger::OnTrigger()
 void MovingTrigger::OnEnter()
 {
 	Trigger::OnEnter();
-    ECS::GetComponent<MovingClass>(m_targetEntities[0]).SetMoving(true);
-}
+    ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).SetMoving(true);
+}	
 
 void MovingTrigger::OnExit()
 {
 	Trigger::OnExit();
-	ECS::GetComponent<MovingClass>(m_targetEntities[0]).SetMoving(false);
-	ECS::GetComponent<MovingClass>(m_targetEntities[0]).SetLeft(false);
-	ECS::GetComponent<MovingClass>(m_targetEntities[0]).SetRight(false);
+	ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).SetMoving(false);
+	ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).SetLeft(false);
+	ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).SetRight(false);
 }

@@ -101,7 +101,6 @@ void Game::Update()
 
 	//Updates the active scene
 	m_activeScene->Update();
-
 }
 
 void Game::GUI()

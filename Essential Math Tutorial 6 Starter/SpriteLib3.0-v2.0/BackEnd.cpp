@@ -164,17 +164,31 @@ void BackEnd::GUI(entt::registry* reg)
 
 void BackEnd::ReshapeWindow(int w, int h, entt::registry * mainReg)
 {
+	static bool fullscreen = false;
+
+	//if (fullscreen == false)
+	//{
+	//	w = 1280;
+	//	h = 720;
+	//	fullscreen = true;
+	//}
+	//else
+	//{
+	//	w = 720;
+	//	h = 480;
+	//	fullscreen = false;
+	//}
+
 	//Reshapes the window when the window is resized
 	glViewport(0, 0, GLsizei(w), GLsizei(h));
-	//Resize all framebuffers here
 
+	//Resize all framebuffers here
 	m_windowWidth = w;
 	m_windowHeight = h;
 	m_aspectRatio = float(w) / float(h);
 
 	//Reshape all created buffers to be proper
 	EffectManager::ReshapeBuffers(unsigned(w), unsigned(h));
-
 	//Adjusts for aspect ratio
 	vec4 temp = mainReg->get<Camera>(MainEntities::MainCamera()).GetOrthoSize();
 	auto& tempCam = mainReg->get<Camera>(MainEntities::MainCamera());

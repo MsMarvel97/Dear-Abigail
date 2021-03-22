@@ -50,9 +50,9 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 	//music created and looped 
 	{		
 		//BGM.Play(); 
-		denialBGM.Play();
+		//denialBGM.Play();
 
-		denialBGM.SetVolume(4.5);
+		//denialBGM.SetVolume(4.5);
 	}
 
 	//Abigail entity
@@ -873,7 +873,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 
 		//tempDef.type = b2_dynamicBody;
-		tempDef.type = b2_staticBody;
+		tempDef.type = b2_kinematicBody;
 
 		float platX = 392.f;
 		float platY = 168.f;
@@ -2836,14 +2836,14 @@ void DenialLevel::MovePlatform()
 	{
 		platX += 0.5;
 		//plat.SetPosition(b2Vec2(platX, platY)); 
-		plat.SetVelocity(vec3(20.f, 0.f, 0.f));
+		plat.SetVelocity(vec3(30.f, 0.f, 0.f));
 		moveTrig.SetRight(true);
 		moveTrig.SetLeft(false);
 	}
 	else if (switchDir == true)
 	{
 		platX -= 0.5;
-		plat.SetVelocity(vec3(20.f, 0.f, 0.f));
+		plat.SetVelocity(vec3(-30.f, 0.f, 0.f));
 		//plat.SetPosition(b2Vec2(platX, platY));
 		moveTrig.SetLeft(true);
 		moveTrig.SetRight(false);
@@ -2958,8 +2958,8 @@ void DenialLevel::SpawnBullet(int wall, float offsetX, float offsetY)
 
 void DenialLevel::ShootBullet(int bullet)
 {
-	shootBulletSound.Play();
-	shootBulletSound.SetVolume(5.0f);
+	//shootBulletSound.Play();
+	//shootBulletSound.SetVolume(5.0f);
 	b2Vec2 angle = CalculateAngle(MainEntities::MainPlayer(), bullet);
 
 	float dirAngle = atan(angle.x/angle.y) * (180 / PI);

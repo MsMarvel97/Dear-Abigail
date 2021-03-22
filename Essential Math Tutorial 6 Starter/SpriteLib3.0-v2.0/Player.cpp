@@ -93,13 +93,15 @@ void Player::MovementUpdate()
 	{
 		if (!Input::GetKey(Key::D) && !Input::GetKey(Key::A))
 		{
-			float passiveMovement = 950;
+			float passiveMovementOld = 950.f;
+			float passiveMovement = 32.5;
 
 			if (moving.GetLeft() == true)
 			{
 				passiveMovement *= -1;
 			}
-			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(passiveMovement, 0.f), true);
+			//player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(passiveMovement, 0.f), true);
+			player.SetVelocity(vec3(passiveMovement, player.GetVelocity().y, 0.f));
 		}
 	}
 

@@ -10,7 +10,7 @@ public:
 	void OnEnter() override;
 	void OnExit() override;
 protected:
-
+	ToneFire::CoreSound abigailHit{ "abigailHitOne.wav", false, false, true };
 	bool triggered = false;
 };
 

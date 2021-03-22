@@ -139,7 +139,7 @@ void PhysicsSystem::Draw(entt::registry * reg)
 	}
 }
 
-void PhysicsSystem::Run(b2World & world)
+void PhysicsSystem::Run(b2World& world)
 {
 	//Timestep is constant, regardless of deltatime
 	float32 timeStep = 1.f / 60.f;

@@ -19,6 +19,9 @@ void BulletTrigger::OnEnter()
 		std::cout << "Player hit by projectile. Health lost. \n";
 		ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).HealthLost();
 		std::cout << "Current Health: " << ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetHealth() << "\n";
+		abigailHit.Play();
+		abigailHit.SetVolume(6.0f);
+
 	}
 
 	PhysicsBody::m_bodiesToDelete.push_back(m_triggerEntity);

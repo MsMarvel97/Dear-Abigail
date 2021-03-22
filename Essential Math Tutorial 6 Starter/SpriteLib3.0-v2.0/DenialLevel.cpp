@@ -47,25 +47,12 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<VerticalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
 	}
 
-
-	////test center cam
-	//{
-	//	auto entity = ECS::CreateEntity();
-	//	
-	//	ECS::AttachComponent<Camera>(entity);
-	//	ECS::AttachComponent<HorizontalScroll>(entity);
-	//	ECS::AttachComponent<VerticalScroll>(entity);
-	//}
-
 	//music created and looped 
-	{
-		//ToneFire::CoreSound BGM("denialBGM.wav", FMOD_LOOP_NORMAL); 
-		//ToneFire::CoreSound test2{ "TURKEYSONG8000.mp3",false,false,true };
-		//
-		////BGM.Play(); 
-		//test2.Play();
+	{		
+		//BGM.Play(); 
+		denialBGM.Play();
 
-		//test2.SetVolume(1.0f);
+		denialBGM.SetVolume(4.5);
 	}
 
 	//Abigail entity
@@ -101,8 +88,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_dynamicBody;
-		tempDef.position.Set(float32(-450.f), float32(30.f));
-		//tempDef.position.Set(float32(744.5), float32(187.5));
+		//tempDef.position.Set(float32(-450.f), float32(30.f));
+		tempDef.position.Set(float32(744.5), float32(187.5));
 		//tempDef.position.Set(float32(1550), float32(447));
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -884,8 +871,10 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		float shrinkY = 0.f;
 		b2Body* tempBody;
 		b2BodyDef tempDef;
+
 		//tempDef.type = b2_dynamicBody;
 		tempDef.type = b2_staticBody;
+
 		float platX = 392.f;
 		float platY = 168.f;
 		tempDef.position.Set(float32(392.f), float32(148.f));
@@ -939,8 +928,6 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 5 - shrinkX),
 			float(16 * 0.5 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-		tempPhsBody.SetFixedRotation(true);
-		tempPhsBody.SetGravityScale(0.f);
 	}
 
 	//Platform M2 (crumbling platform)
@@ -2741,6 +2728,8 @@ void DenialLevel::Update()
 	//ECS::GetComponent<MovingPlatform>(vertMovingPlat).MovePlatform(vertMovingPlat);
 	pMechanics.RunKnockBackTime();
 
+	//ECS::GetComponent<Kinematics>(kinTrigger).UpdatePosition();
+
 	ECS::GetComponent<Kinematics>(shield).UpdateTransform();
 	/*ECS::GetComponent<Kinematics>(uiElements[0]).UpdateTransform();*/
 
@@ -2838,7 +2827,7 @@ void DenialLevel::MovePlatform()
 		switchDir = true;
 	}
 
-	if (platX < 370)
+	if (platX < 380)
 	{
 		switchDir = false;
 	}
@@ -2846,14 +2835,16 @@ void DenialLevel::MovePlatform()
 	if (switchDir == false)
 	{
 		platX += 0.5;
-		plat.SetPosition(b2Vec2(platX, platY)); 
+		//plat.SetPosition(b2Vec2(platX, platY)); 
+		plat.SetVelocity(vec3(20.f, 0.f, 0.f));
 		moveTrig.SetRight(true);
 		moveTrig.SetLeft(false);
 	}
 	else if (switchDir == true)
 	{
 		platX -= 0.5;
-		plat.SetPosition(b2Vec2(platX, platY));
+		plat.SetVelocity(vec3(20.f, 0.f, 0.f));
+		//plat.SetPosition(b2Vec2(platX, platY));
 		moveTrig.SetLeft(true);
 		moveTrig.SetRight(false);
 	}
@@ -2967,6 +2958,8 @@ void DenialLevel::SpawnBullet(int wall, float offsetX, float offsetY)
 
 void DenialLevel::ShootBullet(int bullet)
 {
+	shootBulletSound.Play();
+	shootBulletSound.SetVolume(5.0f);
 	b2Vec2 angle = CalculateAngle(MainEntities::MainPlayer(), bullet);
 
 	float dirAngle = atan(angle.x/angle.y) * (180 / PI);

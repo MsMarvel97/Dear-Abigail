@@ -80,6 +80,8 @@ public:
 	//in progress - does nothing currently
 	static void SetEntityID(unsigned entity, std::vector<int> entities);
 
+protected:
+	ToneFire::FMODCore fmod;
 
 private:
 	static entt::registry* m_reg;

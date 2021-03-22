@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "PhysicsBody.h"
+#include "ToneFire.h"
 
 class Trigger
 {

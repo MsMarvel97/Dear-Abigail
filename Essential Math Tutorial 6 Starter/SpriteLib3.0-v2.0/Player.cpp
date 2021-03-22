@@ -216,12 +216,14 @@ void Player::MovementUpdate()
 
 		if (Input::GetKey(Key::Shift))
 		{
-			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0, jumpCharged), true);
+			/*player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0, jumpCharged), true);*/
+			player.SetVelocity(vec3(player.GetVelocity().x, 80.f, 0.f));
 		}
 
 		else
 		{
-			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0, jump), true);
+			//player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0, jump), true);
+			player.SetVelocity(vec3(player.GetVelocity().x, 50.f, 0.f));
 		}
 	}
 
@@ -271,8 +273,6 @@ void Player::UpdateAninControllerRef(AnimationController* ref)
 {
 	m_animController = ref;
 }
-
-
 
 void Player::SetActiveAnimation(int anim)
 {

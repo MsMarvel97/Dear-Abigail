@@ -10,7 +10,7 @@ void CoolDown::GlobalCoolDown()
 	if (sequenceStart == true)
 	{
 
-		if (currentTime > 5)
+		if (currentTime > 1)
 		{
 			isCoolDownActive = false;
 			std::cout << "cool down end\n";

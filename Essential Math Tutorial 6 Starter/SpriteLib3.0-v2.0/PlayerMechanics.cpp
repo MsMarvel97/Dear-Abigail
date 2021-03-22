@@ -31,18 +31,26 @@ void PlayerMechanics::Attacking()
 	}
 	float currentTime = Timer::StopWatch(attackStart);
 
-	if (attackSequence == true) //this statement will run once the player has entered a ShadowAreaTrigger
+	if (attackSequence == true) 
 	{
-
-		if (currentTime > 3)
-		{
-			isAttacking = false;
-			std::cout << "Attack end\n";
-			attackSequence = false;
-		}
-		else
+		if (currentTime < 3)
 		{
 			isAttacking = true;
+			attackCoolDown = true;
+			std::cout << "Attacking\n";
+		}
+		else if (currentTime >= 3)
+		{
+			isAttacking = false;
+			std::cout << "Attack Finished\n";
+			
+		}
+
+		if (currentTime >= 5)
+		{
+			std::cout << "Attack Cooldown is done\n";
+			attackCoolDown = false;
+			attackSequence = false;
 		}
 	}
 }

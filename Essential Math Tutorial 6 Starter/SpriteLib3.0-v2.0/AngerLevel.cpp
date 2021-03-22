@@ -50,7 +50,6 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<HorizontalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
 		ECS::GetComponent<VerticalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
 	}
-
 	//main player entity 
 	{
 		auto entity = ECS::CreateEntity();
@@ -67,14 +66,6 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PlayerMechanics>(entity);
 		ECS::AttachComponent<CoolDown>(entity); //denial exclusive?
 		ECS::AttachComponent<BossLevel>(entity); //denial exclusive
-		//ECS::AttachComponent<CanJump>(entity);
-		//ECS::AttachComponent<AttackMechanic>(entity);//to remove
-		//ECS::AttachComponent<Health>(entity);//to remove
-		
-		//ECS::AttachComponent<KnockBack>(entity);//to remove
-		
-		//ECS::AttachComponent<ShadowSense>(entity);//to remove
-		//ECS::AttachComponent<ShadowTime>(entity);//to remove
 		
 		
 
@@ -99,8 +90,8 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_dynamicBody;
 
-		tempDef.position.Set(float32(0), float32(80.f)); //beginning
-		//tempDef.position.Set(float32(3216.f), float32(80.f)); //boss platform
+		//tempDef.position.Set(float32(0), float32(80.f)); //beginning
+		tempDef.position.Set(float32(3216.f), float32(80.f)); //boss platform
 		//tempDef.position.Set(float32(700), float32(80.f)); //bridge
 		//tempDef.position.Set(float32(1006), float32(80.f)); //spike
 		//tempDef.position.Set(float32(2456), float32(120.f)); //beginning of crumbling platforms
@@ -116,8 +107,6 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
  
 		tempPhsBody.SetGravityScale(0.75f);
 	}
-
-
 	//Set up shield
 	{
 		//Creates entity
@@ -143,8 +132,6 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Kinematics>(entity).SetOffset(0.f, 0.f);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 	}
- 
-
 	//platform A
 	{
 		//Creates entity 
@@ -252,8 +239,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
-	}
- 
+	} 
 	//Platform D 
 	{
 		//Creates entity
@@ -366,7 +352,6 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 		tempPhsBody.GetBody()->SetActive(false);
 	}
-
 	//Platform E
 	{
 		//Creates entity
@@ -434,8 +419,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
-	}
- 
+	} 
 	//Platform M 
 	{
 		//Creates entity
@@ -1016,7 +1000,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		//Sets up components
 
 		std::string fileName = "dwaynethedarkerrockfloor.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 96, 16);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 80, 8);
 
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -1269,7 +1253,6 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
-
 	//Ending Door
 	{
 		//Creates entity
@@ -1305,9 +1288,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	}
- 
-	
+	}	
 	//Shadow 1
 	{
 		//Creates entity
@@ -1349,7 +1330,6 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
-
 	//Shadow 2
 	{
 		//Creates entity
@@ -1390,7 +1370,6 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
-
 	//Shadow 3
 	{
 		//Creates entity
@@ -1428,7 +1407,6 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
-
 	//Shadow 4
 	{
 		//Creates entity
@@ -1466,7 +1444,6 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
-
 	//Shadow 5
 	{
 		//Creates entity
@@ -1504,7 +1481,6 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
-
 	//Shadow 6
 	{
 		//Creates entity
@@ -1541,7 +1517,6 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
-
 	//Shadow 7(Final Boss)
 	{
 		//Creates entity
@@ -1576,7 +1551,6 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 	}
-
 	//Final Boss Area Trigger
 	{
 		//Creates entity
@@ -1614,7 +1588,6 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
-
 	//Trap/Spikes
 	{
 		//Creates entity
@@ -1732,7 +1705,6 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 		bossCoord += 48;
 	}
-	
 	//Boss Platform 1
 	{
 		//Creates entity
@@ -2476,24 +2448,12 @@ void AngerLevel::Update()
 {
 	
 	auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
- 
-	allShadowsDefeated = true;
-	for (int i = 0; i < 6; i++)
-	{
-		if (ECS::GetComponent<ShadowLoop>(shadows[i]).isShadowAlive == true)
-		{
-			allShadowsDefeated = false;
-		}
-	}
 	auto& playerSprite = ECS::GetComponent<Sprite>(MainEntities::MainPlayer());
 	auto& thePlayer = ECS::GetComponent<Player>(MainEntities::MainPlayer());
 	auto& playerShield = ECS::GetComponent<Kinematics>(shield);
 	auto& shieldThing = ECS::GetComponent<ShieldMechanic>(shield);
-	//auto& isKnocked = ECS::GetComponent<KnockBack>(player);
-	//auto& attackComponent = ECS::GetComponent<AttackMechanic>(player);
 	auto& theCoolDown = ECS::GetComponent<CoolDown>(MainEntities::MainPlayer());
 	auto& angerBoss = ECS::GetComponent<BossLevel>(MainEntities::MainPlayer());
-	//auto& shadowThing2 = ECS::GetComponent<ShadowTime>(MainEntities::MainPlayer());
 	auto& bossSprite = ECS::GetComponent<Sprite>(boss);
 	auto& bossBody = ECS::GetComponent<PhysicsBody>(boss);
 	auto& kinTrig = ECS::GetComponent<Kinematics>(kinTrigger);
@@ -2524,21 +2484,13 @@ void AngerLevel::Update()
 			ECS::GetComponent<Sprite>(shadows[i]).SetTransparency(0.f);
 		}
 	}
-	
-	/*if (attackComponent.isAttacking == true)
-	{
-		playerSprite.LoadSprite(attackPose, 20, 20);
-	}
-	else if (attackComponent.isAttacking == false)
-	{
-		playerSprite.LoadSprite(defaultPose, 20, 20);
-	}*/
+
 	theCoolDown.GlobalCoolDown();
 	angerBoss.CheckBossStatus();
 	playerMech.RunShadowTime();
 	if (angerBoss.GetBossDefeated() == false)
 	{
-		//AngerLevel::ActivateShadow();
+		AngerLevel::ActivateShadow();
 	}
 	else
 	{
@@ -2550,8 +2502,8 @@ void AngerLevel::Update()
 	AngerLevel::MovePlatform();
 	AngerLevel::PlayerDeath();
 
-	//win condition
-	if (angerBoss.GetBossDefeated() == true && allShadowsDefeated == true)
+	//win condition(kill boss to open platform)
+	if (angerBoss.GetBossDefeated() == true)
 	{
 		if (bossWallDestroyed == false)
 		{
@@ -2583,9 +2535,7 @@ void AngerLevel::Update()
 	{
 		ECS::GetComponent<Kinematics>(uiElements[i]).UpdateUI();
 	}
-	AngerLevel::UpdateUI();
-	
- 
+	AngerLevel::UpdateUI(); 
 }
 
 void AngerLevel::KeyboardHold()
@@ -2785,24 +2735,6 @@ void AngerLevel::MovePlatform()
 
 	static bool vertSwitch = false;
 
-	//if (vert.GetPosition().y <= 408)
-	//{
-	//	vertSwitch = false;
-	//}
-	//if (vert.GetPosition().y >= 808)
-	//{
-	//	vertSwitch = true;
-	//}
-
-	//if (vertSwitch == false)
-	//{
-	//	vert.SetPosition(b2Vec2(vert.GetPosition().x, vert.GetPosition().y + 0.5));
-	//}
-	//else
-	//{
-	//	vert.SetPosition(b2Vec2(vert.GetPosition().x, vert.GetPosition().y - 0.5));
-	//}
-
 	if (platX > 3170)
 	{
 		switchDir = true;
@@ -2904,13 +2836,25 @@ void AngerLevel::UpdateUI()
 		ECS::GetComponent<Sprite>(shieldUI).SetTransparency(1.f);
 	}
 
-	if (playerMech.GetAttackSequence() == true) 
+	if (playerMech.GetAttackSequence() == false) //ability is available
 	{ 
 		ECS::GetComponent<Sprite>(attackUI).LoadSprite(punchOff, 30, 30);
+		ECS::GetComponent<Sprite>(attackUI).SetTransparency(1.f);
 	}
-	else if (playerMech.GetAttackSequence() == false && gameCoolDown.isCoolDownActive == false)
+	else if (playerMech.GetAttackSequence() == true) 
 	{
-		ECS::GetComponent<Sprite>(attackUI).LoadSprite(punchOn, 30, 30);
+		if (playerMech.GetAttacking() == true && playerMech.GetAttackCoolDown() == true)
+		{
+			ECS::GetComponent<Sprite>(attackUI).LoadSprite(punchOn, 30, 30);
+		}
+		else if (playerMech.GetAttacking() == false && playerMech.GetAttackCoolDown() == true)
+		{
+			ECS::GetComponent<Sprite>(attackUI).SetTransparency(0.f);
+		}		
+	}
+	else if (playerMech.GetAttacking() == false && playerMech.GetAttackCoolDown() == true) //ability has been used and now the ability's cooldown is active
+	{
+		ECS::GetComponent<Sprite>(attackUI).SetTransparency(0.f);
 	}
 
 	if (playerMech.GetHealth() == 2) { ECS::GetComponent<Sprite>(hearts[2]).SetTransparency(0.f); }

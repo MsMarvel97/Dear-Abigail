@@ -26,6 +26,8 @@ public:
 	
 	bool GetAttacking() { return isAttacking; };
 
+	bool GetAttackCoolDown() { return attackCoolDown; };
+
 
 	//Knockback mechanic
 	void RunKnockBackTime();
@@ -69,6 +71,7 @@ protected:
 	bool inRange = false;
 	int shadow = 0;
 	bool attackSequence = false;
+	bool attackCoolDown = false;
 
 	//vars for knockback
 	float knockbackStart = 0.f;

@@ -88,9 +88,9 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_dynamicBody;
-		//tempDef.position.Set(float32(-450.f), float32(30.f));
+		tempDef.position.Set(float32(-450.f), float32(30.f));
 		//tempDef.position.Set(float32(744.5), float32(187.5));
-		tempDef.position.Set(float32(1550), float32(447));
+		//tempDef.position.Set(float32(1550), float32(447));
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
 		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX), float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, PLAYER, ENEMY | OBJECTS | PICKUP | TRIGGER | SNAIL, 0.f, 1.f);
@@ -104,38 +104,39 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 	// STATIC PLATFORMS \\
 
-	//Platform A (bottom 0-30)
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+	Scene::SpawnPlatform(-20.f, 8.f, 1000.f, 16.f, "platformA.png", 0.f);
+	////Platform A (bottom 0-30)
+	//{
+	//	//Creates entity
+	//	auto entity = ECS::CreateEntity();
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+	//	//Add components
+	//	ECS::AttachComponent<Sprite>(entity);
+	//	ECS::AttachComponent<Transform>(entity);
+	//	ECS::AttachComponent<PhysicsBody>(entity);
 
-		//Sets up components
-		std::string fileName = "platformA.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 1000, 16);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+	//	//Sets up components
+	//	std::string fileName = "platformA.png";
+	//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 1000, 16);
+	//	ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
+	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+	//	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(-20), float32(8.f));
+	//	float shrinkX = 0.f;
+	//	float shrinkY = 0.f;
+	//	b2Body* tempBody;
+	//	b2BodyDef tempDef;
+	//	tempDef.type = b2_staticBody;
+	//	tempDef.position.Set(float32(-20), float32(8.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	}
+	//	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+	//		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	//}
 
 	//Platform A2
 	{
@@ -2097,25 +2098,12 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 	}
 
 
-	Scene::SpawnTile(-640.f, -176.f, "backgrounds/denial0-0.png");
+
 
 	// STATIC BACKGROUND TILES \\
 	
 	{		// TILE -2-0
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/denial0-0.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(-640.f, -176.f, 1.f));
-		//}
-
+			Scene::SpawnTile(-640.f, -176.f, "backgrounds/denial0-0.png");
 
 		// TILE -1-0
 		{

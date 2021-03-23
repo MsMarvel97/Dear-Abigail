@@ -240,7 +240,39 @@ void Scene::SpawnTile(float xPos, float yPos, std::string sprite, float width, f
 
 	//Sets up components
 	ECS::GetComponent<Sprite>(entity).LoadSprite(sprite, width, height);
-	ECS::GetComponent<Transform>(entity).SetPosition(vec3(-xPos, -yPos, 1.f));
+	ECS::GetComponent<Transform>(entity).SetPosition(vec3(xPos, yPos, 1.f));
+}
+
+void Scene::SpawnPlatform(float xPos, float yPos, float width, float height, std::string sprite, float transparency)
+{
+	//Creates entity
+	auto entity = ECS::CreateEntity();
+
+	//Add components
+	ECS::AttachComponent<Sprite>(entity);
+	ECS::AttachComponent<Transform>(entity);
+	ECS::AttachComponent<PhysicsBody>(entity);
+
+	//Sets up components
+	ECS::GetComponent<Sprite>(entity).LoadSprite(sprite, width, height);
+	ECS::GetComponent<Sprite>(entity).SetTransparency(transparency);
+	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+
+	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+	float shrinkX = 0.f;
+	float shrinkY = 0.f;
+	b2Body* tempBody;
+	b2BodyDef tempDef;
+	tempDef.type = b2_staticBody;
+	tempDef.position.Set(float32(xPos), float32(yPos));
+
+	tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 }
 
 

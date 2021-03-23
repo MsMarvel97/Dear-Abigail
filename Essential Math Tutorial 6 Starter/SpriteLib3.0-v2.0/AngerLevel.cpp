@@ -1011,7 +1011,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		float shrinkY = 0.f;
 		b2Body* tempBody;
 		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
+		tempDef.type = b2_kinematicBody;
 
 		tempDef.position.Set(3056,88); //(3056,88)
 
@@ -2748,7 +2748,8 @@ void AngerLevel::MovePlatform()
 	if (switchDir == false)
 	{
 		platX += 0.5;
-		plat.SetPosition(b2Vec2(platX, platY));
+		//plat.SetPosition(b2Vec2(platX, platY));
+		plat.SetVelocity(vec3(30.f, 0.f, 0.f));
 		moveTrig.SetRight(true);
 		moveTrig.SetLeft(false);
 
@@ -2766,7 +2767,8 @@ void AngerLevel::MovePlatform()
 	else if (switchDir == true)
 	{
 		platX -= 0.5;
-		plat.SetPosition(b2Vec2(platX, platY));
+		//plat.SetPosition(b2Vec2(platX, platY));
+		plat.SetVelocity(vec3(-30.f, 0.f, 0.f));
 		moveTrig.SetLeft(true);
 		moveTrig.SetRight(false);
 	}

@@ -2096,9 +2096,6 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetGravityScale(0.f);
 	}
 
-
-	Scene::SpawnTile(-640.f, -176.f, "backgrounds/denial0-0.png");
-
 	// STATIC BACKGROUND TILES \\
 	
 	{		// TILE -2-0

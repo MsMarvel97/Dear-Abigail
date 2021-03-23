@@ -89,8 +89,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_dynamicBody;
 		//tempDef.position.Set(float32(-450.f), float32(30.f));
-		tempDef.position.Set(float32(744.5), float32(187.5));
-		//tempDef.position.Set(float32(1550), float32(447));
+		//tempDef.position.Set(float32(744.5), float32(187.5));
+		tempDef.position.Set(float32(1550), float32(447));
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
 		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX), float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, PLAYER, ENEMY | OBJECTS | PICKUP | TRIGGER | SNAIL, 0.f, 1.f);
@@ -1360,221 +1360,154 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
-	////Platform M8 (moving platform) *currently in lowest position of path*
-	//{
-	//	//Creates entity
-	//	auto entity = ECS::CreateEntity();
-	//	vertMovingPlat = entity;
+	//Platform M8 (moving platform) *currently in lowest position of path*
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		vertMovingPlat = entity;
 
-	//	//Add components
-	//	ECS::AttachComponent<Sprite>(entity);
-	//	ECS::AttachComponent<Transform>(entity);
-	//	ECS::AttachComponent<PhysicsBody>(entity);
-	//	ECS::AttachComponent<MovingPlatform>(entity);
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<MovingPlatform>(entity);
 
-	//	//Sets up components
-	//	std::string fileName = "platform.png";
-	//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 96, 16);
-	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		//Sets up components
+		std::string fileName = "movingplatform.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 96, 16);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-	//	ECS::GetComponent<MovingPlatform>(entity).SetMovementBoundaries(408.f, 588.f);
+		ECS::GetComponent<MovingPlatform>(entity).SetMovementBoundaries(408.f, 588.f);
 
-	//	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-	//	float shrinkX = 0.f;
-	//	float shrinkY = 0.f;
-	//	b2Body* tempBody;
-	//	b2BodyDef tempDef;
-	//	tempDef.type = b2_staticBody;
-	//	tempDef.position.Set(float32(1504.f), float32(408.f));
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_kinematicBody;
+		tempDef.position.Set(float32(1504.f), float32(408.f));
 
-	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-	//	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-	//		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
-	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	//}
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	}
 
-	////Trigger M8 (moving trigger)
-	//{
-	//	//Creates entity
-	//	auto entity = ECS::CreateEntity();
-	//	vertPlatTrigger = entity;
+	//Trigger M8 (moving trigger)
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		vertPlatTrigger = entity;
 
-	//	//Add components
-	//	ECS::AttachComponent<Transform>(entity);
-	//	ECS::AttachComponent<PhysicsBody>(entity);
-	//	ECS::AttachComponent<Trigger*>(entity);
-	//	ECS::AttachComponent<Kinematics>(entity);
+		//Add components
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Trigger*>(entity);
+		ECS::AttachComponent<Kinematics>(entity);
 
-	//	//Sets up components
-	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
-	//	ECS::GetComponent<Trigger*>(entity) = new VerticalPlatformTrigger();
-	//	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-	//	ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(vertMovingPlat);
+		//Sets up components
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		ECS::GetComponent<Trigger*>(entity) = new VerticalPlatformTrigger();
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(vertMovingPlat);
 
-	//	ECS::GetComponent<Kinematics>(entity).SetParent(vertMovingPlat);
-	//	ECS::GetComponent<Kinematics>(entity).SetChild(entity);
-	//	ECS::GetComponent<Kinematics>(entity).SetOffset(0.f, 20.f);
+		ECS::GetComponent<Kinematics>(entity).SetParent(vertMovingPlat);
+		ECS::GetComponent<Kinematics>(entity).SetChild(entity);
+		ECS::GetComponent<Kinematics>(entity).SetOffset(0.f, 5.f);
 
-	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-	//	float shrinkX = 0.f;
-	//	float shrinkY = 0.f;
-	//	b2Body* tempBody;
-	//	b2BodyDef tempDef;
-	//	tempDef.type = b2_staticBody;
-	//	tempDef.position.Set(float32(1504.f), float32(428.f));
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32(1504.f), float32(428.f));
 
-	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-	//	tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
-	//		float(32 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
-	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	//}
+		tempPhsBody = PhysicsBody(entity, tempBody, float(94 - shrinkX),
+			float(8 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	}
 
-	////Platform M9 (crumbling platform)
-	//{
-	//	//Creates entity
-	//	auto entity = ECS::CreateEntity();
-	//	cPlatforms[6] = entity;
 
-	//	//Add components
-	//	ECS::AttachComponent<Sprite>(entity);
-	//	ECS::AttachComponent<Transform>(entity);
-	//	ECS::AttachComponent<PhysicsBody>(entity);
-	//	ECS::AttachComponent<CrumblingSequence>(entity);
-	//	ECS::AttachComponent<AnimationController>(entity);
+	//Creates line of crumbling platforms
+	float crumblingX = 1430.f;
 
-	//	//Sets up components
-	//	std::string fileName = "spritesheets/crumblingPlatform.png";
-	//	std::string JSONFile = "crumble.json";
+	for (int i = 0; i <= 11; i++)
+	{
+		{
+			//Creates entity
+			auto entity = ECS::CreateEntity();
+			cPlatforms[i + 6] = entity;
 
-	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+			//Add components
+			ECS::AttachComponent<Sprite>(entity);
+			ECS::AttachComponent<Transform>(entity);
+			ECS::AttachComponent<PhysicsBody>(entity);
+			ECS::AttachComponent<CrumblingSequence>(entity);
+			ECS::AttachComponent<AnimationController>(entity);
 
-	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-	//	ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 48, 32, &ECS::GetComponent<Sprite>(entity),
-	//		&ECS::GetComponent<AnimationController>(entity));
+			//Sets up components
+			std::string fileName = "spritesheets/crumblingPlatform.png";
+			std::string JSONFile = "crumble.json";
 
-	//	float shrinkX = 0.f;
-	//	float shrinkY = 0.f;
-	//	b2Body* tempBody;
-	//	b2BodyDef tempDef;
-	//	tempDef.type = b2_staticBody;
-	//	tempDef.position.Set(float32(1624.f), float32(592.f));
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
+			auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+			ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 48, 32, &ECS::GetComponent<Sprite>(entity),
+				&ECS::GetComponent<AnimationController>(entity));
 
-	//	tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
-	//		float(32 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
-	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	//}
+			float shrinkX = 0.f;
+			float shrinkY = 0.f;
+			b2Body* tempBody;
+			b2BodyDef tempDef;
+			tempDef.type = b2_staticBody;
+			tempDef.position.Set(float32(crumblingX), float32(580.5));
 
-	////Trigger M9 (crumbling trigger)
-	//{
-	//	//Creates entity
-	//	auto entity = ECS::CreateEntity();
-	//	cTriggers[6] = entity;
+			tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-	//	//Add components
-	//	ECS::AttachComponent<Transform>(entity);
-	//	ECS::AttachComponent<PhysicsBody>(entity);
-	//	ECS::AttachComponent<Trigger*>(entity);
+			tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+				float(32 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+			tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		}
+		//creates associated destroy trigger
+		{
+			//Creates entity
+			auto entity = ECS::CreateEntity();
 
-	//	//Sets up components
-	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
-	//	ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
-	//	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-	//	ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[6]);
+			//Add components
+			ECS::AttachComponent<Transform>(entity);
+			ECS::AttachComponent<PhysicsBody>(entity);
+			ECS::AttachComponent<Trigger*>(entity);
 
-	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+			//Sets up components
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+			ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
+			ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+			ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[i + 6]);
 
-	//	float shrinkX = 0.f;
-	//	float shrinkY = 0.f;
-	//	b2Body* tempBody;
-	//	b2BodyDef tempDef;
-	//	tempDef.type = b2_staticBody;
-	//	tempDef.position.Set(float32(1624.f), float32(592.f));
+			auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
+			float shrinkX = 0.f;
+			float shrinkY = 0.f;
+			b2Body* tempBody;
+			b2BodyDef tempDef;
+			tempDef.type = b2_staticBody;
+			tempDef.position.Set(float32(crumblingX), float32(580.5));
 
-	//	tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
-	//		float(32 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
-	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	//}
+			tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-	//
-
-	////Platform M10 (crumbling platform)
-	//{
-	//	//Creates entity
-	//	auto entity = ECS::CreateEntity();
-	//	cPlatforms[7] = entity;
-
-	//	//Add components
-	//	ECS::AttachComponent<Sprite>(entity);
-	//	ECS::AttachComponent<Transform>(entity);
-	//	ECS::AttachComponent<PhysicsBody>(entity);
-	//	ECS::AttachComponent<CrumblingSequence>(entity);
-	//	ECS::AttachComponent<AnimationController>(entity);
-
-	//	//Sets up components
-	//	std::string fileName = "spritesheets/crumblingPlatform.png";
-	//	std::string JSONFile = "crumble.json";
-
-	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
-
-	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-	//	ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 48, 32, &ECS::GetComponent<Sprite>(entity),
-	//		&ECS::GetComponent<AnimationController>(entity));
-
-	//	float shrinkX = 0.f;
-	//	float shrinkY = 0.f;
-	//	b2Body* tempBody;
-	//	b2BodyDef tempDef;
-	//	tempDef.type = b2_staticBody;
-	//	tempDef.position.Set(float32(1736.f), float32(592.f));
-
-	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-	//	tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
-	//		float(32 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
-	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	//}
-
-	////Trigger M10 (crumbling trigger)
-	//{
-	//	//Creates entity
-	//	auto entity = ECS::CreateEntity();
-	//	cTriggers[7] = entity;
-
-	//	//Add components
-	//	ECS::AttachComponent<Transform>(entity);
-	//	ECS::AttachComponent<PhysicsBody>(entity);
-	//	ECS::AttachComponent<Trigger*>(entity);
-
-	//	//Sets up components
-	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
-	//	ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
-	//	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-	//	ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[7]);
-
-	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-	//	float shrinkX = 0.f;
-	//	float shrinkY = 0.f;
-	//	b2Body* tempBody;
-	//	b2BodyDef tempDef;
-	//	tempDef.type = b2_staticBody;
-	//	tempDef.position.Set(float32(1736.f), float32(592));
-
-	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-	//	tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
-	//		float(32 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
-	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	//}
+			tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+				float(32 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+			tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		}
+		crumblingX -= 48;
+	}
 
 	// SHADOWS \\
 
@@ -1941,6 +1874,94 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
+	//E5 (enemy 5)
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		shadows[4] = entity;
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Trigger*>(entity);
+		ECS::AttachComponent<ShadowLoop>(entity);
+		ECS::AttachComponent<AnimationController>(entity);
+
+		//Sets up components
+		std::string fileName = "spritesheets/ShadowSpritesheet.png";
+		std::string JSONfile = "Shadow.json";
+
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+
+		ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+
+		ECS::GetComponent<ShadowLoop>(entity).InitRangedShadow(fileName, JSONfile, 32, 32, &ECS::GetComponent<Sprite>(entity),
+			&ECS::GetComponent<AnimationController>(entity));
+		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(950, 1286);
+		ECS::GetComponent<ShadowLoop>(entity).SetPatrolVelocity(b2Vec2(20.f, 0.f));
+
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_dynamicBody;
+		tempDef.position.Set(float32(1118.f), float32(670.f));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(32), float(32), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		tempPhsBody.SetGravityScale(0.f);
+	}
+
+	//Shadow area trigger 4 entity
+	{
+		auto entity = ECS::CreateEntity();
+		sZones[4] = entity;
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Trigger*>(entity);
+		ECS::AttachComponent<Kinematics>(entity);
+
+		//Sets up components
+		std::string fileName = "sandFloor.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 200, 50);
+
+		ECS::GetComponent<Trigger*>(entity) = new ShadowAreaTrigger();
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(shadows[4]);
+
+		ECS::GetComponent<Kinematics>(entity).SetChild(sZones[4]);
+		ECS::GetComponent<Kinematics>(entity).SetParent(shadows[4]);
+		ECS::GetComponent<Kinematics>(entity).SetOffset(0, -50);
+
+		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32(240.f), float32(40.f));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	}
+
 	//Bullet wall
 	{
 		//Creates entity
@@ -1999,6 +2020,72 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
 		tempDef.position.Set(float32(512.f), float32(87.f));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(16.f), float(16.f), vec2(0.f, 0.f), false, ENVIRONMENT, PLAYER | TRIGGER);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		tempPhsBody.SetGravityScale(0.f);
+	}
+
+	//Bullet wall
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		bulletWalls[2] = entity;
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+
+		//Sets up components
+		std::string fileName = "BulletNode.png";
+
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16, 16);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 3.f));
+
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32(1286.f), float32(650.f));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(16.f), float(16.f), vec2(0.f, 0.f), false, ENVIRONMENT, PLAYER | TRIGGER);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		tempPhsBody.SetGravityScale(0.f);
+	}
+
+	//Bullet wall
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		bulletWalls[3] = entity;
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+
+		//Sets up components
+		std::string fileName = "BulletNode.png";
+
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16, 16);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 3.f));
+
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32(950.f), float32(650.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -2724,8 +2811,8 @@ void DenialLevel::Update()
 	auto& sprite = ECS::GetComponent<Sprite>(MainEntities::MainPlayer());
 
 	kinTrig.UpdatePosition();
-	//ECS::GetComponent<Kinematics>(vertPlatTrigger).UpdatePosition();
-	//ECS::GetComponent<MovingPlatform>(vertMovingPlat).MovePlatform(vertMovingPlat);
+	ECS::GetComponent<Kinematics>(vertPlatTrigger).UpdatePosition();
+	ECS::GetComponent<MovingPlatform>(vertMovingPlat).MovePlatform(vertMovingPlat);
 	pMechanics.RunKnockBackTime();
 
 	//ECS::GetComponent<Kinematics>(kinTrigger).UpdatePosition();
@@ -2740,23 +2827,23 @@ void DenialLevel::Update()
 
 	fmod.Update();
 
-	for (int i = 0; i <= 5; i++)
+	for (int i = 0; i <= 17; i++)
 	{
 		ECS::GetComponent<CrumblingSequence>(cPlatforms[i]).Crumble(cPlatforms[i]);
 		CrumblingPlatforms(cPlatforms[i]);
 	}
 
-	for (int i = 0; i <= 3; i++)
+	for (int i = 0; i <= 4; i++)
 	{
 		ActivateShadow(shadows[i]);
 	}
 
-	for (int i = 0; i <= 3; i++)
+	for (int i = 0; i <= 4; i++)
 	{
 		ECS::GetComponent<Kinematics>(sZones[i]).UpdatePosition();
 	}
 
-	for (int i = 0; i <= 1; i++)
+	for (int i = 0; i <= 3; i++)
 	{
 		SpawnBullet(bulletWalls[i], 0, -13);
 	}
@@ -2949,7 +3036,7 @@ void DenialLevel::SpawnBullet(int wall, float offsetX, float offsetY)
 
 		ShootBullet(entity, 0);
 		
-		if (wall == bulletWalls[1]) //this has to be equal to the last entry in the bulletWalls array. If it isn't, any elements after this number will not spawn bullets.
+		if (wall == bulletWalls[3]) //this has to be equal to the last entry in the bulletWalls array. If it isn't, any elements after this number will not spawn bullets.
 		{
 			startTime = 0;
 		}

@@ -81,3 +81,16 @@ void PlayerMechanics::HealthLost()
 {
 		hearts--;
 }
+
+bool PlayerMechanics::GetJumping()
+{
+	bool jumping = false;
+	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
+
+	if (player.GetVelocity().y > 0.0001 || player.GetVelocity().y < -0.0001)
+	{
+		jumping = true;
+	}
+
+	return jumping;
+}

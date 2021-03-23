@@ -110,7 +110,11 @@ void MovingPlatform::MovePlatform(int entity)
 	{
 		if (platform.GetPosition().y <= maxY)
 		{
-			platform.SetPosition(b2Vec2(platform.GetPosition().x, platform.GetPosition().y + 0.3));
+			platform.SetVelocity(vec3(0.f, 20.f, 0.f));
+		}
+		else
+		{
+			platform.SetVelocity(vec3(0.f, 0.f, 0.f));
 		}
 	}
 

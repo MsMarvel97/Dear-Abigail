@@ -34,11 +34,11 @@ public:
 	int vertPlatTrigger;
 	int kinTrigger;
 	bool switchDir = false;
-	int cPlatforms[8];
+	int cPlatforms[18];
 	int cTriggers[8];
-	int shadows[4];
-	int sZones[4];
-	int bulletWalls[2];
+	int shadows[5];
+	int sZones[5];
+	int bulletWalls[4];
 	int bullet = 0;
 
 

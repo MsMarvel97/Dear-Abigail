@@ -29,3 +29,13 @@ void MovingClass::SetRight(bool newRight)
 {
     right = newRight;
 }
+
+bool MovingClass::GetUp()
+{
+    return up;
+}
+
+void MovingClass::SetUp(bool newUp)
+{
+    up = newUp;
+}

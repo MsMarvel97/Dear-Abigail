@@ -43,6 +43,12 @@ public:
 	bool GetRight() { return right; };
 	void SetRight(bool newRight) { right = newRight; };
 
+	bool GetUp() { return up; };
+	void SetUp(bool newUp) { up = newUp; };
+
+	//function to check if player is in the air
+	bool GetJumping();
+
 
 protected:
 	//vars for shielding
@@ -67,6 +73,7 @@ protected:
 	bool moving = false;
 	bool left = false;
 	bool right = false;
+	bool up = false;
 
 	//var for health
 	int hearts = 3; //player's life points

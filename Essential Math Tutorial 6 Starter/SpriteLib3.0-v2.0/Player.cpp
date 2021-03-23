@@ -89,36 +89,34 @@ void Player::MovementUpdate()
 	static float jumping = 1000000.f;
 	float platform = 0.f;
 
-	if (moving.GetMoving())
+	if (moving.GetMoving() && !moving.GetUp())
 	{
 		if (!Input::GetKey(Key::D) && !Input::GetKey(Key::A))
 		{
-			float passiveMovementOld = 950.f;
 			float passiveMovement = 32.5;
 
 			if (moving.GetLeft() == true)
 			{
 				passiveMovement *= -1;
 			}
-			//player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(passiveMovement, 0.f), true);
 			player.SetVelocity(vec3(passiveMovement, player.GetVelocity().y, 0.f));
 		}
 	}
 
-	if (Input::GetKey(Key::Shift) && player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001 && !moving.GetMoving())
+	if (Input::GetKey(Key::Shift) && !(moving.GetJumping()) && !moving.GetMoving())
 	{
-		if (sprint <= 30.f)
+		if (sprint < 15.f)
 		{
 			float sprinting = 5;
 			sprint += sprinting;
 		}
 	}
 
-	if (!Input::GetKey(Key::Shift) || !(player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001) || moving.GetMoving())
+	if (!Input::GetKey(Key::Shift) || moving.GetJumping() || moving.GetMoving())
 	{
 		if (sprint > 0.f)
 		{
-			float slowing = 20;
+			float slowing = 7.5;
 			sprint -= slowing;
 		}
 
@@ -211,21 +209,19 @@ void Player::MovementUpdate()
 		}
 	}*/
 
-	if (Input::GetKeyDown(Key::Space) && (player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001))
+	if (Input::GetKeyDown(Key::Space) && (moving.GetUp() || !moving.GetJumping()))
 	{
-		float jump = 16000;
-		float jumpCharged = 30000;
+		float jump = 50.f;
+		float jumpCharged = 80.f;
 
 		if (Input::GetKey(Key::Shift))
 		{
-			/*player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0, jumpCharged), true);*/
-			player.SetVelocity(vec3(player.GetVelocity().x, 80.f, 0.f));
+			player.SetVelocity(vec3(player.GetVelocity().x, jumpCharged, 0.f));
 		}
 
 		else
 		{
-			//player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0, jump), true);
-			player.SetVelocity(vec3(player.GetVelocity().x, 50.f, 0.f));
+			player.SetVelocity(vec3(player.GetVelocity().x, jump, 0.f));
 		}
 	}
 
@@ -240,8 +236,9 @@ void Player::AnimationUpdate()
 {
 	int activeAnimation = 0;
 	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
+	auto& pMechanics = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
 
-	if (!(player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001))
+	if (pMechanics.GetJumping() && !(pMechanics.GetUp()))
 	{
 		activeAnimation = JUMP;
 	}
@@ -260,8 +257,9 @@ void Player::AnimationUpdate()
 void Player::FrictionUpdate()
 {
 	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
+	auto& pMechanics = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
 	
-	if (player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001)
+	if (pMechanics.GetUp() || !(pMechanics.GetJumping()))
 	{
 		player.GetBody()->SetLinearDamping(5.f);
 	}

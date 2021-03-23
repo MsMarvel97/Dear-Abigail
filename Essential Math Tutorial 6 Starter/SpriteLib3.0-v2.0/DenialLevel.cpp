@@ -2097,9 +2097,12 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetGravityScale(0.f);
 	}
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> FramerateIndependenceDay
 	// STATIC BACKGROUND TILES \\
 	
 	{		// TILE -2-0

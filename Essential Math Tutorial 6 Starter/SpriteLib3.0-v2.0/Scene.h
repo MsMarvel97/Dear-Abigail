@@ -52,6 +52,16 @@ public:
 	//Set the scene registry
 	void SetScene(entt::registry& scene);
 
+	//Spawner Functions\\
+	//spawn a UI element
+	int SpawnUIElement(float xOffset, float yOffset, float width, float height, std::string sprite);
+
+	//spawn a crumbling platform
+	int SpawnCrumblingPlatform(float xPos, float yPos, float width = 48.f, float height = 32.f);
+
+	//spawn a tile
+	void SpawnTile(float xPos, float yPos, std::string sprite, float width = 256.f, float height = 256.f );
+
 	//Gets the background color of the scene
 	vec4 GetClearColor() const;
 	//Sets the background color of the scene

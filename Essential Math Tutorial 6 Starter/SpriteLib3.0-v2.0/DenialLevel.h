@@ -19,6 +19,8 @@ public:
 	void SpawnBullet(int shadow);
 	void SpawnBullet(int wall, float offsetX, float offsetY);
 
+	void BuildUI();
+
 	void ShootBullet(int bullet); //shoots bullets with an angle determined between player and origin
 	void ShootBullet(int bullet, float degrees); //shoots bullets at a fixed angle
 
@@ -26,7 +28,7 @@ public:
 
 	b2Vec2 CalculateAngle(int entityOne, int entityTwo);
 
-	int uiElements[7];
+	//int uiElements[7];
 	int shield = 0;
 	int player;
 	int movingPlat;
@@ -44,6 +46,17 @@ public:
 
 protected:
 	PhysicsPlaygroundListener listener;
+
+
+	//UI ELEMENTS\\
+	//0 = left heart
+	//1 = middle heart
+	//2 = right heart
+	//3 = shield available icon
+	//4 = shield active icon
+	int uiElements[5];
+
+
 
 	float wWidth = 0;
 	float wHeight = 0;

@@ -137,709 +137,731 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 	//Platform A2
 	{
-		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+	Scene::SpawnPlatform(-510.f, 240.f, 480.f, 16.f, "platformA.png", 0.f);
+		//{
+		//	//Creates entity
+		//	auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
-			ECS::AttachComponent<PhysicsBody>(entity);
+		//	//Add components
+		//	ECS::AttachComponent<Sprite>(entity);
+		//	ECS::AttachComponent<Transform>(entity);
+		//	ECS::AttachComponent<PhysicsBody>(entity);
 
-			//Sets up components
-			std::string fileName = "platformA.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 480, 16);
-			ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		//	//Sets up components
+		//	std::string fileName = "platformA.png";
+		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 480, 16);
+		//	ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
+		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-			auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-			auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		//	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-			float shrinkX = 0.f;
-			float shrinkY = 0.f;
-			b2Body* tempBody;
-			b2BodyDef tempDef;
-			tempDef.type = b2_staticBody;
-			tempDef.position.Set(float32(-510), float32(240.f));
+		//	float shrinkX = 0.f;
+		//	float shrinkY = 0.f;
+		//	b2Body* tempBody;
+		//	b2BodyDef tempDef;
+		//	tempDef.type = b2_staticBody;
+		//	tempDef.position.Set(float32(-510), float32(240.f));
 
-			tempBody = m_physicsWorld->CreateBody(&tempDef);
+		//	tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-			tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-				float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
-			tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-			tempPhsBody.SetRotationAngleDeg(90.f);
-		}
+		//	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		//		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		//	tempPhsBody.SetRotationAngleDeg(90.f);
+		//}
 	}
 
 	//Platform B (bottom 30-50)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+		Scene::SpawnPlatform(640.f, 8.f, 320.f, 16.f, "platformB.png", 0.f);
+		////Creates entity
+		//auto entity = ECS::CreateEntity();
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+		////Add components
+		//ECS::AttachComponent<Sprite>(entity);
+		//ECS::AttachComponent<Transform>(entity);
+		//ECS::AttachComponent<PhysicsBody>(entity);
 
-		//Sets up components
-		std::string fileName = "platformB.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 320, 16);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		////Sets up components
+		//std::string fileName = "platformB.png";
+		//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 320, 16);
+		//ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
+		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		//auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		//auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(640.f), float32(8.f));
+		//float shrinkX = 0.f;
+		//float shrinkY = 0.f;
+		//b2Body* tempBody;
+		//b2BodyDef tempDef;
+		//tempDef.type = b2_staticBody;
+		//tempDef.position.Set(float32(640.f), float32(8.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+		//tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		//	float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+		//tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
 
 	//Platform C (Wall)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+		Scene::SpawnPlatform(824.f, 80.f, 48.f, 160.f, "platformC.png", 0.f);
+		////Creates entity
+		//auto entity = ECS::CreateEntity();
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+		////Add components
+		//ECS::AttachComponent<Sprite>(entity);
+		//ECS::AttachComponent<Transform>(entity);
+		//ECS::AttachComponent<PhysicsBody>(entity);
 
-		//Sets up components
-		std::string fileName = "platformC.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 48, 160);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		////Sets up components
+		//std::string fileName = "platformC.png";
+		//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 48, 160);
+		//ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
+		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		//auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		//auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(824.f), float32(80.f));
+		//float shrinkX = 0.f;
+		//float shrinkY = 0.f;
+		//b2Body* tempBody;
+		//b2BodyDef tempDef;
+		//tempDef.type = b2_staticBody;
+		//tempDef.position.Set(float32(824.f), float32(80.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+		//tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		//	float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+		//tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
 
 	//Platform D (raised platform)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+		Scene::SpawnPlatform(736.f, 32.f, 128.f, 32.f, "platformD.png", 1.f);
+		////Creates entity
+		//auto entity = ECS::CreateEntity();
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+		////Add components
+		//ECS::AttachComponent<Sprite>(entity);
+		//ECS::AttachComponent<Transform>(entity);
+		//ECS::AttachComponent<PhysicsBody>(entity);
 
-		//Sets up components
-		std::string fileName = "platformD.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 128, 32);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		////Sets up components
+		//std::string fileName = "platformD.png";
+		//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 128, 32);
+		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		//auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		//auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(736.f), float32(32.f));
+		//float shrinkX = 0.f;
+		//float shrinkY = 0.f;
+		//b2Body* tempBody;
+		//b2BodyDef tempDef;
+		//tempDef.type = b2_staticBody;
+		//tempDef.position.Set(float32(736.f), float32(32.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+		//tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-		tempSpr.SetTransparency(0.f);
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		//	float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+		//tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		//tempSpr.SetTransparency(0.f);
 	}
 
 	//Platform E (raised platform stacked)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+		Scene::SpawnPlatform(776.f, 64.f, 48.f, 32.f, "platformE.png", 1.f);
+		////Creates entity
+		//auto entity = ECS::CreateEntity();
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+		////Add components
+		//ECS::AttachComponent<Sprite>(entity);
+		//ECS::AttachComponent<Transform>(entity);
+		//ECS::AttachComponent<PhysicsBody>(entity);
 
-		//Sets up components
-		std::string fileName = "platformE.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 48, 32);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		////Sets up components
+		//std::string fileName = "platformE.png";
+		//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 48, 32);
+		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		//auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		//auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(776.f), float32(64.f));
+		//float shrinkX = 0.f;
+		//float shrinkY = 0.f;
+		//b2Body* tempBody;
+		//b2BodyDef tempDef;
+		//tempDef.type = b2_staticBody;
+		//tempDef.position.Set(float32(776.f), float32(64.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+		//tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-		tempSpr.SetTransparency(0.f);
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		//	float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+		//tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		//tempSpr.SetTransparency(0.f);
 	}
 
 	//Platform F (floating platform)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+		Scene::SpawnPlatform(648.f, 104.f, 144.f, 16.f, "platformF.png", 1.f);
+		////Creates entity
+		//auto entity = ECS::CreateEntity();
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+		////Add components
+		//ECS::AttachComponent<Sprite>(entity);
+		//ECS::AttachComponent<Transform>(entity);
+		//ECS::AttachComponent<PhysicsBody>(entity);
 
-		//Sets up components
-		std::string fileName = "platformF.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 144, 16);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		////Sets up components
+		//std::string fileName = "platformF.png";
+		//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 144, 16);
+		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		//auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		//auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(648.f), float32(104.f));
+		//float shrinkX = 0.f;
+		//float shrinkY = 0.f;
+		//b2Body* tempBody;
+		//b2BodyDef tempDef;
+		//tempDef.type = b2_staticBody;
+		//tempDef.position.Set(float32(648.f), float32(104.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+		//tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		//	float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+		//tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
 
 	//Platform G (floating platform)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+		Scene::SpawnPlatform(512.f, 104.f, 32.f, 16.f, "platformG.png", 1.f);
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+		////Creates entity
+		//auto entity = ECS::CreateEntity();
 
-		//Sets up components
-		std::string fileName = "platformG.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 16);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		////Add components
+		//ECS::AttachComponent<Sprite>(entity);
+		//ECS::AttachComponent<Transform>(entity);
+		//ECS::AttachComponent<PhysicsBody>(entity);
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		////Sets up components
+		//std::string fileName = "platformG.png";
+		//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 16);
+		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(512.f), float32(104.f));
+		//auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		//auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+		//float shrinkX = 0.f;
+		//float shrinkY = 0.f;
+		//b2Body* tempBody;
+		//b2BodyDef tempDef;
+		//tempDef.type = b2_staticBody;
+		//tempDef.position.Set(float32(512.f), float32(104.f));
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		//tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		//	float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+		//tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
 
 	//Platform H (floating platform)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+		Scene::SpawnPlatform(440.f, 104.f, 48.f, 16.f, "platformH.png", 1.f);
+		////Creates entity
+		//auto entity = ECS::CreateEntity();
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+		////Add components
+		//ECS::AttachComponent<Sprite>(entity);
+		//ECS::AttachComponent<Transform>(entity);
+		//ECS::AttachComponent<PhysicsBody>(entity);
 
-		//Sets up components
-		std::string fileName = "platformH.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 48, 16);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		////Sets up components
+		//std::string fileName = "platformH.png";
+		//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 48, 16);
+		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		//auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		//auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(440.f), float32(104.f));
+		//float shrinkX = 0.f;
+		//float shrinkY = 0.f;
+		//b2Body* tempBody;
+		//b2BodyDef tempDef;
+		//tempDef.type = b2_staticBody;
+		//tempDef.position.Set(float32(440.f), float32(104.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+		//tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		//	float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+		//tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
 
 	//Platform I (floating platform)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+		Scene::SpawnPlatform(352.f, 104.f, 32.f, 16.f, "platformI.png", 0.f);
+		////Creates entity
+		//auto entity = ECS::CreateEntity();
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+		////Add components
+		//ECS::AttachComponent<Sprite>(entity);
+		//ECS::AttachComponent<Transform>(entity);
+		//ECS::AttachComponent<PhysicsBody>(entity);
 
-		//Sets up components
-		std::string fileName = "platformI.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 16);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		////Sets up components
+		//std::string fileName = "platformI.png";
+		//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 16);
+		//ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
+		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		//auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		//auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(352.f), float32(104.f));
+		//float shrinkX = 0.f;
+		//float shrinkY = 0.f;
+		//b2Body* tempBody;
+		//b2BodyDef tempDef;
+		//tempDef.type = b2_staticBody;
+		//tempDef.position.Set(float32(352.f), float32(104.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+		//tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		//	float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		//tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
 
 	//Platform J (floating platform)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+		Scene::SpawnPlatform(320.f, 120.f, 32.f, 48.f, "platformJ.png", 0.f);
+		////Creates entity
+		//auto entity = ECS::CreateEntity();
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+		////Add components
+		//ECS::AttachComponent<Sprite>(entity);
+		//ECS::AttachComponent<Transform>(entity);
+		//ECS::AttachComponent<PhysicsBody>(entity);
 
-		//Sets up components
-		std::string fileName = "platformJ.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 48);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		////Sets up components
+		//std::string fileName = "platformJ.png";
+		//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 48);
+		//ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
+		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		//auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		//auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(320.f), float32(120.f));
+		//float shrinkX = 0.f;
+		//float shrinkY = 0.f;
+		//b2Body* tempBody;
+		//b2BodyDef tempDef;
+		//tempDef.type = b2_staticBody;
+		//tempDef.position.Set(float32(320.f), float32(120.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+		//tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		//	float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+		//tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
 
 	//Platform K (46-76 elevated ground)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+		Scene::SpawnPlatform(976.f, 168.f, 480.f, 16.f, "platformK.png", 0.f);
+		////Creates entity
+		//auto entity = ECS::CreateEntity();
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+		////Add components
+		//ECS::AttachComponent<Sprite>(entity);
+		//ECS::AttachComponent<Transform>(entity);
+		//ECS::AttachComponent<PhysicsBody>(entity);
 
-		//Sets up components
-		std::string fileName = "platformK.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 480, 16);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		////Sets up components
+		//std::string fileName = "platformK.png";
+		//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 480, 16);
+		//ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
+		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		//auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		//auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(976.f), float32(168));
+		//float shrinkX = 0.f;
+		//float shrinkY = 0.f;
+		//b2Body* tempBody;
+		//b2BodyDef tempDef;
+		//tempDef.type = b2_staticBody;
+		//tempDef.position.Set(float32(976.f), float32(168));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+		//tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		//	float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+		//tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
 
 	//Platform L (76-90 elevated platform)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+		Scene::SpawnPlatform(1328.f, 168.f, 224.f, 16.f, "boxSprite.jpg", 0.f);
+		////Creates entity
+		//auto entity = ECS::CreateEntity();
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+		////Add components
+		//ECS::AttachComponent<Sprite>(entity);
+		//ECS::AttachComponent<Transform>(entity);
+		//ECS::AttachComponent<PhysicsBody>(entity);
 
-		//Sets up components
-		std::string fileName = "boxSprite.jpg";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 224, 16);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		////Sets up components
+		//std::string fileName = "boxSprite.jpg";
+		//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 224, 16);
+		//ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
+		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		//auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		//auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(1328), float32(168.f));
+		//float shrinkX = 0.f;
+		//float shrinkY = 0.f;
+		//b2Body* tempBody;
+		//b2BodyDef tempDef;
+		//tempDef.type = b2_staticBody;
+		//tempDef.position.Set(float32(1328), float32(168.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+		//tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		//	float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+		//tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
 
 	//Platform M (elevated wall)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+		Scene::SpawnPlatform(1464.f, 232.f, 48.f, 144.f, "boxSprite.jpg", 0.f);
+		////Creates entity
+		//auto entity = ECS::CreateEntity();
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+		////Add components
+		//ECS::AttachComponent<Sprite>(entity);
+		//ECS::AttachComponent<Transform>(entity);
+		//ECS::AttachComponent<PhysicsBody>(entity);
 
-		//Sets up components
-		std::string fileName = "boxSprite.jpg";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 48, 144);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		////Sets up components
+		//std::string fileName = "boxSprite.jpg";
+		//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 48, 144);
+		//ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
+		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		//auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		//auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(1464.f), float32(232));
+		//float shrinkX = 0.f;
+		//float shrinkY = 0.f;
+		//b2Body* tempBody;
+		//b2BodyDef tempDef;
+		//tempDef.type = b2_staticBody;
+		//tempDef.position.Set(float32(1464.f), float32(232));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+		//tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		//	float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+		//tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
 
 	//Platform N (raised platform)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+		Scene::SpawnPlatform(800.f, 192.f, 32.f,32.f, "boxSprite.jpg", 0.f);
+		////Creates entity
+		//auto entity = ECS::CreateEntity();
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+		////Add components
+		//ECS::AttachComponent<Sprite>(entity);
+		//ECS::AttachComponent<Transform>(entity);
+		//ECS::AttachComponent<PhysicsBody>(entity);
 
-		//Sets up components
-		std::string fileName = "boxSprite.jpg";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 32);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		////Sets up components
+		//std::string fileName = "boxSprite.jpg";
+		//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 32);
+		//ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
+		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		//auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		//auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(800.f), float32(192.f));
+		//float shrinkX = 0.f;
+		//float shrinkY = 0.f;
+		//b2Body* tempBody;
+		//b2BodyDef tempDef;
+		//tempDef.type = b2_staticBody;
+		//tempDef.position.Set(float32(800.f), float32(192.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+		//tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		//	float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+		//tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
 
 	//Platform O (floating platform)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+		Scene::SpawnPlatform(1032.f, 264.f, 48.f, 16.f, "platformO.png", 1.f);
+		////Creates entity
+		//auto entity = ECS::CreateEntity();
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+		////Add components
+		//ECS::AttachComponent<Sprite>(entity);
+		//ECS::AttachComponent<Transform>(entity);
+		//ECS::AttachComponent<PhysicsBody>(entity);
 
-		//Sets up components
-		std::string fileName = "platformO.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 48, 16);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		////Sets up components
+		//std::string fileName = "platformO.png";
+		//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 48, 16);
+		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		//auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		//auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(1032.f), float32(264.f));
+		//float shrinkX = 0.f;
+		//float shrinkY = 0.f;
+		//b2Body* tempBody;
+		//b2BodyDef tempDef;
+		//tempDef.type = b2_staticBody;
+		//tempDef.position.Set(float32(1032.f), float32(264.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+		//tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		//	float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+		//tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
 
 	//Platform P (79-109 highest ground platform)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+		Scene::SpawnPlatform(1504.f, 320.f, 480.f, 32.f, "boxSprite.jpg", 0.f);
+		////Creates entity
+		//auto entity = ECS::CreateEntity();
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+		////Add components
+		//ECS::AttachComponent<Sprite>(entity);
+		//ECS::AttachComponent<Transform>(entity);
+		//ECS::AttachComponent<PhysicsBody>(entity);
 
-		//Sets up components
-		std::string fileName = "boxSprite.jpg";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 480, 32);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		////Sets up components
+		//std::string fileName = "boxSprite.jpg";
+		//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 480, 32);
+		//ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
+		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		//auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		//auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(1504), float32(320.f));
+		//float shrinkX = 0.f;
+		//float shrinkY = 0.f;
+		//b2Body* tempBody;
+		//b2BodyDef tempDef;
+		//tempDef.type = b2_staticBody;
+		//tempDef.position.Set(float32(1504), float32(320.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+		//tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		//	float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+		//tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
 
 	//Platform Q (109-130 highest ground platform)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+		Scene::SpawnPlatform(1912.f, 320.f, 336.f, 32.f, "boxSprite.jpg", 0.f);
+		////Creates entity
+		//auto entity = ECS::CreateEntity();
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+		////Add components
+		//ECS::AttachComponent<Sprite>(entity);
+		//ECS::AttachComponent<Transform>(entity);
+		//ECS::AttachComponent<PhysicsBody>(entity);
 
-		//Sets up components
-		std::string fileName = "boxSprite.jpg";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 336, 32);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		////Sets up components
+		//std::string fileName = "boxSprite.jpg";
+		//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 336, 32);
+		//ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
+		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		//auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		//auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(1912.f), float32(320.f));
+		//float shrinkX = 0.f;
+		//float shrinkY = 0.f;
+		//b2Body* tempBody;
+		//b2BodyDef tempDef;
+		//tempDef.type = b2_staticBody;
+		//tempDef.position.Set(float32(1912.f), float32(320.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+		//tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		//	float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+		//tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
 
 	//Platform R (floating platform)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+		Scene::SpawnPlatform(1536.f, 360.f, 64.f, 16.f, "platformR.png", 1.f);
+		////Creates entity
+		//auto entity = ECS::CreateEntity();
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+		////Add components
+		//ECS::AttachComponent<Sprite>(entity);
+		//ECS::AttachComponent<Transform>(entity);
+		//ECS::AttachComponent<PhysicsBody>(entity);
 
-		//Sets up components
-		std::string fileName = "platformR.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 64, 16);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		////Sets up components
+		//std::string fileName = "platformR.png";
+		//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 64, 16);
+		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		//auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		//auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(1536), float32(360.f));
+		//float shrinkX = 0.f;
+		//float shrinkY = 0.f;
+		//b2Body* tempBody;
+		//b2BodyDef tempDef;
+		//tempDef.type = b2_staticBody;
+		//tempDef.position.Set(float32(1536), float32(360.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+		//tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		//	float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+		//tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
 
 	//Platform S (floating platform)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+		Scene::SpawnPlatform(1800.f, 446.f, 80.f, 16.f, "platformS.png", 1.f);
+		////Creates entity
+		//auto entity = ECS::CreateEntity();
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+		////Add components
+		//ECS::AttachComponent<Sprite>(entity);
+		//ECS::AttachComponent<Transform>(entity);
+		//ECS::AttachComponent<PhysicsBody>(entity);
 
-		//Sets up components
-		std::string fileName = "platformS.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 80, 16);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		////Sets up components
+		//std::string fileName = "platformS.png";
+		//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 80, 16);
+		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		//auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		//auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(1800.f), float32(446.f));
+		//float shrinkX = 0.f;
+		//float shrinkY = 0.f;
+		//b2Body* tempBody;
+		//b2BodyDef tempDef;
+		//tempDef.type = b2_staticBody;
+		//tempDef.position.Set(float32(1800.f), float32(446.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+		//tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		//	float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+		//tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
 
 	//Platform T (floating platform)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+		Scene::SpawnPlatform(1968.f, 456.f, 128.f, 16.f, "platformT.png", 1.f);
+		////Creates entity
+		//auto entity = ECS::CreateEntity();
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+		////Add components
+		//ECS::AttachComponent<Sprite>(entity);
+		//ECS::AttachComponent<Transform>(entity);
+		//ECS::AttachComponent<PhysicsBody>(entity);
 
-		//Sets up components
-		std::string fileName = "platformT.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 128, 16);
-		//ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		////Sets up components
+		//std::string fileName = "platformT.png";
+		//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 128, 16);
+		////ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);//double
+		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		//auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		//auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(1968), float32(456.f));
+		//float shrinkX = 0.f;
+		//float shrinkY = 0.f;
+		//b2Body* tempBody;
+		//b2BodyDef tempDef;
+		//tempDef.type = b2_staticBody;
+		//tempDef.position.Set(float32(1968), float32(456.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+		//tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		//	float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+		//tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
 
 	//Platform U (floating platform)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+		Scene::SpawnPlatform(1928.f, 616.f, 208.f, 16.f, "platformU.png", 1.f);
+		////Creates entity
+		//auto entity = ECS::CreateEntity();
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+		////Add components
+		//ECS::AttachComponent<Sprite>(entity);
+		//ECS::AttachComponent<Transform>(entity);
+		//ECS::AttachComponent<PhysicsBody>(entity);
 
-		//Sets up components
-		std::string fileName = "platformU.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 208, 16);
-		//ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+		////Sets up components
+		//std::string fileName = "platformU.png";
+		//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 208, 16);
+		////ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
+		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+		//auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		//auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(1928.f), float32(616.f));
+		//float shrinkX = 0.f;
+		//float shrinkY = 0.f;
+		//b2Body* tempBody;
+		//b2BodyDef tempDef;
+		//tempDef.type = b2_staticBody;
+		//tempDef.position.Set(float32(1928.f), float32(616.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+		//tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		//	float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+		//tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
 
@@ -848,372 +870,377 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 	//Platform M1 (moving platform 1) *currently in leftmost position*
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		movingPlat = entity;
+		Scene::SpawnPlatform(392.f, 148.f, 80.f, 8.f, "movingplatform.png", 1.f);
+	//	//Creates entity
+	//	auto entity = ECS::CreateEntity();
+	//	movingPlat = entity;
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+	//	//Add components
+	//	ECS::AttachComponent<Sprite>(entity);
+	//	ECS::AttachComponent<Transform>(entity);
+	//	ECS::AttachComponent<PhysicsBody>(entity);
 
-		//Sets up components
-		std::string fileName = "movingplatform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 80, 8);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+	//	//Sets up components
+	//	std::string fileName = "movingplatform.png";
+	//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 80, 8);
+	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+	//	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
+	//	float shrinkX = 0.f;
+	//	float shrinkY = 0.f;
+	//	b2Body* tempBody;
+	//	b2BodyDef tempDef;
 
-		//tempDef.type = b2_dynamicBody;
-		tempDef.type = b2_kinematicBody;
+	//	//tempDef.type = b2_dynamicBody;
+	//	tempDef.type = b2_kinematicBody;
 
-		float platX = 392.f;
-		float platY = 168.f;
-		tempDef.position.Set(float32(392.f), float32(148.f));
+	//	float platX = 392.f;
+	//	float platY = 168.f;
+	//	tempDef.position.Set(float32(392.f), float32(148.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-		tempPhsBody.SetFixedRotation(true);
-		tempPhsBody.SetGravityScale(0.f);
-	}
+	//	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+	//		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	//	tempPhsBody.SetFixedRotation(true);
+	//	tempPhsBody.SetGravityScale(0.f);
+	//}
 
 
-	//Trigger M1 (moving platform 1 trigger) *currently in leftmost position*
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		kinTrigger = entity;
+	////Trigger M1 (moving platform 1 trigger) *currently in leftmost position*
+	//{
+	//	//Creates entity
+	//	auto entity = ECS::CreateEntity();
+	//	kinTrigger = entity;
 
-		//Add components
-		ECS::AttachComponent<Trigger*>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<Kinematics>(entity);
+	//	//Add components
+	//	ECS::AttachComponent<Trigger*>(entity);
+	//	ECS::AttachComponent<Transform>(entity);
+	//	ECS::AttachComponent<PhysicsBody>(entity);
+	//	ECS::AttachComponent<Kinematics>(entity);
 
-		//Sets up components
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+	//	//Sets up components
+	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		ECS::GetComponent<Kinematics>(entity).SetParent(movingPlat);
-		ECS::GetComponent<Kinematics>(entity).SetChild(entity);
+	//	ECS::GetComponent<Kinematics>(entity).SetParent(movingPlat);
+	//	ECS::GetComponent<Kinematics>(entity).SetChild(entity);
 
-		ECS::GetComponent<Trigger*>(entity) = new MovingTrigger;
-		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		//ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+	//	ECS::GetComponent<Trigger*>(entity) = new MovingTrigger;
+	//	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+	//	//ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
 
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
+	//	float shrinkX = 0.f;
+	//	float shrinkY = 0.f;
 
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		//tempDef.type = b2_dynamicBody;
-		tempDef.type = b2_staticBody;
+	//	b2Body* tempBody;
+	//	b2BodyDef tempDef;
+	//	//tempDef.type = b2_dynamicBody;
+	//	tempDef.type = b2_staticBody;
 
-		tempDef.position.Set(float32(392.f), float32(148.f));
+	//	tempDef.position.Set(float32(392.f), float32(148.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 5 - shrinkX),
-			float(16 * 0.5 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	//	tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 5 - shrinkX),
+	//		float(16 * 0.5 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
 	//Platform M2 (crumbling platform)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		cPlatforms[0] = entity;
+		cPlatforms[0]= Scene::SpawnCrumblingPlatform(872.f, 224.f);
+	//	//Creates entity
+	//	auto entity = ECS::CreateEntity();
+	//	cPlatforms[0] = entity;
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<CrumblingSequence>(entity);
-		ECS::AttachComponent<AnimationController>(entity);
+	//	//Add components
+	//	ECS::AttachComponent<Sprite>(entity);
+	//	ECS::AttachComponent<Transform>(entity);
+	//	ECS::AttachComponent<PhysicsBody>(entity);
+	//	ECS::AttachComponent<CrumblingSequence>(entity);
+	//	ECS::AttachComponent<AnimationController>(entity);
 
-		//Sets up components
+	//	//Sets up components
 
-		std::string fileName = "spritesheets/crumblingPlatform.png";
-		std::string JSONFile = "crumble.json";		
+	//	std::string fileName = "spritesheets/crumblingPlatform.png";
+	//	std::string JSONFile = "crumble.json";		
 
-		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 48, 32, &ECS::GetComponent<Sprite>(entity), 
-			&ECS::GetComponent<AnimationController>(entity));
+	//	ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 48, 32, &ECS::GetComponent<Sprite>(entity), 
+	//		&ECS::GetComponent<AnimationController>(entity));
 
 
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 48, 32);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+	//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 48, 32);
+	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+	//	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(872.f), float32(224.f));
+	//	float shrinkX = 0.f;
+	//	float shrinkY = 0.f;
+	//	b2Body* tempBody;
+	//	b2BodyDef tempDef;
+	//	tempDef.type = b2_staticBody;
+	//	tempDef.position.Set(float32(872.f), float32(224.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	//	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+	//		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
-	}
+	//}
 
-	//Trigger M2 (crumbling trigger)
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		cTriggers[0] = entity;
+	////Trigger M2 (crumbling trigger)
+	//{
+	//	//Creates entity
+	//	auto entity = ECS::CreateEntity();
+	//	cTriggers[0] = entity;
 
-		//Add components
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<Trigger*>(entity);
+	//	//Add components
+	//	ECS::AttachComponent<Transform>(entity);
+	//	ECS::AttachComponent<PhysicsBody>(entity);
+	//	ECS::AttachComponent<Trigger*>(entity);
 
-		//Sets up components
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
-		ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
-		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[0]);
+	//	//Sets up components
+	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+	//	ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
+	//	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+	//	ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[0]);
 
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(872.f), float32(224.f));
+	//	float shrinkX = 0.f;
+	//	float shrinkY = 0.f;
+	//	b2Body* tempBody;
+	//	b2BodyDef tempDef;
+	//	tempDef.type = b2_staticBody;
+	//	tempDef.position.Set(float32(872.f), float32(224.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
-			float(32 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	//	tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+	//		float(32 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
 	//Platform M3 (crumbling platform)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		cPlatforms[1] = entity;
+		cPlatforms[1]= Scene::SpawnCrumblingPlatform(952.f, 240.f);
+	//	//Creates entity
+	//	auto entity = ECS::CreateEntity();
+	//	cPlatforms[1] = entity;
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<CrumblingSequence>(entity);
-		ECS::AttachComponent<AnimationController>(entity);
+	//	//Add components
+	//	ECS::AttachComponent<Sprite>(entity);
+	//	ECS::AttachComponent<Transform>(entity);
+	//	ECS::AttachComponent<PhysicsBody>(entity);
+	//	ECS::AttachComponent<CrumblingSequence>(entity);
+	//	ECS::AttachComponent<AnimationController>(entity);
 
-		//Sets up components
-		std::string fileName = "spritesheets/crumblingPlatform.png";
-		std::string JSONFile = "crumble.json";
+	//	//Sets up components
+	//	std::string fileName = "spritesheets/crumblingPlatform.png";
+	//	std::string JSONFile = "crumble.json";
 
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 48, 32, &ECS::GetComponent<Sprite>(entity),
-			&ECS::GetComponent<AnimationController>(entity));
+	//	ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 48, 32, &ECS::GetComponent<Sprite>(entity),
+	//		&ECS::GetComponent<AnimationController>(entity));
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(952.f), float32(240.f));
+	//	float shrinkX = 0.f;
+	//	float shrinkY = 0.f;
+	//	b2Body* tempBody;
+	//	b2BodyDef tempDef;
+	//	tempDef.type = b2_staticBody;
+	//	tempDef.position.Set(float32(952.f), float32(240.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
-			float(32 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	//	tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+	//		float(32 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
-	}
+	//}
 
-	//Trigger M3 (crumbling trigger)
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		cTriggers[1] = entity;
+	////Trigger M3 (crumbling trigger)
+	//{
+	//	//Creates entity
+	//	auto entity = ECS::CreateEntity();
+	//	cTriggers[1] = entity;
 
-		//Add components
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<Trigger*>(entity);
+	//	//Add components
+	//	ECS::AttachComponent<Transform>(entity);
+	//	ECS::AttachComponent<PhysicsBody>(entity);
+	//	ECS::AttachComponent<Trigger*>(entity);
 
-		//Sets up components
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
-		ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
-		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[1]);
+	//	//Sets up components
+	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+	//	ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
+	//	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+	//	ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[1]);
 
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(952.f), float32(240.f));
+	//	float shrinkX = 0.f;
+	//	float shrinkY = 0.f;
+	//	b2Body* tempBody;
+	//	b2BodyDef tempDef;
+	//	tempDef.type = b2_staticBody;
+	//	tempDef.position.Set(float32(952.f), float32(240.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
-			float(32 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	//	tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+	//		float(32 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
 	//Platform M4 (crumbling platform)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		cPlatforms[2] = entity;
+		cPlatforms[2] = Scene::SpawnCrumblingPlatform(1112.f, 272.f);
+	//	//Creates entity
+	//	auto entity = ECS::CreateEntity();
+	//	cPlatforms[2] = entity;
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<CrumblingSequence>(entity);
-		ECS::AttachComponent<AnimationController>(entity);
+	//	//Add components
+	//	ECS::AttachComponent<Sprite>(entity);
+	//	ECS::AttachComponent<Transform>(entity);
+	//	ECS::AttachComponent<PhysicsBody>(entity);
+	//	ECS::AttachComponent<CrumblingSequence>(entity);
+	//	ECS::AttachComponent<AnimationController>(entity);
 
-		//Sets up components
-		std::string fileName = "spritesheets/crumblingPlatform.png";
-		std::string JSONFile = "crumble.json";
+	//	//Sets up components
+	//	std::string fileName = "spritesheets/crumblingPlatform.png";
+	//	std::string JSONFile = "crumble.json";
 
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 48, 32, &ECS::GetComponent<Sprite>(entity),
-			&ECS::GetComponent<AnimationController>(entity));
+	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+	//	ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 48, 32, &ECS::GetComponent<Sprite>(entity),
+	//		&ECS::GetComponent<AnimationController>(entity));
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(1112.f), float32(272.f));
+	//	float shrinkX = 0.f;
+	//	float shrinkY = 0.f;
+	//	b2Body* tempBody;
+	//	b2BodyDef tempDef;
+	//	tempDef.type = b2_staticBody;
+	//	tempDef.position.Set(float32(1112.f), float32(272.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
-			float(32 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	}
+	//	tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+	//		float(32 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	//}
 
-	//Trigger M4 (crumbling trigger)
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		cTriggers[2] = entity;
+	////Trigger M4 (crumbling trigger)
+	//{
+	//	//Creates entity
+	//	auto entity = ECS::CreateEntity();
+	//	cTriggers[2] = entity;
 
-		//Add components
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<Trigger*>(entity);
+	//	//Add components
+	//	ECS::AttachComponent<Transform>(entity);
+	//	ECS::AttachComponent<PhysicsBody>(entity);
+	//	ECS::AttachComponent<Trigger*>(entity);
 
-		//Sets up components
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
-		ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
-		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[2]);
+	//	//Sets up components
+	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+	//	ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
+	//	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+	//	ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[2]);
 
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(1112.f), float32(272.f));
+	//	float shrinkX = 0.f;
+	//	float shrinkY = 0.f;
+	//	b2Body* tempBody;
+	//	b2BodyDef tempDef;
+	//	tempDef.type = b2_staticBody;
+	//	tempDef.position.Set(float32(1112.f), float32(272.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
-			float(32 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	//	tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+	//		float(32 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
 	//Platform M5 (crumbling platform)
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		cPlatforms[3] = entity;
+		cPlatforms[3] = Scene::SpawnCrumblingPlatform(1192.f, 304.f);
+	//	//Creates entity
+	//	auto entity = ECS::CreateEntity();
+	//	cPlatforms[3] = entity;
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<CrumblingSequence>(entity);
-		ECS::AttachComponent<AnimationController>(entity);
+	//	//Add components
+	//	ECS::AttachComponent<Sprite>(entity);
+	//	ECS::AttachComponent<Transform>(entity);
+	//	ECS::AttachComponent<PhysicsBody>(entity);
+	//	ECS::AttachComponent<CrumblingSequence>(entity);
+	//	ECS::AttachComponent<AnimationController>(entity);
 
-		//Sets up components
-		std::string fileName = "spritesheets/crumblingPlatform.png";
-		std::string JSONFile = "crumble.json";
+	//	//Sets up components
+	//	std::string fileName = "spritesheets/crumblingPlatform.png";
+	//	std::string JSONFile = "crumble.json";
 
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-		ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 48, 32, &ECS::GetComponent<Sprite>(entity),
-			&ECS::GetComponent<AnimationController>(entity));
+	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+	//	ECS::GetComponent<CrumblingSequence>(entity).InitPlatform(fileName, JSONFile, 48, 32, &ECS::GetComponent<Sprite>(entity),
+	//		&ECS::GetComponent<AnimationController>(entity));
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(1192.f), float32(304.f));
+	//	float shrinkX = 0.f;
+	//	float shrinkY = 0.f;
+	//	b2Body* tempBody;
+	//	b2BodyDef tempDef;
+	//	tempDef.type = b2_staticBody;
+	//	tempDef.position.Set(float32(1192.f), float32(304.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
-			float(32 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	}
+	//	tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+	//		float(32 - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	//}
 
-	//Trigger M5 (crumbling trigger)
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		cTriggers[3] = entity;
+	////Trigger M5 (crumbling trigger)
+	//{
+	//	//Creates entity
+	//	auto entity = ECS::CreateEntity();
+	//	cTriggers[3] = entity;
 
-		//Add components
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<Trigger*>(entity);
+	//	//Add components
+	//	ECS::AttachComponent<Transform>(entity);
+	//	ECS::AttachComponent<PhysicsBody>(entity);
+	//	ECS::AttachComponent<Trigger*>(entity);
 
-		//Sets up components
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
-		ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
-		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[3]);
+	//	//Sets up components
+	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+	//	ECS::GetComponent<Trigger*>(entity) = new DestroyPlatformTrigger();
+	//	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+	//	ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(cPlatforms[3]);
 
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(1192.f), float32(304.f));
+	//	float shrinkX = 0.f;
+	//	float shrinkY = 0.f;
+	//	b2Body* tempBody;
+	//	b2BodyDef tempDef;
+	//	tempDef.type = b2_staticBody;
+	//	tempDef.position.Set(float32(1192.f), float32(304.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
-			float(32 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	//	tempPhsBody = PhysicsBody(entity, tempBody, float(48 - shrinkX),
+	//		float(32 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
 	//Platform M6
@@ -1223,76 +1250,77 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 	//Platform M8 (moving platform) *currently in lowest position of path*
 	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		vertMovingPlat = entity;
+		Scene::SpawnPlatform(1504.f, 408.f, 96.f, 16.f, "movingplatform.png", 1.f);
+	//	//Creates entity
+	//	auto entity = ECS::CreateEntity();
+	//	vertMovingPlat = entity;
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<MovingPlatform>(entity);
+	//	//Add components
+	//	ECS::AttachComponent<Sprite>(entity);
+	//	ECS::AttachComponent<Transform>(entity);
+	//	ECS::AttachComponent<PhysicsBody>(entity);
+	//	ECS::AttachComponent<MovingPlatform>(entity);
 
-		//Sets up components
-		std::string fileName = "movingplatform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 96, 16);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+	//	//Sets up components
+	//	std::string fileName = "movingplatform.png";
+	//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 96, 16);
+	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		ECS::GetComponent<MovingPlatform>(entity).SetMovementBoundaries(408.f, 588.f);
+	//	ECS::GetComponent<MovingPlatform>(entity).SetMovementBoundaries(408.f, 588.f);
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+	//	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_kinematicBody;
-		tempDef.position.Set(float32(1504.f), float32(408.f));
+	//	float shrinkX = 0.f;
+	//	float shrinkY = 0.f;
+	//	b2Body* tempBody;
+	//	b2BodyDef tempDef;
+	//	tempDef.type = b2_kinematicBody;
+	//	tempDef.position.Set(float32(1504.f), float32(408.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	}
+	//	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+	//		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	//}
 
-	//Trigger M8 (moving trigger)
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		vertPlatTrigger = entity;
+	////Trigger M8 (moving trigger)
+	//{
+	//	//Creates entity
+	//	auto entity = ECS::CreateEntity();
+	//	vertPlatTrigger = entity;
 
-		//Add components
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<Trigger*>(entity);
-		ECS::AttachComponent<Kinematics>(entity);
+	//	//Add components
+	//	ECS::AttachComponent<Transform>(entity);
+	//	ECS::AttachComponent<PhysicsBody>(entity);
+	//	ECS::AttachComponent<Trigger*>(entity);
+	//	ECS::AttachComponent<Kinematics>(entity);
 
-		//Sets up components
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
-		ECS::GetComponent<Trigger*>(entity) = new VerticalPlatformTrigger();
-		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(vertMovingPlat);
+	//	//Sets up components
+	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+	//	ECS::GetComponent<Trigger*>(entity) = new VerticalPlatformTrigger();
+	//	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+	//	ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(vertMovingPlat);
 
-		ECS::GetComponent<Kinematics>(entity).SetParent(vertMovingPlat);
-		ECS::GetComponent<Kinematics>(entity).SetChild(entity);
-		ECS::GetComponent<Kinematics>(entity).SetOffset(0.f, 5.f);
+	//	ECS::GetComponent<Kinematics>(entity).SetParent(vertMovingPlat);
+	//	ECS::GetComponent<Kinematics>(entity).SetChild(entity);
+	//	ECS::GetComponent<Kinematics>(entity).SetOffset(0.f, 5.f);
 
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(1504.f), float32(428.f));
+	//	float shrinkX = 0.f;
+	//	float shrinkY = 0.f;
+	//	b2Body* tempBody;
+	//	b2BodyDef tempDef;
+	//	tempDef.type = b2_staticBody;
+	//	tempDef.position.Set(float32(1504.f), float32(428.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(94 - shrinkX),
-			float(8 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	//	tempPhsBody = PhysicsBody(entity, tempBody, float(94 - shrinkX),
+	//		float(8 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
 
@@ -1912,677 +1940,722 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 		// TILE 0-0
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(-128.f, -176.f, "backgrounds/denial0-0.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial0-0.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(-128.f, -176.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial0-0.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(-128.f, -176.f, 1.f));
 		}
 
 		// TILE 1-0
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(128.f, -176.f, "backgrounds/denial1-0.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial1-0.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(128.f, -176.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial1-0.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(128.f, -176.f, 1.f));
 		}
 
 		// TILE 2-0
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(384.f, -176.f, "backgrounds/denial2-0.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial2-0.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(384.f, -176.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial2-0.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(384.f, -176.f, 1.f));
 		}
 
 		// TILE 3-0
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(640.f, -176.f, "backgrounds/denial3-0.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial3-0.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(640.f, -176.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial3-0.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(640.f, -176.f, 1.f));
 		}
 
 		// TILE 4-0
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(896.f, -176.f, "backgrounds/denial4-0.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial4-0.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(896, -176.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial4-0.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(896, -176.f, 1.f));
 		}
 
 		// TILE 5-0
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(1152.f, -176.f, "backgrounds/denial5-0.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial5-0.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1152.f, -176.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial5-0.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(1152.f, -176.f, 1.f));
 		}
 
 		// TILE 6-0
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(1408, -176.f, "backgrounds/denial6-0.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial6-0.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1408.f, -176.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial6-0.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(1408.f, -176.f, 1.f));
 		}
 
 		// TILE 7-0
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(1664.f, -176.f, "backgrounds/denial7-0.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial7-0.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1664.f, -176.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial7-0.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(1664.f, -176.f, 1.f));
 		}
 
 		//TILE -2-1
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(-640.f, 80.f, "backgrounds/denial-2-1.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial-2-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(-640, 80.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial-2-1.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(-640, 80.f, 1.f));
 		}
 
 		//TILE -1-1
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(-384.f, 80.f, "backgrounds/denial-1-1.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial-1-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(-384, 80.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial-1-1.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(-384, 80.f, 1.f));
 		}
 
 		// TILE 0-1
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(-128.f, 80.f, "backgrounds/denial0-1.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial0-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(-128, 80.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial0-1.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(-128, 80.f, 1.f));
 		}
 
 		// TILE 1-1
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(128.f, 80.f, "backgrounds/denial1-1.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial1-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(128.f, 80.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial1-1.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(128.f, 80.f, 1.f));
 		}
 
 		// TILE 2-1
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(384.f, 80.f, "backgrounds/denial2-1.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial2-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(384.f, 80.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial2-1.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(384.f, 80.f, 1.f));
 		}
 
 		// TILE 3-1
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(640.f, 80.f, "backgrounds/denial3-1.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial3-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(640.f, 80.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial3-1.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(640.f, 80.f, 1.f));
 		}
 
 		// TILE 4-1
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(896.f, 80.f, "backgrounds/denial4-1.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial4-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256,256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(896.f, 80.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial4-1.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256,256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(896.f, 80.f, 1.f));
 		}
 
 		// TILE 5-1
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(1152.f, 80.f, "backgrounds/denial5-1.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial5-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1152.f, 80.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial5-1.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(1152.f, 80.f, 1.f));
 		}
 
 		// TILE 6-1
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(1408.f, 80.f, "backgrounds/denial6-1.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial6-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1408.f, 80.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial6-1.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(1408.f, 80.f, 1.f));
 		}
 
 		// TILE 7-1
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(1664.f, 80.f, "backgrounds/denial7-1.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial7-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1664.f, 80.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial7-1.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(1664.f, 80.f, 1.f));
 		}
 
 		// TILE 8-1
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(1920.f, 80.f, "backgrounds/denial8-1.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial8-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1920.f, 80.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial8-1.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(1920.f, 80.f, 1.f));
 		}
 
 		// TILE 9-1
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(2176.f, 80.f, "backgrounds/denial9-1.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial9-1.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(2176.f, 80.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial9-1.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(2176.f, 80.f, 1.f));
 		}
 
 		// TILE 0-2
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(-128.f, 336.f, "backgrounds/denial0-2.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial0-2.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(-128.f, 336.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial0-2.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(-128.f, 336.f, 1.f));
 		}
 
 		// TILE 1-2
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(128.f, 336.f, "backgrounds/denial1-2.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial1-2.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(128.f, 336.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial1-2.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(128.f, 336.f, 1.f));
 		}
 
 		// TILE 2-2
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(384.f, 336.f, "backgrounds/denial2-2.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial2-2.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(384.f, 336.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial2-2.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(384.f, 336.f, 1.f));
 		}
 
 		// TILE 3-2
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(640.f, 336.f, "backgrounds/denial3-2.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial3-2.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(640.f, 336.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial3-2.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(640.f, 336.f, 1.f));
 		}
 
 		// TILE 4-2
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(896.f, 336.f, "backgrounds/denial4-2.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial4-2.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(896.f, 336.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial4-2.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(896.f, 336.f, 1.f));
 		}
 
 		// TILE 5-2
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(1152.f, 336.f, "backgrounds/denial5-2.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial5-2.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1152.f, 336, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial5-2.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(1152.f, 336, 1.f));
 		}
 
 		// TILE 6-2
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(1408.f, 336.f, "backgrounds/denial6-2.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial6-2.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1408.f, 336.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial6-2.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(1408.f, 336.f, 1.f));
 		}
 
 		// TILE 7-2
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(1664.f, 336.f, "backgrounds/denial7-2.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial7-2.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1664.f, 336.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial7-2.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(1664.f, 336.f, 1.f));
 		}
 
 		// TILE 8-2
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(1920.f, 336.f, "backgrounds/denial8-2.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial8-2.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1920.f, 336.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial8-2.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(1920.f, 336.f, 1.f));
 		}
 
 		// TILE 9-2
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(2176.f, 336.f, "backgrounds/denial9-2.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial9-2.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(2176.f, 336, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial9-2.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(2176.f, 336, 1.f));
 		}
 
 		// TILE 0-2
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(-128.f, 592.f, "backgrounds/denial0-3.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial0-3.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(-128.f, 592.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial0-3.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(-128.f, 592.f, 1.f));
 		}
 
 		// TILE 1-2
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(128.f, 592.f, "backgrounds/denial1-3.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial1-3.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(128.f, 592.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial1-3.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(128.f, 592.f, 1.f));
 		}
 
 		// TILE 2-2
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(384.f, 592.f, "backgrounds/denial2-3.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial2-3.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(384.f, 592.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial2-3.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(384.f, 592.f, 1.f));
 		}
 
 		// TILE 3-2
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(640.f, 592.f, "backgrounds/denial3-3.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial3-3.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(640.f, 592.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial3-3.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(640.f, 592.f, 1.f));
 		}
 
 		// TILE 4-2
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(896.f, 592.f, "backgrounds/denial4-3.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial4-3.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(896.f, 592.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial4-3.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(896.f, 592.f, 1.f));
 		}
 
 		// TILE 5-3
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(1152.f, 592.f, "backgrounds/denial5-3.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial5-3.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1152.f, 592.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial5-3.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(1152.f, 592.f, 1.f));
 		}
 
 		// TILE 6-3
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(1408.f, 592.f, "backgrounds/denial6-3.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial6-3.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1408.f, 592.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial6-3.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(1408.f, 592.f, 1.f));
 		}
 
 		// TILE 7-3
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(1664.f, 592.f, "backgrounds/denial7-3.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial7-3.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1664.f, 592.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial7-3.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(1664.f, 592.f, 1.f));
 		}
 
 		// TILE 8-3
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(1920.f, 592.f, "backgrounds/denial0-3.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial8-3.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1920.f, 592.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial8-3.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(1920.f, 592.f, 1.f));
 		}
 
 		// TILE 9-3
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(2176.f, 592.f, "backgrounds/denial9-3.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial9-3.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(2176.f, 592.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial9-3.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(2176.f, 592.f, 1.f));
 		}
 
 		// TILE 5-4
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(1152.f, 848.f, "backgrounds/denial5-4.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial5-4.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1152.f, 848.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial5-4.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(1152.f, 848.f, 1.f));
 		}
 
 		// TILE 6-4
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(1408.f, 848.f, "backgrounds/denial6-4.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial6-4.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1408.f, 848.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial6-4.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(1408.f, 848.f, 1.f));
 		}
 
 		// TILE 7-4
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(1664.f, 848.f, "backgrounds/denial7-4.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial7-4.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1664.f, 848.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial7-4.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(1664.f, 848.f, 1.f));
 		}
 
 		// TILE 8-4
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(1920.f, 848.f, "backgrounds/denial8-4.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial8-4.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(1920.f, 848.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial8-4.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(1920.f, 848.f, 1.f));
 		}
 
 		// TILE 9-4
 		{
-			//Creates entity
-			auto entity = ECS::CreateEntity();
+			Scene::SpawnTile(2176.f, 848.f, "backgrounds/denial9-4.png");
+			////Creates entity
+			//auto entity = ECS::CreateEntity();
 
-			//Add components
-			ECS::AttachComponent<Sprite>(entity);
-			ECS::AttachComponent<Transform>(entity);
+			////Add components
+			//ECS::AttachComponent<Sprite>(entity);
+			//ECS::AttachComponent<Transform>(entity);
 
-			//Sets up components
-			std::string fileName = "backgrounds/denial9-4.png";
-			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
-			ECS::GetComponent<Transform>(entity).SetPosition(vec3(2176.f, 848.f, 1.f));
+			////Sets up components
+			//std::string fileName = "backgrounds/denial9-4.png";
+			//ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 256);
+			//ECS::GetComponent<Transform>(entity).SetPosition(vec3(2176.f, 848.f, 1.f));
 		}
 	}
 

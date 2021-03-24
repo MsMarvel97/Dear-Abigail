@@ -212,7 +212,7 @@ void Player::MovementUpdate()
 	if (Input::GetKeyDown(Key::Space) && (moving.GetUp() || !moving.GetJumping()))
 	{
 		float jump = 50.f;
-		float jumpCharged = 80.f;
+		float jumpCharged = 82.f;
 
 		if (Input::GetKey(Key::Shift))
 		{

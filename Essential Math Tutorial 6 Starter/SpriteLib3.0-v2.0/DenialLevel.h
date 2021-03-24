@@ -7,6 +7,13 @@ class DenialLevel : public Scene
 public:
 	DenialLevel(std::string name);
 	void InitScene(float windowWidth, float windowHeight) override;
+
+	//functions to be called during scene initialization to build their respective scene elements
+	void SpawnPlatforms();
+	void SpawnCrumblingPlatforms();
+	void SpawnTiles();
+	void SpawnUI();
+
 	void Update() override;
 
 	void KeyboardHold() override;
@@ -19,7 +26,7 @@ public:
 	void SpawnBullet(int shadow);
 	void SpawnBullet(int wall, float offsetX, float offsetY);
 
-	void BuildUI();
+
 	void CheckUIConditions();
 
 	void ShootBullet(int bullet); //shoots bullets with an angle determined between player and origin

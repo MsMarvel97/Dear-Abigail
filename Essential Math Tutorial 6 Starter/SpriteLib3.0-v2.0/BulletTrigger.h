@@ -12,5 +12,6 @@ public:
 protected:
 	/*ToneFire::CoreSound abigailHit{ "abigailHitOne.wav", false, false, true };*/
 	bool triggered = false;
+	ToneFire::CoreSound abigailHit{ "abigailHitOne.wav", false, false, true };
 };
 

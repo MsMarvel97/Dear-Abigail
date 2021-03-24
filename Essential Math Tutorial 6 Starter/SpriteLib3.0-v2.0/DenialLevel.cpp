@@ -24,6 +24,11 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 	wWidth = windowWidth;
 	wHeight = windowHeight;
 
+	{
+		denialBGM.Play();
+		denialBGM.SetVolume(4.5f);
+	}
+
 	//Setup MainCamera Entity
 	{
 		//Creates Camera entity
@@ -45,14 +50,6 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		//Attaches the camera to vert and horiz scrolls
 		ECS::GetComponent<HorizontalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
 		ECS::GetComponent<VerticalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
-	}
-
-	//music created and looped 
-	{		
-		//BGM.Play(); 
-		//denialBGM.Play();
-
-		//denialBGM.SetVolume(4.5);
 	}
 
 	//Abigail entity
@@ -1305,6 +1302,21 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 	{
 		cPlatforms[i + 6] = Scene::SpawnCrumblingPlatform(crumblingX, 580.5);
 		crumblingX -= 48;
+	}
+
+	SpawnPlatform(845.f, 610.f, 80.f, 10.f, "platformT.png", 1.f);
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+		//Sets up components
+		std::string fileName = "CaveExit.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 20.f, 40.f);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(845.f, 635.f, 2.f));
 	}
 
 	// SHADOWS \\
@@ -2696,6 +2708,7 @@ void DenialLevel::Update()
 
 	sprite.SetTransparency(1.f);
 	MovePlatform();
+	CheckUIConditions();
 }
 
 
@@ -2709,33 +2722,12 @@ void DenialLevel::MovePlatform()
 	auto& playerBody = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
 
 	auto& plat = ECS::GetComponent<PhysicsBody>(movingPlat);
-	//auto& vert = ECS::GetComponent<PhysicsBody>(vertMovingPlat);
 
 	float platX = plat.GetPosition().x;
 	float platY = plat.GetPosition().y;
 
 	int playerX = playerBody.GetPosition().x;
 	int playerY = playerBody.GetPosition().y;
-
-	static bool vertSwitch = false;
-
-	/*if (vert.GetPosition().y <= 408)
-	{
-		vertSwitch = false;
-	}
-	if (vert.GetPosition().y >= 808)
-	{
-		vertSwitch = true;
-	}
-	
-	if (vertSwitch == false)
-	{
-		vert.SetPosition(b2Vec2(vert.GetPosition().x, vert.GetPosition().y + 0.5));
-	}
-	else
-	{
-		vert.SetPosition(b2Vec2(vert.GetPosition().x, vert.GetPosition().y - 0.5));
-	}*/
 
 	if (platX > 670)
 	{
@@ -2883,10 +2875,39 @@ void DenialLevel::BuildUI()
 	ECS::GetComponent<Sprite>(uiElements[4]).SetTransparency(0.f);
 }
 
+void DenialLevel::CheckUIConditions()
+{
+	auto& player = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
+
+	switch (player.GetHealth())
+	{
+	case 0:
+		ECS::GetComponent<Sprite>(uiElements[0]).SetTransparency(0.f);
+		break;
+	case 1:
+		ECS::GetComponent<Sprite>(uiElements[1]).SetTransparency(0.f);
+		break;
+	case 2:
+		ECS::GetComponent<Sprite>(uiElements[2]).SetTransparency(0.f);
+		break;
+	}
+
+	if (player.GetShield())
+	{
+		ECS::GetComponent<Sprite>(uiElements[3]).SetTransparency(0.f);
+		ECS::GetComponent<Sprite>(uiElements[4]).SetTransparency(1.f);
+	}
+	else
+	{
+		ECS::GetComponent<Sprite>(uiElements[3]).SetTransparency(1.f);
+		ECS::GetComponent<Sprite>(uiElements[4]).SetTransparency(0.f);
+	}
+}
+
 void DenialLevel::ShootBullet(int bullet)
 {
-	//shootBulletSound.Play();
-	//shootBulletSound.SetVolume(5.0f);
+	shootBulletSound.Play();
+	shootBulletSound.SetVolume(5.0f);
 	b2Vec2 angle = CalculateAngle(MainEntities::MainPlayer(), bullet);
 
 	float dirAngle = atan(angle.x/angle.y) * (180 / PI);

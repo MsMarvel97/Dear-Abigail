@@ -20,6 +20,7 @@ public:
 	void SpawnBullet(int wall, float offsetX, float offsetY);
 
 	void BuildUI();
+	void CheckUIConditions();
 
 	void ShootBullet(int bullet); //shoots bullets with an angle determined between player and origin
 	void ShootBullet(int bullet, float degrees); //shoots bullets at a fixed angle

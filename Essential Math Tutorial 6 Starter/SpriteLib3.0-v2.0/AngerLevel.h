@@ -9,6 +9,12 @@ public:
 
 	void InitScene(float windowWidth, float windowHeight) override;
 
+	//functions to be called during scene initialization to build their respective scene elements
+	void SpawnPlatforms();
+	void SpawnCrumblingPlatforms();
+	void SpawnTiles();
+	void SpawnUI();
+
 	void Update() override;
 
 	//Input overrides
@@ -79,5 +85,14 @@ protected:
 	int shieldUI = 0;
 	int attackUI = 0;
 	int ouchUI = 0;
-	int uiElements[6]; //[heart, heart, heart, shield, atttack, ouch]
+	//UI ELEMENTS\\
+	//0 = left heart
+	//1 = middle heart
+	//2 = right heart
+	//3 = shield available icon
+	//4 = shield active icon
+	//5 = punch available icon
+	//6 = punch active icon
+	//7 = ouch icon
+	int uiElements[7]; 
 };

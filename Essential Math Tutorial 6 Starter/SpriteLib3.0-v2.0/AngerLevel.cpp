@@ -90,8 +90,8 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_dynamicBody;
 
-		//tempDef.position.Set(float32(0), float32(80.f)); //beginning
-		tempDef.position.Set(float32(3216.f), float32(80.f)); //boss platform
+		tempDef.position.Set(float32(0), float32(80.f)); //beginning
+		//tempDef.position.Set(float32(3216.f), float32(80.f)); //boss platform
 		//tempDef.position.Set(float32(700), float32(80.f)); //bridge
 		//tempDef.position.Set(float32(1006), float32(80.f)); //spike
 		//tempDef.position.Set(float32(2456), float32(120.f)); //beginning of crumbling platforms
@@ -115,7 +115,6 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		//Add components
 		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
-		/*ECS::AttachComponent<PhysicsBody>(entity);*/
 		ECS::AttachComponent<Kinematics>(entity);
 		ECS::AttachComponent<ShieldMechanic>(entity);
 
@@ -1568,7 +1567,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
 		ECS::GetComponent<Trigger*>(entity)->SetShadowZone(1);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.5f);
+		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
@@ -2260,7 +2259,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Trigger*>(entity) = new RespawnTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
+		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
@@ -2348,7 +2347,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 	}
 	//heart 1
 	{
-		auto entity = ECS::CreateEntity();
+		/*auto entity = ECS::CreateEntity();
 		hearts[0] = entity;
 		uiElements[0] = entity;
 		ECS::AttachComponent<Sprite>(entity);
@@ -2359,11 +2358,11 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(20, 20, 4));
 		ECS::GetComponent<Kinematics>(entity).SetParent(camera);
 		ECS::GetComponent<Kinematics>(entity).SetChild(entity);
-		ECS::GetComponent<Kinematics>(entity).SetOffset(-110.f, 60.f);
+		ECS::GetComponent<Kinematics>(entity).SetOffset(-110.f, 60.f);*/
 	}
 	//heart 2
 	{
-		auto entity = ECS::CreateEntity();
+	/*	auto entity = ECS::CreateEntity();
 		hearts[1] = entity;
 		uiElements[1] = entity;
 		ECS::AttachComponent<Sprite>(entity);
@@ -2374,11 +2373,11 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(20, 20, 4));
 		ECS::GetComponent<Kinematics>(entity).SetParent(camera);
 		ECS::GetComponent<Kinematics>(entity).SetChild(entity);
-		ECS::GetComponent<Kinematics>(entity).SetOffset(-90.f, 60.f);
+		ECS::GetComponent<Kinematics>(entity).SetOffset(-90.f, 60.f);*/
 	}
 	//heart 3
 	{
-		auto entity = ECS::CreateEntity();
+		/*auto entity = ECS::CreateEntity();
 		hearts[2] = entity;
 		uiElements[2] = entity;
 		ECS::AttachComponent<Sprite>(entity);
@@ -2389,11 +2388,11 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(20, 20, 4));
 		ECS::GetComponent<Kinematics>(entity).SetParent(camera);
 		ECS::GetComponent<Kinematics>(entity).SetChild(entity);
-		ECS::GetComponent<Kinematics>(entity).SetOffset(-70.f, 60.f);
+		ECS::GetComponent<Kinematics>(entity).SetOffset(-70.f, 60.f);*/
 	}
 	//Shield UI Sprite
 	{
-		auto entity = ECS::CreateEntity();
+		/*auto entity = ECS::CreateEntity();
 		shieldUI = entity;
 		uiElements[3] = entity;
 		ECS::AttachComponent<Sprite>(entity);
@@ -2404,12 +2403,11 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(20, 20, 4));
 		ECS::GetComponent<Kinematics>(entity).SetParent(camera);
 		ECS::GetComponent<Kinematics>(entity).SetChild(entity);
-		ECS::GetComponent<Kinematics>(entity).SetOffset(80.f, -60.f);
-
+		ECS::GetComponent<Kinematics>(entity).SetOffset(80.f, -60.f);*/
 	}
 	//Attack UI Sprite
 	{
-		auto entity = ECS::CreateEntity();
+		/*auto entity = ECS::CreateEntity();
 		attackUI = entity;
 		uiElements[4] = entity;
 		ECS::AttachComponent<Sprite>(entity);
@@ -2420,11 +2418,11 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(20, 20, 4));
 		ECS::GetComponent<Kinematics>(entity).SetParent(camera);
 		ECS::GetComponent<Kinematics>(entity).SetChild(entity);
-		ECS::GetComponent<Kinematics>(entity).SetOffset(110.f, -60.f);
+		ECS::GetComponent<Kinematics>(entity).SetOffset(110.f, -60.f);*/
 	}
 	//Ouch Sprite
 	{
-		auto entity = ECS::CreateEntity();
+		/*auto entity = ECS::CreateEntity();
 		ouchUI = entity;
 		uiElements[5] = entity;
 		ECS::AttachComponent<Sprite>(entity);
@@ -2436,7 +2434,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Kinematics>(entity).SetParent(camera);
 		ECS::GetComponent<Kinematics>(entity).SetChild(ouchUI);
 		ECS::GetComponent<Kinematics>(entity).SetOffset(10, 30);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
+		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);*/
 	}
 	// STATIC BACKGROUND TILES \\
 
@@ -2695,8 +2693,39 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(((240 * 16.f) + (16 * 7)), (0.f + (16 * 5)), 1.f));
 	}
 
+	SpawnUI();
+
 	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
+}
+
+void AngerLevel::SpawnPlatforms()
+{
+}
+
+void AngerLevel::SpawnCrumblingPlatforms()
+{
+}
+
+void AngerLevel::SpawnTiles()
+{
+}
+
+void AngerLevel::SpawnUI()
+{
+	uiElements[0] = Scene::SpawnUIElement(-110.f, 65.f, 20, 20, "heart.png");
+	uiElements[1] = Scene::SpawnUIElement(-90.f, 65.f, 20, 20, "heart.png");
+	uiElements[2] = Scene::SpawnUIElement(-70.f, 65.f, 20, 20, "heart.png");
+	uiElements[3] = Scene::SpawnUIElement(80.f, -60.f, 30, 30, "shieldOff.png");
+	uiElements[4] = Scene::SpawnUIElement(110.f, -60.f, 30, 30, "punchOff.png");
+	uiElements[5] = Scene::SpawnUIElement(10.f, 30.f, 40, 20, "ouch.png");
+	for (int i = 0; i < 3; i++)
+	{
+		hearts[i] = uiElements[i];
+	}
+	shieldUI = uiElements[3];
+	attackUI = uiElements[4];
+	ouchUI = uiElements[5];
 }
 
 void AngerLevel::Update()

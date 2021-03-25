@@ -26,9 +26,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 	//Setup MainCamera Entity 
 	{
 		//Creates Camera entity 
-		auto entity = ECS::CreateEntity();
- 
- 
+		auto entity = ECS::CreateEntity(); 
 		camera = entity;
  
 		ECS::SetIsMainCamera(entity, true);
@@ -142,7 +140,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components 
-		std::string fileName = "platform.png";
+		std::string fileName = "SamplePlatform.png";
  
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 192, 16);
  
@@ -182,7 +180,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
+		std::string fileName = "SamplePlatform.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 224, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -218,7 +216,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
+		std::string fileName = "SamplePlatform.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 256, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 0.f));
 
@@ -250,7 +248,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "boxSprite.jpg";
+		std::string fileName = "SamplePlatform.jpg";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16, 240);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
@@ -277,6 +275,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetFixedRotation(true);
 		tempPhsBody.SetGravityScale(0.5f);
 	}
+
 	//Platform D_BridgeHelp_
 	{
 		//Creates entity
@@ -288,7 +287,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
+		std::string fileName = "SamplePlatform.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16, 48);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -328,7 +327,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
+		std::string fileName = "SamplePlatform.png";
  
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 8.f, 8.f);
  
@@ -362,7 +361,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
+		std::string fileName = "SamplePlatform.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 224, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 0.f));
 
@@ -394,7 +393,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
+		std::string fileName = "SamplePlatform.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 192, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -430,7 +429,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
+		std::string fileName = "SamplePlatform.png";
  
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 384, 16);
  
@@ -464,7 +463,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
+		std::string fileName = "SamplePlatform.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 64, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -500,7 +499,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
+		std::string fileName = "LargeSamplePlatform.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 192, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -532,7 +531,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
+		std::string fileName = "SamplePlatform.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 64, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -564,7 +563,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
+		std::string fileName = "SamplePlatform.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 64, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -596,7 +595,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
+		std::string fileName = "SamplePlatform.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName,64, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -628,7 +627,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
+		std::string fileName = "SamplePlatform.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 64, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -660,7 +659,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
+		std::string fileName = "SamplePlatform.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 64, 16);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
@@ -861,8 +860,9 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
 
+		ECS::GetComponent<Transform>(entity).SetPositionZ(2.f);
 		tempDef.position.Set(float32(2864.f), float32(88.f));
-
+		
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -996,7 +996,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 
-		std::string fileName = "dwaynethedarkerrockfloor.png";
+		std::string fileName = "SamplePlatform.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 80, 8);
 
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
@@ -1071,7 +1071,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 
-		std::string fileName = "platform.png";
+		std::string fileName = "SamplePlatform.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 16);
 
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
@@ -1109,7 +1109,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
  
-		std::string fileName = "platform.png";
+		std::string fileName = "SamplePlatform.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 16);
  
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
@@ -1188,7 +1188,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
+		std::string fileName = "SamplePlatform.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16, 180);
  
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
@@ -1224,7 +1224,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		//Sets up components
-		std::string fileName = "platform.png";
+		std::string fileName = "SamplePlatform.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 80, 16);
  
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));

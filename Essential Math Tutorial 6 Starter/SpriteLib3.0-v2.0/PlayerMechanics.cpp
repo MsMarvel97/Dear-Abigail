@@ -37,18 +37,14 @@ void PlayerMechanics::Attacking()
 		{
 			isAttacking = true;
 			attackCoolDown = true;
-			std::cout << "Attacking\n";
 		}
 		else if (currentTime >= 3)
 		{
 			isAttacking = false;
-			std::cout << "Attack Finished\n";
-			
 		}
 
 		if (currentTime >= 5)
 		{
-			std::cout << "Attack Cooldown is done\n";
 			attackCoolDown = false;
 			attackSequence = false;
 		}

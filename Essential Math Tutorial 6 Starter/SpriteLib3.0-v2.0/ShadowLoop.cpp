@@ -41,6 +41,40 @@ void ShadowLoop::InitRangedShadow(std::string& fileName, std::string& animationJ
 	animator->SetActiveAnim(FLOATLEFT);
 }
 
+void ShadowLoop::InitMeleeShadow(std::string& fileName, std::string& animationJSON, int width, int height, Sprite* sprite, AnimationController* controller)
+{
+	//Store references to the components
+	sprites = sprite;
+	animator = controller;
+	shadowType = RANGED;
+
+	//Initialize UVs
+	animator->InitUVs(fileName);
+
+	//Loads the texture and sets width and height
+	sprites->LoadSprite(fileName, width, height, true, animator);
+	animator->SetVAO(sprites->GetVAO());
+	animator->SetTextureSize(sprites->GetTextureSize());
+
+	//Loads in the animations json file
+	nlohmann::json animations = File::LoadJSON(animationJSON);
+
+	//PLATFORM ANIMATIONS\\
+	//
+	//Idling left
+	animator->AddAnimation(animations["IdleLeft"].get<Animation>());
+	//Idling right
+	animator->AddAnimation(animations["IdleRight"].get<Animation>());
+	//Attacking left
+	animator->AddAnimation(animations["AttackLeft"].get<Animation>());
+	//Attacking right
+	animator->AddAnimation(animations["AttackRight"].get<Animation>());
+
+	////Set Default Animation
+	animator->SetActiveAnim(IDLELEFT);
+
+}
+
 void ShadowLoop::ShadowRoutine(int entity)
 {
 	auto& shadow = ECS::GetComponent<PhysicsBody>(entity);

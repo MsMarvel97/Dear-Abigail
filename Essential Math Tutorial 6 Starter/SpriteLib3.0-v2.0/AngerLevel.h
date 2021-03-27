@@ -34,6 +34,7 @@ public:
 	void ShootBullet();
 
 	void ActivateShadow();
+	void MoveShadow(int shadow);
 
 	void MovePlatform();
 
@@ -44,6 +45,8 @@ public:
 	void UpdatePositionWithCamera(int cameraEntity, int spriteEntity, int tempOffsetX, int tempOffsetY);
 
 	void UpdateUI();
+
+	b2Vec2 CalculateAngle(int entityOne, int entityTwo);
 
 	std::string defaultPose = "testCube.png";
 	std::string attackPose = "testCube2.png";

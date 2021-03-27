@@ -63,7 +63,7 @@ public:
 	void SpawnTile(float xPos, float yPos, std::string sprite, float width = 256.f, float height = 256.f);
 
 	//spawn a platform
-	void SpawnPlatform(float xPos, float yPos, float width, float height, std::string sprite, float transparency);
+	void SpawnPlatform(float xPos, float yPos, float width, float height, std::string sprite, float transparency, float degrees = 0.f);
 
 	//Gets the background color of the scene
 	vec4 GetClearColor() const;

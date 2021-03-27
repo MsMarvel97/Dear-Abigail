@@ -242,7 +242,7 @@ void Scene::SpawnTile(float xPos, float yPos, std::string sprite, float width, f
 	ECS::GetComponent<Transform>(entity).SetPosition(vec3(xPos, yPos, 1.f));
 }
 
-void Scene::SpawnPlatform(float xPos, float yPos, float width, float height, std::string sprite, float transparency)
+void Scene::SpawnPlatform(float xPos, float yPos, float width, float height, std::string sprite, float transparency, float degrees)
 {
 	//Creates entity
 	auto entity = ECS::CreateEntity();
@@ -272,6 +272,7 @@ void Scene::SpawnPlatform(float xPos, float yPos, float width, float height, std
 	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
 		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
 	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	tempPhsBody.SetRotationAngleDeg(degrees);
 }
 
 vec4 Scene::GetClearColor() const

@@ -7,6 +7,8 @@ Window::Window(const std::string title, int windowWidth, int windowHeight, bool 
 
 	//Create the window
 	m_window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, SDL_WINDOW_OPENGL);
+	SDL_SetWindowBordered(m_window, SDL_FALSE);
+	SDL_MaximizeWindow(m_window);
 
 	//If window is NULL
 		//Give failed window creation error message

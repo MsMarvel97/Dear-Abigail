@@ -9,5 +9,6 @@
 #include "DenialLevel.h"
 #include "MovingPlatform.h"
 #include "Crumble.h"
+#include "Postcards.h"
 
 #endif // !__SCENES_H__

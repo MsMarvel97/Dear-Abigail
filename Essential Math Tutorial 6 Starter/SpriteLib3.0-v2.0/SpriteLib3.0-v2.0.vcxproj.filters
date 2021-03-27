@@ -294,6 +294,9 @@
     <ClInclude Include="PlatformMechanics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Postcards.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\imgui\imgui.cpp">
@@ -561,6 +564,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PlatformMechanics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Postcards.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -47,6 +47,13 @@ public:
 	virtual void MouseClick(SDL_MouseButtonEvent evnt) { };
 	virtual void MouseWheel(SDL_MouseWheelEvent evnt) { };
 
+	//checks conditions for scene change
+	int ChangeScene();
+	void SetSceneChange(bool next, int newScene) { swap = next; sceneSwap = newScene; };
+	int GetNewScene() {	return sceneSwap; };
+	void SetSwap(bool sceneSwap) { swap = sceneSwap; };
+
+
 	//Get the scene registry
 	entt::registry* GetScene() const;
 	//Set the scene registry
@@ -63,7 +70,7 @@ public:
 	void SpawnTile(float xPos, float yPos, std::string sprite, float width = 256.f, float height = 256.f );
 
 	//spawn a platform
-	void SpawnPlatform(float xPos, float yPos, float width, float height, std::string sprite, float transparency);
+	void SpawnPlatform(float xPos, float yPos, float width, float height, std::string sprite, float transparency = 1.f, float rotation = 0.f);
 
 	//Gets the background color of the scene
 	vec4 GetClearColor() const;
@@ -87,6 +94,9 @@ protected:
 	ToneFire::FMODCore fmod;
 	b2World* m_physicsWorld = nullptr;
 	b2Vec2 m_gravity = b2Vec2(float32(0.f), float32(0.f));
+
+	bool swap = false;
+	int sceneSwap = 0;
 
 	vec4 m_clearColor = vec4(0.15f, 0.33f, 0.58f, 1.f);
 

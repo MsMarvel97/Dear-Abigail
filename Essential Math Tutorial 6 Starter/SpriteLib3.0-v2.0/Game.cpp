@@ -40,10 +40,11 @@ void Game::InitGame()
 	//m_scenes.push_back(new AnimationSpritePlayground("Animation TIEM!!!!"));
 	m_scenes.push_back(new TutorialLevel("Tutorial"));
 	m_scenes.push_back(new DenialLevel("Denial"));
+	m_scenes.push_back(new Postcards("Reprieve"));
 	//m_scenes.push_back(new Crumble("Test"));
 	 
 	//Sets active scene reference to our scene
-	m_activeScene = m_scenes[1];
+	m_activeScene = m_scenes[2];
 
 	m_activeScene->InitScene(float(BackEnd::GetWindowWidth()), float(BackEnd::GetWindowHeight()));
 
@@ -101,6 +102,9 @@ void Game::Update()
 
 	//Updates the active scene
 	m_activeScene->Update();
+
+	//check if scene should swap
+	NewScene();
 }
 
 void Game::GUI()
@@ -132,6 +136,24 @@ void Game::CheckEvents()
 
 	if (m_wheel)
 		MouseWheel(BackEnd::GetWheelEvent());
+}
+
+void Game::NewScene()
+{
+	if (m_activeScene->ChangeScene() != -1)
+	{
+		m_activeScene->Unload();
+
+		MainEntities::ResetEntities();
+
+		m_activeScene = m_scenes[m_activeScene->GetNewScene()];
+		m_activeScene->InitScene(float(BackEnd::GetWindowWidth()), float(BackEnd::GetWindowHeight()));
+
+		m_register = m_activeScene->GetScene();
+
+		BackEnd::SetWindowName(m_activeScene->GetName());
+		PhysicsSystem::Init();
+	}
 }
 
 void Game::AcceptInput()

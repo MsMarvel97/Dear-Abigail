@@ -30,7 +30,12 @@ public:
 	//Health and shielding
 	void HealthLost(); //reduces player health by 1
 
+	void SetHealth(int heal) { hearts = heal; }; //sets health
 	int GetHealth() { return hearts; }; //checks player health
+
+	void SetCheckpoint(bool check) { checkpoint = check; };
+	bool GetCheckpoint() { return checkpoint; };
+
 
 
 	//functions for platform movement
@@ -77,5 +82,6 @@ protected:
 
 	//var for health
 	int hearts = 3; //player's life points
+	bool checkpoint = false; //checks if player is in last half of the level
 };
 

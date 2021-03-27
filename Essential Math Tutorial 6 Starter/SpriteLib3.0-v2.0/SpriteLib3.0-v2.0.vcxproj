@@ -191,6 +191,7 @@
     <ClInclude Include="PixelateEffect.h" />
     <ClInclude Include="PlatformTrigger.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Postcards.h" />
     <ClInclude Include="PostEffect.h" />
     <ClInclude Include="RecheckConditions.h" />
     <ClInclude Include="RenderingSystem.h" />
@@ -284,6 +285,7 @@
     <ClCompile Include="PixelateEffect.cpp" />
     <ClCompile Include="PlatformTrigger.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Postcards.cpp" />
     <ClCompile Include="PostEffect.cpp" />
     <ClCompile Include="RecheckConditions.cpp" />
     <ClCompile Include="RenderingSystem.cpp" />

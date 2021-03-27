@@ -23,8 +23,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 	//Sets up aspect ratio for the camera
 	float aspectRatio = windowWidth / windowHeight;
-	wWidth = windowWidth;
-	wHeight = windowHeight;
+
 	
 	//Setting up background music
 	{
@@ -88,9 +87,9 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_dynamicBody;
-		tempDef.position.Set(float32(-450.f), float32(30.f));
+		//tempDef.position.Set(float32(-450.f), float32(30.f));
 		//tempDef.position.Set(float32(744.5), float32(187.5));
-		//tempDef.position.Set(float32(1550), float32(447));
+		tempDef.position.Set(float32(1550), float32(447));
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
 		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX), float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, PLAYER, ENEMY | OBJECTS | PICKUP | TRIGGER | SNAIL, 0.f, 1.f);
@@ -102,7 +101,9 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetGravityScale(0.75);
 	}
 
-		
+	//resetting vars
+	ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).SetCheckpoint(false);
+
 	//Spawn exit
 	{
 		//Creates entity
@@ -1177,6 +1178,7 @@ void DenialLevel::Update()
 	sprite.SetTransparency(1.f);
 	MovePlatform();
 	CheckUIConditions();
+	CheckEndLevel();
 }
 //Called in each update to update the shadow loop and call bullet functions
 void DenialLevel::ActivateShadow(int shadow)
@@ -1197,15 +1199,31 @@ void DenialLevel::ActivateShadow(int shadow)
 void DenialLevel::CheckUIConditions()
 {
 	auto& player = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
+	auto& pPhysics = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
 
 	switch (player.GetHealth())
 	{
-	case 0:
-		ECS::GetComponent<Sprite>(uiElements[0]).SetTransparency(0.f);
+	case 0: //respawning the player at either start or middle depending on whether they have made it more than halfway through level
+		if (player.GetCheckpoint())
+		{
+			pPhysics.SetPosition(b2Vec2(1285.f, 347.f));
+		}
+		else
+		{
+			pPhysics.SetPosition(b2Vec2(-450.f, 30.f));
+		}
+		player.SetHealth(3);
+		
+		for (int i = 1; i <= 2; i++)
+		{
+			ECS::GetComponent<Sprite>(uiElements[i]).SetTransparency(1.f);
+		}
 		break;
-	case 1:
+
+	case 1: 
 		ECS::GetComponent<Sprite>(uiElements[1]).SetTransparency(0.f);
 		break;
+
 	case 2:
 		ECS::GetComponent<Sprite>(uiElements[2]).SetTransparency(0.f);
 		break;
@@ -1220,6 +1238,21 @@ void DenialLevel::CheckUIConditions()
 	{
 		ECS::GetComponent<Sprite>(uiElements[3]).SetTransparency(1.f);
 		ECS::GetComponent<Sprite>(uiElements[4]).SetTransparency(0.f);
+	}
+
+	if (pPhysics.GetPosition().x >= 700.f)
+	{
+		player.SetCheckpoint(true);
+	}
+
+}
+void DenialLevel::CheckEndLevel()
+{
+	auto& pPhysics = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
+	
+	if (pPhysics.GetPosition().x > 832.f && pPhysics.GetPosition().x < 854.f && pPhysics.GetPosition().y > 625 && pPhysics.GetPosition().y < 628)
+	{
+		SetSceneChange(true, 2);
 	}
 }
 //Called in each update to move platforms

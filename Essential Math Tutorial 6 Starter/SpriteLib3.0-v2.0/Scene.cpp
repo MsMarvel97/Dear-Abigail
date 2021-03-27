@@ -126,6 +126,18 @@ void Scene::CreateCameraEntity(bool mainCamera, float windowWidth, float windowH
 	}
 }
 
+int Scene::ChangeScene()
+{
+	if (swap == true)
+	{
+		return sceneSwap;
+	}
+	else
+	{
+		return -1;
+	}
+}
+
 entt::registry* Scene::GetScene() const
 {
 	return m_sceneReg;
@@ -243,7 +255,7 @@ void Scene::SpawnTile(float xPos, float yPos, std::string sprite, float width, f
 	ECS::GetComponent<Transform>(entity).SetPosition(vec3(xPos, yPos, 1.f));
 }
 
-void Scene::SpawnPlatform(float xPos, float yPos, float width, float height, std::string sprite, float transparency)
+void Scene::SpawnPlatform(float xPos, float yPos, float width, float height, std::string sprite, float transparency, float rotation)
 {
 	//Creates entity
 	auto entity = ECS::CreateEntity();
@@ -273,6 +285,7 @@ void Scene::SpawnPlatform(float xPos, float yPos, float width, float height, std
 	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
 		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
 	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	tempPhsBody.SetRotationAngleDeg(rotation);
 }
 
 

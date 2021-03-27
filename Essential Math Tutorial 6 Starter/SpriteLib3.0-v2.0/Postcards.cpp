@@ -78,7 +78,7 @@ void Postcards::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_dynamicBody;
-		tempDef.position.Set(float32(-100.f), float32(30.f));
+		tempDef.position.Set(float32(-64.f), float32(30.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -102,7 +102,7 @@ void Postcards::InitScene(float windowWidth, float windowHeight)
 		//Sets up components
 		std::string fileName = "DenialPostcardBack.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 30.f, 20.f);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(70.f, 15.f, 2.f));
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 20.f, 2.f));
 	}
 
 	//Spawn postcard
@@ -119,7 +119,7 @@ void Postcards::InitScene(float windowWidth, float windowHeight)
 		//Sets up components
 		std::string fileName = "DenialPostcardBack.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 150.f, 120.f);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(100.f, 20.f, 2.f));
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 24.f, 2.f));
 		ECS::GetComponent<Kinematics>(entity).SetParent(MainEntities::MainCamera());
 		ECS::GetComponent<Kinematics>(entity).SetChild(entity);
 		ECS::GetComponent<Kinematics>(entity).SetOffset(0.f, 0.f);
@@ -138,16 +138,33 @@ void Postcards::InitScene(float windowWidth, float windowHeight)
 		//Sets up components
 		std::string fileName = "CaveExit.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 20.f, 40.f);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(120.f, 25.f, 2.f));
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(64.f, 24.f, 2.f));
 	}
 
-	SpawnPlatform(0.f, 0.f, 300.f, 10.f, "none", 0.f);
-	SpawnPlatform(150.f, 0.f, 500.f, 10.f, "none", 0.f, 90.f);
-	SpawnPlatform(-150.f, 0.f, 500.f, 10.f, "none", 0.f, 90.f);
+	SpawnPlatform(0.f, 0.f, 256.f, 10.f, "none", 0.f);
+	SpawnPlatform(112.f, 0.f, 512.f, 10.f, "none", 0.f, 90.f);
+	SpawnPlatform(-112.f, 0.f, 512.f, 10.f, "none", 0.f, 90.f);
+
+	// TILE POSTCARD BACKGROUND
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+		//Sets up components
+		std::string fileName = "backgrounds/postcards/background.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32 * 16, 16 * 16);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3((0), (0.f + 52), 1.f));
+	}
 
 	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 }
+
+
 
 void Postcards::Update()
 {

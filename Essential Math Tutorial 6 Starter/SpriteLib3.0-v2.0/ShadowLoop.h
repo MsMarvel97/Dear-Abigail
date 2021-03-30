@@ -54,9 +54,13 @@ public:
 	//handles move and attack sequences depending on current state
 	void ShadowRoutine(int entity);
 
+	void RunShadowTime();
+
 	void SetAnimation(int facing, int animation, int entity);
 
 	void SetMovementBoundaries(float min, float max) { minX = min; maxX = max; };
+
+	void SetPatrolVelocity(b2Vec2 vel) { patrolVelocity.x = vel.x; patrolVelocity.y = vel.y; }; //shadow speed - ALWAYS PASS POSITIVE VALUES
 
 	void SetShadowSequence(bool start) { sequenceStart = start; };
 
@@ -70,8 +74,13 @@ public:
 	bool isShadowAlive = true;
 
 private:
+	//velocity vectors
+	b2Vec2 patrolVelocity = { 0.f, 0.f };
+
+	//boundaries of patrol
 	float maxX = 0;
 	float minX = 0;
+
 	int facing = 0;
 	int animType = 0;
 	int shadowType = 0;

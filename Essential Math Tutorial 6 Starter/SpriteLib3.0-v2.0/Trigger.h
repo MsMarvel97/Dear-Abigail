@@ -43,6 +43,9 @@ public:
 	void SetSpike(bool newSpike) { spike = newSpike; };
 	bool GetSpike() { return spike; };
 
+	bool GetBossArea() { return bossArea; };
+	void SetBossArea(bool newBossArea) { bossArea = newBossArea; };
+
 protected:
 	int m_targetTrigger = 0;
 	int m_triggerEntity;
@@ -59,5 +62,6 @@ protected:
 
 	int shadowZone = 0; //a numerical value describing which shadow infested area the player is in
 	bool spike = false;
+	bool bossArea = false;
 };
 

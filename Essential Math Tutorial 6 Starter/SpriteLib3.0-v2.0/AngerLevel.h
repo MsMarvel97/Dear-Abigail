@@ -57,12 +57,14 @@ public:
 	bool switchDir = false;
 	int bossPlatforms[6] = { 0,0,0,0,0,0 }; //last index is reserved for platform ZA
 	int bossPlatformTriggers[6] = { 0,0,0,0,0,0 }; //last index is reserved for platform ZA
-	int bigBossPlat[10];
+	int bigBossPlat[10] = { 0,0,0,0,0,0,0,0,0,0 };
 	int bigBossPlatTrig[10];
 	int cPlatforms[4] = { 0,0,0,0 };
 	int cTriggers[4] = { 0,0,0,0 };
 	void CrumblingPlatforms(int entity);
 	int flyingPieces[6] = { 0, 0, 0, 0, 0, 0 };
+
+	int masterCrumblingPlatforms[20];
 
 	void TestUpdatePosition(int cameraEntity, int bodyEntity, int tempOffsetX, int tempOffsetY);
 protected:
@@ -71,7 +73,8 @@ protected:
 	b2Vec2 playerPos;
 	int player = 0;
 	int camera = 0;
-	int shadows[6];
+	int shadows[6]; //shadows
+	int sZones[6]; //shadow area trigger
 	int enemy1 = 0, enemy2 = 0, enemy3 = 0, enemy4 = 0, enemy5 = 0, enemy6 = 0;
 	int bossWall = 0; //aka
 	bool bossWallDestroyed = false;

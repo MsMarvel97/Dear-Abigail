@@ -46,7 +46,7 @@ void ShadowLoop::InitMeleeShadow(std::string& fileName, std::string& animationJS
 	//Store references to the components
 	sprites = sprite;
 	animator = controller;
-	shadowType = RANGED;
+	shadowType = MELEE;
 
 	//Initialize UVs
 	animator->InitUVs(fileName);
@@ -65,6 +65,10 @@ void ShadowLoop::InitMeleeShadow(std::string& fileName, std::string& animationJS
 	animator->AddAnimation(animations["IdleLeft"].get<Animation>());
 	//Idling right
 	animator->AddAnimation(animations["IdleRight"].get<Animation>());
+	//Idling left
+	animator->AddAnimation(animations["IdleLeft"].get<Animation>()); //TBC to charging
+	//Idling right
+	animator->AddAnimation(animations["IdleRight"].get<Animation>()); //TBC to charging
 	//Attacking left
 	animator->AddAnimation(animations["AttackLeft"].get<Animation>());
 	//Attacking right
@@ -88,7 +92,11 @@ void ShadowLoop::ShadowRoutine(int entity)
 
 	if (sequenceStart == true) //this statement will run once the player has entered a ShadowAreaTrigger
 	{
-		shadow.SetVelocity(vec3(0.f, 0.f, 0.f));
+		if (ECS::GetComponent<ShadowLoop>(entity).GetShadowType() == RANGED)
+		{
+			shadow.SetVelocity(vec3(0.f, 0.f, 0.f));
+		}
+		
 
 		if (player.GetPosition().x > shadow.GetPosition().x)
 		{
@@ -152,6 +160,10 @@ void ShadowLoop::ShadowRoutine(int entity)
 
 	//animation will be set based on the shadow's current state
 	SetAnimation(facing, animType, entity);
+}
+
+void ShadowLoop::RunShadowTime()
+{
 }
 
 void ShadowLoop::SetAnimation(int facing, int animation, int entity)

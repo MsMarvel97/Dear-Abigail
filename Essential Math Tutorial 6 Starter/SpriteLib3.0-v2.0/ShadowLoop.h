@@ -6,14 +6,14 @@ class ShadowLoop
 public:
 	enum ShadowType
 	{
-		RANGED,
-		MELEE,
+		RANGED = 0,
+		MELEE = 1
 	};
 
 	enum ShadowFacing
 	{
-		LEFT,
-		RIGHT
+		LEFT = 0,
+		RIGHT = 1
 	};
 
 	enum ShadowAnimationType
@@ -24,26 +24,26 @@ public:
 		CHARGING = 6
 	};
 
-	enum RangedShadowAnimations
+	enum RangedShadowAnimations //FACING + ANIMATION
 	{
-		FLOATLEFT,
-		FLOATRIGHT,
-		FLYLEFT,
-		FLYRIGHT,
-		SHOOTLEFT,
-		SHOOTRIGHT
+		FLOATLEFT = 0,
+		FLOATRIGHT = 1,
+		FLYLEFT = 2,
+		FLYRIGHT = 3,
+		SHOOTLEFT = 4,
+		SHOOTRIGHT = 5
 	};
 
-	enum MeleeShadowAnimations
+	enum MeleeShadowAnimations //FACING + ANIMATION
 	{
-		IDLELEFT,
-		IDLERIGHT,
-		WALKLEFT,
-		WALKRIGHT,
-		ATTACKLEFT,
-		ATTACKRIGHT,
-		CHARGELEFT,
-		CHARGERIGHT
+		IDLELEFT = 0,
+		IDLERIGHT = 1,
+		WALKLEFT = 2,
+		WALKRIGHT = 3,
+		ATTACKLEFT = 4,
+		ATTACKRIGHT = 5,
+		CHARGELEFT = 6,
+		CHARGERIGHT = 7
 	};
 
 	ShadowLoop();
@@ -69,6 +69,8 @@ public:
 	int GetShadowType() { return shadowType; };
 
 	int GetShadowAnim() { return animType; };
+
+	void ShadowMove(int entity);
 
 	float startTime = 0.f;
 	bool isShadowAlive = true;

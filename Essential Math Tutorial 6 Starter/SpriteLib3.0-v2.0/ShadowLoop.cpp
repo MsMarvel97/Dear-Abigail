@@ -65,10 +65,14 @@ void ShadowLoop::InitMeleeShadow(std::string& fileName, std::string& animationJS
 	animator->AddAnimation(animations["IdleLeft"].get<Animation>());
 	//Idling right
 	animator->AddAnimation(animations["IdleRight"].get<Animation>());
-	//Idling left
+	//Charging left
 	animator->AddAnimation(animations["IdleLeft"].get<Animation>()); //TBC to charging
-	//Idling right
+	//Charging right
 	animator->AddAnimation(animations["IdleRight"].get<Animation>()); //TBC to charging
+	//Attacking left
+	animator->AddAnimation(animations["AttackLeft"].get<Animation>());
+	//Attacking right
+	animator->AddAnimation(animations["AttackRight"].get<Animation>());
 	//Attacking left
 	animator->AddAnimation(animations["AttackLeft"].get<Animation>());
 	//Attacking right
@@ -94,24 +98,27 @@ void ShadowLoop::ShadowRoutine(int entity)
 	{
 		if (ECS::GetComponent<ShadowLoop>(entity).GetShadowType() == RANGED)
 		{
-			shadow.SetVelocity(vec3(0.f, 0.f, 0.f));
-		}
-		
+			shadow.SetVelocity(vec3(0.f, 0.f, 0.f));	
 
-		if (player.GetPosition().x > shadow.GetPosition().x)
-		{
-			facing = RIGHT;
+			if (player.GetPosition().x > shadow.GetPosition().x)
+			{
+				facing = RIGHT;
+			}
+			else
+			{
+				facing = LEFT;
+			}
 		}
-		else
+
+		if (ECS::GetComponent<ShadowLoop>(entity).GetShadowType() == MELEE) //NEW code for MELEE
 		{
-			facing = LEFT;
+			ShadowMove(entity);
 		}
 
 		if (currentTime >= 0 && currentTime < 3) //resting
 		{
 			//std::cout << "Resting" << "\n";
 			animType = IDLE;
-
 		}
 		else if (currentTime > 3 && currentTime < 5) //charging 
 		{
@@ -156,6 +163,7 @@ void ShadowLoop::ShadowRoutine(int entity)
 				facing = LEFT;
 			}
 		}
+		
 	}
 
 	//animation will be set based on the shadow's current state
@@ -170,4 +178,36 @@ void ShadowLoop::SetAnimation(int facing, int animation, int entity)
 {
 	int choice = facing + animation;
 	ECS::GetComponent<AnimationController>(entity).SetActiveAnim(choice);
+}
+
+void ShadowLoop::ShadowMove(int entity)
+{
+	auto& shadow = ECS::GetComponent<PhysicsBody>(entity);
+	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
+	if (player.GetPosition().x < shadow.GetPosition().x)
+	{
+		if (player.GetPosition().x <= minX)
+		{
+			facing = RIGHT;
+			shadow.SetVelocity(vec3(30.f, 0.f, 0.f));
+		}
+		else
+		{
+			facing = LEFT;
+			shadow.SetVelocity(vec3(-30.f, 0.f, 0.f));
+		}
+	}
+	else
+	{
+		if (player.GetPosition().x >= maxX)
+		{
+			facing = LEFT;
+			shadow.SetVelocity(vec3(-30.f, 0.f, 0.f));
+		}
+		else
+		{
+			facing = RIGHT;
+			shadow.SetVelocity(vec3(30.f, 0.f, 0.f));
+		}
+	}
 }

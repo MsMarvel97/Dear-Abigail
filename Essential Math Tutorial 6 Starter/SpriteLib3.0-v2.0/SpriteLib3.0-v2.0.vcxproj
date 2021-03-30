@@ -141,18 +141,13 @@
     <ClInclude Include="AnimationSpritePlayground.h" />
     <ClInclude Include="AnimationSystem.h" />
     <ClInclude Include="AttackMechanic.h" />
-
     <ClInclude Include="BackEnd.h" />
     <ClInclude Include="BloomEffect.h" />
-
     <ClInclude Include="BossLevel.h" />
     <ClInclude Include="BreakableWallTrigger.h" />
     <ClInclude Include="BulletTrigger.h" />
-
     <ClInclude Include="AttackScene.h" />
     <ClInclude Include="AttackTrigger.h" />
-
-
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraSystem.h" />
     <ClInclude Include="CanJump.h" />
@@ -183,24 +178,18 @@
     <ClInclude Include="include\imgui\imstb_truetype.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="JSON.h" />
-
     <ClInclude Include="Kinematics.h" />
     <ClInclude Include="KnockBack.h" />
     <ClInclude Include="KnockBackTrigger.h" />
-
-
     <ClInclude Include="MainEntities.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Movement.h" />
     <ClInclude Include="MoveTrigger.h" />
     <ClInclude Include="MoveTriggerOneWay.h" />
     <ClInclude Include="MovingClass.h" />
-
     <ClInclude Include="MovingPlatform.h" />
     <ClInclude Include="MovingTrigger.h" />
-
     <ClInclude Include="OrbTrigger.h" />
-
     <ClInclude Include="OtherEntities.h" />
     <ClInclude Include="OutburstTrigger.h" />
     <ClInclude Include="PhysicsBody.h" />
@@ -222,17 +211,13 @@
     <ClInclude Include="SelectiveColorEffect.h" />
     <ClInclude Include="SepiaEffect.h" />
     <ClInclude Include="Shader.h" />
-
-    <ClInclude Include="ShadowAreaTrigger.h" />
+    <ClInclude Include="ShadowTriggers.h" />
     <ClInclude Include="ShadowLoop.h" />
     <ClInclude Include="ShadowSense.h" />
     <ClInclude Include="ShadowTime.h" />
     <ClInclude Include="ShieldMechanic.h" />
-
     <ClInclude Include="Shadow.h" />
-   
     <ClInclude Include="ShadowV2.h" />
-
     <ClInclude Include="ShrinkTrigger.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="TestBulet.h" />
@@ -261,17 +246,13 @@
     <ClCompile Include="AnimationSpritePlayground.cpp" />
     <ClCompile Include="AnimationSystem.cpp" />
     <ClCompile Include="AttackMechanic.cpp" />
-
     <ClCompile Include="BackEnd.cpp" />
     <ClCompile Include="BloomEffect.cpp" />
-
     <ClCompile Include="BossLevel.cpp" />
     <ClCompile Include="BreakableWallTrigger.cpp" />
     <ClCompile Include="BulletTrigger.cpp" />
-
     <ClCompile Include="AttackScene.cpp" />
     <ClCompile Include="AttackTrigger.cpp" />
-
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraSystem.cpp" />
     <ClCompile Include="CanJump.cpp" />
@@ -300,11 +281,9 @@
     <ClCompile Include="include\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="JSON.cpp" />
-
     <ClCompile Include="Kinematics.cpp" />
     <ClCompile Include="KnockBack.cpp" />
     <ClCompile Include="KnockBackTrigger.cpp" />
-
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainEntities.cpp" />
     <ClCompile Include="Matrix.cpp" />
@@ -312,11 +291,9 @@
     <ClCompile Include="MoveTrigger.cpp" />
     <ClCompile Include="MoveTriggerOneWay.cpp" />
     <ClCompile Include="MovingClass.cpp" />
-
     <ClCompile Include="MovingPlatform.cpp" />
     <ClCompile Include="MovingTrigger.cpp" />
     <ClCompile Include="OrbTrigger.cpp" />
-
     <ClCompile Include="OtherEntities.cpp" />
     <ClCompile Include="OutburstTrigger.cpp" />
     <ClCompile Include="PhysicsBody.cpp" />
@@ -337,16 +314,13 @@
     <ClCompile Include="SelectiveColorEffect.cpp" />
     <ClCompile Include="SepiaEffect.cpp" />
     <ClCompile Include="Shader.cpp" />
-
-    <ClCompile Include="ShadowAreaTrigger.cpp" />
+    <ClCompile Include="ShadowTriggers.cpp" />
     <ClCompile Include="ShadowLoop.cpp" />
     <ClCompile Include="ShadowSense.cpp" />
     <ClCompile Include="ShadowTime.cpp" />
     <ClCompile Include="ShieldMechanic.cpp" />
-
     <ClCompile Include="Shadow.cpp" />
     <ClCompile Include="ShadowV2.cpp" />
-
     <ClCompile Include="ShrinkTrigger.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="TestBulet.cpp" />

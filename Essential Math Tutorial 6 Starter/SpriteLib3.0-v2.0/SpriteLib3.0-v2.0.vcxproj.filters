@@ -1,1547 +1,210 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="ImGui">
-      <UniqueIdentifier>{235e8507-d198-43ae-a1f6-dcb43fcaa2f9}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="AngerLevel.cpp" />
+    <ClCompile Include="AnimationController.cpp" />
+    <ClCompile Include="AnimationSpritePlayground.cpp" />
+    <ClCompile Include="AnimationSystem.cpp" />
+    <ClCompile Include="AttackMechanic.cpp" />
+    <ClCompile Include="BackEnd.cpp" />
+    <ClCompile Include="BloomEffect.cpp" />
+    <ClCompile Include="BossLevel.cpp" />
+    <ClCompile Include="BreakableWallTrigger.cpp" />
+    <ClCompile Include="BulletTrigger.cpp" />
+    <ClCompile Include="AttackScene.cpp" />
+    <ClCompile Include="AttackTrigger.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraSystem.cpp" />
+    <ClCompile Include="CanJump.cpp" />
+    <ClCompile Include="CollisionFlag.cpp" />
+    <ClCompile Include="CoolDown.cpp" />
+    <ClCompile Include="Crumble.cpp" />
+    <ClCompile Include="CrumblingSequence.cpp" />
+    <ClCompile Include="DestroyPlatformTrigger.cpp" />
+    <ClCompile Include="DenialLevel.cpp" />
+    <ClCompile Include="DestroyTrigger.cpp" />
+    <ClCompile Include="ECS.cpp" />
+    <ClCompile Include="EffectManager.cpp" />
+    <ClCompile Include="EndTrigger.cpp" />
+    <ClCompile Include="FirstCreation.cpp" />
+    <ClCompile Include="FlaggedTrigger.cpp" />
+    <ClCompile Include="Framebuffer.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GrainEffect.cpp" />
+    <ClCompile Include="GreyscaleEffect.cpp" />
+    <ClCompile Include="Health.cpp" />
+    <ClCompile Include="HorizontalScroll.cpp" />
+    <ClCompile Include="include\imgui\imgui.cpp" />
+    <ClCompile Include="include\imgui\imgui_demo.cpp" />
+    <ClCompile Include="include\imgui\imgui_draw.cpp" />
+    <ClCompile Include="include\imgui\imgui_impl.cpp" />
+    <ClCompile Include="include\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="JSON.cpp" />
+    <ClCompile Include="Kinematics.cpp" />
+    <ClCompile Include="KnockBack.cpp" />
+    <ClCompile Include="KnockBackTrigger.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainEntities.cpp" />
+    <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="Movement.cpp" />
+    <ClCompile Include="MoveTrigger.cpp" />
+    <ClCompile Include="MoveTriggerOneWay.cpp" />
+    <ClCompile Include="MovingClass.cpp" />
+    <ClCompile Include="MovingPlatform.cpp" />
+    <ClCompile Include="MovingTrigger.cpp" />
+    <ClCompile Include="OrbTrigger.cpp" />
+    <ClCompile Include="OtherEntities.cpp" />
+    <ClCompile Include="OutburstTrigger.cpp" />
+    <ClCompile Include="PhysicsBody.cpp" />
+    <ClCompile Include="PhysicsPlayground.cpp" />
+    <ClCompile Include="PhysicsPlaygroundListener.cpp" />
+    <ClCompile Include="PhysicsSystem.cpp" />
+    <ClCompile Include="PixelateEffect.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerMechanics.cpp" />
+    <ClCompile Include="PostEffect.cpp" />
+    <ClCompile Include="RecheckConditions.cpp" />
+    <ClCompile Include="RenderingSystem.cpp" />
+    <ClCompile Include="ResizeTrigger.cpp" />
+    <ClCompile Include="RespawnTrigger.cpp" />
+    <ClCompile Include="RotationTrigger.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Selectable.cpp" />
+    <ClCompile Include="SelectiveColorEffect.cpp" />
+    <ClCompile Include="SepiaEffect.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="ShadowLoop.cpp" />
+    <ClCompile Include="ShadowSense.cpp" />
+    <ClCompile Include="ShadowTime.cpp" />
+    <ClCompile Include="ShieldMechanic.cpp" />
+    <ClCompile Include="Shadow.cpp" />
+    <ClCompile Include="ShadowV2.cpp" />
+    <ClCompile Include="ShrinkTrigger.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="TestBulet.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="TranslateTrigger.cpp" />
+    <ClCompile Include="Trigger.cpp" />
+    <ClCompile Include="TutorialLevel.cpp" />
+    <ClCompile Include="UI.cpp" />
+    <ClCompile Include="UIComponents.cpp" />
+    <ClCompile Include="Utilities.cpp" />
+    <ClCompile Include="VanishTrigger.cpp" />
+    <ClCompile Include="Vector.cpp" />
+    <ClCompile Include="VertexManager.cpp" />
+    <ClCompile Include="VerticalScroll.cpp" />
+    <ClCompile Include="VignetteEffect.cpp" />
+    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="XInput.cpp" />
+    <ClCompile Include="ShadowTriggers.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\imgui\imconfig.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="include\imgui\imgui.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="include\imgui\imgui_impl.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="include\imgui\imgui_internal.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="include\imgui\imstb_rectpack.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="include\imgui\imstb_textedit.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="include\imgui\imstb_truetype.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BloomEffect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ECS.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EffectManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Framebuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GrainEffect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GreyscaleEffect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HorizontalScroll.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="JSON.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsBody.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PixelateEffect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PostEffect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderingSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Selectable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectiveColorEffect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SepiaEffect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Timer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Utilities.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="VerticalScroll.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="VignetteEffect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Window.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Xinput.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MainEntities.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FirstCreation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationSpritePlayground.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsPlayground.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BackEnd.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Trigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsPlaygroundListener.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DestroyTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CanJump.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ResizeTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TranslateTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RotationTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="VanishTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OtherEntities.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionFlag.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FlaggedTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RecheckConditions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveTriggerOneWay.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShrinkTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EndTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TutorialLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DenialLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingPlatform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Kinematics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Crumble.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DestroyPlatformTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CrumblingSequence.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ToneFire.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shadow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestBulet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowV2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowSense.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowAreaTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowTime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackMechanic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Movement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowLoop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CoolDown.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OrbTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BossLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RespawnTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMechanics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OutburstTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BreakableWallTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shadow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestBulet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowV2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowSense.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowAreaTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowTime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackMechanic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Movement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowLoop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CoolDown.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OrbTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BossLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RespawnTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMechanics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OutburstTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shadow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestBulet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowV2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowSense.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowAreaTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowTime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackMechanic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Movement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowLoop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CoolDown.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OrbTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BossLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RespawnTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMechanics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OutburstTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BreakableWallTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shadow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestBulet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowV2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowSense.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowAreaTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowTime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackMechanic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Movement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowLoop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CoolDown.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OrbTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BossLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RespawnTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMechanics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OutburstTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BreakableWallTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shadow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestBulet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowV2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowSense.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowAreaTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowTime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackMechanic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Movement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowLoop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CoolDown.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OrbTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BossLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RespawnTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMechanics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OutburstTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BreakableWallTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shadow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestBulet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowV2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowSense.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowAreaTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowTime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackMechanic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Movement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowLoop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CoolDown.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OrbTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BossLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RespawnTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMechanics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OutburstTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BreakableWallTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shadow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestBulet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowV2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowSense.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowAreaTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowTime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackMechanic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Movement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowLoop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CoolDown.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OrbTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BossLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RespawnTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMechanics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OutburstTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BreakableWallTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shadow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestBulet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowV2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowSense.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowAreaTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowTime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackMechanic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Movement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowLoop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CoolDown.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OrbTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BossLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RespawnTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMechanics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OutburstTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BreakableWallTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shadow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestBulet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowV2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowSense.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowAreaTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowTime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackMechanic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Movement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowLoop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CoolDown.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OrbTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BossLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RespawnTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMechanics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OutburstTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BreakableWallTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shadow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestBulet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowV2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowSense.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowAreaTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowTime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackMechanic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Movement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowLoop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CoolDown.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OrbTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BossLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RespawnTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMechanics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OutburstTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BreakableWallTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shadow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestBulet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowV2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowSense.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowAreaTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowTime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackMechanic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Movement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowLoop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CoolDown.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OrbTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BossLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RespawnTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMechanics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OutburstTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BreakableWallTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shadow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestBulet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowV2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowSense.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowAreaTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowTime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackMechanic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Movement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowLoop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CoolDown.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OrbTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BossLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RespawnTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMechanics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OutburstTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BreakableWallTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shadow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestBulet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowV2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowSense.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowAreaTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowTime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackMechanic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBackTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Movement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KnockBack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShadowLoop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CoolDown.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OrbTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BossLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AngerLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RespawnTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMechanics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OutburstTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BreakableWallTrigger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="include\imgui\imgui.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="include\imgui\imgui_demo.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="include\imgui\imgui_draw.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="include\imgui\imgui_impl.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="include\imgui\imgui_widgets.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BackEnd.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BloomEffect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ECS.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EffectManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Framebuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GrainEffect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GreyscaleEffect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HorizontalScroll.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="JSON.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Matrix.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicsBody.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicsSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PixelateEffect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PostEffect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderingSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Selectable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SelectiveColorEffect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SepiaEffect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Timer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Utilities.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="VertexManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="VerticalScroll.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="VignetteEffect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="XInput.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MainEntities.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FirstCreation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationSpritePlayground.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicsPlayground.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Trigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicsPlaygroundListener.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DestroyTrigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CanJump.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ResizeTrigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TranslateTrigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RotationTrigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="VanishTrigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OtherEntities.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionFlag.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MoveTrigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FlaggedTrigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RecheckConditions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MoveTriggerOneWay.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ShrinkTrigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EndTrigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Crumble.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CrumblingSequence.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DestroyPlatformTrigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="TutorialLevel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TestBulet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ShadowV2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AngerLevel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ShadowSense.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ShadowAreaTrigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ShadowTime.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AttackScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AttackTrigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AttackMechanic.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="KnockBackTrigger.cpp">
-    <ClCompile Include="ShadowLoop.cpp">
-=======
-    <ClCompile Include="Shadow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Movement.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TestBulet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ShadowV2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AngerLevel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ShadowSense.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ShadowAreaTrigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ShadowLoop.cpp">
-=======
-    <ClCompile Include="Shadow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TestBulet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ShadowV2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AngerLevel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ShadowSense.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ShadowAreaTrigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ShadowTime.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AttackScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AttackTrigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AttackMechanic.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="KnockBackTrigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Movement.cpp">
->>>>>>> AngerLevel
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="KnockBack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="Health.cpp">
-=======
-    <ClCompile Include="ShadowLoop.cpp">
->>>>>>> AngerLevel
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CoolDown.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="AttackMechanic.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BossLevel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AngerLevel.cpp">
-    <ClCompile Include="BulletTrigger.cpp">
-=======
-    <ClCompile Include="OrbTrigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BossLevel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AngerLevel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MovingTrigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MovingClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RespawnTrigger.cpp">
->>>>>>> AngerLevel
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerMechanics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="UIComponents.cpp">
-=======
-    <ClCompile Include="OutburstTrigger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BreakableWallTrigger.cpp">
->>>>>>> AngerLevel
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClInclude Include="AngerLevel.h" />
+    <ClInclude Include="AnimationController.h" />
+    <ClInclude Include="AnimationSpritePlayground.h" />
+    <ClInclude Include="AnimationSystem.h" />
+    <ClInclude Include="AttackMechanic.h" />
+    <ClInclude Include="BackEnd.h" />
+    <ClInclude Include="BloomEffect.h" />
+    <ClInclude Include="BossLevel.h" />
+    <ClInclude Include="BreakableWallTrigger.h" />
+    <ClInclude Include="BulletTrigger.h" />
+    <ClInclude Include="AttackScene.h" />
+    <ClInclude Include="AttackTrigger.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraSystem.h" />
+    <ClInclude Include="CanJump.h" />
+    <ClInclude Include="CollisionFlag.h" />
+    <ClInclude Include="CoolDown.h" />
+    <ClInclude Include="Crumble.h" />
+    <ClInclude Include="CrumblingSequence.h" />
+    <ClInclude Include="DestroyPlatformTrigger.h" />
+    <ClInclude Include="DenialLevel.h" />
+    <ClInclude Include="DestroyTrigger.h" />
+    <ClInclude Include="ECS.h" />
+    <ClInclude Include="EffectManager.h" />
+    <ClInclude Include="EndTrigger.h" />
+    <ClInclude Include="FirstCreation.h" />
+    <ClInclude Include="FlaggedTrigger.h" />
+    <ClInclude Include="Framebuffer.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GrainEffect.h" />
+    <ClInclude Include="GreyscaleEffect.h" />
+    <ClInclude Include="Health.h" />
+    <ClInclude Include="HorizontalScroll.h" />
+    <ClInclude Include="include\imgui\imconfig.h" />
+    <ClInclude Include="include\imgui\imgui.h" />
+    <ClInclude Include="include\imgui\imgui_impl.h" />
+    <ClInclude Include="include\imgui\imgui_internal.h" />
+    <ClInclude Include="include\imgui\imstb_rectpack.h" />
+    <ClInclude Include="include\imgui\imstb_textedit.h" />
+    <ClInclude Include="include\imgui\imstb_truetype.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="JSON.h" />
+    <ClInclude Include="Kinematics.h" />
+    <ClInclude Include="KnockBack.h" />
+    <ClInclude Include="KnockBackTrigger.h" />
+    <ClInclude Include="MainEntities.h" />
+    <ClInclude Include="Matrix.h" />
+    <ClInclude Include="Movement.h" />
+    <ClInclude Include="MoveTrigger.h" />
+    <ClInclude Include="MoveTriggerOneWay.h" />
+    <ClInclude Include="MovingClass.h" />
+    <ClInclude Include="MovingPlatform.h" />
+    <ClInclude Include="MovingTrigger.h" />
+    <ClInclude Include="OrbTrigger.h" />
+    <ClInclude Include="OtherEntities.h" />
+    <ClInclude Include="OutburstTrigger.h" />
+    <ClInclude Include="PhysicsBody.h" />
+    <ClInclude Include="PhysicsPlayground.h" />
+    <ClInclude Include="PhysicsPlaygroundListener.h" />
+    <ClInclude Include="PhysicsSystem.h" />
+    <ClInclude Include="PixelateEffect.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerMechanics.h" />
+    <ClInclude Include="PostEffect.h" />
+    <ClInclude Include="RecheckConditions.h" />
+    <ClInclude Include="RenderingSystem.h" />
+    <ClInclude Include="ResizeTrigger.h" />
+    <ClInclude Include="RespawnTrigger.h" />
+    <ClInclude Include="RotationTrigger.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="Scenes.h" />
+    <ClInclude Include="Selectable.h" />
+    <ClInclude Include="SelectiveColorEffect.h" />
+    <ClInclude Include="SepiaEffect.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="ShadowLoop.h" />
+    <ClInclude Include="ShadowSense.h" />
+    <ClInclude Include="ShadowTime.h" />
+    <ClInclude Include="ShieldMechanic.h" />
+    <ClInclude Include="Shadow.h" />
+    <ClInclude Include="ShadowV2.h" />
+    <ClInclude Include="ShrinkTrigger.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="TestBulet.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="ToneFire.h" />
+    <ClInclude Include="Transform.h" />
+    <ClInclude Include="TranslateTrigger.h" />
+    <ClInclude Include="Trigger.h" />
+    <ClInclude Include="TutorialLevel.h" />
+    <ClInclude Include="UI.h" />
+    <ClInclude Include="UIComponents.h" />
+    <ClInclude Include="Utilities.h" />
+    <ClInclude Include="VanishTrigger.h" />
+    <ClInclude Include="Vector.h" />
+    <ClInclude Include="VertexManager.h" />
+    <ClInclude Include="VerticalScroll.h" />
+    <ClInclude Include="VignetteEffect.h" />
+    <ClInclude Include="Window.h" />
+    <ClInclude Include="Xinput.h" />
+    <ClInclude Include="ShadowTriggers.h" />
   </ItemGroup>
 </Project>

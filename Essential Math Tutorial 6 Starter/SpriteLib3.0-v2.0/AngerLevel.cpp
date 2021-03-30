@@ -53,7 +53,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		auto entity = ECS::CreateEntity();
 		ECS::SetIsMainPlayer(entity, true);
 
-		player = entity;
+		//player = entity;
 		//Add components 
 		ECS::AttachComponent<Player>(entity);
 		ECS::AttachComponent<Sprite>(entity);
@@ -119,15 +119,15 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<ShieldMechanic>(entity);
 
 
-		double playerSpriteX = ECS::GetComponent<Sprite>(player).GetWidth();
-		double playerSpriteY = ECS::GetComponent<Sprite>(player).GetHeight();
+		double playerSpriteX = ECS::GetComponent<Sprite>(MainEntities::MainPlayer()).GetWidth();
+		double playerSpriteY = ECS::GetComponent<Sprite>(MainEntities::MainPlayer()).GetHeight();
 
 		//Sets up components
 		std::string fileName = "ShieldTemp.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, playerSpriteX, playerSpriteY);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 0.f, 4.f));
 		ECS::GetComponent<Kinematics>(entity).SetChild(entity);
-		ECS::GetComponent<Kinematics>(entity).SetParent(player);
+		ECS::GetComponent<Kinematics>(entity).SetParent(MainEntities::MainPlayer());
 		ECS::GetComponent<Kinematics>(entity).SetOffset(0.f, 0.f);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 	}
@@ -1038,7 +1038,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		ECS::GetComponent<Trigger*>(entity) = new MovingTrigger;
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
 
  
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
@@ -1218,7 +1218,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
 
 		ECS::GetComponent<ShadowLoop>(entity).InitMeleeShadow(fileName, JSONfile, 32, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
@@ -1308,7 +1308,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
 		ECS::GetComponent<ShadowLoop>(entity).InitMeleeShadow(fileName, JSONfile, 32, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
 		//ECS::GetComponent<ShadowLoop>(entity).setSequenceStart(true);
@@ -1397,7 +1397,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
 		ECS::GetComponent<ShadowLoop>(entity).InitMeleeShadow(fileName, JSONfile, 32, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
 		//ECS::GetComponent<ShadowLoop>(entity).setSequenceStart(true);
@@ -1485,7 +1485,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
 		ECS::GetComponent<ShadowLoop>(entity).InitMeleeShadow(fileName, JSONfile, 32, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
 		//ECS::GetComponent<ShadowLoop>(entity).setSequenceStart(true);
@@ -1573,7 +1573,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
 		ECS::GetComponent<ShadowLoop>(entity).InitMeleeShadow(fileName, JSONfile, 32, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
 		//ECS::GetComponent<ShadowLoop>(entity).setSequenceStart(true);
@@ -1613,7 +1613,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
 		ECS::GetComponent<ShadowLoop>(entity).InitMeleeShadow(fileName, JSONfile, 32, 32, &ECS::GetComponent<Sprite>(entity),
 			&ECS::GetComponent<AnimationController>(entity));
 		//ECS::GetComponent<ShadowLoop>(entity).setSequenceStart(true);
@@ -1684,11 +1684,10 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		std::string fileName = "sandFloor.png";
 		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 480, 500);
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(3510.f, 200.f, 5.f));
-		ECS::GetComponent<Trigger*>(entity) = new ShadowAreaTrigger();
+		ECS::GetComponent<Trigger*>(entity) = new BossAreaTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
 		ECS::GetComponent<Trigger*>(entity)->SetShadowZone(1);
-		ECS::GetComponent<Trigger*>(entity)->SetBossArea(true);
 		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
@@ -1724,7 +1723,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
 		ECS::GetComponent<Trigger*>(entity)->SetSpike(true);
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -2200,7 +2199,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(160.f, 30.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new OrbTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -2235,7 +2234,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(160.f, 30.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new OrbTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -2270,7 +2269,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(160.f, 30.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new OrbTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -2307,7 +2306,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(160.f, 30.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new OrbTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -2342,7 +2341,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(160.f, 30.f, 2.f));
 		ECS::GetComponent<Trigger*>(entity) = new OrbTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
 		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -2377,7 +2376,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(1900.f, -40.f, 0.f));
 		ECS::GetComponent<Trigger*>(entity) = new RespawnTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
 		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -2445,7 +2444,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(50.f, 33.f, 3.f));
 		ECS::GetComponent<Trigger*>(entity) = new BreakableWallTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
 		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -3006,7 +3005,7 @@ void AngerLevel::SpawnPlatforms()
 	SpawnPlatform(96.f, 8.f, 192.f, 16.f, "SamplePlatform.png", 1.f); //Platform A
 	SpawnPlatform(336.f, 40.f, 224.f, 16.f, "SamplePlatform.png", 1.f); //Platform B
 	SpawnPlatform(608.f, 8.f, 256.f, 16.f, "SamplePlatform.png", 1.f); //Platform C
-	SpawnPlatform(840.f, 60.f, 16.f, 240.f, "SamplePlatform.png", 1.f, 90.f); //Platform D
+	SpawnPlatform(840.f, 60.f, 240.f, 16.f, "SamplePlatform.png", 1.f); //Platform D
 	SpawnPlatform(700.8f, 24.f, 48.f, 16.f, "SamplePlatform.png",1.f, 90.f); //Platform D_BridgeHelp_
 	SpawnPlatform(732.f, 20.f, 8.f, 8.f, "SamplePlatform.png", 1.f);//Platform D_BridgeHelp_2
 	SpawnPlatform(1056.f, 8.f, 224.f, 16.f, "SamplePlatform.png", 1.f);//Platform E
@@ -3228,7 +3227,7 @@ void AngerLevel::CheckShield()
 {
 	//checks inputs from the ShieldMechanic and proceeds to turn the shield on or off
 	//auto& playerHealth = ECS::GetComponent<Health>(player);
-	auto& playerMech = ECS::GetComponent<PlayerMechanics>(player);
+	auto& playerMech = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
 	if (ECS::GetComponent<ShieldMechanic>(shield).shieldOn == true)
 	{
 		/*ECS::GetComponent<PhysicsBody>(shield).GetBody()->SetActive(true);*/
@@ -3289,7 +3288,7 @@ void AngerLevel::SpawnBullet(int shadowEntity)
 	ECS::GetComponent<Transform>(entity).SetPosition(vec3(tempX, tempY, 4.f));
 	ECS::GetComponent<Trigger*>(entity) = new BulletTrigger();
 	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-	ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(player);
+	ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
 
 	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
@@ -3340,7 +3339,7 @@ void AngerLevel::ActivateShadow()
 	//If so, a bullet is fired from a shadow determined by the player's location.
 	/*auto& theTime = ECS::GetComponent<ShadowTime>(player);
 	auto& theLoc = ECS::GetComponent<ShadowSense>(player);*/
-	auto& playerMech = ECS::GetComponent<PlayerMechanics>(player);
+	auto& playerMech = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
 	if (playerMech.GetFiring() == true)
 	{
 		if (playerMech.GetShadowLoc() == 1)
@@ -3363,8 +3362,8 @@ void AngerLevel::MoveShadow(int shadow)
 
 void AngerLevel::MovePlatform()
 {
-	auto& moveTrig = ECS::GetComponent<MovingClass>(player);
-	auto& playerBody = ECS::GetComponent<PhysicsBody>(player);
+	auto& moveTrig = ECS::GetComponent<MovingClass>(MainEntities::MainPlayer());
+	auto& playerBody = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
 	auto& plat = ECS::GetComponent<PhysicsBody>(movingPlat);
 	//auto& vert = ECS::GetComponent<PhysicsBody>(vertMovingPlat);
 	float platX = plat.GetPosition().x;
@@ -3416,8 +3415,8 @@ void AngerLevel::MovePlatform()
 void AngerLevel::PlayerDeath()
 {
 	//auto& playerHealth = ECS::GetComponent<Health>(player);
-	auto& playerMech = ECS::GetComponent<PlayerMechanics>(player);
-	auto& playerBody = ECS::GetComponent<PhysicsBody>(player);
+	auto& playerMech = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
+	auto& playerBody = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
 	if (playerMech.GetRespawn() == true) //if palyer falls off map
 	{
 		playerBody.SetPosition(b2Vec2(50, 50));
@@ -3459,9 +3458,9 @@ void AngerLevel::UpdatePositionWithCamera(int cameraEntity, int spriteEntity, in
 }
 void AngerLevel::UpdateUI()
 {
-	auto& playerMech = ECS::GetComponent<PlayerMechanics>(player);
+	auto& playerMech = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
 	auto& shieldMech = ECS::GetComponent<ShieldMechanic>(shield);
-	auto& gameCoolDown = ECS::GetComponent<CoolDown>(player);
+	auto& gameCoolDown = ECS::GetComponent<CoolDown>(MainEntities::MainPlayer());
 	if (shieldMech.shieldOn == true)
 	{
 		ECS::GetComponent<Sprite>(shieldUI).LoadSprite(shieldOn,30, 30); 

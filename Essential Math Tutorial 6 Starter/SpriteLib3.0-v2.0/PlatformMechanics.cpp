@@ -131,6 +131,7 @@ void MovingPlatform::MovePlatform(int entity)
 		{
 			platform.SetPosition(b2Vec2(platform.GetPosition().x, minY));
 			resetTimer = 0;
+			verticalSequence = false;
 		}
 	}
 }

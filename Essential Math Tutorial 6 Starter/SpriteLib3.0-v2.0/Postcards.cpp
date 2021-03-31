@@ -181,7 +181,7 @@ void Postcards::Update()
 
 	fmod.Update();
 
-	if (pPhysics.GetPosition().x >= 40.f && pPhysics.GetPosition().x <= 100.f)
+	if (pPhysics.GetPosition().x >= -10.f && pPhysics.GetPosition().x <= 10.f)
 	{
 		static bool maximized = false;
 		static bool contactStep = false;

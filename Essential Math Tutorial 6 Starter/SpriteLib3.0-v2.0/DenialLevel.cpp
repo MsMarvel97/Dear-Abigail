@@ -27,8 +27,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 	
 	//Setting up background music
 	{
-		//denialBGM.Play();
-		//denialBGM.SetVolume(4.5f);
+		denialBGM.Play();
+		denialBGM.SetVolume(4.5f);
 	}
 
 	//Setup MainCamera Entity
@@ -87,9 +87,9 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_dynamicBody;
-		//tempDef.position.Set(float32(-450.f), float32(30.f));
+		tempDef.position.Set(float32(-450.f), float32(30.f));
 		//tempDef.position.Set(float32(744.5), float32(187.5));
-		tempDef.position.Set(float32(1550), float32(447));
+		//tempDef.position.Set(float32(1550), float32(447));
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
 		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX), float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, PLAYER, ENEMY | OBJECTS | PICKUP | TRIGGER | SNAIL, 0.f, 1.f);
@@ -1246,6 +1246,7 @@ void DenialLevel::CheckUIConditions()
 	}
 
 }
+//This function is called each update to check if the end of the level has been reached. If it has, this also changes the scene.
 void DenialLevel::CheckEndLevel()
 {
 	auto& pPhysics = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
@@ -1368,8 +1369,8 @@ void DenialLevel::SpawnBullet(int shadow)
 //Shoots bullets spawned by shadows
 void DenialLevel::ShootBullet(int bullet)
 {
-	//shootBulletSound.Play();
-	//shootBulletSound.SetVolume(5.0f);
+	shootBulletSound.Play();
+	shootBulletSound.SetVolume(5.0f);
 	b2Vec2 angle = CalculateAngle(MainEntities::MainPlayer(), bullet);
 
 	float dirAngle = atan(angle.x / angle.y) * (180 / PI);

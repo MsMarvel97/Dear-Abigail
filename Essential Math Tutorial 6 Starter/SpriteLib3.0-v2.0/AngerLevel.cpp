@@ -340,7 +340,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 			&ECS::GetComponent<AnimationController>(entity));
 		//ECS::GetComponent<ShadowLoop>(entity).setSequenceStart(true);
  
-		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(239, 449);
+		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(226, 449);
 		ECS::GetComponent<ShadowLoop>(entity).SetPatrolVelocity(b2Vec2(30.f, 0.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
@@ -352,7 +352,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_dynamicBody;
 		
-		tempDef.position.Set(float32(416.f), float32(70.f));
+		tempDef.position.Set(float32(337.5), float32(70.f));
 		
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
@@ -2607,11 +2607,11 @@ void AngerLevel::PlayerDeath()
 
 void AngerLevel::MouseClick(SDL_MouseButtonEvent evnt)
 {
-	auto& playerBody = ECS::GetComponent<PhysicsBody>(player);
+	/*auto& playerBody = ECS::GetComponent<PhysicsBody>(player);
 	if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT))
 	{
 		std::cout << "(" << evnt.x << "," << evnt.y << ")\n";
-	}
+	}*/
 }
 
 void AngerLevel::UpdatePositionWithCamera(int cameraEntity, int spriteEntity, int tempOffsetX, int tempOffsetY)

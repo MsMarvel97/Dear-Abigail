@@ -98,8 +98,11 @@ void ShadowLoop::ShadowRoutine(int entity)
 	{
 		if (ECS::GetComponent<ShadowLoop>(entity).GetShadowType() == RANGED)
 		{
-			shadow.SetVelocity(vec3(0.f, 0.f, 0.f));	
+			shadow.SetVelocity(vec3(0.f, 0.f, 0.f));
+		}
 
+		if (player.GetPosition().x >= minX && player.GetPosition().x <= maxX)
+		{
 			if (player.GetPosition().x > shadow.GetPosition().x)
 			{
 				facing = RIGHT;
@@ -110,19 +113,12 @@ void ShadowLoop::ShadowRoutine(int entity)
 			}
 		}
 
-		if (ECS::GetComponent<ShadowLoop>(entity).GetShadowType() == MELEE) //NEW code for MELEE
-		{
-			ShadowMove(entity);
-		}
-
 		if (currentTime >= 0 && currentTime < 3) //resting
 		{
-			//std::cout << "Resting" << "\n";
 			animType = IDLE;
 		}
 		else if (currentTime > 3 && currentTime < 5) //charging 
 		{
-			//std::cout << "Charging" << "\n";
 			if (ECS::GetComponent<ShadowLoop>(entity).GetShadowType() == RANGED)
 			{
 				animType = IDLE;
@@ -134,7 +130,6 @@ void ShadowLoop::ShadowRoutine(int entity)
 		}
 		else if (currentTime > 5 && currentTime < 7) //attacking
 		{
-			//std::cout << "Attacking" << "\n";
 			animType = ATTACKING;
 		}
 		else
@@ -145,25 +140,9 @@ void ShadowLoop::ShadowRoutine(int entity)
 	}
 
 	//This will allow the shadow to move while it is not attacking the player
-	else if (sequenceStart == false)
+	if (shadowType == MELEE || sequenceStart == false)
 	{
-		if (facing == LEFT)
-		{
-			shadow.SetVelocity(vec3(-30, 0.f, 0.f));
-			if (shadow.GetPosition().x <= minX)
-			{
-				facing = RIGHT;
-			}
-		}
-		else
-		{
-			shadow.SetVelocity(vec3(30, 0.f, 0.f));
-			if (shadow.GetPosition().x >= maxX)
-			{
-				facing = LEFT;
-			}
-		}
-		
+		ShadowMove(entity);
 	}
 
 	//animation will be set based on the shadow's current state
@@ -183,31 +162,21 @@ void ShadowLoop::SetAnimation(int facing, int animation, int entity)
 void ShadowLoop::ShadowMove(int entity)
 {
 	auto& shadow = ECS::GetComponent<PhysicsBody>(entity);
-	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
-	if (player.GetPosition().x < shadow.GetPosition().x)
+	
+	if (facing == LEFT)
 	{
-		if (player.GetPosition().x <= minX)
+		shadow.SetVelocity(vec3(-30, 0.f, 0.f));
+		if (shadow.GetPosition().x <= minX)
 		{
 			facing = RIGHT;
-			shadow.SetVelocity(vec3(30.f, 0.f, 0.f));
-		}
-		else
-		{
-			facing = LEFT;
-			shadow.SetVelocity(vec3(-30.f, 0.f, 0.f));
 		}
 	}
 	else
 	{
-		if (player.GetPosition().x >= maxX)
+		shadow.SetVelocity(vec3(30, 0.f, 0.f));
+		if (shadow.GetPosition().x >= maxX)
 		{
 			facing = LEFT;
-			shadow.SetVelocity(vec3(-30.f, 0.f, 0.f));
-		}
-		else
-		{
-			facing = RIGHT;
-			shadow.SetVelocity(vec3(30.f, 0.f, 0.f));
 		}
 	}
 }

@@ -63,6 +63,7 @@ void KnockBackTrigger::OnEnter()
 				ECS::GetComponent<PhysicsBody>(m_targetEntities[0]).GetBody()->SetLinearVelocity(b2Vec2(1000000000 * normalX, 1000000000 * normalY));
 				ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).HealthLost();
 				ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetCanMove(false);
+				ECS::GetComponent<ShadowLoop>(m_triggerEntity).SetShadowPauseSequence(true);
 			}
 		}
 		else if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetShield() == false)
@@ -72,12 +73,14 @@ void KnockBackTrigger::OnEnter()
 			ECS::GetComponent<PhysicsBody>(m_targetEntities[0]).GetBody()->SetLinearVelocity(b2Vec2(1000000000 * normalX, 1000000000 * normalY));
 			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).HealthLost();
 			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetCanMove(false);
+			ECS::GetComponent<ShadowLoop>(m_triggerEntity).SetShadowPauseSequence(true);
 		}
 		else if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetShield() == true)
 		{
 			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetKnockbackSequence(true);
 			ECS::GetComponent<PhysicsBody>(m_targetEntities[0]).GetBody()->SetLinearVelocity(b2Vec2(1000000000 * normalX, 1000000000 * normalY));
 			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetCanMove(false);
+			ECS::GetComponent<ShadowLoop>(m_triggerEntity).SetShadowPauseSequence(true);
 		}
 	}
 	

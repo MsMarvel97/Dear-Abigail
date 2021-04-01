@@ -6,14 +6,14 @@ class ShadowLoop
 public:
 	enum ShadowType
 	{
-		RANGED = 0,
-		MELEE = 1
+		RANGED,
+		MELEE,
 	};
 
 	enum ShadowFacing
 	{
-		LEFT = 0,
-		RIGHT = 1
+		LEFT,
+		RIGHT
 	};
 
 	enum ShadowAnimationType
@@ -24,26 +24,26 @@ public:
 		CHARGING = 6
 	};
 
-	enum RangedShadowAnimations //FACING + ANIMATION
+	enum RangedShadowAnimations
 	{
-		FLOATLEFT = 0,
-		FLOATRIGHT = 1,
-		FLYLEFT = 2,
-		FLYRIGHT = 3,
-		SHOOTLEFT = 4,
-		SHOOTRIGHT = 5
+		FLOATLEFT,
+		FLOATRIGHT,
+		FLYLEFT,
+		FLYRIGHT,
+		SHOOTLEFT,
+		SHOOTRIGHT
 	};
 
-	enum MeleeShadowAnimations //FACING + ANIMATION
+	enum MeleeShadowAnimations
 	{
-		IDLELEFT = 0,
-		IDLERIGHT = 1,
-		WALKLEFT = 2,
-		WALKRIGHT = 3,
-		ATTACKLEFT = 4,
-		ATTACKRIGHT = 5,
-		CHARGELEFT = 6,
-		CHARGERIGHT = 7
+		IDLELEFT,
+		IDLERIGHT,
+		WALKLEFT,
+		WALKRIGHT,
+		ATTACKLEFT,
+		ATTACKRIGHT,
+		CHARGELEFT,
+		CHARGERIGHT
 	};
 
 	ShadowLoop();
@@ -53,6 +53,13 @@ public:
 
 	//handles move and attack sequences depending on current state
 	void ShadowRoutine(int entity);
+
+	void ShadowMove(int entity);
+
+	void ShadowFacing(int entity);
+
+	void RangedRoutine(int entity);
+	void MeleeRoutine(int entity);
 
 	void RunShadowTime();
 
@@ -66,13 +73,19 @@ public:
 
 	bool GetShadowSequence() { return sequenceStart; };
 
+	void SetShootingTime(float shooting) { shootingTime = shooting; };
+
+	bool GetFiring() { return fire; };
+
 	int GetShadowType() { return shadowType; };
 
 	int GetShadowAnim() { return animType; };
 
-	void ShadowMove(int entity);
+	void ShadowPause(int entity); //new function
+	void SetShadowPauseSequence(bool newSequnce) { pauseSequenceStart = newSequnce; }; //new setter
 
 	float startTime = 0.f;
+	float pauseStartTime = 0.f; //new float used in ShadowPause
 	bool isShadowAlive = true;
 
 private:
@@ -80,13 +93,17 @@ private:
 	b2Vec2 patrolVelocity = { 0.f, 0.f };
 
 	//boundaries of patrol
-	float maxX = 0;
-	float minX = 0;
+	float maxX = 0; //max X position of patrol
+	float minX = 0; //min X position of patrol
 
 	int facing = 0;
 	int animType = 0;
 	int shadowType = 0;
+	float shootingTime = 0.5;
+	bool fire = false;
 	bool sequenceStart = false;
+	bool pauseSequenceStart = false; //new bool
+	bool shadowCanMove = true;
 	Sprite* sprites;
 	AnimationController* animator;
 };

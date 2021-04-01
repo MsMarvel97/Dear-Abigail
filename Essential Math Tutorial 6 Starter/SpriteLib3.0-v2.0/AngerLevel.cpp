@@ -86,13 +86,16 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2BodyDef tempDef;
 		tempDef.type = b2_dynamicBody;
 
-		tempDef.position.Set(float32(0), float32(80.f)); //beginning
+		//tempDef.position.Set(float32(0), float32(80.f)); //beginning
+		tempDef.position.Set(float32(752), float32(100.f)); //platform D
+		//tempDef.position.Set(float32(1456), float32(80.f)); 
 		//tempDef.position.Set(float32(3216.f), float32(80.f)); //boss platform
 		//tempDef.position.Set(float32(700), float32(80.f)); //bridge
 		//tempDef.position.Set(float32(1006), float32(80.f)); //spike
 		//tempDef.position.Set(float32(2456), float32(120.f)); //beginning of crumbling platforms
 		//tempDef.position.Set(float32(331), float32(70.f)); //shadow 1
-		//tempDef.position.Set(float32(1266), float32(70.f)); //shadow 3		
+		//tempDef.position.Set(float32(1143), float32(70.f)); //shadow 3		
+		//tempDef.position.Set(float32(1892), float32(70.f)); //shadow 4		
 		//tempDef.position.Set(float32(3806), float32(100.f)); //end platform
 		//tempDef.position.Set(float32(2452.f), float32(130.f)); //shadow 5
 
@@ -464,7 +467,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "sandFloor.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 50, 50);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 100, 50);
 
 		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(shadows[0], shadows[0] - 50, 0.f));
 
@@ -474,7 +477,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		ECS::GetComponent<Kinematics>(entity).SetChild(sZones[1]);
 		ECS::GetComponent<Kinematics>(entity).SetParent(shadows[1]);
-		ECS::GetComponent<Kinematics>(entity).SetOffset(0, 50);
+		ECS::GetComponent<Kinematics>(entity).SetOffset(0,0);
 
 		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 
@@ -552,7 +555,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "sandFloor.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 50, 50);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 100, 50);
 
 		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(shadows[0], shadows[0] - 50, 0.f));
 
@@ -562,7 +565,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		ECS::GetComponent<Kinematics>(entity).SetChild(sZones[2]);
 		ECS::GetComponent<Kinematics>(entity).SetParent(shadows[2]);
-		ECS::GetComponent<Kinematics>(entity).SetOffset(0, 50);
+		ECS::GetComponent<Kinematics>(entity).SetOffset(0, 0);
 
 		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 
@@ -640,7 +643,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "sandFloor.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 50, 50);
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 100, 50);
 
 		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(shadows[0], shadows[0] - 50, 0.f));
 
@@ -650,7 +653,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		ECS::GetComponent<Kinematics>(entity).SetChild(sZones[3]);
 		ECS::GetComponent<Kinematics>(entity).SetParent(shadows[3]);
-		ECS::GetComponent<Kinematics>(entity).SetOffset(0, 50);
+		ECS::GetComponent<Kinematics>(entity).SetOffset(0, 0);
 
 		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 
@@ -694,6 +697,54 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 			&ECS::GetComponent<AnimationController>(entity));
 		//ECS::GetComponent<ShadowLoop>(entity).setSequenceStart(true);
 
+		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(1438, 1789);
+		ECS::GetComponent<ShadowLoop>(entity).SetPatrolVelocity(b2Vec2(30.f, 0.f));
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_dynamicBody;
+		tempDef.position.Set(float32(1613.f), float32(40.f));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		tempPhsBody.SetGravityScale(0.f);
+	}
+	//ShadowAreaTrigger for Shadow 5
+	{
+		auto entity = ECS::CreateEntity();
+		sZones[4] = entity;
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Trigger*>(entity);
+		ECS::AttachComponent<Kinematics>(entity);
+
+		//Sets up components
+		std::string fileName = "sandFloor.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 100, 50);
+
+		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(shadows[0], shadows[0] - 50, 0.f));
+
+		ECS::GetComponent<Trigger*>(entity) = new ShadowAreaTrigger();
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(shadows[4]);
+
+		ECS::GetComponent<Kinematics>(entity).SetChild(sZones[4]);
+		ECS::GetComponent<Kinematics>(entity).SetParent(shadows[4]);
+		ECS::GetComponent<Kinematics>(entity).SetOffset(0, 0);
+
+		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
+
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
@@ -702,7 +753,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(2544.f), float32(176.f));
+		tempDef.position.Set(float32(1613.f), float32(40.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -734,6 +785,54 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 			&ECS::GetComponent<AnimationController>(entity));
 		//ECS::GetComponent<ShadowLoop>(entity).setSequenceStart(true);
 
+		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(960, 1147);
+		ECS::GetComponent<ShadowLoop>(entity).SetPatrolVelocity(b2Vec2(30.f, 0.f));
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_dynamicBody;
+		tempDef.position.Set(1070, 40); //(2960,64)
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		tempPhsBody.SetGravityScale(0.f);
+	}
+	//ShadowAreaTrigger for Shadow 6
+	{
+		auto entity = ECS::CreateEntity();
+		sZones[5] = entity;
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Trigger*>(entity);
+		ECS::AttachComponent<Kinematics>(entity);
+
+		//Sets up components
+		std::string fileName = "sandFloor.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 100, 50);
+
+		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(shadows[0], shadows[0] - 50, 0.f));
+
+		ECS::GetComponent<Trigger*>(entity) = new ShadowAreaTrigger();
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(shadows[5]);
+
+		ECS::GetComponent<Kinematics>(entity).SetChild(sZones[5]);
+		ECS::GetComponent<Kinematics>(entity).SetParent(shadows[5]);
+		ECS::GetComponent<Kinematics>(entity).SetOffset(0, 0);
+
+		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
+
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
@@ -742,7 +841,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(2960, 90); //(2960,64)
+		tempDef.position.Set(float32(1070), float32(40.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -821,7 +920,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
-	//Trap/Spikes
+	//Spike
 	{
 		//Creates entity
 		auto entity = ECS::CreateEntity();
@@ -859,6 +958,50 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetGravityScale(1.3f);
 		tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
 	}
+	int spikeXLoc = 818;
+	for (int i = 0; i < 4; i++)
+	{
+		//test spike
+		{
+			//Creates entity
+			auto entity = ECS::CreateEntity();
+
+			//Add components
+			ECS::AttachComponent<Sprite>(entity);
+			ECS::AttachComponent<Transform>(entity);
+			ECS::AttachComponent<PhysicsBody>(entity);
+			ECS::AttachComponent<Trigger*>(entity);
+
+			//Sets up components
+			std::string fileName = "Spike.png";
+			ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16, 16);
+			ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
+			ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+			ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
+			ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+			ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
+			ECS::GetComponent<Trigger*>(entity)->SetSpike(true);
+
+			auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+			auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+			float shrinkX = 0.f;
+			float shrinkY = 0.f;
+			b2Body* tempBody;
+			b2BodyDef tempDef;
+			tempDef.type = b2_staticBody;//change to dynamic
+			tempDef.position.Set(float32(spikeXLoc), float32(80.f));
+
+			tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+			tempPhsBody = PhysicsBody(entity, tempBody, float((tempSpr.GetWidth() - shrinkY) / 2.f), vec2(0.f, 0.f), true, TRIGGER, PLAYER, 0.3f);
+
+			tempPhsBody.SetGravityScale(1.3f);
+			tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
+		}
+		spikeXLoc += 16;
+	}
+	
 	//Boss Level Ground Platform(aka Platform ZA)
 	int bossCoord = 3304;
 	//Creating 10 crumbling platforms
@@ -2128,7 +2271,7 @@ void AngerLevel::SpawnPlatforms()
 	SpawnPlatform(96.f, 8.f, 192.f, 16.f, "SamplePlatform.png", 1.f); //Platform A
 	SpawnPlatform(336.f, 40.f, 224.f, 16.f, "SamplePlatform.png", 1.f); //Platform B
 	SpawnPlatform(608.f, 8.f, 256.f, 16.f, "SamplePlatform.png", 1.f); //Platform C
-	SpawnPlatform(840.f, 60.f, 240.f, 16.f, "SamplePlatform.png", 1.f); //Platform D
+	SpawnPlatform(840.f, 65.f, 240.f, 16.f, "SamplePlatform.png", 1.f); //Platform D
 	SpawnPlatform(700.8f, 24.f, 48.f, 16.f, "SamplePlatform.png",1.f, 90.f); //Platform D_BridgeHelp_
 	SpawnPlatform(732.f, 20.f, 8.f, 8.f, "SamplePlatform.png", 1.f);//Platform D_BridgeHelp_2
 	SpawnPlatform(1056.f, 8.f, 224.f, 16.f, "SamplePlatform.png", 1.f);//Platform E
@@ -2324,6 +2467,15 @@ void AngerLevel::Update()
 	ECS::GetComponent<Kinematics>(sZones[2]).UpdatePosition();
 	ECS::GetComponent<ShadowLoop>(shadows[3]).ShadowRoutine(shadows[3]);
 	ECS::GetComponent<Kinematics>(sZones[3]).UpdatePosition();
+	ECS::GetComponent<ShadowLoop>(shadows[4]).ShadowRoutine(shadows[4]);
+	ECS::GetComponent<Kinematics>(sZones[4]).UpdatePosition();
+	ECS::GetComponent<ShadowLoop>(shadows[5]).ShadowRoutine(shadows[5]);
+	ECS::GetComponent<Kinematics>(sZones[5]).UpdatePosition();
+
+	for (int i = 0; i < 6; i++) //shadow contact/pause
+	{
+		ECS::GetComponent<ShadowLoop>(shadows[i]).ShadowPause(shadows[i]);
+	}
 }
 
 void AngerLevel::KeyboardHold()
@@ -2359,18 +2511,20 @@ void AngerLevel::KeyboardDown()
 	playerPos = player.GetPosition();
 
  
- 
-	if (Input::GetKeyDown(Key::Q) && shieldMech.restart == true && theCoolDown.isCoolDownActive == false) //checks to see if the shield cooldown if complete before reactivating shield
-	{
-		shieldMech.setSequenceStart(true);
-		theCoolDown.SetSequenceStart(true);
-	}
+	
+		if (Input::GetKeyDown(Key::Q) && shieldMech.restart == true && theCoolDown.isCoolDownActive == false) //checks to see if the shield cooldown if complete before reactivating shield
+		{
+			shieldMech.setSequenceStart(true);
+			theCoolDown.SetSequenceStart(true);
+		}
 
-	if (Input::GetKeyDown(Key::E) && playerMech.GetAttackSequence() == false && theCoolDown.isCoolDownActive == false)
-	{
-		playerMech.SetAttackSequence(true);
-		theCoolDown.SetSequenceStart(true);
-	}
+		if (Input::GetKeyDown(Key::E) && playerMech.GetAttackSequence() == false && theCoolDown.isCoolDownActive == false)
+		{
+			playerMech.SetAttackSequence(true);
+			theCoolDown.SetSequenceStart(true);
+		}
+	
+	
 
  
 	if (Input::GetKeyDown(Key::M)) {

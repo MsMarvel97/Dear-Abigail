@@ -229,7 +229,7 @@ void Player::MovementUpdate()
 	//debugging movement code
 	if (Input::GetKey(Key::W))
 	{
-		player.GetBody()->SetLinearVelocity(b2Vec2(0, 100));
+		//player.GetBody()->SetLinearVelocity(b2Vec2(0, 100));
 	}
 }
 

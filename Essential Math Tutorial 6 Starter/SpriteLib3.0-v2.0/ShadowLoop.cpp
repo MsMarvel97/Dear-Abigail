@@ -41,34 +41,110 @@ void ShadowLoop::InitRangedShadow(std::string& fileName, std::string& animationJ
 	animator->SetActiveAnim(FLOATLEFT);
 }
 
-//void ShadowLoop::RunShadowTime()
-//{
-//	if (shadowSequence == false)
-//	{
-//		target = 1;
-//		shadowStart = Timer::time;
-//	}
-//	float currentTime = Timer::StopWatch(shadowStart);
-//
-//	if (shadowSequence == true) //this statement will run once the player has entered a ShadowAreaTrigger
-//	{
-//
-//		if (currentTime > target)
-//		{
-//			fire = true;
-//			target += 1;
-//		}
-//		else
-//		{
-//			fire = false;
-//		}
-//	}
-//}
+void ShadowLoop::InitMeleeShadow(std::string& fileName, std::string& animationJSON, int width, int height, Sprite* sprite, AnimationController* controller)
+{
+	//Store references to the components
+	sprites = sprite;
+	animator = controller;
+	shadowType = MELEE;
+
+	//Initialize UVs
+	animator->InitUVs(fileName);
+
+	//Loads the texture and sets width and height
+	sprites->LoadSprite(fileName, width, height, true, animator);
+	animator->SetVAO(sprites->GetVAO());
+	animator->SetTextureSize(sprites->GetTextureSize());
+
+	//Loads in the animations json file
+	nlohmann::json animations = File::LoadJSON(animationJSON);
+
+	//PLATFORM ANIMATIONS\\
+	//
+	//Idling left
+	animator->AddAnimation(animations["IdleLeft"].get<Animation>());
+	//Idling right
+	animator->AddAnimation(animations["IdleRight"].get<Animation>());
+	//Charging left
+	animator->AddAnimation(animations["IdleLeft"].get<Animation>()); //TBC to charging
+	//Charging right
+	animator->AddAnimation(animations["IdleRight"].get<Animation>()); //TBC to charging
+	//Attacking left
+	animator->AddAnimation(animations["AttackLeft"].get<Animation>());
+	//Attacking right
+	animator->AddAnimation(animations["AttackRight"].get<Animation>());
+	//Attacking left
+	animator->AddAnimation(animations["AttackLeft"].get<Animation>());
+	//Attacking right
+	animator->AddAnimation(animations["AttackRight"].get<Animation>());
+
+	////Set Default Animation
+	animator->SetActiveAnim(IDLELEFT);
+
+}
 
 void ShadowLoop::ShadowRoutine(int entity)
 {
+	if (shadowType == RANGED)
+	{
+		RangedRoutine(entity);
+	}
+	else
+	{
+		MeleeRoutine(entity);
+	}
+
+	//animation will be set based on the shadow's current state
+	SetAnimation(facing, animType, entity);
+}
+
+void ShadowLoop::RunShadowTime()
+{
+}
+
+void ShadowLoop::SetAnimation(int facing, int animation, int entity)
+{
+	int choice = facing + animation;
+	ECS::GetComponent<AnimationController>(entity).SetActiveAnim(choice);
+}
+
+void ShadowLoop::ShadowMove(int entity)
+{
 	auto& shadow = ECS::GetComponent<PhysicsBody>(entity);
-	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
+
+	if (facing == LEFT)
+	{
+		shadow.SetVelocity(vec3(-30, 0.f, 0.f));
+		if (shadow.GetPosition().x <= minX)
+		{
+			facing = RIGHT;
+		}
+	}
+	else
+	{
+		shadow.SetVelocity(vec3(30, 0.f, 0.f));
+		if (shadow.GetPosition().x >= maxX)
+		{
+			facing = LEFT;
+		}
+	}
+}
+
+void ShadowLoop::ShadowFacing(int entity)
+{
+	if (ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).GetPosition().x > ECS::GetComponent<PhysicsBody>(entity).GetPosition().x)
+	{
+		facing = RIGHT;
+	}
+	else
+	{
+		facing = LEFT;
+	}
+}
+
+void ShadowLoop::RangedRoutine(int entity)
+{
+	auto& shadow = ECS::GetComponent<PhysicsBody>(entity);
 
 	if (sequenceStart == false)
 	{
@@ -79,17 +155,7 @@ void ShadowLoop::ShadowRoutine(int entity)
 	if (sequenceStart == true) //this statement will run once the player has entered a ShadowAreaTrigger
 	{
 		shadow.SetVelocity(vec3(0.f, 0.f, 0.f));
-
-		if (player.GetPosition().x > shadow.GetPosition().x)
-		{
-			facing = RIGHT;
-		}
-
-		else
-		{
-			facing = LEFT;
-		}
-
+		ShadowFacing(entity);
 		if (ECS::GetComponent<ShadowLoop>(entity).GetShadowType() == RANGED)
 		{
 			if (currentTime >= shootingTime)
@@ -103,67 +169,71 @@ void ShadowLoop::ShadowRoutine(int entity)
 			}
 		}
 
-		if (currentTime >= 0 && currentTime < 2) //resting
+		if (currentTime >= 0 && currentTime < 3) //resting
 		{
-			//std::cout << "Resting" << "\n";
 			animType = IDLE;
+		}
+		else if (currentTime > 3 && currentTime < 5) //charging 
+		{
+			animType = IDLE;
+		}
+		else if (currentTime > 5 && currentTime < 7) //attacking
+		{
+			animType = IDLE;
+		}
+		else
+		{
+			currentTime = 0.f;
+			startTime = Timer::time;
+		}
+	}
 
-		}
-		else if (currentTime > 2 && currentTime < 4) //charging 
+	//This will allow the shadow to move while it is not attacking the player
+	else if (sequenceStart == false)
+	{
+		ShadowMove(entity);
+	}
+}
+
+void ShadowLoop::MeleeRoutine(int entity)
+{
+	auto& shadow = ECS::GetComponent<PhysicsBody>(entity);
+	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
+	if (sequenceStart == false)
+	{
+		startTime = Timer::time;
+	}
+	float currentTime = Timer::StopWatch(startTime);
+
+	if (sequenceStart == true) //this statement will run once the player has entered a ShadowAreaTrigger
+	{
+		if (player.GetPosition().x >= minX && player.GetPosition().x <= maxX)
 		{
-			//std::cout << "Charging" << "\n";
-			if (ECS::GetComponent<ShadowLoop>(entity).GetShadowType() == RANGED)
-			{
-				animType = IDLE;
-			}
-			else
-			{
-				animType = CHARGING;
-			}
+			ShadowFacing(entity);
 		}
-		else if (currentTime > 4 && currentTime < 6) //attacking
+
+		if (currentTime >= 0 && currentTime < 3) //resting
 		{
-			//std::cout << "Attacking" << "\n";
-			//fire = true;
+			animType = IDLE;
+		}
+
+		else if (currentTime > 3 && currentTime < 5) //charging 
+		{
+			animType = CHARGING;
+		}
+		else if (currentTime > 5 && currentTime < 7) //attacking
+		{
 			animType = ATTACKING;
 		}
 		else
 		{
 			currentTime = 0.f;
 			startTime = Timer::time;
-			shootingTime = 1;
-		}
-
-
-	}
-
-	//This will allow the shadow to move while it is not attacking the player
-	else if (sequenceStart == false)
-	{
-		if (facing == LEFT)
-		{
-			shadow.SetVelocity(vec3(-patrolVelocity.x, -patrolVelocity.y, 0.f));
-			if (shadow.GetPosition().x <= minX)
-			{
-				facing = RIGHT;
-			}
-		}
-		else
-		{
-			shadow.SetVelocity(vec3(patrolVelocity.x, patrolVelocity.y, 0.f));
-			if (shadow.GetPosition().x >= maxX)
-			{
-				facing = LEFT;
-			}
 		}
 	}
+
+	ShadowMove(entity);
 
 	//animation will be set based on the shadow's current state
 	SetAnimation(facing, animType, entity);
-}
-
-void ShadowLoop::SetAnimation(int facing, int animation, int entity)
-{
-	int choice = facing + animation;
-	ECS::GetComponent<AnimationController>(entity).SetActiveAnim(choice);
 }

@@ -23,6 +23,9 @@ public:
 	void CrumblingPlatforms(int entity);
 	void MovePlatform();
 
+	void SpawnShadows();
+	void SeparateShadows(b2Vec2(newShadow));
+
 	void SpawnBullet(int shadow);
 	void SpawnBullet(int wall, float offsetX, float offsetY);
 

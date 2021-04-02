@@ -54,6 +54,13 @@ public:
 	//handles move and attack sequences depending on current state
 	void ShadowRoutine(int entity);
 
+	void ShadowMove(int entity);
+
+	void ShadowFacing(int entity);
+
+	void RangedRoutine(int entity);
+	void MeleeRoutine(int entity);
+
 	void RunShadowTime();
 
 	void SetAnimation(int facing, int animation, int entity);

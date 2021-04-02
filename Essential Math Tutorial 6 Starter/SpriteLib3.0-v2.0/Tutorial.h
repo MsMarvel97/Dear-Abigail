@@ -1,17 +1,16 @@
 #pragma once
 #include "Scene.h"
-#include "PhysicsPlayground.h"
+#include "PhysicsPlaygroundListener.h"
 
-class Postcards : public Scene
+class Tutorial :
+    public Scene
 {
 public:
-	Postcards(std::string name);
+	Tutorial(std::string name);
 	void InitScene(float windowWidth, float windowHeight) override;
 	void Update();
 
 protected:
 	PhysicsPlaygroundListener listener;
-	int postcardMin = 0;
-	int postcardMax = 0;
 };
 

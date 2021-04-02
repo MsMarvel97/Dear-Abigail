@@ -288,6 +288,178 @@ void Scene::SpawnPlatform(float xPos, float yPos, float width, float height, std
 	tempPhsBody.SetRotationAngleDeg(rotation);
 }
 
+b2Vec2 Scene::SpawnShadow(float xPos, float yPos, float min, float max, bool ranged, b2Vec2 patrolVel, float xOffset, float yOffset, float width, float height)
+{
+	b2Vec2 shadowPair;
+	int entity = 0;
+	//Shadow 1
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		shadowPair.x = entity;
+		std::string fileName = "";
+		std::string JSONfile = "";
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Trigger*>(entity);
+		ECS::AttachComponent<ShadowLoop>(entity);
+		ECS::AttachComponent<AnimationController>(entity);
+
+		if (ranged == true)
+		{
+			//Sets up ranged shadow components
+			fileName = "spritesheets/ShadowSpritesheet.png";
+			JSONfile = "Shadow.json";
+		}
+		else
+		{
+			//sets up melee shadow components
+		}
+
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+
+		ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
+
+		ECS::GetComponent<ShadowLoop>(entity).InitRangedShadow(fileName, JSONfile, 32, 32, &ECS::GetComponent<Sprite>(entity),
+			&ECS::GetComponent<AnimationController>(entity));
+
+		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(min, max);
+		ECS::GetComponent<ShadowLoop>(entity).SetPatrolVelocity(patrolVel);
+
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_dynamicBody;
+		tempDef.position.Set(xPos, yPos);
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, width, height, vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		tempPhsBody.SetGravityScale(0.f);
+
+	}
+
+	//Shadow area trigger 1 entity
+	{
+		auto trig = ECS::CreateEntity();
+		shadowPair.y = trig;
+
+		//Add components
+		ECS::AttachComponent<Sprite>(trig);
+		ECS::AttachComponent<Transform>(trig);
+		ECS::AttachComponent<PhysicsBody>(trig);
+		ECS::AttachComponent<Trigger*>(trig);
+		ECS::AttachComponent<Kinematics>(trig);
+
+		//Sets up components
+		std::string fileName = "sandFloor.png";
+		ECS::GetComponent<Sprite>(trig).LoadSprite(fileName, 200, 50);
+
+		ECS::GetComponent<Trigger*>(trig) = new ShadowAreaTrigger();
+		ECS::GetComponent<Trigger*>(trig)->SetTriggerEntity(trig);
+		ECS::GetComponent<Trigger*>(trig)->AddTargetEntity(entity);
+
+		ECS::GetComponent<Kinematics>(trig).SetChild(trig);
+		ECS::GetComponent<Kinematics>(trig).SetParent(entity);
+		ECS::GetComponent<Kinematics>(trig).SetOffset(xOffset, yOffset);
+
+		ECS::GetComponent<Sprite>(trig).SetTransparency(0.f);
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(trig);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(trig);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		//tempDef.position.Set(float32(240.f), float32(40.f));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(trig, tempBody, float(tempSpr.GetWidth() - shrinkX),
+			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	}
+
+	return shadowPair;
+}
+
+void Scene::SpawnMainPlayer()
+{
+	auto entity = ECS::CreateEntity();
+	ECS::SetIsMainPlayer(entity, true);
+
+	//Add components
+	ECS::AttachComponent<Player>(entity);
+	ECS::AttachComponent<Sprite>(entity);
+	ECS::AttachComponent<Transform>(entity);
+	ECS::AttachComponent<PhysicsBody>(entity);
+	ECS::AttachComponent<AnimationController>(entity);
+	ECS::AttachComponent<PlayerMechanics>(entity);
+
+	//Sets up the components
+	std::string fileName = "spritesheets/abigailSpritesheet.png";
+	std::string animations = "abigailAnimations.json";
+
+	ECS::GetComponent<Player>(entity).InitPlayer(fileName, animations, 25, 25, &ECS::GetComponent<Sprite>(entity),
+		&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity));
+
+	ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 30.f, 5.f));
+
+	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+	float shrinkX = 8.f;
+	float shrinkY = 3.f;
+
+	b2Body* tempBody;
+	b2BodyDef tempDef;
+	tempDef.type = b2_dynamicBody;
+	tempDef.position.Set(float32(-450.f), float32(30.f));
+
+	tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX), float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, PLAYER, ENEMY | OBJECTS | PICKUP | TRIGGER | SNAIL, 0.f, 1.f);
+
+	tempPhsBody.SetRotationAngleDeg(0.f);
+	tempPhsBody.SetFixedRotation(true);
+	tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
+	tempPhsBody.SetGravityScale(0.75);
+}
+
+void Scene::SpawnMainCamera(float width, float height)
+{
+	float aspectRatio = width / height;
+
+	//Creates Camera entity
+	auto entity = ECS::CreateEntity();
+	ECS::SetIsMainCamera(entity, true);
+
+	//Creates new orthographic camera
+	ECS::AttachComponent<Camera>(entity);
+	ECS::AttachComponent<HorizontalScroll>(entity);
+	ECS::AttachComponent<VerticalScroll>(entity);
+
+	vec4 temp = vec4(-75.f, 75.f, -75.f, 75.f);
+	ECS::GetComponent<Camera>(entity).SetOrthoSize(temp);
+	ECS::GetComponent<Camera>(entity).SetOrthoSize(temp);
+	ECS::GetComponent<Camera>(entity).SetWindowSize(vec2(float(width), float(height)));
+	ECS::GetComponent<Camera>(entity).Orthographic(aspectRatio, temp.x, temp.y, temp.z, temp.w, -100.f, 100.f);
+
+	//Attaches the camera to vert and horiz scrolls
+	ECS::GetComponent<HorizontalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
+	ECS::GetComponent<VerticalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
+}
+
 
 vec4 Scene::GetClearColor() const
 {

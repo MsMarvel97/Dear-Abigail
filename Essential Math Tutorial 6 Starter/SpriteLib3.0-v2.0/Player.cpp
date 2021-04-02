@@ -196,19 +196,6 @@ void Player::MovementUpdate()
 		}
 	}
 
-	/*if (Input::GetKey(Key::C) && (player.GetVelocity().y < 0.0001 && player.GetVelocity().y > -0.0001))
-	{
-		if (jumping <= 180000)
-		{
-			float building = 150000.f;
-			jumping += building;
-		}
-		else
-		{
-			jumping = 180000;
-		}
-	}*/
-
 	if (Input::GetKeyDown(Key::Space) && (moving.GetUp() || !moving.GetJumping()))
 	{
 		float jump = 50.f;

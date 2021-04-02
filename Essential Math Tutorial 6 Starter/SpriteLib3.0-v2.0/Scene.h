@@ -60,17 +60,26 @@ public:
 	void SetScene(entt::registry& scene);
 
 	//Spawner Functions\\
-	//spawn a UI element
+	//spawn a UI element (PARAMETERS -> Camera offset [x, y], size [w, h], sprite)
 	int SpawnUIElement(float xOffset, float yOffset, float width, float height, std::string sprite);
 
-	//spawn a crumbling platform
+	//spawn a crumbling platform (PARAMETERS -> Position [x,y], size [w,h])
 	int SpawnCrumblingPlatform(float xPos, float yPos, float width = 48.f, float height = 32.f);
 
-	//spawn a tile
+	//spawn a tile (PARAMETERS -> Position [x,y], sprite, size [w, h])
 	void SpawnTile(float xPos, float yPos, std::string sprite, float width = 256.f, float height = 256.f );
 
-	//spawn a platform
+	//spawn a platform (PARAMETERS -> Position [x, y], size [w, h], sprite, transparency, rotation [degrees])
 	void SpawnPlatform(float xPos, float yPos, float width, float height, std::string sprite, float transparency = 1.f, float rotation = 0.f);
+
+	//spawns a shadow (PARAMETERS -> Position [x,y], Movement Boundaries [min, max], patrol velocity, size [w, h], trigger offset [x, y])
+	b2Vec2 SpawnShadow(float xPos, float yPos, float min, float max, bool ranged, b2Vec2 patrolVel, float xOffset = 0.f, float yOffset = -50.f, float width = 32.f, float height = 32.f);
+
+	//spawn Abigail
+	void SpawnMainPlayer();
+
+	//spawn the camera (PARAMETERS -> View [w, h])
+	void SpawnMainCamera(float width, float height);
 
 	//Gets the background color of the scene
 	vec4 GetClearColor() const;

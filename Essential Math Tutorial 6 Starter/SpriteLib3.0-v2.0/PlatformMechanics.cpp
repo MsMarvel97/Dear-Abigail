@@ -103,12 +103,54 @@ int CrumblingSequence::disablePlatform()
 
 void MovingPlatform::MovePlatform(int entity)
 {
+	if (ECS::GetComponent<MovingPlatform>(entity).type == 0)
+	{
+		MovePlatformHorizontal(entity);
+	}
+	else
+	{
+		MovePlatformVertical(entity);
+	}
+}
+
+void MovingPlatform::MovePlatformHorizontal(int entity)
+{
+	auto& moveTrig = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
+	auto& plat = ECS::GetComponent<PhysicsBody>(entity);
+
+	if (plat.GetPosition().x > max)
+	{
+		reverse = true;
+	}
+
+	if (plat.GetPosition().x < min)
+	{
+		reverse = false;
+	}
+
+	if (reverse == false)
+	{
+		plat.SetVelocity(vec3(30.f, 0.f, 0.f));
+		moveTrig.SetRight(true);
+		moveTrig.SetLeft(false);
+	}
+
+	else if (reverse == true)
+	{
+		plat.SetVelocity(vec3(-30.f, 0.f, 0.f));
+		moveTrig.SetLeft(true);
+		moveTrig.SetRight(false);
+	}
+}
+
+void MovingPlatform::MovePlatformVertical(int entity)
+{
 	auto& platform = ECS::GetComponent<PhysicsBody>(entity);
 	float currentTime = Timer::StopWatch(verticalStart);
 
 	if (verticalSequence == true)
 	{
-		if (platform.GetPosition().y <= maxY)
+		if (platform.GetPosition().y <= max)
 		{
 			platform.SetVelocity(vec3(0.f, 20.f, 0.f));
 		}
@@ -118,7 +160,7 @@ void MovingPlatform::MovePlatform(int entity)
 		}
 	}
 
-	if (platform.GetPosition().y >= maxY && verticalSequence == false)
+	if (platform.GetPosition().y >= max && verticalSequence == false)
 	{
 		if (resetTimer == 0.f)
 		{
@@ -129,7 +171,7 @@ void MovingPlatform::MovePlatform(int entity)
 
 		if (currentTime >= 5)
 		{
-			platform.SetPosition(b2Vec2(platform.GetPosition().x, minY));
+			platform.SetPosition(b2Vec2(platform.GetPosition().x, min));
 			resetTimer = 0;
 			verticalSequence = false;
 		}

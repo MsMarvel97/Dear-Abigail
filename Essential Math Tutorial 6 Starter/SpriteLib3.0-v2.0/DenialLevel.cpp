@@ -33,793 +33,15 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 	//Abigail entity
 	SpawnMainPlayer();
-
 	//DEBUGGING POSITIONS\\
 	//tempDef.position.Set(float32(744.5), float32(187.5));
 	//tempDef.position.Set(float32(1550), float32(447));
+	ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2 (1550.f, 447.f), true);
 
 	//resetting vars
 	ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).SetCheckpoint(false);
 
-	//Spawn exit
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-
-		//Sets up components
-		std::string fileName = "CaveExit.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 20.f, 40.f);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(845.f, 635.f, 2.f));
-	}
-
-	// SPECIAL PLATFORMS (MOVING/CRUMBLING) \\
-
-	/*Platform M1 (moving platform 1) *currently in leftmost position**/
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		movingPlat = entity;
-
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-
-		//Sets up components
-		std::string fileName = "movingplatform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 80, 8);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
-
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-
-		tempDef.type = b2_kinematicBody;
-
-		float platX = 392.f;
-		float platY = 168.f;
-		tempDef.position.Set(float32(392.f), float32(148.f));
-
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-		tempPhsBody.SetFixedRotation(true);
-		tempPhsBody.SetGravityScale(0.f);
-	}
-
-
-	//Trigger M1 (moving platform 1 trigger) *currently in leftmost position*
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		kinTrigger = entity;
-
-		//Add components
-		ECS::AttachComponent<Trigger*>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<Kinematics>(entity);
-
-		//Sets up components
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
-
-		ECS::GetComponent<Kinematics>(entity).SetParent(movingPlat);
-		ECS::GetComponent<Kinematics>(entity).SetChild(entity);
-
-		ECS::GetComponent<Trigger*>(entity) = new MovingTrigger;
-		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-
-		tempDef.position.Set(float32(392.f), float32(148.f));
-
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16 * 5 - shrinkX),
-			float(16 * 0.5 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	}
-
-	//Platform M8 (moving platform) *currently in lowest position of path*
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		vertMovingPlat = entity;
-
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<MovingPlatform>(entity);
-
-		//Sets up components
-		std::string fileName = "movingplatform.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 96, 16);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
-
-		ECS::GetComponent<MovingPlatform>(entity).SetMovementBoundaries(408.f, 588.f);
-
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_kinematicBody;
-		tempDef.position.Set(float32(1504.f), float32(408.f));
-
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	}
-
-	//Trigger M8 (moving trigger)
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		vertPlatTrigger = entity;
-
-		//Add components
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<Trigger*>(entity);
-		ECS::AttachComponent<Kinematics>(entity);
-
-		//Sets up components
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
-		ECS::GetComponent<Trigger*>(entity) = new VerticalPlatformTrigger();
-		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(vertMovingPlat);
-
-		ECS::GetComponent<Kinematics>(entity).SetParent(vertMovingPlat);
-		ECS::GetComponent<Kinematics>(entity).SetChild(entity);
-		ECS::GetComponent<Kinematics>(entity).SetOffset(0.f, 5.f);
-
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(1504.f), float32(428.f));
-
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-		tempPhsBody = PhysicsBody(entity, tempBody, float(94 - shrinkX),
-			float(8 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	}
-
-	// SHADOWS \\
-
-
-	SpawnShadows();
-	////Shadow 1
-	//{
-	//	//Creates entity
-	//	auto entity = ECS::CreateEntity();
-	//	shadows[0] = entity;
-
-	//	//Add components
-	//	ECS::AttachComponent<Sprite>(entity);
-	//	ECS::AttachComponent<Transform>(entity);
-	//	ECS::AttachComponent<PhysicsBody>(entity);
-	//	ECS::AttachComponent<Trigger*>(entity);
-	//	ECS::AttachComponent<ShadowLoop>(entity);
-	//	ECS::AttachComponent<AnimationController>(entity);
-
-	//	//Sets up components
-	//	std::string fileName = "spritesheets/ShadowSpritesheet.png";
-	//	std::string JSONfile = "Shadow.json";
-
-	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
-
-	//	ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
-	//	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-	//	ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
-
-	//	ECS::GetComponent<ShadowLoop>(entity).InitRangedShadow(fileName, JSONfile, 32, 32, &ECS::GetComponent<Sprite>(entity),
-	//		&ECS::GetComponent<AnimationController>(entity));
-
-	//	ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(0, 272);
-	//	ECS::GetComponent<ShadowLoop>(entity).SetPatrolVelocity(b2Vec2(30.f, 0.f));
-
-	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-	//	float shrinkX = 0.f;
-	//	float shrinkY = 0.f;
-	//	b2Body* tempBody;
-	//	b2BodyDef tempDef;
-	//	tempDef.type = b2_dynamicBody;
-	//	tempDef.position.Set(float32(248.f), float32(88.f));
-
-	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-	//	tempPhsBody = PhysicsBody(entity, tempBody, float(32), float(32), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
-
-	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	//	tempPhsBody.SetGravityScale(0.f);
-
-	//}
-
-	////Shadow area trigger 1 entity
-	//{
-	//	auto entity = ECS::CreateEntity();
-	//	sZones[0] = entity;
-
-	//	//Add components
-	//	ECS::AttachComponent<Sprite>(entity);
-	//	ECS::AttachComponent<Transform>(entity);
-	//	ECS::AttachComponent<PhysicsBody>(entity);
-	//	ECS::AttachComponent<Trigger*>(entity);
-	//	ECS::AttachComponent<Kinematics>(entity);
-
-	//	//Sets up components
-	//	std::string fileName = "sandFloor.png";
-	//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 200, 50);
-
-	//	//ECS::GetComponent<Transform>(entity).SetPosition(vec3(shadows[0], shadows[0] - 50, 0.f));
-
-	//	ECS::GetComponent<Trigger*>(entity) = new ShadowAreaTrigger();
-	//	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-	//	ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(shadows[0]);
-
-	//	ECS::GetComponent<Kinematics>(entity).SetChild(sZones[0]);
-	//	ECS::GetComponent<Kinematics>(entity).SetParent(shadows[0]);
-	//	ECS::GetComponent<Kinematics>(entity).SetOffset(0, -50);
-
-	//	ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
-
-	//	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-	//	float shrinkX = 0.f;
-	//	float shrinkY = 0.f;
-	//	b2Body* tempBody;
-	//	b2BodyDef tempDef;
-	//	tempDef.type = b2_staticBody;
-	//	tempDef.position.Set(float32(240.f), float32(40.f));
-
-	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-	//	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-	//		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
-	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	//}
-
-	//E2 (enemy 2)
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		shadows[1] = entity;
-
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<Trigger*>(entity);
-		ECS::AttachComponent<ShadowLoop>(entity);
-		ECS::AttachComponent<AnimationController>(entity);
-
-		//Sets up components
-		std::string fileName = "spritesheets/ShadowSpritesheet.png";
-		std::string JSONfile = "Shadow.json";
-
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
-
-		ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
-		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
-
-		ECS::GetComponent<ShadowLoop>(entity).InitRangedShadow(fileName, JSONfile, 32, 32, &ECS::GetComponent<Sprite>(entity),
-			&ECS::GetComponent<AnimationController>(entity));
-		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(438, 698);
-		ECS::GetComponent<ShadowLoop>(entity).SetPatrolVelocity(b2Vec2(30.f, 0.f));
-
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_dynamicBody;
-		tempDef.position.Set(float32(545), float32(216));
-
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-		tempPhsBody = PhysicsBody(entity, tempBody, float(32), float(32), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-		tempPhsBody.SetGravityScale(0.f);
-	}
-
-	//Shadow area trigger 2 entity
-	{
-		auto entity = ECS::CreateEntity();
-		sZones[1] = entity;
-
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<Trigger*>(entity);
-		ECS::AttachComponent<Kinematics>(entity);
-
-		//Sets up components
-		std::string fileName = "sandFloor.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 200, 50);
-
-		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(shadows[0], shadows[0] - 50, 0.f));
-
-		ECS::GetComponent<Trigger*>(entity) = new ShadowAreaTrigger();
-		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(shadows[1]);
-
-		ECS::GetComponent<Kinematics>(entity).SetChild(sZones[1]);
-		ECS::GetComponent<Kinematics>(entity).SetParent(shadows[1]);
-		ECS::GetComponent<Kinematics>(entity).SetOffset(0, -50);
-
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
-
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(240.f), float32(40.f));
-
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	}
-
-	//E3 (enemy 3)
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		shadows[2] = entity;
-
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<Trigger*>(entity);
-		ECS::AttachComponent<ShadowLoop>(entity);
-		ECS::AttachComponent<AnimationController>(entity);
-
-		//Sets up components
-		std::string fileName = "spritesheets/ShadowSpritesheet.png";
-		std::string JSONfile = "Shadow.json";
-
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
-
-		ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
-		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
-
-		ECS::GetComponent<ShadowLoop>(entity).InitRangedShadow(fileName, JSONfile, 32, 32, &ECS::GetComponent<Sprite>(entity),
-			&ECS::GetComponent<AnimationController>(entity));
-		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(794, 1252);
-		ECS::GetComponent<ShadowLoop>(entity).SetPatrolVelocity(b2Vec2(50.f, 10.f));
-
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_dynamicBody;
-		tempDef.position.Set(float32(1033), float32(380));
-
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-		tempPhsBody = PhysicsBody(entity, tempBody, float(32), float(32), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-		tempPhsBody.SetGravityScale(0.f);
-	}
-
-	//Shadow area trigger 3 entity
-	{
-		auto entity = ECS::CreateEntity();
-		sZones[2] = entity;
-
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<Trigger*>(entity);
-		ECS::AttachComponent<Kinematics>(entity);
-
-		//Sets up components
-		std::string fileName = "sandFloor.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 200, 50);
-
-		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(shadows[0], shadows[0] - 50, 0.f));
-
-		ECS::GetComponent<Trigger*>(entity) = new ShadowAreaTrigger();
-		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(shadows[2]);
-
-		ECS::GetComponent<Kinematics>(entity).SetChild(sZones[2]);
-		ECS::GetComponent<Kinematics>(entity).SetParent(shadows[2]);
-		ECS::GetComponent<Kinematics>(entity).SetOffset(0, -50);
-
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
-
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(240.f), float32(40.f));
-
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	}
-
-	//E4 (enemy 4)
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		shadows[3] = entity;
-
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<Trigger*>(entity);
-		ECS::AttachComponent<ShadowLoop>(entity);
-		ECS::AttachComponent<AnimationController>(entity);
-
-		//Sets up components
-		std::string fileName = "spritesheets/ShadowSpritesheet.png";
-		std::string JSONfile = "Shadow.json";
-
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
-
-		ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
-		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
-
-		ECS::GetComponent<ShadowLoop>(entity).InitRangedShadow(fileName, JSONfile, 32, 32, &ECS::GetComponent<Sprite>(entity),
-			&ECS::GetComponent<AnimationController>(entity));
-		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(1652, 1852);
-		ECS::GetComponent<ShadowLoop>(entity).SetPatrolVelocity(b2Vec2(30.f, 15.f));
-
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_dynamicBody;
-		tempDef.position.Set(float32(1752.f), float32(536.f));
-
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-		tempPhsBody = PhysicsBody(entity, tempBody, float(32), float(32), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-		tempPhsBody.SetGravityScale(0.f);
-	}
-
-	//Shadow area trigger 4 entity
-	{
-		auto entity = ECS::CreateEntity();
-		sZones[3] = entity;
-
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<Trigger*>(entity);
-		ECS::AttachComponent<Kinematics>(entity);
-
-		//Sets up components
-		std::string fileName = "sandFloor.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 200, 50);
-
-		//ECS::GetComponent<Transform>(entity).SetPosition(vec3(shadows[0], shadows[0] - 50, 0.f));
-
-		ECS::GetComponent<Trigger*>(entity) = new ShadowAreaTrigger();
-		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(shadows[3]);
-
-		ECS::GetComponent<Kinematics>(entity).SetChild(sZones[3]);
-		ECS::GetComponent<Kinematics>(entity).SetParent(shadows[3]);
-		ECS::GetComponent<Kinematics>(entity).SetOffset(0, -50);
-
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
-
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(240.f), float32(40.f));
-
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	}
-
-	//E5 (enemy 5)
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		shadows[4] = entity;
-
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<Trigger*>(entity);
-		ECS::AttachComponent<ShadowLoop>(entity);
-		ECS::AttachComponent<AnimationController>(entity);
-
-		//Sets up components
-		std::string fileName = "spritesheets/ShadowSpritesheet.png";
-		std::string JSONfile = "Shadow.json";
-
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
-
-		ECS::GetComponent<Trigger*>(entity) = new KnockBackTrigger();
-		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
-
-		ECS::GetComponent<ShadowLoop>(entity).InitRangedShadow(fileName, JSONfile, 32, 32, &ECS::GetComponent<Sprite>(entity),
-			&ECS::GetComponent<AnimationController>(entity));
-		ECS::GetComponent<ShadowLoop>(entity).SetMovementBoundaries(950, 1286);
-		ECS::GetComponent<ShadowLoop>(entity).SetPatrolVelocity(b2Vec2(20.f, 0.f));
-
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_dynamicBody;
-		tempDef.position.Set(float32(1118.f), float32(670.f));
-
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-		tempPhsBody = PhysicsBody(entity, tempBody, float(32), float(32), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-		tempPhsBody.SetGravityScale(0.f);
-	}
-
-	//Shadow area trigger 4 entity
-	{
-		auto entity = ECS::CreateEntity();
-		sZones[4] = entity;
-
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<Trigger*>(entity);
-		ECS::AttachComponent<Kinematics>(entity);
-
-		//Sets up components
-		std::string fileName = "sandFloor.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 200, 50);
-
-		ECS::GetComponent<Trigger*>(entity) = new ShadowAreaTrigger();
-		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(shadows[4]);
-
-		ECS::GetComponent<Kinematics>(entity).SetChild(sZones[4]);
-		ECS::GetComponent<Kinematics>(entity).SetParent(shadows[4]);
-		ECS::GetComponent<Kinematics>(entity).SetOffset(0, -50);
-
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
-
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(240.f), float32(40.f));
-
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	}
-
-	//Bullet wall
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		bulletWalls[0] = entity;
-
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-
-		//Sets up components
-		std::string fileName = "BulletNode.png";
-
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16, 16);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 3.f));
-
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(-260.f), float32(80.f));
-
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16.f), float(16.f), vec2(0.f, 0.f), false, ENVIRONMENT, PLAYER | TRIGGER);
-			tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-			tempPhsBody.SetGravityScale(0.f);
-	}
-
-	//Bullet wall
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		bulletWalls[1] = entity;
-
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-
-		//Sets up components
-		std::string fileName = "BulletNode.png";
-
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16, 16);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 3.f));
-
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(512.f), float32(87.f));
-
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16.f), float(16.f), vec2(0.f, 0.f), false, ENVIRONMENT, PLAYER | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-		tempPhsBody.SetGravityScale(0.f);
-	}
-
-	//Bullet wall
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		bulletWalls[2] = entity;
-
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-
-		//Sets up components
-		std::string fileName = "BulletNode.png";
-
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16, 16);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 3.f));
-
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(1286.f), float32(650.f));
-
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16.f), float(16.f), vec2(0.f, 0.f), false, ENVIRONMENT, PLAYER | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-		tempPhsBody.SetGravityScale(0.f);
-	}
-
-	//Bullet wall
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		bulletWalls[3] = entity;
-
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-
-		//Sets up components
-		std::string fileName = "BulletNode.png";
-
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16, 16);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 3.f));
-
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(950.f), float32(650.f));
-
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-		tempPhsBody = PhysicsBody(entity, tempBody, float(16.f), float(16.f), vec2(0.f, 0.f), false, ENVIRONMENT, PLAYER | TRIGGER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-		tempPhsBody.SetGravityScale(0.f);
-	}
-
-	//SPECIAL TRIGGERS \\
-
-	//Switch - deprecated
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		
-
-		//Sets up components
-		std::string fileName = "test.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 48);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(float32(1952.f), float32(488.f), 2.f));
-
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-
-	} //deprecated
-
-	//Exit - deprecated
+	//Temp Shield
 	{
 		//Creates entity
 		auto entity = ECS::CreateEntity();
@@ -850,13 +72,18 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 	SpawnCrumblingPlatforms();
 	//calling the SpawnTiles function to construct the background tiles
 	SpawnTiles();
+	//calling the SpawnShadow function to spawn shadows
+	SpawnShadows();
 	//calling the SpawnUI function to construct the UI elements
 	SpawnUI();
+	//calling the SpawnMovingPlatforms function to construct the moving platforms
+	SpawnMovingPlatforms();
 
 	//focusing the camera on the player
 	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 }
+
 //This function constructs all of the static platforms during scene initialization
 void DenialLevel::SpawnPlatforms()
 {
@@ -929,9 +156,48 @@ void DenialLevel::SpawnCrumblingPlatforms()
 		crumblingX -= 48;
 	}
 }
+//This function constructs all of the shadows and bullet walls during scene initialization
+void DenialLevel::SpawnShadows()
+{
+	//array for holding shadow b2Vec2s before they can be unpacked
+	b2Vec2 newShadows[5];
+
+	//spawning shadows with their associated triggers
+	newShadows[0] = SpawnShadow(248.f, 88.f, 0.f, 272.f, true, b2Vec2(30.f, 0.f));
+	newShadows[1] = SpawnShadow(545.f, 216.f, 438.f, 698.f, true, b2Vec2(30.f, 0.f));
+	newShadows[2] = SpawnShadow(1033.f, 380.f, 794.f, 1252.f, true, b2Vec2(50.f, 10.f));
+	newShadows[3] = SpawnShadow(1752.f, 536.f, 1652.f, 1852.f, true, b2Vec2(30.f, 15.f));
+	newShadows[4] = SpawnShadow(1118.f, 670.f, 950.f, 1286.f, true, b2Vec2(20.f, 0.f));
+
+	//separating all the entities from their triggers and placing them in their respective arrays
+	for (int i = 0; i <= 4; i++)
+	{
+		Separate(newShadows[i], 0);
+	}
+
+	bulletWalls[0] = SpawnBulletWall(-260.f, 80.f);
+	bulletWalls[1] = SpawnBulletWall(512.f, 87.f);
+	bulletWalls[2] = SpawnBulletWall(1286.f, 650.f);
+	bulletWalls[3] = SpawnBulletWall(950.f, 650.f);
+}
+//This function constructs all of the moving platforms during scene initialization
+void DenialLevel::SpawnMovingPlatforms()
+{
+	b2Vec2 movingPlatforms[2];
+
+	movingPlatforms[0] = SpawnMovingPlatform(392.f, 148.f, 380.f, 670.f, 0, 80.f, 8.f);
+	movingPlatforms[1] = SpawnMovingPlatform(1504.f, 408.f, 408.f, 588.f, 1, 96.f, 16.f);
+
+	for (int i = 0; i <= 1; i++)
+	{
+		Separate(movingPlatforms[i], 1);
+	}
+}
 //This function constructs all of the background tiles during scene initialization
 void DenialLevel::SpawnTiles()
 {
+	SpawnTile(845.f, 635.f, "CaveExit.png", 2.f, 20.f, 40.f); //Cave exit sprite-entity
+
 	SpawnTile(-640.f, -176.f, "backgrounds/denial0-0.png");// TILE -2-0
 
 	SpawnTile(-384.f, -176.f, "backgrounds/denial0-0.png");
@@ -1048,19 +314,18 @@ void DenialLevel::Update()
 {
 	auto& playerBody = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
 	auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
-	auto& kinTrig = ECS::GetComponent<Kinematics>(kinTrigger);
 	auto& pMechanics = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
 	auto& sprite = ECS::GetComponent<Sprite>(MainEntities::MainPlayer());
 
-	kinTrig.UpdatePosition();
-	ECS::GetComponent<Kinematics>(vertPlatTrigger).UpdatePosition();
-	ECS::GetComponent<MovingPlatform>(vertMovingPlat).MovePlatform(vertMovingPlat);
 	pMechanics.RunKnockBackTime();
 
-	//ECS::GetComponent<Kinematics>(kinTrigger).UpdatePosition();
+	for (int i = 0; i <= 1; i++)
+	{
+		ECS::GetComponent<Kinematics>(movingTriggers[i]).UpdatePosition();
+		ECS::GetComponent<MovingPlatform>(movingPlatforms[i]).MovePlatform(movingPlatforms[i]);
+	}
 
 	ECS::GetComponent<Kinematics>(shield).UpdateTransform();
-	/*ECS::GetComponent<Kinematics>(uiElements[0]).UpdateTransform();*/
 
 	if (pMechanics.GetCanMove() == true)
 	{
@@ -1113,10 +378,10 @@ void DenialLevel::Update()
 	}
 
 	sprite.SetTransparency(1.f);
-	MovePlatform();
 	CheckUIConditions();
 	CheckEndLevel();
 }
+
 //Called in each update to update the shadow loop and call bullet functions
 void DenialLevel::ActivateShadow(int shadow)
 {
@@ -1193,61 +458,6 @@ void DenialLevel::CheckEndLevel()
 		SetSceneChange(true, 2);
 	}
 }
-//Called in each update to move platforms
-void DenialLevel::MovePlatform()
-{
-	auto& moveTrig = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
-	auto& playerBody = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
-
-	auto& plat = ECS::GetComponent<PhysicsBody>(movingPlat);
-
-	float platX = plat.GetPosition().x;
-	float platY = plat.GetPosition().y;
-
-	int playerX = playerBody.GetPosition().x;
-	int playerY = playerBody.GetPosition().y;
-
-	if (platX > 670)
-	{
-		switchDir = true;
-	}
-
-	if (platX < 380)
-	{
-		switchDir = false;
-	}
-
-	if (switchDir == false)
-	{
-		platX += 0.5;
-		//plat.SetPosition(b2Vec2(platX, platY)); 
-		plat.SetVelocity(vec3(30.f, 0.f, 0.f));
-		moveTrig.SetRight(true);
-		moveTrig.SetLeft(false);
-	}
-	else if (switchDir == true)
-	{
-		platX -= 0.5;
-		plat.SetVelocity(vec3(-30.f, 0.f, 0.f));
-		//plat.SetPosition(b2Vec2(platX, platY));
-		moveTrig.SetLeft(true);
-		moveTrig.SetRight(false);
-	}
-
-}
-void DenialLevel::SpawnShadows()
-{
-	b2Vec2 nextShadow;
-
-	//spawning first shadow
-	nextShadow = SpawnShadow(248.f, 88.f, 0.f, 272.f, true, b2Vec2(30.f, 0.f));
-	SeparateShadows(nextShadow);
-
-	//nextShadow = 
-
-	
-
-}
 //platform for making platforms crumble - pass crumbling platforms to this during the update
 void DenialLevel::CrumblingPlatforms(int entity)
 {
@@ -1269,14 +479,6 @@ void DenialLevel::CrumblingPlatforms(int entity)
 //END OF UPDATE FUNCTIONS\\
 
 
-
-void DenialLevel::SeparateShadows(b2Vec2(newShadow))
-{
-	int static shadowID = 0;
-
-	shadows[shadowID] = newShadow.x;
-	shadows[shadowID] = newShadow.y;
-}
 
 //BULLET FUNCTIONS\\
 //Spawns bullets from shadows
@@ -1327,8 +529,8 @@ void DenialLevel::SpawnBullet(int shadow)
 //Shoots bullets spawned by shadows
 void DenialLevel::ShootBullet(int bullet)
 {
-	shootBulletSound.Play();
-	shootBulletSound.SetVolume(5.0f);
+	//shootBulletSound.Play();
+	//shootBulletSound.SetVolume(5.0f);
 	b2Vec2 angle = CalculateAngle(MainEntities::MainPlayer(), bullet);
 
 	float dirAngle = atan(angle.x / angle.y) * (180 / PI);
@@ -1417,7 +619,24 @@ b2Vec2 DenialLevel::CalculateAngle(int entityOne, int entityTwo)
 
 	return b2Vec2(deltaX, deltaY);
 }
-
+//Splits a b2Vec2 container for an entity/trigger pair into its components and adds them to their respective arrays (0 for shadow, 1 for moving platform)
+void DenialLevel::Separate(b2Vec2(newPair), int type)
+{
+	if (type == 0)
+	{
+		int static shadowID = 0;
+		shadows[shadowID] = newPair.x;
+		sZones[shadowID] = newPair.y;
+		shadowID++;
+	}
+	else
+	{
+		int static movingID = 0;
+		movingPlatforms[movingID] = newPair.x;
+		movingTriggers[movingID] = newPair.y;
+		movingID++;
+	}
+}
 
 void DenialLevel::KeyboardHold()
 {

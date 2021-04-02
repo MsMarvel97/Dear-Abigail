@@ -13,6 +13,8 @@ public:
 	void SpawnCrumblingPlatforms();
 	void SpawnTiles();
 	void SpawnUI();
+	void SpawnShadows();
+	void SpawnMovingPlatforms();
 
 	void Update() override;
 
@@ -21,10 +23,9 @@ public:
 	void KeyboardDown() override;
 
 	void CrumblingPlatforms(int entity);
-	void MovePlatform();
 
-	void SpawnShadows();
-	void SeparateShadows(b2Vec2(newShadow));
+
+
 
 	void SpawnBullet(int shadow);
 	void SpawnBullet(int wall, float offsetX, float offsetY);
@@ -38,22 +39,11 @@ public:
 
 	void ActivateShadow(int shadow);
 
+	//sends a pair and splits it. Types are 0 = Shadow, 1 = Moving Platform.
+	void Separate(b2Vec2(newPair), int type);
+	//calculates the delta X and Y between two entities and returns them in a b2Vec2 to be used for angle calculation (DOES NOT RETURN ANGLE DEGREES)
 	b2Vec2 CalculateAngle(int entityOne, int entityTwo);
 
-	//int uiElements[7];
-	int shield = 0;
-	int player;
-	int movingPlat;
-	int vertMovingPlat;
-	int vertPlatTrigger;
-	int kinTrigger;
-	bool switchDir = false;
-	int cPlatforms[18];
-	int cTriggers[8];
-	int shadows[5];
-	int sZones[5];
-	int bulletWalls[4];
-	int bullet = 0;
 
 
 protected:
@@ -67,7 +57,23 @@ protected:
 	//3 = shield available icon
 	//4 = shield active icon
 	int uiElements[5];
+	//shield (temp)
+	int shield = 0;
+	
+	//MOVING PLATFORMS\\
+	//0 = Horizontal platform near level start
+	//1 = Vertical platform near level end
+	int movingPlatforms[2];
+	//Parallel array of triggers for above platforms
+	int movingTriggers[2];
 
+	//CRUMBLING PLATFORMS\\
+
+	int cPlatforms[18];
+	int shadows[5];
+	int sZones[5];
+	int bulletWalls[4];
+	int bullet = 0;
 
 
 	vec3 playerVel; //track player velocity to get y value

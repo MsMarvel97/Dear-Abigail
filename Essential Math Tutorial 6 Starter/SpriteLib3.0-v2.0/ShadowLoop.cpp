@@ -155,7 +155,9 @@ void ShadowLoop::RangedRoutine(int entity)
 	if (sequenceStart == true) //this statement will run once the player has entered a ShadowAreaTrigger
 	{
 		shadow.SetVelocity(vec3(0.f, 0.f, 0.f));
+
 		ShadowFacing(entity);
+
 		if (ECS::GetComponent<ShadowLoop>(entity).GetShadowType() == RANGED)
 		{
 			if (currentTime >= shootingTime)

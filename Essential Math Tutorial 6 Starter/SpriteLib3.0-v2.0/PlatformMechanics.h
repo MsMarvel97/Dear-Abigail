@@ -8,10 +8,10 @@ public:
 
 	enum CrumbleAnimations
 	{
-		RESTING,
-		CRUMBLING,
-		CRACKING,
-		GONE
+		RESTING = 0,
+		CRUMBLING = 1,
+		CRACKING = 2,
+		GONE = 3
 	};
 
 	CrumblingSequence();
@@ -51,21 +51,29 @@ class MovingPlatform
 public:
 	enum PlatformType
 	{
-		Vertical,
-		Horizontal
+		Horizontal,
+		Vertical
 	};
 
+	//routes the platform to the correct movement function (0 for horizontal, 1 for vertical)
 	void MovePlatform(int entity);
+	void MovePlatformHorizontal(int entity);
+	void MovePlatformVertical(int entity);
 	
+	//0 for horizontal, 1 for vertical
+	void SetType(int platform) { type = platform; };
 	void SetVertMovement(bool start) { verticalSequence = start; };
 	void ResetTimer() { resetTimer = 0.f; };
-	void SetMovementBoundaries(float min, float max) { minY = min; maxY = max; };
+	//sets the boundaries of movement for the platform
+	void SetMovementBoundaries(float minimum, float maximum) { min = minimum; max = maximum; };
 
 private:
 	bool verticalSequence = false;
 	float verticalStart = 0.f;
 	float resetTimer = 0.f;
 	bool reset = false;
-	float minY = 0.f;
-	float maxY = 0.f;
+	int type = 0;
+	float min = 0.f;
+	float max = 0.f;
+	bool reverse = false;
 };

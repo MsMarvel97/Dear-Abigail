@@ -41,19 +41,61 @@ void Player::InitPlayer(std::string& fileName, std::string& animationJSON, int w
 	//Run Left
 	m_animController->AddAnimation(animations["RunLeft"].get<Animation>());
 
-	//JUMP Animations\\
+	//JUMP ANIMATIONS\\
 
 	//Jump Right
 	m_animController->AddAnimation(animations["JumpRight"].get<Animation>());
 	//Jump Left
 	m_animController->AddAnimation(animations["JumpLeft"].get<Animation>());
 
-	//IDLE Animations\\
+	//IDLE ANIMATIONS\\
 
 	//Idle Right
 	m_animController->AddAnimation(animations["IdleRight"].get<Animation>());
 	//Idle Left
 	m_animController->AddAnimation(animations["IdleLeft"].get<Animation>());
+
+	//RUN ATTACK ANIMATIONS\\
+	
+	//Run Right
+	m_animController->AddAnimation(animations["RunRightAttack"].get<Animation>());
+	//Run Left
+	m_animController->AddAnimation(animations["RunLeftAttack"].get<Animation>());
+
+	//JUMP ATTACK ANIMATIONS\\
+
+	//Jump Right
+	m_animController->AddAnimation(animations["JumpRightAttack"].get<Animation>());
+	//Jump Left
+	m_animController->AddAnimation(animations["JumpLeftAttack"].get<Animation>());
+
+	//IDLE ATTACK ANIMATIONS\\
+
+	//Idle Right
+	m_animController->AddAnimation(animations["IdleRightAttack"].get<Animation>());
+	//Idle Left
+	m_animController->AddAnimation(animations["IdleLeftAttack"].get<Animation>());
+
+	//RUN BLOCK ANIMATIONS\\
+	
+	//Run Right
+	m_animController->AddAnimation(animations["RunRightBlock"].get<Animation>());
+	//Run Left
+	m_animController->AddAnimation(animations["RunLeftBlock"].get<Animation>());
+
+	//JUMP BLOCK ANIMATIONS\\
+
+	//Jump Right
+	m_animController->AddAnimation(animations["JumpRightBlock"].get<Animation>());
+	//Jump Left
+	m_animController->AddAnimation(animations["JumpLeftBlock"].get<Animation>());
+
+	//IDLE BLOCK ANIMATIONS\\
+
+	//Idle Right
+	m_animController->AddAnimation(animations["IdleRightBlock"].get<Animation>());
+	//Idle Left
+	m_animController->AddAnimation(animations["IdleLeftBlock"].get<Animation>());
 
 	//Set Default Animation
 	m_animController->SetActiveAnim(IDLELEFT);
@@ -227,15 +269,66 @@ void Player::AnimationUpdate()
 
 	if (pMechanics.GetJumping() && !(pMechanics.GetUp()))
 	{
-		activeAnimation = JUMP;
+		if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetShield())
+		{
+			/*
+			if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetAttacking())
+			{
+				activeAnimation = JUMPATTACK;
+			}
+			else
+			{
+				activeAnimation = JUMPBLOCK;
+			}
+			*/
+			activeAnimation = JUMPBLOCK;
+		}
+		else
+		{
+			activeAnimation = JUMP;
+		}
 	}
 	else if (m_moving)
 	{
-		activeAnimation = RUN;
+		if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetShield())
+		{
+			/*
+			if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetAttacking())
+			{
+				activeAnimation = RUNATTACK;
+			}
+			else
+			{
+				activeAnimation = RUNBLOCK;
+			}
+			*/
+			activeAnimation = RUNBLOCK;
+		}
+		else
+		{
+			activeAnimation = RUN;
+		}
 	}
 	else
 	{
-		activeAnimation = IDLE;
+		if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetShield())
+		{
+			/*
+			if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetAttacking())
+			{
+				activeAnimation = IDLEATTACK;
+			}
+			else
+			{
+				activeAnimation = IDLEBLOCK;
+			}
+			*/
+			activeAnimation = IDLEBLOCK;
+		}
+		else
+		{
+			activeAnimation = IDLE;
+		}
 	}
 
 	SetActiveAnimation(activeAnimation + (int)m_facing);

@@ -65,6 +65,21 @@ public:
 	//spawn a platform
 	void SpawnPlatform(float xPos, float yPos, float width, float height, std::string sprite, float transparency, float degrees = 0.f);
 
+	//spawns a shadow (PARAMETERS -> Position [x,y], movement boundaries [min, max], patrol velocity, trigger offset [x, y], size [w, h])
+	b2Vec2 SpawnShadow(float xPos, float yPos, float min, float max, bool ranged, b2Vec2 patrolVel, float xOffset = 0.f, float yOffset = -50.f, float width = 32.f, float height = 32.f);
+
+	//spawns a moving platform (PARAMETERS -> Position [x,y], movement boundaries [min, max], type [0 = horizontal, 1 = vertical], size [w,h]) 
+	b2Vec2 SpawnMovingPlatform(float xPos, float yPos, float min, float max, int type, float width, float height);
+
+	//spawns a bullet wall (PARAMETERS -> Position [x, y], Size [w,h])
+	int SpawnBulletWall(float xPos, float yPos, float width = 16.f, float height = 16.f);
+
+	//spawn Abigail
+	void SpawnMainPlayer();
+
+	//spawn the camera (PARAMETERS -> View [w, h])
+	void SpawnMainCamera(float width, float height);
+
 	//Gets the background color of the scene
 	vec4 GetClearColor() const;
 	//Sets the background color of the scene

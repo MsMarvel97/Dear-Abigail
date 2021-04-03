@@ -24,92 +24,10 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 	float aspectRatio = windowWidth / windowHeight;
 
 	//Setup MainCamera Entity 
-	{
-		//Creates Camera entity 
-		auto entity = ECS::CreateEntity();
-		camera = entity;
-
-		ECS::SetIsMainCamera(entity, true);
-
-		//Creates new orthographic camera 
-		ECS::AttachComponent<Camera>(entity);
-		ECS::AttachComponent<HorizontalScroll>(entity);
-		ECS::AttachComponent<VerticalScroll>(entity);
-
-
-		vec4 temp = vec4(-75.f, 75.f, -75.f, 75.f); //original
-		//vec4 temp = vec4(-350.f, 350.f, -350.f, 350.f); //modified for debugging
-
-		ECS::GetComponent<Camera>(entity).SetOrthoSize(temp);
-		ECS::GetComponent<Camera>(entity).SetWindowSize(vec2(float(windowWidth), float(windowHeight)));
-		ECS::GetComponent<Camera>(entity).Orthographic(aspectRatio, temp.x, temp.y, temp.z, temp.w, -100.f, 100.f);
-
-		//Attaches the camera to vert and horiz scrolls 
-		ECS::GetComponent<HorizontalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
-		ECS::GetComponent<VerticalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
-	}
+	SpawnMainCamera(windowWidth, windowHeight);
 	//main player entity 
-	{
-		auto entity = ECS::CreateEntity();
-		ECS::SetIsMainPlayer(entity, true);
-
-		//player = entity;
-		//Add components 
-		ECS::AttachComponent<Player>(entity);
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<MovingClass>(entity);
-		ECS::AttachComponent<AnimationController>(entity);
-		ECS::AttachComponent<PlayerMechanics>(entity);
-		ECS::AttachComponent<CoolDown>(entity); //denial exclusive?
-		ECS::AttachComponent<BossLevel>(entity); //denial exclusive		
-
-		//Sets up the components 
-		std::string fileName = "spritesheets/abigailSpritesheet.png";
-		std::string animations = "abigailAnimations.json";
-
-		ECS::GetComponent<Player>(entity).InitPlayer(fileName, animations, 25, 25, &ECS::GetComponent<Sprite>(entity),
-			&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity));
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 30.f, 5.f));
-		ECS::GetComponent<PlayerMechanics>(entity).SetHealth(3);
-
-
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-
-		float shrinkX = 8.f;
-		float shrinkY = 3.f;
-
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_dynamicBody;
-
-		//tempDef.position.Set(float32(0), float32(80.f)); //beginning
-		//tempDef.position.Set(float32(752), float32(100.f)); //platform D
-		//tempDef.position.Set(float32(1456), float32(80.f)); 
-		tempDef.position.Set(float32(3216.f), float32(80.f)); //boss platform
-		//tempDef.position.Set(float32(700), float32(80.f)); //bridge
-		//tempDef.position.Set(float32(1006), float32(80.f)); //spike
-		//tempDef.position.Set(float32(2456), float32(120.f)); //beginning of crumbling platforms
-		//tempDef.position.Set(float32(331), float32(70.f)); //shadow 1
-		//tempDef.position.Set(float32(1143), float32(70.f)); //shadow 3		
-		//tempDef.position.Set(float32(1892), float32(70.f)); //shadow 4		
-		//tempDef.position.Set(float32(3806), float32(100.f)); //end platform
-		//tempDef.position.Set(float32(2452.f), float32(130.f)); //shadow 5
-
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX), float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, PLAYER, ENEMY | OBJECTS | PICKUP | TRIGGER | SNAIL, 0.f, 1.f);
-
-
-		tempPhsBody.SetRotationAngleDeg(0.f);
-		tempPhsBody.SetFixedRotation(true);
-		tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
-
-		tempPhsBody.SetGravityScale(0.75f);
-	}
+	SpawnMainPlayer();
+	ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(0.f, 80.f), true);
 	//Set up shield
 	{
 		//Creates entity

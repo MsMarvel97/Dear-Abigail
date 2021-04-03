@@ -24,26 +24,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 	wWidth = windowWidth;
 	wHeight = windowHeight;
 
-	//Setup MainCamera Entity
-	{
-		//Creates Camera entity
-		auto entity = ECS::CreateEntity();
-		ECS::SetIsMainCamera(entity, true);
-
-		//Creates new orthographic camera
-		ECS::AttachComponent<Camera>(entity);
-		ECS::AttachComponent<HorizontalScroll>(entity);
-		ECS::AttachComponent<VerticalScroll>(entity);
-
-		vec4 temp = vec4(-75.f, 75.f, -75.f, 75.f);
-		ECS::GetComponent<Camera>(entity).SetOrthoSize(temp);
-		ECS::GetComponent<Camera>(entity).SetWindowSize(vec2(float(windowWidth), float(windowHeight)));
-		ECS::GetComponent<Camera>(entity).Orthographic(aspectRatio, temp.x, temp.y, temp.z, temp.w, -100.f, 100.f);
-
-		//Attaches the camera to vert and horiz scrolls
-		ECS::GetComponent<HorizontalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
-		ECS::GetComponent<VerticalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
-	}
+	SpawnMainCamera(windowWidth, windowHeight);
 
 	//music created and looped 
 	{

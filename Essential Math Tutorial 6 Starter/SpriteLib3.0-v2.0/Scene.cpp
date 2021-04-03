@@ -275,6 +275,236 @@ void Scene::SpawnPlatform(float xPos, float yPos, float width, float height, std
 	tempPhsBody.SetRotationAngleDeg(degrees);
 }
 
+b2Vec2 Scene::SpawnShadow(float xPos, float yPos, float min, float max, bool ranged, b2Vec2 patrolVel, float xOffset, float yOffset, float width, float height)
+{
+	return b2Vec2();
+}
+
+b2Vec2 Scene::SpawnMovingPlatform(float xPos, float yPos, float min, float max, int type, float width, float height)
+{
+	//stores the entity numbers of the platform and its trigger 
+	b2Vec2 platform;
+
+	//Creates a moving platform 
+	{
+		//Creates entity 
+		platform.x = ECS::CreateEntity();
+
+		//Add components 
+		ECS::AttachComponent<Sprite>(platform.x);
+		ECS::AttachComponent<Transform>(platform.x);
+		ECS::AttachComponent<PhysicsBody>(platform.x);
+		ECS::AttachComponent<MovingPlatform>(platform.x);
+
+		//Sets up components 
+		std::string fileName = "movingplatform.png";
+		ECS::GetComponent<Sprite>(platform.x).LoadSprite(fileName, width, height);
+		ECS::GetComponent<Transform>(platform.x).SetPosition(vec3(30.f, -20.f, 2.f));
+		ECS::GetComponent<MovingPlatform>(platform.x).SetType(type);
+		ECS::GetComponent<MovingPlatform>(platform.x).SetMovementBoundaries(min, max);
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(platform.x);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(platform.x);
+
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_kinematicBody;
+		tempDef.position.Set(xPos, yPos);
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(platform.x, tempBody, width,
+			height, vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	}
+
+	//Creates a trigger for the moving platform 
+	{
+		//Creates entity 
+		platform.y = ECS::CreateEntity();
+
+		//Add components 
+		ECS::AttachComponent<Trigger*>(platform.y);
+		ECS::AttachComponent<Transform>(platform.y);
+		ECS::AttachComponent<PhysicsBody>(platform.y);
+		ECS::AttachComponent<Kinematics>(platform.y);
+
+		//Sets up components 
+		ECS::GetComponent<Transform>(platform.y).SetPosition(vec3(30.f, -20.f, 2.f));
+
+		ECS::GetComponent<Kinematics>(platform.y).SetParent(platform.x);
+		ECS::GetComponent<Kinematics>(platform.y).SetChild(platform.y);
+
+		if (type == 0)
+		{
+			ECS::GetComponent<Trigger*>(platform.y) = new MovingTrigger;
+		}
+		else
+		{
+			ECS::GetComponent<Trigger*>(platform.y) = new VerticalPlatformTrigger();
+			ECS::GetComponent<Trigger*>(platform.y)->AddTargetEntity(platform.x);
+			ECS::GetComponent<Kinematics>(platform.y).SetOffset(0.f, 1.f);
+			width -= 2;
+		}
+
+		ECS::GetComponent<Trigger*>(platform.y)->SetTriggerEntity(platform.y);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(platform.y);
+
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(platform.y, tempBody, width,
+			height, vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	}
+
+	//{ 
+	//	//Creates entity 
+	//	auto entity = ECS::CreateEntity(); 
+
+	//	//Add components 
+	//	ECS::AttachComponent<Transform>(entity); 
+	//	ECS::AttachComponent<PhysicsBody>(entity); 
+	//	ECS::AttachComponent<Trigger*>(entity); 
+	//	ECS::AttachComponent<Kinematics>(entity); 
+
+	//	//Sets up components 
+	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f)); 
+
+	//	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity); 
+
+
+	//	ECS::GetComponent<Kinematics>(entity).SetParent(vertMovingPlat); 
+	//	ECS::GetComponent<Kinematics>(entity).SetChild(entity); 
+
+
+	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity); 
+
+	//	float shrinkX = 0.f; 
+	//	float shrinkY = 0.f; 
+	//	b2Body* tempBody; 
+	//	b2BodyDef tempDef; 
+	//	tempDef.type = b2_staticBody; 
+	//	tempDef.position.Set(float32(1504.f), float32(428.f)); 
+
+	//	tempBody = m_physicsWorld->CreateBody(&tempDef); 
+
+	//	tempPhsBody = PhysicsBody(entity, tempBody, float(94 - shrinkX), 
+	//		float(8 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER); 
+	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f)); 
+	//} 
+
+	//returning the entity numbers 
+	return platform;
+}
+
+int Scene::SpawnBulletWall(float xPos, float yPos, float width, float height)
+{
+	//Creates entity 
+	auto entity = ECS::CreateEntity();
+
+	//Add components 
+	ECS::AttachComponent<Sprite>(entity);
+	ECS::AttachComponent<Transform>(entity);
+	ECS::AttachComponent<PhysicsBody>(entity);
+
+	//Sets up components 
+	std::string fileName = "BulletNode.png";
+
+	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16, 16);
+	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 3.f));
+
+	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+	float shrinkX = 0.f;
+	float shrinkY = 0.f;
+	b2Body* tempBody;
+	b2BodyDef tempDef;
+	tempDef.type = b2_staticBody;
+	tempDef.position.Set(xPos, yPos);
+
+	tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+	tempPhsBody = PhysicsBody(entity, tempBody, width, height, vec2(0.f, 0.f), false, ENVIRONMENT, PLAYER | TRIGGER);
+	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	tempPhsBody.SetGravityScale(0.f);
+
+	return entity;
+}
+
+void Scene::SpawnMainPlayer()
+{
+	auto entity = ECS::CreateEntity();
+	ECS::SetIsMainPlayer(entity, true);
+
+	//Add components
+	ECS::AttachComponent<Player>(entity);
+	ECS::AttachComponent<Sprite>(entity);
+	ECS::AttachComponent<Transform>(entity);
+	ECS::AttachComponent<PhysicsBody>(entity);
+	ECS::AttachComponent<AnimationController>(entity);
+	ECS::AttachComponent<PlayerMechanics>(entity);
+	ECS::AttachComponent<CoolDown>(entity); //anger
+	ECS::AttachComponent<BossLevel>(entity); //anger
+	ECS::AttachComponent<MovingClass>(entity);//anger
+
+	//Sets up the components
+	std::string fileName = "spritesheets/abigailSpritesheet.png";
+	std::string animations = "abigailAnimations.json";
+
+	ECS::GetComponent<Player>(entity).InitPlayer(fileName, animations, 25, 25, &ECS::GetComponent<Sprite>(entity),
+		&ECS::GetComponent<AnimationController>(entity), &ECS::GetComponent<Transform>(entity));
+
+	ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 30.f, 5.f));
+
+	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+	float shrinkX = 8.f;
+	float shrinkY = 3.f;
+
+	b2Body* tempBody;
+	b2BodyDef tempDef;
+	tempDef.type = b2_dynamicBody;
+	tempDef.position.Set(float32(-450.f), float32(30.f));
+
+	tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX), float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, PLAYER, ENEMY | OBJECTS | PICKUP | TRIGGER | SNAIL, 0.f, 1.f);
+
+	tempPhsBody.SetRotationAngleDeg(0.f);
+	tempPhsBody.SetFixedRotation(true);
+	tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
+	tempPhsBody.SetGravityScale(0.75);
+}
+
+void Scene::SpawnMainCamera(float width, float height)
+{
+	float aspectRatio = width / height;
+
+	//Creates Camera entity
+	auto entity = ECS::CreateEntity();
+	ECS::SetIsMainCamera(entity, true);
+
+	//Creates new orthographic camera
+	ECS::AttachComponent<Camera>(entity);
+	ECS::AttachComponent<HorizontalScroll>(entity);
+	ECS::AttachComponent<VerticalScroll>(entity);
+
+	vec4 temp = vec4(-75.f, 75.f, -75.f, 75.f);
+	ECS::GetComponent<Camera>(entity).SetOrthoSize(temp);
+	ECS::GetComponent<Camera>(entity).SetOrthoSize(temp);
+	ECS::GetComponent<Camera>(entity).SetWindowSize(vec2(float(width), float(height)));
+	ECS::GetComponent<Camera>(entity).Orthographic(aspectRatio, temp.x, temp.y, temp.z, temp.w, -100.f, 100.f);
+
+	//Attaches the camera to vert and horiz scrolls
+	ECS::GetComponent<HorizontalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
+	ECS::GetComponent<VerticalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
+}
+
 vec4 Scene::GetClearColor() const
 {
 	return m_clearColor;

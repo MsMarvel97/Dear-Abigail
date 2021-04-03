@@ -24,9 +24,6 @@ public:
 
 	void CrumblingPlatforms(int entity);
 
-
-
-
 	void SpawnBullet(int shadow);
 	void SpawnBullet(int wall, float offsetX, float offsetY);
 

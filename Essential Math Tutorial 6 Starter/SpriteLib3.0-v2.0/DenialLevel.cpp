@@ -20,8 +20,9 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 	//Attach the register
 	ECS::AttachRegister(m_sceneReg);
-
 	
+	SetSceneChange(false, -1);
+
 	//Setting up background music
 	{
 		//denialBGM.Play();
@@ -32,7 +33,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 	SpawnMainCamera(windowWidth, windowHeight);
 
 	//Abigail entity
-	SpawnMainPlayer();
+	SpawnMainPlayer(-450.f, 30.f);
 	//DEBUGGING POSITIONS\\
 	//tempDef.position.Set(float32(744.5), float32(187.5));
 	//tempDef.position.Set(float32(1550), float32(447));
@@ -40,6 +41,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 
 	//resetting vars
 	ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).SetCheckpoint(false);
+	ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).SetComplete(false);
 
 	//Temp Shield
 	{
@@ -83,7 +85,6 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 }
-
 //This function constructs all of the static platforms during scene initialization
 void DenialLevel::SpawnPlatforms()
 {
@@ -196,7 +197,7 @@ void DenialLevel::SpawnMovingPlatforms()
 //This function constructs all of the background tiles during scene initialization
 void DenialLevel::SpawnTiles()
 {
-	SpawnTile(845.f, 635.f, "CaveExit.png", 2.f, 20.f, 40.f); //Cave exit sprite-entity
+	SpawnTile(845.f, 635.f, "CaveExit.png", true, 2.f, 20.f, 40.f); //Cave exit sprite-entity
 
 	SpawnTile(-640.f, -176.f, "backgrounds/denial0-0.png");// TILE -2-0
 
@@ -307,7 +308,6 @@ void DenialLevel::SpawnUI()
 //END OF SCENE CONSTRUCTION FUNCTIONS\\
 
 
-
 //UPDATE FUNCTIONS\\
 //Update loop for Denial level
 void DenialLevel::Update()
@@ -381,7 +381,6 @@ void DenialLevel::Update()
 	CheckUIConditions();
 	CheckEndLevel();
 }
-
 //Called in each update to update the shadow loop and call bullet functions
 void DenialLevel::ActivateShadow(int shadow)
 {
@@ -451,9 +450,7 @@ void DenialLevel::CheckUIConditions()
 //This function is called each update to check if the end of the level has been reached. If it has, this also changes the scene.
 void DenialLevel::CheckEndLevel()
 {
-	auto& pPhysics = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
-	
-	if (pPhysics.GetPosition().x > 832.f && pPhysics.GetPosition().x < 854.f && pPhysics.GetPosition().y > 625 && pPhysics.GetPosition().y < 628)
+	if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetComplete())
 	{
 		SetSceneChange(true, 2);
 	}
@@ -477,7 +474,6 @@ void DenialLevel::CrumblingPlatforms(int entity)
 	}
 }
 //END OF UPDATE FUNCTIONS\\
-
 
 
 //BULLET FUNCTIONS\\

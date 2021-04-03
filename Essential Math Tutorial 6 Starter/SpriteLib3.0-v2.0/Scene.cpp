@@ -241,7 +241,7 @@ int Scene::SpawnCrumblingPlatform(float xPos, float yPos, float width, float hei
 	return entity;
 }
 
-void Scene::SpawnTile(float xPos, float yPos, std::string sprite, float zPos, float width, float height)
+void Scene::SpawnTile(float xPos, float yPos, std::string sprite, bool endFlag, float zPos, float width, float height)
 {
 	//Creates entity
 	auto entity = ECS::CreateEntity();
@@ -249,10 +249,26 @@ void Scene::SpawnTile(float xPos, float yPos, std::string sprite, float zPos, fl
 	//Add components
 	ECS::AttachComponent<Sprite>(entity);
 	ECS::AttachComponent<Transform>(entity);
-
+	
 	//Sets up components
 	ECS::GetComponent<Sprite>(entity).LoadSprite(sprite, width, height);
 	ECS::GetComponent<Transform>(entity).SetPosition(vec3(xPos, yPos, zPos));
+
+	//sets additional trigger components if this entity is meant to signal the end of the level
+	if (endFlag)
+	{
+		ECS::AttachComponent<Trigger*>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(xPos, yPos);
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		ECS::GetComponent<Trigger*>(entity) = new SceneSwapTrigger();
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<PhysicsBody>(entity) = PhysicsBody(entity, tempBody, width, height, vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+	}
 }
 
 void Scene::SpawnPlatform(float xPos, float yPos, float width, float height, std::string sprite, float transparency, float rotation)
@@ -473,42 +489,6 @@ b2Vec2 Scene::SpawnMovingPlatform(float xPos, float yPos, float min, float max, 
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
-	//{
-	//	//Creates entity
-	//	auto entity = ECS::CreateEntity();
-
-	//	//Add components
-	//	ECS::AttachComponent<Transform>(entity);
-	//	ECS::AttachComponent<PhysicsBody>(entity);
-	//	ECS::AttachComponent<Trigger*>(entity);
-	//	ECS::AttachComponent<Kinematics>(entity);
-
-	//	//Sets up components
-	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
-
-	//	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-
-
-	//	ECS::GetComponent<Kinematics>(entity).SetParent(vertMovingPlat);
-	//	ECS::GetComponent<Kinematics>(entity).SetChild(entity);
-
-
-	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-	//	float shrinkX = 0.f;
-	//	float shrinkY = 0.f;
-	//	b2Body* tempBody;
-	//	b2BodyDef tempDef;
-	//	tempDef.type = b2_staticBody;
-	//	tempDef.position.Set(float32(1504.f), float32(428.f));
-
-	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-	//	tempPhsBody = PhysicsBody(entity, tempBody, float(94 - shrinkX),
-	//		float(8 - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
-	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	//}
-
 	//returning the entity numbers
 	return platform;
 }
@@ -547,7 +527,7 @@ int Scene::SpawnBulletWall(float xPos, float yPos, float width, float height)
 	return entity;
 }
 
-void Scene::SpawnMainPlayer()
+void Scene::SpawnMainPlayer(float xPos, float yPos)
 {
 	auto entity = ECS::CreateEntity();
 	ECS::SetIsMainPlayer(entity, true);
@@ -578,7 +558,7 @@ void Scene::SpawnMainPlayer()
 	b2Body* tempBody;
 	b2BodyDef tempDef;
 	tempDef.type = b2_dynamicBody;
-	tempDef.position.Set(float32(-450.f), float32(30.f));
+	tempDef.position.Set(xPos, yPos);
 
 	tempBody = m_physicsWorld->CreateBody(&tempDef);
 

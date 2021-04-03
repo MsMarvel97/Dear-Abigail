@@ -98,7 +98,7 @@ void Player::InitPlayer(std::string& fileName, std::string& animationJSON, int w
 	m_animController->AddAnimation(animations["IdleLeftBlock"].get<Animation>());
 
 	//Set Default Animation
-	m_animController->SetActiveAnim(IDLELEFT);
+	m_animController->SetActiveAnim(IDLERIGHT);
 
 }
 

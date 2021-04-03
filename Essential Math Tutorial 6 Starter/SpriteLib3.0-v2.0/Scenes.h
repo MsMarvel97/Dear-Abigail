@@ -7,6 +7,7 @@
 #include "AnimationSpritePlayground.h"
 #include "TutorialLevel.h"
 #include "DenialLevel.h"
+#include "Tutorial.h"
 #include "MovingPlatform.h"
 #include "Crumble.h"
 #include "Postcards.h"

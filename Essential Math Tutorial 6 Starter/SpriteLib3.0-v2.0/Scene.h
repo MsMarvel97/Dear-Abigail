@@ -66,8 +66,8 @@ public:
 	//spawn a crumbling platform (PARAMETERS -> Position [x,y], size [w,h])
 	int SpawnCrumblingPlatform(float xPos, float yPos, float width = 48.f, float height = 32.f);
 
-	//spawn a tile or other sprite-only entity (PARAMETERS -> Position [x,y], sprite, position [z], size [w, h])
-	void SpawnTile(float xPos, float yPos, std::string sprite, float zPos = 1.f, float width = 256.f, float height = 256.f );
+	//spawn a tile or other sprite-only entity (PARAMETERS -> Position [x,y], sprite, end-flag [is this the end of the level?], position [z], size [w, h])
+	void SpawnTile(float xPos, float yPos, std::string sprite, bool endFlag = false, float zPos = 1.f, float width = 256.f, float height = 256.f );
 
 	//spawn a platform (PARAMETERS -> Position [x, y], size [w, h], sprite, transparency, rotation [degrees])
 	void SpawnPlatform(float xPos, float yPos, float width, float height, std::string sprite, float transparency = 1.f, float rotation = 0.f);
@@ -81,8 +81,8 @@ public:
 	//spawns a bullet wall (PARAMETERS -> Position [x, y], Size [w,h])
 	int SpawnBulletWall(float xPos, float yPos, float width = 16.f, float height = 16.f);
 
-	//spawn Abigail
-	void SpawnMainPlayer();
+	//spawn Abigail (PARAMETERS -> Position [x,y])
+	void SpawnMainPlayer(float xPos, float yPos);
 
 	//spawn the camera (PARAMETERS -> View [w, h])
 	void SpawnMainCamera(float width, float height);

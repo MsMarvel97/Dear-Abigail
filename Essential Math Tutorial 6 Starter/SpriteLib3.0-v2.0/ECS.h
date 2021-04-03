@@ -40,6 +40,7 @@
 #include "PlayerMechanics.h"
 #include "PlatformMechanics.h"
 #include "PlatformTrigger.h"
+#include "SceneSwapTrigger.h"
 
 class ECS abstract
 {

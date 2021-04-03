@@ -197,6 +197,8 @@
     <ClInclude Include="PhysicsPlaygroundListener.h" />
     <ClInclude Include="PhysicsSystem.h" />
     <ClInclude Include="PixelateEffect.h" />
+    <ClInclude Include="PlatformMechanics.h" />
+    <ClInclude Include="PlatformTrigger.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerMechanics.h" />
     <ClInclude Include="PostEffect.h" />
@@ -301,6 +303,8 @@
     <ClCompile Include="PhysicsPlaygroundListener.cpp" />
     <ClCompile Include="PhysicsSystem.cpp" />
     <ClCompile Include="PixelateEffect.cpp" />
+    <ClCompile Include="PlatformMechanics.cpp" />
+    <ClCompile Include="PlatformTrigger.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerMechanics.cpp" />
     <ClCompile Include="PostEffect.cpp" />

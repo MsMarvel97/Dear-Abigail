@@ -14,6 +14,9 @@ public:
 	void SpawnCrumblingPlatforms();
 	void SpawnTiles();
 	void SpawnUI();
+	void SpawnShadows();
+	void SpawnMovingPlatforms();
+	void SpawnSpikes();
 
 	void Update() override;
 
@@ -34,6 +37,9 @@ public:
 	void ShootBullet();
 
 	void ActivateShadow();
+
+	void Separate(b2Vec2(newPair), int type);
+
 	void MoveShadow(int shadow);
 
 	void MovePlatform();
@@ -101,4 +107,11 @@ protected:
 	//6 = punch active icon
 	//7 = ouch icon
 	int uiElements[7]; 
+
+	//MOVING PLATFORMS\\
+	//0 = Horizontal platform near level start
+	//1 = Vertical platform near level end
+	int movingPlatforms[1];
+	//Parallel array of triggers for above platforms
+	int movingTriggers[1];
 };

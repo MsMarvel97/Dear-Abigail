@@ -121,7 +121,7 @@ void Player::MovementUpdate()
 
 	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
 	auto& transformer = ECS::GetComponent<Player>(MainEntities::MainPlayer());
-	auto& moving = ECS::GetComponent<MovingClass>(MainEntities::MainPlayer());
+	auto& moving = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
 
 	static float sprint = 0.f;
 	static float vel = -20;
@@ -271,7 +271,7 @@ void Player::MovementUpdate()
 	//debugging movement code
 	if (Input::GetKey(Key::W))
 	{
-		//player.GetBody()->SetLinearVelocity(b2Vec2(0, 100));
+		player.GetBody()->SetLinearVelocity(b2Vec2(0, 100));
 	}
 }
 

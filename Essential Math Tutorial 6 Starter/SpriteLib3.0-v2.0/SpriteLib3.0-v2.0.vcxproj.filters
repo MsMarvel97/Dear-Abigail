@@ -101,6 +101,8 @@
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="XInput.cpp" />
     <ClCompile Include="ShadowTriggers.cpp" />
+    <ClCompile Include="PlatformMechanics.cpp" />
+    <ClCompile Include="PlatformTrigger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AngerLevel.h" />
@@ -206,5 +208,7 @@
     <ClInclude Include="Window.h" />
     <ClInclude Include="Xinput.h" />
     <ClInclude Include="ShadowTriggers.h" />
+    <ClInclude Include="PlatformMechanics.h" />
+    <ClInclude Include="PlatformTrigger.h" />
   </ItemGroup>
 </Project>

@@ -11,3 +11,11 @@ public:
 protected:
 };
 
+class SpikeTrigger : public Trigger
+{
+public:
+	void OnEnter() override;
+	void OnExit() override;
+protected:
+};
+

@@ -52,6 +52,19 @@ public:
 	void SetRespawn(bool newRespawn) { respawn = newRespawn; }; //new one
 	bool GetRespawn() { return respawn; }; //new one
 
+	//functions for platform movement
+	bool GetMoving() { return moving; };
+	void SetMoving(bool newBool) { moving = newBool; };
+
+	bool GetLeft() { return left; };
+	void SetLeft(bool newLeft) { left = newLeft; };
+
+	bool GetRight() { return right; };
+	void SetRight(bool newRight) { right = newRight; };
+
+	bool GetUp() { return up; };
+	void SetUp(bool newUp) { up = newUp; };
+
 	//Breakable wall
 	void CheckWallStatus(int wallEntity, int trigEntity);
 	void ReduceWallHealth() { wallHealth -= 1; };
@@ -77,6 +90,12 @@ protected:
 	float knockbackStart = 0.f;
 	bool knockbackSequence = false;
 	bool canMove = true;
+
+	//vars for platform movement
+	bool moving = false;
+	bool left = false;
+	bool right = false;
+	bool up = false;
 
 	//vars for health and shielding
 	int hearts = 3; //player's life points

@@ -63,7 +63,7 @@ public:
 	void SpawnTile(float xPos, float yPos, std::string sprite, float width = 256.f, float height = 256.f);
 
 	//spawn a platform
-	void SpawnPlatform(float xPos, float yPos, float width, float height, std::string sprite, float transparency, float degrees = 0.f);
+	int SpawnPlatform(float xPos, float yPos, float width, float height, std::string sprite, float transparency, float degrees = 0.f);
 
 	//spawns a shadow (PARAMETERS -> Position [x,y], movement boundaries [min, max], patrol velocity, trigger offset [x, y], size [w, h])
 	b2Vec2 SpawnShadow(float xPos, float yPos, float min, float max, bool ranged, b2Vec2 patrolVel, float xOffset = 0.f, float yOffset = -50.f, float width = 32.f, float height = 32.f);
@@ -81,6 +81,8 @@ public:
 	void SpawnMainCamera(float width, float height);
 
 	void SpawnSpike(float xPos, float yPos, float width = 16.f, float height = 16.f);
+
+	int SpawnOrb(float xPos, float yPos, float width = 10.f, float height = 10.f);
 
 	//Gets the background color of the scene
 	vec4 GetClearColor() const;

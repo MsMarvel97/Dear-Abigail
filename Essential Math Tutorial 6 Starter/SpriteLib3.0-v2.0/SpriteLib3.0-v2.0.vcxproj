@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -144,6 +144,7 @@
     <ClInclude Include="BackEnd.h" />
     <ClInclude Include="BloomEffect.h" />
     <ClInclude Include="BossLevel.h" />
+    <ClInclude Include="BreakableWall.h" />
     <ClInclude Include="BreakableWallTrigger.h" />
     <ClInclude Include="BulletTrigger.h" />
     <ClInclude Include="AttackScene.h" />
@@ -251,6 +252,7 @@
     <ClCompile Include="BackEnd.cpp" />
     <ClCompile Include="BloomEffect.cpp" />
     <ClCompile Include="BossLevel.cpp" />
+    <ClCompile Include="BreakableWall.cpp" />
     <ClCompile Include="BreakableWallTrigger.cpp" />
     <ClCompile Include="BulletTrigger.cpp" />
     <ClCompile Include="AttackScene.cpp" />

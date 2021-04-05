@@ -77,6 +77,8 @@
 #include "PlatformMechanics.h"
 #include "PlatformTrigger.h"
 
+#include "BreakableWall.h"
+
 
 //#include "ShieldMechanic.h"
 //#include "Health.h"

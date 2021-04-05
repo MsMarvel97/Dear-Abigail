@@ -9,3 +9,10 @@ public:
 private:
 };
 
+class SpecialOrbTrigger : public Trigger
+{
+public:
+	void OnEnter() override;
+	void OnExit() override;
+private:
+};

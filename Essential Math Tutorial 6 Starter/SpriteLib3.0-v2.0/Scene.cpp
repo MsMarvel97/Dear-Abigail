@@ -242,7 +242,7 @@ void Scene::SpawnTile(float xPos, float yPos, std::string sprite, float width, f
 	ECS::GetComponent<Transform>(entity).SetPosition(vec3(xPos, yPos, 1.f));
 }
 
-void Scene::SpawnPlatform(float xPos, float yPos, float width, float height, std::string sprite, float transparency, float degrees)
+int Scene::SpawnPlatform(float xPos, float yPos, float width, float height, std::string sprite, float transparency, float degrees)
 {
 	//Creates entity
 	auto entity = ECS::CreateEntity();
@@ -273,6 +273,7 @@ void Scene::SpawnPlatform(float xPos, float yPos, float width, float height, std
 		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | TRIGGER);
 	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	tempPhsBody.SetRotationAngleDeg(degrees);
+	return entity;
 }
 
 b2Vec2 Scene::SpawnShadow(float xPos, float yPos, float min, float max, bool ranged, b2Vec2 patrolVel, float xOffset, float yOffset, float width, float height)
@@ -306,8 +307,8 @@ b2Vec2 Scene::SpawnShadow(float xPos, float yPos, float min, float max, bool ran
 		else
 		{
 			//sets up melee shadow components
-			fileName = "spritesheets/AttackSheet.png";
-			JSONfile = "AttackShadow.json";
+			fileName = "spritesheets/Squid.png";
+			JSONfile = "SquidMovement.json";
 			//void InitMeleeShadow(std::string& fileName, std::string& animationJSON, int width, int height, Sprite* sprite, AnimationController* controller);
 			ECS::GetComponent<ShadowLoop>(shadowPair.x).InitMeleeShadow(fileName, JSONfile, width, height, &ECS::GetComponent<Sprite>(shadowPair.x),
 				&ECS::GetComponent<AnimationController>(shadowPair.x));
@@ -631,8 +632,8 @@ void Scene::SpawnSpike(float xPos, float yPos, float width, float height)
 	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-	float shrinkX = 0.f;
-	float shrinkY = 0.f;
+	float shrinkX = 2.f;
+	float shrinkY = 2.f;
 	b2Body* tempBody;
 	b2BodyDef tempDef;
 	tempDef.type = b2_staticBody;
@@ -641,6 +642,46 @@ void Scene::SpawnSpike(float xPos, float yPos, float width, float height)
 	tempBody = m_physicsWorld->CreateBody(&tempDef);
 
 	tempPhsBody = PhysicsBody(entity, tempBody, float((tempSpr.GetWidth() - shrinkY) / 2.f), vec2(0.f, 0.f), true, TRIGGER, PLAYER, 0.3f);
+}
+
+int Scene::SpawnOrb(float xPos, float yPos, float width, float height)
+{
+	//Creates entity
+	auto entity = ECS::CreateEntity();
+	//Add components
+	ECS::AttachComponent<Sprite>(entity);
+	ECS::AttachComponent<Transform>(entity);
+	ECS::AttachComponent<PhysicsBody>(entity);
+	ECS::AttachComponent<Trigger*>(entity);
+
+	//Sets up components
+	std::string fileName = "shadowOrb.png";
+	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, width, height);
+	ECS::GetComponent<Transform>(entity).SetPosition(vec3(160.f, 30.f, 2.f));
+	
+		ECS::GetComponent<Trigger*>(entity) = new OrbTrigger();
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
+	
+	
+	ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
+
+	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+	float shrinkX = 0.f;
+	float shrinkY = 0.f;
+	b2Body* tempBody;
+	b2BodyDef tempDef;
+	tempDef.type = b2_staticBody;
+	tempDef.position.Set(xPos, yPos);
+
+	tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	return entity;
 }
 
 vec4 Scene::GetClearColor() const

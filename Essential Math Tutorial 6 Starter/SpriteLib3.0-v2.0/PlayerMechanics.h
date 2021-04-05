@@ -38,6 +38,10 @@ public:
 
 	void SetCanMove(bool newMove) { canMove = newMove; }; //new one
 
+	bool GetDamaged() { return damaged; };
+
+	void SetDamaged(bool newDamged) { damaged = newDamged; };
+
 
 	//Health and shielding
 	void HealthLost(); //reduces player hearts by 1
@@ -90,6 +94,7 @@ protected:
 	float knockbackStart = 0.f;
 	bool knockbackSequence = false;
 	bool canMove = true;
+	bool damaged = false;
 
 	//vars for platform movement
 	bool moving = false;

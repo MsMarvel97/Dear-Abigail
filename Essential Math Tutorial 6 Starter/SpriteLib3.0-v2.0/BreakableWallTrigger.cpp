@@ -5,9 +5,10 @@ void BreakableWallTrigger::OnEnter()
 {
 	Trigger::OnEnter();
 	auto& playerMech = ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]);
+	auto& wall = ECS::GetComponent<BreakableWall>(m_targetEntities[1]);
 	if (playerMech.GetAttacking() == true)
 	{
-		playerMech.ReduceWallHealth();
+		wall.SubtractHealth();
 	}
 	
 }

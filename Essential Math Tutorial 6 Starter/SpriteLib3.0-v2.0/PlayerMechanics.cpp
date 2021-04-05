@@ -66,10 +66,10 @@ void PlayerMechanics::RunKnockBackTime()
 	}
 	float currentTime = Timer::StopWatch(knockbackStart);
 
-	if (knockbackSequence == true) //this statement will run once the player has entered a ShadowAreaTrigger
+	if (knockbackSequence == true) 
 	{
 
-		if (currentTime < 2)
+		if (currentTime < 0.5)
 		{
 			canMove = false;
 		}
@@ -77,6 +77,7 @@ void PlayerMechanics::RunKnockBackTime()
 		{
 			canMove = true;
 			knockbackSequence = false;
+			damaged = false;
 		}
 	}
 }

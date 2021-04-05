@@ -17,6 +17,7 @@ public:
 	void SpawnShadows();
 	void SpawnMovingPlatforms();
 	void SpawnSpikes();
+	void SpawnOrbs();
 
 	void Update() override;
 
@@ -31,24 +32,17 @@ public:
 
 	void CheckShield();
 
-	void ChangeVisualState(int shadowEntity);
 
 	void SpawnBullet(int shadowEntity);
 	void ShootBullet();
 
 	void ActivateShadow();
 
-	void Separate(b2Vec2(newPair), int type);
-
-	void MoveShadow(int shadow);
-
-	void MovePlatform();
+	void Separate(b2Vec2(newPair), int type);	
 
 	void PlayerDeath();
 
-	void MouseClick(SDL_MouseButtonEvent evnt);
-
-	void UpdatePositionWithCamera(int cameraEntity, int spriteEntity, int tempOffsetX, int tempOffsetY);
+	
 
 	void UpdateUI();
 
@@ -72,7 +66,7 @@ public:
 
 	int masterCrumblingPlatforms[20];
 
-	void TestUpdatePosition(int cameraEntity, int bodyEntity, int tempOffsetX, int tempOffsetY);
+	
 protected:
 	PhysicsPlaygroundListener listener;
 	vec3 playerVel;
@@ -114,4 +108,7 @@ protected:
 	int movingPlatforms[1];
 	//Parallel array of triggers for above platforms
 	int movingTriggers[1];
+
+	int orbWall = 0; //platform ZD
+	int tutorialOrb = 0;
 };

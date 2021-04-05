@@ -13,7 +13,7 @@ std::vector<std::string> m_bodyTypeMasks;
 void PhysicsSystem::Init()
 {
 	physicsDrawShader.Load("./assets/shader/StaticGeometry.vert", "./assets/shader/PhysicsColorDraw.frag");
-	 
+
 	if (!m_debugPlaneInit)
 	{
 		m_debugPlaneVBO = VertexManager::GetPlaneVertVBO();
@@ -22,7 +22,7 @@ void PhysicsSystem::Init()
 		InitDebugDrawPlaneVAO();
 		m_debugPlaneInit = true;
 	}
-	
+
 	m_bodyTypeMasks.push_back("SquareMask.png");
 	m_bodyTypeMasks.push_back("CircleMask.png");
 	m_bodyTypeMasks.push_back("TriangleMask.png");
@@ -57,7 +57,7 @@ void PhysicsSystem::InitDebugDrawPlaneVAO()
 	glBindVertexArray(GL_NONE);
 }
 
-void PhysicsSystem::Update(entt::registry * reg, b2World & world)
+void PhysicsSystem::Update(entt::registry* reg, b2World& world)
 {
 	auto view = reg->view<PhysicsBody, Transform>();
 
@@ -77,7 +77,7 @@ void PhysicsSystem::Update(entt::registry * reg, b2World & world)
 	Run(world);
 }
 
-void PhysicsSystem::Draw(entt::registry * reg)
+void PhysicsSystem::Draw(entt::registry* reg)
 {
 	auto view = reg->view<PhysicsBody, Transform>();
 	auto& cam = reg->get<Camera>(MainEntities::MainCamera());
@@ -109,7 +109,7 @@ void PhysicsSystem::Draw(entt::registry * reg)
 					fileName += m_bodyTypeMasks[i];
 				}
 			}
-			
+
 			Texture* mask = TextureManager::FindTexture(fileName);
 
 			//Binds the draw shader

@@ -14,9 +14,13 @@ public:
 	//Attack mechanic
 	void Attacking();
 
+	bool GetAttackSequence(); //new one
+
 	void SetAttackSequence(bool attack) { attackSequence = attack; };
 	
 	bool GetAttacking() { return isAttacking; };
+
+	bool GetAttackCoolDown() { return attackCoolDown; };
 
 
 	//Knockback mechanic
@@ -26,6 +30,7 @@ public:
 
 	bool GetCanMove() { return canMove; };	//checks if the player can move
 
+	void SetCanMove(bool newMove) { canMove = newMove; }; //new one
 
 	//Health and shielding
 	void HealthLost(); //reduces player health by 1
@@ -75,6 +80,7 @@ protected:
 	bool inRange = false;
 	int shadow = 0;
 	bool attackSequence = false;
+	bool attackCoolDown = false;
 
 	//vars for knockback
 	float knockbackStart = 0.f;

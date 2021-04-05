@@ -652,7 +652,7 @@ void DenialLevel::KeyboardDown()
 	playerVel = player.GetVelocity();
 	playerPos = player.GetPosition();
 
-	if (Input::GetKeyDown(Key::M)) 
+	if (Input::GetKeyDown(Key::M))
 	{
 		std::cout << "X Pos: " << playerPos.x << std::endl;
 		std::cout << "Y Pos: " << playerPos.y << std::endl << std::endl;

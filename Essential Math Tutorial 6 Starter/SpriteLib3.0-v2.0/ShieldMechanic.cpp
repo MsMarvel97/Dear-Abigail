@@ -19,7 +19,7 @@ void ShieldMechanic::activateShield()
 		else if (currentTime >= 2 && currentTime < 5)
 		{
 			shieldOn = false; //turn shield off, this is the cool down period, player can't use the shield during the cool down period
-			//std::cout << "Shield Off\n";
+			std::cout << "Shield Off\n";
 		}
 		else if (currentTime >= 5)
 		{

@@ -1,5 +1,4 @@
 #include "Game.h"
-
 #include <random>
 
 
@@ -43,8 +42,15 @@ void Game::InitGame()
 	m_scenes.push_back(new Postcards("Reprieve"));
 	//m_scenes.push_back(new Crumble("Test"));
 	 
+
+	//m_scenes.push_back(new Shield("Shield TIEM"));
+	//m_scenes.push_back(new DenialRough("Denial Rough TIEM"));
+	//m_scenes.push_back(new AttackScene("Attack TIEM"));
+	m_scenes.push_back(new AngerLevel("Anger TIEM"));
+	 
 	//Sets active scene reference to our scene
 	m_activeScene = m_scenes[2];
+
 
 	m_activeScene->InitScene(float(BackEnd::GetWindowWidth()), float(BackEnd::GetWindowHeight()));
 

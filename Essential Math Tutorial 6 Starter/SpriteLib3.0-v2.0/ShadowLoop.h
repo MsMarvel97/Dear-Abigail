@@ -70,7 +70,7 @@ public:
 	void SetPatrolVelocity(b2Vec2 vel) { patrolVelocity.x = vel.x; patrolVelocity.y = vel.y; }; //shadow speed - ALWAYS PASS POSITIVE VALUES
 
 	void SetShadowSequence(bool start) { sequenceStart = start; };
-	
+
 	bool GetShadowSequence() { return sequenceStart; };
 
 	void SetShootingTime(float shooting) { shootingTime = shooting; };
@@ -78,10 +78,15 @@ public:
 	bool GetFiring() { return fire; };
 
 	int GetShadowType() { return shadowType; };
-	
+
 	int GetShadowAnim() { return animType; };
 
+	void ShadowPause(int entity); //new function
+	void SetShadowPauseSequence(bool newSequnce) { pauseSequenceStart = newSequnce; }; //new setter
+
 	float startTime = 0.f;
+	float pauseStartTime = 0.f; //new float used in ShadowPause
+	bool isShadowAlive = true;
 
 private:
 	//velocity vectors
@@ -97,6 +102,8 @@ private:
 	float shootingTime = 0.5;
 	bool fire = false;
 	bool sequenceStart = false;
+	bool pauseSequenceStart = false; //new bool
+	bool shadowCanMove = true;
 	Sprite* sprites;
 	AnimationController* animator;
 };

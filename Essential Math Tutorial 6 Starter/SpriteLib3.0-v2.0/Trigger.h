@@ -41,8 +41,10 @@ public:
 	b2Vec2 movement = (b2Vec2(0.f, 0.f));
 
 
+	void SetSpike(bool newSpike) { spike = newSpike; };
+	bool GetSpike() { return spike; };
+
 protected:
-	int shadowZone = 0;
 	int m_targetTrigger = 0;
 	int m_triggerEntity;
 	//target of trigger being targeted
@@ -55,5 +57,8 @@ protected:
 	std::vector<PhysicsBody> m_bodies;
 	std::vector<int> m_targetX;
 	std::vector<int> m_targetY;
+
+	int shadowZone = 0; //a numerical value describing which shadow infested area the player is in
+	bool spike = false;
 };
 

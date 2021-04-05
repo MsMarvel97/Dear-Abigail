@@ -111,3 +111,5 @@ std::vector<int> Trigger::GetTargetEntities()
 {
 	return m_targetEntities;
 }
+
+

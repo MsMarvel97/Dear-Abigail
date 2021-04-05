@@ -1,12 +1,11 @@
 #pragma once
-
 #include "Trigger.h"
-
-class ShadowAreaTrigger : public Trigger
+class OutburstTrigger : public Trigger
 {
 public:
 	void OnEnter() override;
 	void OnExit() override;
 protected:
+	bool triggered = false;
 };
 

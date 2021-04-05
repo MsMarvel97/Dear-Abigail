@@ -20,5 +20,5 @@ private:
 	bool up = false;
 	bool left = false;
 	bool right = false;
-};
 
+};

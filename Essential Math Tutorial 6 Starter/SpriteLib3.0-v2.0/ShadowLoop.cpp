@@ -148,13 +148,12 @@ void ShadowLoop::RangedRoutine(int entity)
 
 	if (sequenceStart == false)
 	{
-		startTime = Timer::time;
+		pauseStartTime = Timer::time;
 	}
-	float currentTime = Timer::StopWatch(startTime);
+	float currentTime = Timer::StopWatch(pauseStartTime);
 
-	if (sequenceStart == true) //this statement will run once the player has entered a ShadowAreaTrigger
+	if (pauseSequenceStart == true)
 	{
-		shadow.SetVelocity(vec3(0.f, 0.f, 0.f));
 
 		ShadowFacing(entity);
 
@@ -169,6 +168,15 @@ void ShadowLoop::RangedRoutine(int entity)
 			{
 				fire = false;
 			}
+		}
+
+		if (currentTime >= 0 && currentTime < 3) //resting
+		{
+			animType = IDLE;
+		}
+		else if (currentTime > 3 && currentTime < 5) //charging 
+		{
+			animType = IDLE;
 		}
 
 		if (currentTime >= 0 && currentTime < 3) //resting

@@ -38,21 +38,32 @@ void PlayerMechanics::Attacking()
 	}
 	float currentTime = Timer::StopWatch(attackStart);
 
-	if (attackSequence == true) //this statement will run once the player has entered a ShadowAreaTrigger
+	if (attackSequence == true) 
 	{
-
-		if (currentTime > 3)
-		{
-			isAttacking = false;
-			std::cout << "Attack end\n";
-			attackSequence = false;
-		}
-		else
+		if (currentTime < 1)
 		{
 			isAttacking = true;
+			attackCoolDown = true;
+		}
+		else if (currentTime >= 1)
+		{
+			isAttacking = false;
+		}
+
+		if (currentTime >= 1.5)
+		{
+			attackCoolDown = false;
+			attackSequence = false;
 		}
 	}
 }
+
+
+bool PlayerMechanics::GetAttackSequence()
+{
+	return attackSequence;
+}
+
 
 void PlayerMechanics::RunKnockBackTime()
 {
@@ -62,10 +73,10 @@ void PlayerMechanics::RunKnockBackTime()
 	}
 	float currentTime = Timer::StopWatch(knockbackStart);
 
-	if (knockbackSequence == true) //this statement will run once the player has entered a ShadowAreaTrigger
+	if (knockbackSequence == true) 
 	{
 
-		if (currentTime < 2)
+		if (currentTime < 0.5)
 		{
 			canMove = false;
 		}

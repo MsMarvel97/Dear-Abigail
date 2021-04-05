@@ -95,6 +95,8 @@ public:
 	//checks if the player has completed the level
 	void CheckEndLevel(int sceneID);
 
+	void SpawnSpike(float xPos, float yPos, float width = 16.f, float height = 16.f);
+	int SpawnOrb(float xPos, float yPos, float width = 10.f, float height = 10.f);
 	//Gets the background color of the scene
 	vec4 GetClearColor() const;
 	//Sets the background color of the scene
@@ -114,7 +116,7 @@ public:
 	//Set window size (makes sure the camera aspect is proper)
 	void SetWindowSize(float windowWidth, float windowHeight);
 protected:
-	ToneFire::FMODCore fmod;
+	//ToneFire::FMODCore fmod;
 	b2World* m_physicsWorld = nullptr;
 	b2Vec2 m_gravity = b2Vec2(float32(0.f), float32(0.f));
 

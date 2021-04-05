@@ -28,6 +28,7 @@ bool MovingClass::GetRight()
 void MovingClass::SetRight(bool newRight)
 {
     right = newRight;
+
 }
 
 bool MovingClass::GetUp()

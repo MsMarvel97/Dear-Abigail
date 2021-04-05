@@ -11,8 +11,7 @@ void ShadowTime::RunShadowTime() //this function is being continuously called in
 	
 	if (sequenceStart == true) //this statement will run once the player has entered a ShadowAreaTrigger
 	{
-		
-	if (currentTime > target)
+		if (currentTime > target)
 		{
 			fire = true;
 			target += 2;

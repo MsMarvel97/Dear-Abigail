@@ -32,15 +32,81 @@
 #include "MovingTrigger.h"
 #include "MovingPlatform.h"
 #include "Kinematics.h"
-#include "ToneFire.h"
-#include "ShadowAreaTrigger.h"
-#include "ShadowLoop.h"
+#include "ShadowSense.h"
+#include "ShadowTriggers.h" //formerly known as ShadowAreaTrigger.h
+#include "ShadowTime.h"
+#include "AttackTrigger.h"
+#include "AttackMechanic.h"
 #include "KnockBackTrigger.h"
+#include "Movement.h"
+#include "KnockBack.h"
+#include "ShadowLoop.h"
+#include "CoolDown.h"
+#include "OrbTrigger.h"
+#include "BossLevel.h"
+#include "MovingTrigger.h"
+#include "MovingClass.h"
+#include "RespawnTrigger.h"
+#include "PlayerMechanics.h"
+
+
+
+
+#include "ShieldMechanic.h"
+#include "Health.h"
 #include "BulletTrigger.h"
+#include "Kinematics.h"
+#include "ShadowSense.h"
+#include "ShadowTime.h"
+#include "AttackTrigger.h"
+#include "AttackMechanic.h"
+#include "KnockBackTrigger.h"
+#include "Movement.h"
+#include "KnockBack.h"
+#include "ShadowLoop.h"
+#include "CoolDown.h"
+#include "OrbTrigger.h"
+#include "BossLevel.h"
+#include "MovingTrigger.h"
+#include "MovingClass.h"
+#include "RespawnTrigger.h"
 #include "PlayerMechanics.h"
 #include "PlatformMechanics.h"
 #include "PlatformTrigger.h"
 #include "SceneTriggers.h"
+#include "OutburstTrigger.h"
+#include "BreakableWallTrigger.h"
+
+#include "PlatformMechanics.h"
+#include "PlatformTrigger.h"
+
+#include "BreakableWall.h"
+
+
+//#include "ShieldMechanic.h"
+//#include "Health.h"
+//#include "BulletTrigger.h"
+//#include "Kinematics.h"
+//#include "ShadowSense.h"
+//#include "ShadowTime.h"
+//#include "AttackTrigger.h"
+//#include "AttackMechanic.h"
+//#include "KnockBackTrigger.h"
+//#include "Movement.h"
+//#include "KnockBack.h"
+//#include "ShadowLoop.h"
+//#include "CoolDown.h"
+//#include "OrbTrigger.h"
+//#include "BossLevel.h"
+//#include "MovingTrigger.h"
+//#include "MovingClass.h"
+//#include "RespawnTrigger.h"
+//#include "PlayerMechanics.h"
+
+
+
+#include "TestBulet.h"
+
 
 class ECS abstract
 {

@@ -37,7 +37,8 @@ public:
 	void ActivateShadow(int shadow);
 
 	//sends a pair and splits it. Types are 0 = Shadow, 1 = Moving Platform.
-	void Separate(b2Vec2(newPair), int type);
+	void Separate(b2Vec2 newPair, int type) override;
+
 	//calculates the delta X and Y between two entities and returns them in a b2Vec2 to be used for angle calculation (DOES NOT RETURN ANGLE DEGREES)
 	b2Vec2 CalculateAngle(int entityOne, int entityTwo);
 

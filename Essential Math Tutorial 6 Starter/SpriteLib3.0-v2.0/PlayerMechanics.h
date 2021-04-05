@@ -41,6 +41,10 @@ public:
 	void SetComplete(bool finish) { complete = finish; };
 	bool GetComplete() { return complete; };
 
+	//Postcard proximity
+	void SetExamine(bool examine) { examinePostcard = examine; };
+	bool GetExamine() { return examinePostcard; };
+
 	//functions for platform movement
 	bool GetMoving() { return moving; };
 	void SetMoving(bool newBool) { moving = newBool; };
@@ -86,9 +90,9 @@ protected:
 	//var for health
 	int hearts = 3; //player's life points
 
-	//vars for level completion
+	//vars for scene state/progress
 	bool checkpoint = false; //checks if player is in last half of the level
 	bool complete = false; //checks if the player has reached the end of a level
-	
+	bool examinePostcard = false;
 };
 

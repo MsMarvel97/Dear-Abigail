@@ -300,7 +300,7 @@
     <ClInclude Include="Tutorial.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SceneSwapTrigger.h">
+    <ClInclude Include="SceneTriggers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -578,7 +578,7 @@
     <ClCompile Include="Tutorial.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SceneSwapTrigger.cpp">
+    <ClCompile Include="SceneTriggers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

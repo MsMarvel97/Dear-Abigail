@@ -527,6 +527,59 @@ int Scene::SpawnBulletWall(float xPos, float yPos, float width, float height)
 	return entity;
 }
 
+b2Vec2 Scene::SpawnPostcard(float xPos, float yPos, std::string postcardBack)
+{
+	b2Vec2 postcard; 
+	//Spawn postcard
+	{
+		//Creates entity
+		postcard.x = ECS::CreateEntity();
+
+		//Add components
+		ECS::AttachComponent<Sprite>(postcard.x);
+		ECS::AttachComponent<Transform>(postcard.x);
+		ECS::AttachComponent<Trigger*>(postcard.x);
+		ECS::AttachComponent<PhysicsBody>(postcard.x);
+
+		//Sets up components
+		ECS::GetComponent<Sprite>(postcard.x).LoadSprite(postcardBack, 30.f, 20.f);
+		ECS::GetComponent<Transform>(postcard.x).SetPosition(vec3(0.f, 0.f, 2.f));
+		ECS::GetComponent<Trigger*>(postcard.x) = new PostcardTrigger();
+		ECS::GetComponent<Trigger*>(postcard.x)->SetTriggerEntity(postcard.x);
+
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(xPos, yPos);
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		ECS::GetComponent<PhysicsBody>(postcard.x) = PhysicsBody(postcard.x, tempBody, 30.f, 20.f, vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+	}
+
+	//Spawn postcard
+	{
+		//Creates entity
+		postcard.y = ECS::CreateEntity();
+
+		//Add components
+		ECS::AttachComponent<Sprite>(postcard.y);
+		ECS::AttachComponent<Transform>(postcard.y);
+		ECS::AttachComponent<Kinematics>(postcard.y);
+
+		//Sets up components
+		ECS::GetComponent<Sprite>(postcard.y).LoadSprite(postcardBack, 150.f, 120.f);
+		ECS::GetComponent<Transform>(postcard.y).SetPosition(vec3(0.f, 24.f, 2.f));
+		ECS::GetComponent<Kinematics>(postcard.y).SetParent(MainEntities::MainCamera());
+		ECS::GetComponent<Kinematics>(postcard.y).SetChild(postcard.y);
+		ECS::GetComponent<Kinematics>(postcard.y).SetOffset(0.f, 0.f);
+		ECS::GetComponent<Sprite>(postcard.y).SetTransparency(0.f);
+	}
+
+	return postcard;
+}
+
 void Scene::SpawnMainPlayer(float xPos, float yPos)
 {
 	auto entity = ECS::CreateEntity();
@@ -594,6 +647,14 @@ void Scene::SpawnMainCamera(float width, float height)
 	ECS::GetComponent<VerticalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
 }
 
+
+void Scene::CheckEndLevel(int sceneID)
+{
+	if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetComplete())
+	{
+		SetSceneChange(true, sceneID);
+	}
+}
 
 vec4 Scene::GetClearColor() const
 {

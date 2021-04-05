@@ -199,7 +199,7 @@
     <ClInclude Include="RotationTrigger.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scenes.h" />
-    <ClInclude Include="SceneSwapTrigger.h" />
+    <ClInclude Include="SceneTriggers.h" />
     <ClInclude Include="Selectable.h" />
     <ClInclude Include="SelectiveColorEffect.h" />
     <ClInclude Include="SepiaEffect.h" />
@@ -294,7 +294,7 @@
     <ClCompile Include="ResizeTrigger.cpp" />
     <ClCompile Include="RotationTrigger.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="SceneSwapTrigger.cpp" />
+    <ClCompile Include="SceneTriggers.cpp" />
     <ClCompile Include="Selectable.cpp" />
     <ClCompile Include="SelectiveColorEffect.cpp" />
     <ClCompile Include="SepiaEffect.cpp" />

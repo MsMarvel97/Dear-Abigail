@@ -17,12 +17,13 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 {
 	//Dynamically allocates the register
 	m_sceneReg = new entt::registry;
+	m_physicsWorld = new b2World(m_gravity);
+	m_physicsWorld->SetContactListener(&listener);
+	SetSceneChange(false, -1);
 
 	//Attach the register
 	ECS::AttachRegister(m_sceneReg);
 	
-	SetSceneChange(false, -1);
-
 	//Setting up background music
 	{
 		//denialBGM.Play();
@@ -616,7 +617,7 @@ b2Vec2 DenialLevel::CalculateAngle(int entityOne, int entityTwo)
 	return b2Vec2(deltaX, deltaY);
 }
 //Splits a b2Vec2 container for an entity/trigger pair into its components and adds them to their respective arrays (0 for shadow, 1 for moving platform)
-void DenialLevel::Separate(b2Vec2(newPair), int type)
+void DenialLevel::Separate(b2Vec2 newPair, int type)
 {
 	if (type == 0)
 	{

@@ -6,13 +6,13 @@ Tutorial::Tutorial(std::string name)
 {
 	m_gravity = b2Vec2(0.f, -98.f);
 	m_physicsWorld->SetGravity(m_gravity);
-	m_physicsWorld->SetContactListener(&listener);
 }
 
 void Tutorial::InitScene(float windowWidth, float windowHeight)
 {
 	m_sceneReg = new entt::registry;
-	//m_physicsWorld = new b2World(m_gravity);
+	m_physicsWorld = new b2World(m_gravity);
+	m_physicsWorld->SetContactListener(&listener);
 	SetSceneChange(false, -1);
 
 	//Attach the register
@@ -65,6 +65,11 @@ void Tutorial::Update()
 		SetSceneChange(true, 1);
 	}
 
+	if (Input::GetKeyDown(Key::C))
+	{
+		SetSceneChange(true, 2);
+	}
+
 	ECS::GetComponent<Kinematics>(movingPlatform.y).UpdatePosition();
 	ECS::GetComponent<MovingPlatform>(movingPlatform.x).MovePlatform(movingPlatform.x);
 
@@ -78,4 +83,8 @@ void Tutorial::Update()
 	{
 		ECS::GetComponent<Kinematics>(uiElements[i]).UpdateUI();
 	}
+}
+
+void Tutorial::Separate(b2Vec2 newPair, int type)
+{
 }

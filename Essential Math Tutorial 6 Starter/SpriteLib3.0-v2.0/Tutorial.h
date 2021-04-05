@@ -10,6 +10,8 @@ public:
 	void SpawnUI();
 	void Update() override;
 
+	void Separate(b2Vec2 newPair, int type) override;
+
 protected:
 	PhysicsPlaygroundListener listener;
 	//UI ELEMENTS\\

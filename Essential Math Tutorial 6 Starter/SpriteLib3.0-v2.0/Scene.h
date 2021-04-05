@@ -81,11 +81,19 @@ public:
 	//spawns a bullet wall (PARAMETERS -> Position [x, y], Size [w,h])
 	int SpawnBulletWall(float xPos, float yPos, float width = 16.f, float height = 16.f);
 
+	b2Vec2 SpawnPostcard(float xPos, float yPos, std::string postcardBack);
+
 	//spawn Abigail (PARAMETERS -> Position [x,y])
 	void SpawnMainPlayer(float xPos, float yPos);
 
 	//spawn the camera (PARAMETERS -> View [w, h])
 	void SpawnMainCamera(float width, float height);
+
+	//to be overridden for separating pairs of entities within each scene
+	virtual void Separate(b2Vec2 newPair, int type) = 0;
+
+	//checks if the player has completed the level
+	void CheckEndLevel(int sceneID);
 
 	//Gets the background color of the scene
 	vec4 GetClearColor() const;

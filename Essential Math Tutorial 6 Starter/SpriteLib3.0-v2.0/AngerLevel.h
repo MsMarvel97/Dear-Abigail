@@ -32,9 +32,13 @@ public:
 
 	void CheckShield();
 
-
+	//Bullet related functions for the boss
 	void SpawnBullet(int shadowEntity);
 	void ShootBullet();
+
+	//bullet related functions for the bullet walls
+	void SpawnBullet(int wall, float offsetX, float offsetY);
+	void ShootBullet(int bullet, float degrees);
 
 	void ActivateShadow();
 
@@ -111,4 +115,6 @@ protected:
 
 	int orbWall = 0; //platform ZD
 	int tutorialOrb = 0;
+
+	int bulletWalls[3];
 };

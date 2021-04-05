@@ -38,23 +38,27 @@ public:
 
 	void SetCanMove(bool newMove) { canMove = newMove; }; //new one
 
-	bool GetDamaged() { return damaged; };
 
-	void SetDamaged(bool newDamged) { damaged = newDamged; };
-
-
-	//Health and shielding
+	//Health functions
 	void HealthLost(); //reduces player hearts by 1
 
 	int GetHealth() { return hearts; };
-	void SetShield(bool shielding) { shield = shielding; };
-	bool GetShield() { return shield; };
+	//void SetShield(bool shielding) { shield = shielding; };
+	//bool GetShield() { return shield; };
 
 	void SetHealth(int newHealth) { hearts = newHealth; }; //new one
 	
 
 	void SetRespawn(bool newRespawn) { respawn = newRespawn; }; //new one
 	bool GetRespawn() { return respawn; }; //new one
+
+	//shield functions
+	void ActivateShield();
+
+	void SetShieldSequence(bool start) { shieldSequence = start; };
+
+	bool GetShield() { return shieldActive; }; //checks whether the shield is active
+	bool GetShieldAvailable() { return shieldAvailable; } //checks whether the shield is available
 
 	//functions for platform movement
 	bool GetMoving() { return moving; };
@@ -73,6 +77,11 @@ public:
 	void CheckWallStatus(int wallEntity, int trigEntity);
 	void ReduceWallHealth() { wallHealth -= 1; };
 	int GetWallHealth() { return wallHealth; };
+
+	//Temporary Invincibility
+	void RunInvincibility();
+	void SetInvincibilitySequence(bool newInvincibility) { invincibilitySequence = newInvincibility; };
+	bool GetInvincibility() { return invincibility; };
 protected:
 	//vars for shadows and bullets
 	double target = 4;
@@ -80,6 +89,12 @@ protected:
 	int shadowLoc = 0;
 	bool shadowSequence = false;
 	bool fire = false;
+
+	//shield variables
+	float shieldStart = 0.f;
+	bool shieldSequence = false;
+	bool shieldActive = false;
+	bool shieldAvailable = false;
 
 
 	//vars for attacking
@@ -94,7 +109,6 @@ protected:
 	float knockbackStart = 0.f;
 	bool knockbackSequence = false;
 	bool canMove = true;
-	bool damaged = false;
 
 	//vars for platform movement
 	bool moving = false;
@@ -104,11 +118,16 @@ protected:
 
 	//vars for health and shielding
 	int hearts = 3; //player's life points
-	bool shield = false; //used by the bullet trigger
+	//bool shield = false; //used by the bullet trigger
 	bool respawn = false; //new one
 
-	//var3 for breakable wall
+	//vars for breakable wall
 	int wallHealth = 3;
 	std::string wallSprites[3] = { "veryCracked.png", "cracked.png", "maxHealth.png" };
+
+	//vars for invincibility
+	float invincibilityStart = 0.f;
+	bool invincibility = false;
+	bool invincibilitySequence = false;
 };
 

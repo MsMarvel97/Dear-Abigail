@@ -33,17 +33,17 @@ void PlayerMechanics::Attacking()
 
 	if (attackSequence == true) 
 	{
-		if (currentTime < 3)
+		if (currentTime < 1)
 		{
 			isAttacking = true;
 			attackCoolDown = true;
 		}
-		else if (currentTime >= 3)
+		else if (currentTime >= 1)
 		{
 			isAttacking = false;
 		}
 
-		if (currentTime >= 5)
+		if (currentTime >= 1.5)
 		{
 			attackCoolDown = false;
 			attackSequence = false;
@@ -77,7 +77,6 @@ void PlayerMechanics::RunKnockBackTime()
 		{
 			canMove = true;
 			knockbackSequence = false;
-			damaged = false;
 		}
 	}
 }
@@ -85,6 +84,36 @@ void PlayerMechanics::RunKnockBackTime()
 void PlayerMechanics::HealthLost()
 {
 		hearts--;
+}
+
+void PlayerMechanics::ActivateShield()
+{
+	if (shieldSequence == false)
+	{
+		shieldStart = Timer::time;
+	}
+
+	float currentTime = Timer::StopWatch(shieldStart);
+
+	if (shieldSequence == true)
+	{
+		if (currentTime < 2)
+		{
+			shieldActive = true; //turn on shield
+			shieldAvailable = false; //player can't spam shield
+		}
+		else if (currentTime >= 3 && currentTime < 5)
+		{
+			shieldActive = false; //turn shield off, this is the cool down period, player can't use the shield during the cool down period
+			//std::cout << "Shield Off\n";
+		}
+		else if (currentTime >= 5)
+		{
+			shieldAvailable = true; //shield can be activated again.
+			shieldSequence = false;
+			std::cout << "Shield cool down finished.\n";
+		}
+	}
 }
 
 
@@ -96,6 +125,31 @@ void PlayerMechanics::CheckWallStatus(int wallEntity, int trigEntity)
 		ECS::GetComponent<PhysicsBody>(wallEntity).GetBody()->SetActive(false);
 		ECS::GetComponent<PhysicsBody>(trigEntity).GetBody()->SetActive(false);
 		ECS::GetComponent<Sprite>(wallEntity).SetTransparency(0.f);
+	}
+}
+
+void PlayerMechanics::RunInvincibility()
+{
+	if (invincibilitySequence == false)
+	{
+		invincibilityStart = Timer::time;
+	}
+	float currentTime = Timer::StopWatch(invincibilityStart);
+
+	if (invincibilitySequence == true)
+	{
+
+		if (currentTime < 2)
+		{
+			invincibility = true; //turns on player invincibility for t second(s)
+			std::cout << "I am titaninum!!!\n";
+		}
+		else
+		{
+			invincibility = false; //disables player invincibility
+			invincibilitySequence = false;
+			std::cout << "Invincibility off\n";
+		}
 	}
 }
 

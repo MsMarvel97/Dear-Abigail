@@ -41,21 +41,21 @@ void KnockBackTrigger::OnEnter()
 		else //player is attacking when the shadow is attacking and shadow deals damage to player
 		{
 			//ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).canMove = false;
-			if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetDamaged() == false)
+			if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetInvincibility() == false)
 			{
 				ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetKnockbackSequence(true);
 				ECS::GetComponent<PhysicsBody>(m_targetEntities[0]).GetBody()->SetLinearVelocity(b2Vec2(1000000000 * normalX, 1000000000 * normalY));
 				ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).HealthLost();
 				ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetCanMove(false);
 				ECS::GetComponent<ShadowLoop>(m_triggerEntity).SetShadowPauseSequence(true);
-				ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetDamaged(true); //temporary invincibility
+				ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetInvincibilitySequence(true); //starts temporary invincibility timer
 			}
 
 		}
 	}
 	else if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetShield() == false)
 	{
-		if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetDamaged() == false)
+		if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetInvincibility() == false)
 		{
 			//ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).canMove = false;
 			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetKnockbackSequence(true);
@@ -63,18 +63,18 @@ void KnockBackTrigger::OnEnter()
 			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).HealthLost();
 			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetCanMove(false);
 			ECS::GetComponent<ShadowLoop>(m_triggerEntity).SetShadowPauseSequence(true);
-			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetDamaged(true); //temporary invincibility
+			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetInvincibilitySequence(true); //starts temporary invincibility timer
 		}		
 	}
 	else if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetShield() == true)
 	{
-		if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetDamaged() == false)
+		if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetInvincibility() == false)
 		{
 			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetKnockbackSequence(true);
 			ECS::GetComponent<PhysicsBody>(m_targetEntities[0]).GetBody()->SetLinearVelocity(b2Vec2(1000000000 * normalX, 1000000000 * normalY));
 			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetCanMove(false);
 			ECS::GetComponent<ShadowLoop>(m_triggerEntity).SetShadowPauseSequence(true);
-			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetDamaged(true); //temporary invincibility
+			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetInvincibilitySequence(true); //starts temporary invincibility timer
 		}		
 	}	
 	std::cout << "Current Health: " << ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetHealth() << "\n";
@@ -111,22 +111,24 @@ void SpikeTrigger::OnEnter()
 
 	if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetShield() == false)
 	{
-		if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetDamaged() == false)
+		if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetInvincibility() == false)
 		{
 			//ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).canMove = false;
 			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetKnockbackSequence(true);
 			ECS::GetComponent<PhysicsBody>(m_targetEntities[0]).GetBody()->SetLinearVelocity(b2Vec2(1000000000 * normalX, 1000000000 * normalY));
 			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).HealthLost();
 			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetCanMove(false);
+			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetInvincibilitySequence(true); //starts temporary invincibility timer
 		}		
 	}
 	else if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetShield() == true)
 	{
-		if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetDamaged() == false)
+		if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetInvincibility() == false)
 		{
 			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetKnockbackSequence(true);
 			ECS::GetComponent<PhysicsBody>(m_targetEntities[0]).GetBody()->SetLinearVelocity(b2Vec2(1000000000 * normalX, 1000000000 * normalY));
 			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetCanMove(false);
+			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetInvincibilitySequence(true); //starts temporary invincibility timer
 		}		
 	}
 }

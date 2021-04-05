@@ -17,20 +17,38 @@ void PhysicsPlaygroundListener::BeginContact(b2Contact* contact)
 	bool sensorB = fixtureB->IsSensor();
 
 	//if neither or both are sensors, will be false
+	int entityA = (int)fixtureA->GetBody()->GetUserData();
+	int entityB = (int)fixtureB->GetBody()->GetUserData();
+
+	//if neither or both are sensors, will be false
 	if ((sensorA ^ sensorB))
 	{
-		if (sensorA)
+		if (entityA != MainEntities::MainPlayer() && entityB != MainEntities::MainPlayer())
 		{
-			TriggerEnter(fixtureA);
+			if (sensorA)
+			{
+				PhysicsBody::m_bodiesToDelete.push_back(entityA);
+			}
+			else
+			{
+				PhysicsBody::m_bodiesToDelete.push_back(entityB);
+			}
 		}
-		else if (sensorB)
+		else
 		{
-			TriggerEnter(fixtureB);
+			if (sensorA)
+			{
+				TriggerEnter(fixtureA);
+			}
+			else if (sensorB)
+			{
+				TriggerEnter(fixtureB);
+			}
 		}
 	}
 
-	b2Filter filterA = fixtureA->GetFilterData();
-	b2Filter filterB = fixtureB->GetFilterData();
+	//b2Filter filterA = fixtureA->GetFilterData();
+	//b2Filter filterB = fixtureB->GetFilterData();
 
 	/*if ((filterA.categoryBits == PLAYER && filterB.categoryBits == GROUND) || (filterB.categoryBits == PLAYER && filterA.categoryBits == GROUND))
 	{
@@ -72,6 +90,7 @@ void PhysicsPlaygroundListener::TriggerEnter(b2Fixture* sensor)
 	int entity = (int)sensor->GetBody()->GetUserData();
 
 	ECS::GetComponent<Trigger*>(entity)->OnEnter();
+
 }
 
 void PhysicsPlaygroundListener::TriggerExit(b2Fixture* sensor)

@@ -27,8 +27,10 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 	SpawnMainCamera(windowWidth, windowHeight);
 	//main player entity 
 	SpawnMainPlayer();
-	//ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(0.f, 80.f), true); //beginning
-	ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(3216.f, 80.f), true); //boss platform
+	ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(0.f, 80.f), true); //beginning
+	//ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(3216.f, 80.f), true); //boss platform
+	//ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(916.f, 90.f), true); //platform D
+	//ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(1844.f, 200.f), true); //random
 
 	//Set up shield
 	{
@@ -265,7 +267,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(80.f), float32(50.f));
+		tempDef.position.Set(float32(80.f), float32(45.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
@@ -310,523 +312,6 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 	}
 	
 
-	//Old Tile Code
-	{
-		//// STATIC BACKGROUND TILES \\
-		
-		//// TILE 0-1
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger0-1.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((-16 * 16.f) + (16 * 7)), (0.f + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 1-1
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger1-1.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3((0.f + (16 * 7)), (0.f + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 2-1
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger2-1.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((16 * 16.f) + (16 * 7)), (0.f + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 3-1
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger3-1.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((32 * 16.f) + (16 * 7)), (0.f + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 4-1
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger4-1.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((48 * 16.f) + (16 * 7)), (0.f + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 5-1
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger5-1.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((64 * 16.f) + (16 * 7)), (0.f + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 6-1
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger6-1.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((80 * 16.f) + (16 * 7)), (0.f + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 7-1
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger7-1.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((96 * 16.f) + (16 * 7)), (0.f + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 8-1
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger8-1.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((112 * 16.f) + (16 * 7)), (0.f + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 9-1
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger9-1.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((128 * 16.f) + (16 * 7)), (0.f + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 10-1
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger10-1.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((144 * 16.f) + (16 * 7)), (0.f + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 11-1
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger11-1.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((160 * 16.f) + (16 * 7)), (0.f + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 12-1
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger12-1.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((176 * 16.f) + (16 * 7)), (0.f + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 13-1
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger13-1.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((192 * 16.f) + (16 * 7)), (0.f + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 14-1
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger14-1.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((208 * 16.f) + (16 * 7)), (0.f + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 15-1
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger15-1.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((224 * 16.f) + (16 * 7)), (0.f + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 16-1
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger16-1.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((240 * 16.f) + (16 * 7)), (0.f + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 0-2
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger0-2.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((-16 * 16.f) + (16 * 7)), ((16 * 16.f) + (16 * 5)), 1.f));
-		//}
-
-		////TILE 1-2?
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger1-2.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3((0.f + (16 * 7)), ((16 * 16.f) + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 2-2
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger2-2.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((16 * 16.f) + (16 * 7)), ((16 * 16.f) + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 3-2
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger3-2.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((32 * 16.f) + (16 * 7)), ((16 * 16.f) + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 4-2
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger4-2.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((48 * 16.f) + (16 * 7)), ((16 * 16.f) + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 5-2
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger5-2.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((64 * 16.f) + (16 * 7)), ((16 * 16.f) + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 6-2
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger6-2.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((80 * 16.f) + (16 * 7)), ((16 * 16.f) + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 7-2
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger7-2.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((96 * 16.f) + (16 * 7)), ((16 * 16.f) + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 8-2
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger8-2.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((112 * 16.f) + (16 * 7)), ((16 * 16.f) + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 9-2
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger9-2.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((128 * 16.f) + (16 * 7)), ((16 * 16.f) + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 10-2
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger10-2.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((144 * 16.f) + (16 * 7)), ((16 * 16.f) + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 11-2
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger11-2.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((160 * 16.f) + (16 * 7)), ((16 * 16.f) + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 12-2
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger12-2.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((176 * 16.f) + (16 * 7)), ((16 * 16.f) + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 13-2
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger13-2.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((192 * 16.f) + (16 * 7)), ((16 * 16.f) + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 14-2
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger14-2.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((208 * 16.f) + (16 * 7)), ((16 * 16.f) + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 15-2
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger15-2.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((224 * 16.f) + (16 * 7)), ((16 * 16.f) + (16 * 5)), 1.f));
-		//}
-
-		//// TILE 16-2
-		//{
-		//	//Creates entity
-		//	auto entity = ECS::CreateEntity();
-
-		//	//Add components
-		//	ECS::AttachComponent<Sprite>(entity);
-		//	ECS::AttachComponent<Transform>(entity);
-
-		//	//Sets up components
-		//	std::string fileName = "backgrounds/anger/anger16-2.png";
-		//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 16 * 16, 16 * 16);
-		//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(((240 * 16.f) + (16 * 7)), ((16 * 16.f) + (16 * 5)), 1.f));
-		//}
-	}
-
-	{}
-
 	SpawnUI();
 	SpawnPlatforms();
 	SpawnCrumblingPlatforms();
@@ -853,7 +338,7 @@ void AngerLevel::SpawnPlatforms()
 	SpawnPlatform(1616.f, 8.f, 384.f, 16.f, "SamplePlatform.png", 1.f);//Platform M
 	SpawnPlatform(1888.f, 40.f, 64.f, 16.f, "SamplePlatform.png", 1.f);//Platform N
 	SpawnPlatform(2064.f, 72.f, 192.f, 16.f, "SamplePlatform.png", 1.f);//Platform O
-	SpawnPlatform(2224.f, 24.f, 64.f, 16.f, "SamplePlatform.png", 1.f);//Platform P
+	SpawnPlatform(2224.f, 34.f, 64.f, 16.f, "SamplePlatform.png", 1.f);//Platform P
 	SpawnPlatform(2336.f, 59.2f, 64.f, 16.f, "SamplePlatform.png", 1.f);//Platform Q
 	SpawnPlatform(2448.f, 92.8f, 64.f, 16.f, "SamplePlatform.png", 1.f);//Platform R
 	SpawnPlatform(2544.f, 131.2f, 64.f, 16.f, "SamplePlatform.png", 1.f);//Platform S
@@ -865,6 +350,8 @@ void AngerLevel::SpawnPlatforms()
 
 	SpawnPlatform(3848.f, 72.f, 80.f, 16.f, "SamplePlatform.png", 1.f);//Platform ZB
 
+	SpawnPlatform(1844.f, -50.f, 50.f, 16.f, "SamplePlatform.png", 0.f);//hidden platform that catches bullets and stops them from falling into infinity
+
 }
 
 void AngerLevel::SpawnCrumblingPlatforms()
@@ -872,7 +359,7 @@ void AngerLevel::SpawnCrumblingPlatforms()
 	//int Scene::SpawnCrumblingPlatform(float xPos, float yPos, float width, float height)
 	masterCrumblingPlatforms[0] = SpawnCrumblingPlatform(2640.f, 72.f, 48.f, 32.f); // Crumbling Platform U
 	masterCrumblingPlatforms[1] = SpawnCrumblingPlatform(2736.f, 60.f, 48.f, 32.f); // Crumbling Platform V
-	masterCrumblingPlatforms[2] = SpawnCrumblingPlatform(2864.f, 88.f, 48.f, 32.f); // Crumbling Platform W
+	masterCrumblingPlatforms[2] = SpawnCrumblingPlatform(2864.f, 78.f, 48.f, 32.f); // Crumbling Platform W
 	masterCrumblingPlatforms[3] = SpawnCrumblingPlatform(2960.f, 40.f, 48.f, 32.f); // Crumbling Platform X
 
 	masterCrumblingPlatforms[4] = SpawnCrumblingPlatform(3300.f, 150.f, 48.f, 32.f); // Boss Platform 1
@@ -978,10 +465,11 @@ void AngerLevel::SpawnShadows()
 
 	
 
-	/*bulletWalls[0] = SpawnBulletWall(-260.f, 80.f);
-	bulletWalls[1] = SpawnBulletWall(512.f, 87.f);
-	bulletWalls[2] = SpawnBulletWall(1286.f, 650.f);
-	bulletWalls[3] = SpawnBulletWall(950.f, 650.f);*/
+	bulletWalls[0] = SpawnBulletWall(1011.f, 150.f);
+	bulletWalls[1] = SpawnBulletWall(1111.f, 150.f);
+	/*bulletWalls[2] = SpawnBulletWall(1500.f, 100.f);
+	bulletWalls[3] = SpawnBulletWall(1596.f, 100.f);*/
+	bulletWalls[2] = SpawnBulletWall(1831.f, 120.f);
 }
 
 void AngerLevel::SpawnMovingPlatforms()
@@ -1002,15 +490,17 @@ void AngerLevel::SpawnMovingPlatforms()
 void AngerLevel::SpawnSpikes()
 {
 	//tempDef.position.Set(float32(1048.f), float32(24.f));
-	SpawnSpike(554.f, 17.f);
-	SpawnSpike(633.f, 17.f);
-	SpawnSpike(1048.f, 24.f);
+	SpawnSpike(554.f, 15.f); //mini spike
+	SpawnSpike(633.f, 15.f); //mini spike
+	//SpawnSpike(1048.f, 24.f);
 	int spikeXLoc = 818;
 	for (int i = 0; i < 4; i++)
 	{
 		SpawnSpike(spikeXLoc, 80.f);
 		spikeXLoc += 16;
 	}
+	SpawnSpike(1254.f, 55.f);
+	SpawnSpike(1350.f, 55.f);
 }
 
 void AngerLevel::SpawnOrbs()
@@ -1035,7 +525,7 @@ void AngerLevel::Update()
 	auto& playerSprite = ECS::GetComponent<Sprite>(MainEntities::MainPlayer());
 	auto& thePlayer = ECS::GetComponent<Player>(MainEntities::MainPlayer());
 	auto& playerShield = ECS::GetComponent<Kinematics>(shield);
-	auto& shieldThing = ECS::GetComponent<ShieldMechanic>(shield);
+	//auto& shieldThing = ECS::GetComponent<ShieldMechanic>(shield);
 	auto& theCoolDown = ECS::GetComponent<CoolDown>(MainEntities::MainPlayer());
 	auto& angerBoss = ECS::GetComponent<BossLevel>(MainEntities::MainPlayer());
 	auto& bossSprite = ECS::GetComponent<Sprite>(boss);
@@ -1048,7 +538,7 @@ void AngerLevel::Update()
 		player.Update();
 	}
 
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 1; i++) //moving platform related
 	{
 		ECS::GetComponent<Kinematics>(movingTriggers[i]).UpdatePosition();
 		ECS::GetComponent<MovingPlatform>(movingPlatforms[i]).MovePlatform(movingPlatforms[i]);
@@ -1056,11 +546,20 @@ void AngerLevel::Update()
 	
 	//kinTrig.UpdatePosition();
 	playerMech.RunKnockBackTime();
-	playerShield.UpdateTransform();
-	AngerLevel::CheckShield();
-	shieldThing.activateShield();
+
+	playerMech.ActivateShield(); //runs timer for shield
+	ECS::GetComponent<Kinematics>(shield).UpdateTransform(); //shield follows player
+	if (playerMech.GetShield())
+	{
+		ECS::GetComponent<Sprite>(shield).SetTransparency(1.f);
+	}
+	else
+	{
+		ECS::GetComponent<Sprite>(shield).SetTransparency(0.f);
+	}
+	//AngerLevel::CheckShield();
 	AngerLevel::ReattachCamera();
-	if (playerMech.GetCanMove() == true)
+	if (playerMech.GetCanMove() == true) //checks to see if the player can move
 	{
 		thePlayer.Update();
 	}
@@ -1078,7 +577,9 @@ void AngerLevel::Update()
 	theCoolDown.GlobalCoolDown();
 	angerBoss.CheckBossStatus();
 	playerMech.RunShadowTime();
-	if (angerBoss.GetBossDefeated() == false)
+
+	//checks to see if the boss is alive and can therefore shoot
+	if (angerBoss.GetBossDefeated() == false) 
 	{
 		AngerLevel::ActivateShadow();
 	}
@@ -1093,7 +594,8 @@ void AngerLevel::Update()
 	AngerLevel::PlayerDeath();
 
 	//win condition(kill boss to open platform)
-	if (angerBoss.GetBossDefeated() == true)
+	//checks to see if the boss has been defeated and therefore the boss and wall can be destroyed
+	if (angerBoss.GetBossDefeated() == true) 
 	{
 		if (bossWallDestroyed == false)
 		{
@@ -1102,7 +604,8 @@ void AngerLevel::Update()
 		}
 	}
 
-	for (int i = 0; i < 18; i++) //for platforms u,v,w,x,b1,b2,b3,b4,b5, and the 10 crumbling platforms that make up the ground of the boss level
+	//for platforms u,v,w,x,b1,b2,b3,b4,b5, and the 10 crumbling platforms that make up the ground of the boss level
+	for (int i = 0; i < 18; i++) 
 	{
 		ECS::GetComponent<CrumblingSequence>(masterCrumblingPlatforms[i]).Crumble(masterCrumblingPlatforms[i]);
 		CrumblingPlatforms(masterCrumblingPlatforms[i]);
@@ -1112,13 +615,16 @@ void AngerLevel::Update()
 	
 	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).Update();
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).Update();
+
+	//For UI Elements
 	for (int i = 0; i < 6; i++)
 	{
 		ECS::GetComponent<Kinematics>(uiElements[i]).UpdateUI();
 	}
 	AngerLevel::UpdateUI(); 
 
-	for (int i = 0; i < 6; i++) //shadow contact/pause and shadow animation stuff
+	//shadow contact/pause and shadow animation stuff
+	for (int i = 0; i < 6; i++) 
 	{
 		ECS::GetComponent<ShadowLoop>(shadows[i]).ShadowRoutine(shadows[i]);
 		ECS::GetComponent<Kinematics>(sZones[i]).UpdatePosition();
@@ -1127,14 +633,18 @@ void AngerLevel::Update()
 
 	//for the breakable wall at the beginning of the level
 	ECS::GetComponent<BreakableWall>(breakableWalls[0]).WallRoutine(breakableWalls[0]);
+
+	//bullet walls
+	for (int i = 0; i < 3; i++)
+	{
+		SpawnBullet(bulletWalls[i], 0, -13);
+	}
+
+	playerMech.RunInvincibility(); //invincibility timer
 }
 
 void AngerLevel::KeyboardHold()
 {
-	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
-	float speed = 3.f;
-	b2Vec2 vel = b2Vec2(0.f, 0.f);
-	vec3 velocity = vec3(0.f, 0.f, 0.f);
 }
 
 void AngerLevel::KeyboardUp()
@@ -1163,16 +673,14 @@ void AngerLevel::KeyboardDown()
 
  
 	
-		if (Input::GetKeyDown(Key::Q) && shieldMech.restart == true && theCoolDown.isCoolDownActive == false) //checks to see if the shield cooldown if complete before reactivating shield
+		if (Input::GetKeyDown(Key::Q) && playerMech.GetAttackSequence() == false) 
 		{
-			shieldMech.setSequenceStart(true);
-			theCoolDown.SetSequenceStart(true);
+			playerMech.SetShieldSequence(true);
 		}
 
-		if (Input::GetKeyDown(Key::E) && playerMech.GetAttackSequence() == false && theCoolDown.isCoolDownActive == false)
+		if (Input::GetKeyDown(Key::E) && playerMech.GetAttackSequence() == false && playerMech.GetShield() == false)
 		{
 			playerMech.SetAttackSequence(true);
-			theCoolDown.SetSequenceStart(true);
 		}
 	
 	
@@ -1211,29 +719,31 @@ void AngerLevel::ReattachCamera()
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 }
 
-void AngerLevel::CheckShield()
+//outdated(needs to be fixed or scrapped)
+void AngerLevel::CheckShield() 
 {
-	//checks inputs from the ShieldMechanic and proceeds to turn the shield on or off
-	//auto& playerHealth = ECS::GetComponent<Health>(player);
-	auto& playerMech = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
-	if (ECS::GetComponent<ShieldMechanic>(shield).shieldOn == true)
-	{
-		/*ECS::GetComponent<PhysicsBody>(shield).GetBody()->SetActive(true);*/
-		//ECS::GetComponent<PhysicsBody>(shield).GetBody()->SetAwake(true);
-		ECS::GetComponent<Sprite>(shield).SetTransparency(1.f);
-		//shieldActive = true; //currently useless
-		playerMech.SetShield(true); //Used by the BulletTrigger to check if the shield is on.
-	}
-	else if (ECS::GetComponent<ShieldMechanic>(shield).shieldOn == false)
-	{
-		/*ECS::GetComponent<PhysicsBody>(shield).GetBody()->SetActive(false);*/
-		//ECS::GetComponent<PhysicsBody>(shield).GetBody()->SetAwake(false);
-		ECS::GetComponent<Sprite>(shield).SetTransparency(0.f);
-		//shieldActive = false; //currently useless
-		playerMech.SetShield(false); //Used by the BulletTrigger to check if the shield is on.
-	}
+	////checks inputs from the ShieldMechanic and proceeds to turn the shield on or off
+	////auto& playerHealth = ECS::GetComponent<Health>(player);
+	//auto& playerMech = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
+	//if (ECS::GetComponent<ShieldMechanic>(shield).shieldOn == true)
+	//{
+	//	/*ECS::GetComponent<PhysicsBody>(shield).GetBody()->SetActive(true);*/
+	//	//ECS::GetComponent<PhysicsBody>(shield).GetBody()->SetAwake(true);
+	//	ECS::GetComponent<Sprite>(shield).SetTransparency(1.f);
+	//	//shieldActive = true; //currently useless
+	//	playerMech.SetShield(true); //Used by the BulletTrigger to check if the shield is on.
+	//}
+	//else if (ECS::GetComponent<ShieldMechanic>(shield).shieldOn == false)
+	//{
+	//	/*ECS::GetComponent<PhysicsBody>(shield).GetBody()->SetActive(false);*/
+	//	//ECS::GetComponent<PhysicsBody>(shield).GetBody()->SetAwake(false);
+	//	ECS::GetComponent<Sprite>(shield).SetTransparency(0.f);
+	//	//shieldActive = false; //currently useless
+	//	playerMech.SetShield(false); //Used by the BulletTrigger to check if the shield is on.
+	//}
 }
 
+//boos shadow
 void AngerLevel::SpawnBullet(int shadowEntity)
 {
 	auto& shadowBody = ECS::GetComponent<PhysicsBody>(shadowEntity);
@@ -1270,7 +780,7 @@ void AngerLevel::SpawnBullet(int shadowEntity)
 	tempBody = m_physicsWorld->CreateBody(&tempDef);
 
 	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | GROUND | ENVIRONMENT);
 	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	tempPhsBody.SetGravityScale(0.f); //ensures no bullet drop and bullet reaches the player
@@ -1299,6 +809,75 @@ void AngerLevel::ShootBullet()
 
 
 }
+
+
+//bullet wall
+void AngerLevel::SpawnBullet(int wall, float offsetX, float offsetY)
+{
+	static float startTime = 0;
+	auto& wallLoc = ECS::GetComponent<PhysicsBody>(wall);
+
+	if (startTime == 0)
+	{
+		startTime = Timer::time;
+	}
+
+	float currentTime = Timer::StopWatch(startTime);
+
+	if (currentTime >= 0.3) //this statement will run once the player has entered a ShadowAreaTrigger
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Trigger*>(entity);
+
+		//Set up components
+		std::string fileName = "bullet.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 4, 8);
+
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(wallLoc.GetPosition().x + offsetX, wallLoc.GetPosition().y + offsetY, 4.f));
+
+		ECS::GetComponent<Trigger*>(entity) = new BulletTrigger();
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_dynamicBody;
+		tempDef.position.Set(wallLoc.GetPosition().x + offsetX, wallLoc.GetPosition().y + offsetY);
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | GROUND | ENVIRONMENT);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+
+		tempPhsBody.SetGravityScale(0.f); //ensures no bullet drop and bullet reaches the player
+
+		ShootBullet(entity, 0);
+
+		if (wall == bulletWalls[2]) //this has to be equal to the last entry in the bulletWalls array. If it isn't, any elements after this number will not spawn bullets.
+		{
+			startTime = 0;
+		}
+	}
+}
+
+void AngerLevel::ShootBullet(int bullet, float degrees)
+{
+	ECS::GetComponent<PhysicsBody>(bullet).SetRotationAngleDeg(degrees);
+	ECS::GetComponent<PhysicsBody>(bullet).GetBody()->SetLinearVelocity(b2Vec2(0, -100));
+}
+
 
 void AngerLevel::ActivateShadow()
 {
@@ -1367,21 +946,19 @@ void AngerLevel::PlayerDeath()
 void AngerLevel::UpdateUI()
 {
 	auto& playerMech = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
-	auto& shieldMech = ECS::GetComponent<ShieldMechanic>(shield);
+	//auto& shieldMech = ECS::GetComponent<ShieldMechanic>(shield);
 	auto& gameCoolDown = ECS::GetComponent<CoolDown>(MainEntities::MainPlayer());
-	if (shieldMech.shieldOn == true)
+
+	//initalizing the shield UI as available
+	if (playerMech.GetShield())
 	{
-		ECS::GetComponent<Sprite>(shieldUI).LoadSprite(shieldOn,30, 30); 
+		ECS::GetComponent<Sprite>(shieldUI).LoadSprite(shieldOn, 30, 30);
 		ECS::GetComponent<Sprite>(shieldUI).SetTransparency(1.f);
 	}
-	else if (shieldMech.shieldOn == false && shieldMech.restart==false)
-	{
-		ECS::GetComponent<Sprite>(shieldUI).SetTransparency(0.f);
-	}
-	else if (shieldMech.shieldOn == false && shieldMech.restart == true)
+	else
 	{
 		ECS::GetComponent<Sprite>(shieldUI).LoadSprite(shieldOff, 30, 30);
-		ECS::GetComponent<Sprite>(shieldUI).SetTransparency(1.f);
+		ECS::GetComponent<Sprite>(shieldUI).SetTransparency(1.f);		
 	}
 
 	if (playerMech.GetAttackSequence() == false) //ability is available

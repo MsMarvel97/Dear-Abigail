@@ -13,7 +13,7 @@ void CoolDown::GlobalCoolDown()
 		if (currentTime > 1)
 		{
 			isCoolDownActive = false;
-			std::cout << "cool down end\n";
+			std::cout << "Global cool down end\n";
 			SetSequenceStart(false);
 		}
 		else

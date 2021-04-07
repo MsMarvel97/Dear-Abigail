@@ -43,31 +43,6 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 	ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).SetCheckpoint(false);
 	ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).SetComplete(false);
 
-	//Temp Shield
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		shield = entity;
-
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<Kinematics>(entity);
-
-
-		//Sets up components
-		std::string fileName = "ShieldTemp.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 32, 48);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(float32(1952.f), float32(632.f), 2.f));
-
-		ECS::GetComponent<Kinematics>(entity).SetChild(entity);
-		ECS::GetComponent<Kinematics>(entity).SetParent(MainEntities::MainPlayer());
-		ECS::GetComponent<Kinematics>(entity).SetOffset(0.f, 0.f);
-
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		tempSpr.SetTransparency(0.f);
-	} 
-
 	//calling the SpawnPlatforms function to construct the static platforms
 	SpawnPlatforms();
 	//calling the SpawnCrumblingPlatforms function to construct the crumbling platforms
@@ -352,15 +327,6 @@ void DenialLevel::Update()
 	for (int i = 0; i <= 3; i++)
 	{
 		SpawnBullet(bulletWalls[i], 0, -13);
-	}
-
-	if (pMechanics.GetShield())
-	{
-		ECS::GetComponent<Sprite>(shield).SetTransparency(1.f);
-	}
-	else
-	{
-		ECS::GetComponent<Sprite>(shield).SetTransparency(0.f);
 	}
 
 	std::cout << playerBody.GetPosition().x <<  "					" << playerBody.GetPosition().y << std::endl;

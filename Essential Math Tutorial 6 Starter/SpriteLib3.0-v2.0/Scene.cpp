@@ -312,7 +312,7 @@ int Scene::SpawnPlatform(float xPos, float yPos, float width, float height, std:
 	return entity;
 }
 
-b2Vec2 Scene::SpawnShadow(float xPos, float yPos, float min, float max, bool ranged, b2Vec2 patrolVel, float xOffset, float yOffset, float width, float height)
+b2Vec2 Scene::SpawnShadow(float xPos, float yPos, float min, float max, bool ranged, b2Vec2 patrolVel, float xOffset, float yOffset, float width, float height, bool bossShadow)
 {
 	b2Vec2 shadowPair;
 
@@ -338,7 +338,7 @@ b2Vec2 Scene::SpawnShadow(float xPos, float yPos, float min, float max, bool ran
 			JSONfile = "Shadow.json";
 
 			ECS::GetComponent<ShadowLoop>(shadowPair.x).InitRangedShadow(fileName, JSONfile, width, height, &ECS::GetComponent<Sprite>(shadowPair.x),
-				&ECS::GetComponent<AnimationController>(shadowPair.x));
+				&ECS::GetComponent<AnimationController>(shadowPair.x), bossShadow);
 		}
 		else
 		{
@@ -351,10 +351,17 @@ b2Vec2 Scene::SpawnShadow(float xPos, float yPos, float min, float max, bool ran
 
 		ECS::GetComponent<Transform>(shadowPair.x).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		ECS::GetComponent<Trigger*>(shadowPair.x) = new KnockBackTrigger();
-		ECS::GetComponent<Trigger*>(shadowPair.x)->SetTriggerEntity(shadowPair.x);
-		ECS::GetComponent<Trigger*>(shadowPair.x)->AddTargetEntity(MainEntities::MainPlayer());
-
+		if (!bossShadow)
+		{
+			ECS::GetComponent<Trigger*>(shadowPair.x) = new KnockBackTrigger();
+			ECS::GetComponent<Trigger*>(shadowPair.x)->SetTriggerEntity(shadowPair.x);
+			ECS::GetComponent<Trigger*>(shadowPair.x)->AddTargetEntity(MainEntities::MainPlayer());
+		}
+		else
+		{
+			ECS::GetComponent<Trigger*>(shadowPair.x) = new BossShadow();
+			ECS::GetComponent<Sprite>(shadowPair.x).SetTransparency(0.7f);
+		}
 
 		ECS::GetComponent<ShadowLoop>(shadowPair.x).SetMovementBoundaries(min, max);
 		ECS::GetComponent<ShadowLoop>(shadowPair.x).SetPatrolVelocity(patrolVel);
@@ -369,6 +376,7 @@ b2Vec2 Scene::SpawnShadow(float xPos, float yPos, float min, float max, bool ran
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
 		tempPhsBody = PhysicsBody(shadowPair.x, tempBody, width, height, vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+
 
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 		tempPhsBody.SetGravityScale(0.f);
@@ -685,7 +693,7 @@ void Scene::SpawnSpike(float xPos, float yPos, float width, float height)
 	std::string fileName = "Spike.png";
 	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, width, height);
 	ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
-	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 1.f));
 	ECS::GetComponent<Trigger*>(entity) = new SpikeTrigger();
 	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 	ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());

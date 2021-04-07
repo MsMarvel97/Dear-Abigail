@@ -299,8 +299,6 @@ void DenialLevel::Update()
 		ECS::GetComponent<MovingPlatform>(movingPlatforms[i]).MovePlatform(movingPlatforms[i]);
 	}
 
-	ECS::GetComponent<Kinematics>(shield).UpdateTransform();
-
 	if (pMechanics.GetCanMove() == true)
 	{
 		player.Update();
@@ -419,7 +417,7 @@ void DenialLevel::CheckEndLevel()
 	{
 		//stops music here
 		denialBGM.Mute();
-		SetSceneChange(true, 2);
+		SetSceneChange(true, 3);
 	}
 }
 //platform for making platforms crumble - pass crumbling platforms to this during the update

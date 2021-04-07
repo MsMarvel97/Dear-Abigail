@@ -4,12 +4,13 @@ ShadowLoop::ShadowLoop()
 {
 }
 
-void ShadowLoop::InitRangedShadow(std::string& fileName, std::string& animationJSON, int width, int height, Sprite* sprite, AnimationController* controller)
+void ShadowLoop::InitRangedShadow(std::string& fileName, std::string& animationJSON, int width, int height, Sprite* sprite, AnimationController* controller, bool bossShadow)
 {
 	//Store references to the components
 	sprites = sprite;
 	animator = controller;
 	shadowType = RANGED;
+	boss = bossShadow;
 
 	//Initialize UVs
 	animator->InitUVs(fileName);
@@ -226,7 +227,7 @@ void ShadowLoop::RangedRoutine(int entity)
 	}
 
 	//This will allow the shadow to move while it is not attacking the player
-	else if (sequenceStart == false)
+	else if (sequenceStart == false && !boss)
 	{
 		ShadowMove(entity);
 	}

@@ -84,7 +84,7 @@ protected:
 	bool bossWallDestroyed = false;
 	int shield = 0;
 	int bullet = 0;
-	int boss = 0;
+	b2Vec2 boss; //x = entity, y = trigger
 	int movingPlat = 0;
 	int kinTrigger = 0;
 	bool allShadowsDefeated = true;

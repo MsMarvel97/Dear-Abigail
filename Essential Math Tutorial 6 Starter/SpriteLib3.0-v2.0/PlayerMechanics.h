@@ -18,9 +18,15 @@ public:
 
 	void SetAttackSequence(bool attack) { attackSequence = attack; };
 	
+	bool GetDamageDealt() { return damageDealt; };
+
+	void SetDamageDealt(bool damaged) { damageDealt = damaged; };
+
 	bool GetAttacking() { return isAttacking; };
 
 	bool GetAttackCoolDown() { return attackCoolDown; };
+
+
 
 	//Knockback mechanic
 	void RunKnockBackTime();
@@ -84,6 +90,7 @@ protected:
 	float attackStart = 0.f;
 	bool isAttacking = false;
 	bool inRange = false;
+	bool damageDealt = false;
 	int shadow = 0;
 	bool attackSequence = false;
 	bool attackCoolDown = false;

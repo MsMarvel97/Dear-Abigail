@@ -92,6 +92,7 @@ void PlayerMechanics::Attacking()
 		{
 			attackCoolDown = false;
 			attackSequence = false;
+			damageDealt = false;
 		}
 	}
 }

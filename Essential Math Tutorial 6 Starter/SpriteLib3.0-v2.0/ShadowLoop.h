@@ -48,7 +48,7 @@ public:
 
 	ShadowLoop();
 
-	void InitRangedShadow(std::string& fileName, std::string& animationJSON, int width, int height, Sprite* sprite, AnimationController* controller);
+	void InitRangedShadow(std::string& fileName, std::string& animationJSON, int width, int height, Sprite* sprite, AnimationController* controller, bool bossShadow = false);
 	void InitMeleeShadow(std::string& fileName, std::string& animationJSON, int width, int height, Sprite* sprite, AnimationController* controller);
 
 	//handles move and attack sequences depending on current state
@@ -101,6 +101,7 @@ private:
 	int animType = 0;
 	int shadowType = 0;
 	float shootingTime = 0.5;
+	bool boss = false;
 	bool fire = false;
 	bool sequenceStart = false;
 	bool pauseSequenceStart = false; //new bool

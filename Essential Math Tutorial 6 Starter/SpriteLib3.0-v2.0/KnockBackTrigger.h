@@ -11,6 +11,12 @@ public:
 protected:
 };
 
+class BossShadow : public Trigger
+{
+	void OnEnter() override;
+	void OnExit() override;
+};
+
 class SpikeTrigger : public Trigger
 {
 public:

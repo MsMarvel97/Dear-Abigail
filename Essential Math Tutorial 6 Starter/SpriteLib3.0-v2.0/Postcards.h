@@ -19,6 +19,7 @@ protected:
 	int nextScene = 0;
 	int postcardMin = 0;
 	int postcardMax = 0;
+	int uiElements[2];
 
 	//Sound library
 private: 

@@ -14,8 +14,11 @@ public:
 	void InitBreakableWall(std::string& fileName, std::string& animationJSON, int width, int height, Sprite* sprite, AnimationController* controller);
 	void WallRoutine(int entity);
 	void SetAnimation(int animation, int entity);
-	void SubtractHealth() { health--; };
+	void SetHit(int attack) { hit = attack; };
+
+
 private:
+	bool hit = false;
 	bool wallDestroyed = false;
 	int health = 3;
 	int animType = 0;

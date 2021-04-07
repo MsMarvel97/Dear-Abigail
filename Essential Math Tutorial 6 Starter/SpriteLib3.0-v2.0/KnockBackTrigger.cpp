@@ -137,3 +137,10 @@ void SpikeTrigger::OnExit()
 {
 
 }
+
+void BossShadow::OnEnter()
+{
+}
+void BossShadow::OnExit()
+{
+}

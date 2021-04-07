@@ -56,6 +56,9 @@ void Postcards::InitScene(float windowWidth, float windowHeight)
 	SpawnPlatform(0.f, 0.f, 256.f, 10.f, "none", 0.f);
 	SpawnPlatform(112.f, 0.f, 512.f, 10.f, "none", 0.f, 90.f);
 	SpawnPlatform(-112.f, 0.f, 512.f, 10.f, "none", 0.f, 90.f);
+	uiElements[0] = SpawnUIElement(110.f, -60.f, 30.f, 30.f, "InspectOn.png");
+	uiElements[1] = SpawnUIElement(110.f, -60.f, 30.f, 30.f, "InspectOff.png");
+	ECS::GetComponent<Sprite>(uiElements[0]).SetTransparency(0.f);
 
 	// TILE POSTCARD BACKGROUND
 	{
@@ -131,12 +134,16 @@ void Postcards::Update()
 			contactStep = true;
 			ECS::GetComponent<Sprite>(postcardMin).SetTransparency(0.f);
 			ECS::GetComponent<Sprite>(postcardMax).SetTransparency(1.f);
+			ECS::GetComponent<Sprite>(uiElements[0]).SetTransparency(1.f);
+			ECS::GetComponent<Sprite>(uiElements[1]).SetTransparency(0.f);
 		}
 		if (Input::GetKeyDown(Key::F) && maximized && !contactStep)
 		{
 			maximized = false;
 			ECS::GetComponent<Sprite>(postcardMin).SetTransparency(1.f);
 			ECS::GetComponent<Sprite>(postcardMax).SetTransparency(0.f);
+			ECS::GetComponent<Sprite>(uiElements[0]).SetTransparency(0.f);
+			ECS::GetComponent<Sprite>(uiElements[1]).SetTransparency(1.f);
 		}
 		contactStep = false;
 	}
@@ -159,6 +166,11 @@ void Postcards::Update()
 
 	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).Update();
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).Update();
+
+	for (int i = 0; i <= 1; i++)
+	{
+		ECS::GetComponent<Kinematics>(uiElements[i]).UpdateUI();
+	}
 }
 
 void Postcards::Separate(b2Vec2 newPair, int type)

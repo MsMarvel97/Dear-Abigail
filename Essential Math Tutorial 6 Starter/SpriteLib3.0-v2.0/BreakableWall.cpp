@@ -33,6 +33,15 @@ void BreakableWall::InitBreakableWall(std::string& fileName, std::string& animat
 
 void BreakableWall::WallRoutine(int entity)
 {
+	if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetAttackSequence() && hit == true)
+	{
+		if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetDamageDealt() == false)
+		{
+			health--;
+			ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).SetDamageDealt(true);
+		}
+	}
+
 	if (wallDestroyed == false)
 	{
 		if (health == 3)

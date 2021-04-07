@@ -384,16 +384,16 @@ void AngerLevel::SpawnCrumblingPlatforms()
 void AngerLevel::SpawnTiles()
 {
 	//void Scene::SpawnTile(float xPos, float yPos, std::string sprite, float width, float height)
-	SpawnTile(-144.f, 80.f, "backgrounds/anger/anger0-1.png");// TILE 0-1
-	SpawnTile(112.f, 80.f, "backgrounds/anger/anger1-1.png");// TILE 1-1
-	SpawnTile(368.f, 80.f, "backgrounds/anger/anger2-1.png");// TILE 2-1
-	SpawnTile(624.f, 80.f, "backgrounds/anger/anger3-1.png");// TILE 3-1 ???
-	SpawnTile(880.f, 80.f, "backgrounds/anger/anger4-1.png");// TILE 4-1
-	SpawnTile(1136.f, 80.f, "backgrounds/anger/anger5-1.png");// TILE 5-1
-	SpawnTile(1392.f, 80.f, "backgrounds/anger/anger6-1.png");// TILE 6-1
-	SpawnTile(1648.f, 80.f, "backgrounds/anger/anger7-1.png");// TILE 7-1
-	SpawnTile(1904.f, 80.f, "backgrounds/anger/anger8-1.png");// TILE 8-1
-	SpawnTile(2160.f, 80.f, "backgrounds/anger/anger9-1.png");// TILE 9-1
+	SpawnTile(-144.f, 80.f, "backgrounds/anger/anger0-1.png", false, -1.f);// TILE 0-1
+	SpawnTile(112.f, 80.f, "backgrounds/anger/anger1-1.png", false, -1.f);// TILE 1-1
+	SpawnTile(368.f, 80.f, "backgrounds/anger/anger2-1.png", false, -1.f);// TILE 2-1
+	SpawnTile(624.f, 80.f, "backgrounds/anger/anger3-1.png", false, -1.f);// TILE 3-1 ???
+	SpawnTile(880.f, 80.f, "backgrounds/anger/anger4-1.png", false, -1.f);// TILE 4-1
+	SpawnTile(1136.f, 80.f, "backgrounds/anger/anger5-1.png", false, -1.f);// TILE 5-1
+	SpawnTile(1392.f, 80.f, "backgrounds/anger/anger6-1.png", false, -1.f);// TILE 6-1
+	SpawnTile(1648.f, 80.f, "backgrounds/anger/anger7-1.png", false, -1.f);// TILE 7-1
+	SpawnTile(1904.f, 80.f, "backgrounds/anger/anger8-1.png", false, -1.f);// TILE 8-1
+	SpawnTile(2160.f, 80.f, "backgrounds/anger/anger9-1.png", false, -1.f);// TILE 9-1
 	SpawnTile(2416.f, 80.f, "backgrounds/anger/anger10-1.png");// TILE 10-1
 	SpawnTile(2672.f, 80.f, "backgrounds/anger/anger11-1.png");// TILE 11-1
 	SpawnTile(2928.f, 80.f, "backgrounds/anger/anger12-1.png");// TILE 12-1
@@ -423,7 +423,7 @@ void AngerLevel::SpawnTiles()
 	//water
 	for (int i = 0; i < 18; i++)
 	{
-		SpawnTile(((-16 + 16 * i) * 16.f) + 112, -80.f, "backgrounds/anger/water.png",256.f,64.f);// TILE 16-2
+		SpawnTile(((-16 + 16 * i) * 16.f) + 112, -200.f, "backgrounds/anger/water.png",256.f,64.f);// TILE 16-2 //-80
 	}
 
 

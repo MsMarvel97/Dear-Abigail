@@ -685,7 +685,7 @@ void Scene::SpawnSpike(float xPos, float yPos, float width, float height)
 	std::string fileName = "Spike.png";
 	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, width, height);
 	ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
-	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 1.f));
 	ECS::GetComponent<Trigger*>(entity) = new SpikeTrigger();
 	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 	ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());

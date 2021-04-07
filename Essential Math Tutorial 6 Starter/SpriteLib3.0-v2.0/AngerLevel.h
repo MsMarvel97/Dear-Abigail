@@ -52,6 +52,8 @@ public:
 
 	b2Vec2 CalculateAngle(int entityOne, int entityTwo);
 
+	void TestAttackBox(); //testing a new attack box
+
 	std::string defaultPose = "testCube.png";
 	std::string attackPose = "testCube2.png";
 	std::string shieldOn = "ShieldOn.png";
@@ -117,4 +119,6 @@ protected:
 	int tutorialOrb = 0;
 
 	int bulletWalls[3];
+
+	int attackBox = 0; //testing a new attack box
 };

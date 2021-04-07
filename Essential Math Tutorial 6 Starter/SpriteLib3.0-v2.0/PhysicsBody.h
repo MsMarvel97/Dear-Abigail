@@ -29,8 +29,8 @@ enum EntityCategories
 	PICKUP		= 0x0007,
 	TRIGGER		= 0x0008,
 	HEXAGON		= 0x0009,
-	SNAIL		= 0x0010
-	
+	SNAIL		= 0x0010,
+	ATTACKBOX   = 0x0011 //testing a new attack mechanic	
 };
 
 

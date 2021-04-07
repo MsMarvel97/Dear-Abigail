@@ -301,16 +301,48 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		b2Body* tempBody;
 		b2BodyDef tempDef;
 		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(80.f), float32(50.f));
+		tempDef.position.Set(float32(80.f), float32(30.f));
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
 		tempPhsBody = PhysicsBody(entity, tempBody, float(10 + 10),
-			float(30), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY);
+			float(30), vec2(0.f, 0.f), true, TRIGGER, PLAYER | ENEMY | ATTACKBOX);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 
 	}
 	
+	//testing a new attack box
+	{
+		/*auto entity = ECS::CreateEntity();
+		attackBox = entity;
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Kinematics>(entity);
+
+		std::string fileName = "testCube.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 10, 10);
+		ECS::GetComponent<Transform>(entity).SetPosition(0.f, 0.f, 4.f);
+		ECS::GetComponent<Kinematics>(entity).SetChild(entity);
+		ECS::GetComponent<Kinematics>(entity).SetParent(MainEntities::MainPlayer());
+		ECS::GetComponent<Kinematics>(entity).SetOffset(10.f, 0.f);
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32(0.f), float32(30.f));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth()), float(tempSpr.GetHeight()), vec2(0.f, 0.f), false, ATTACKBOX, TRIGGER, 0.f, 1.f);
+
+		tempPhsBody.SetRotationAngleDeg(0.f);
+		tempPhsBody.SetFixedRotation(true);
+		tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));*/
+	}
 
 	SpawnUI();
 	SpawnPlatforms();
@@ -641,6 +673,9 @@ void AngerLevel::Update()
 	}
 
 	playerMech.RunInvincibility(); //invincibility timer
+
+	//ECS::GetComponent<Kinematics>(attackBox).UpdatePosition(); //testing a new attack box
+	//TestAttackBox();
 }
 
 void AngerLevel::KeyboardHold()
@@ -919,7 +954,7 @@ void AngerLevel::PlayerDeath()
 	//auto& playerHealth = ECS::GetComponent<Health>(player);
 	auto& playerMech = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
 	auto& playerBody = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
-	if (playerMech.GetRespawn() == true) //if palyer falls off map
+	if (playerMech.GetRespawn() == true) //if player falls off map
 	{
 		playerBody.SetPosition(b2Vec2(50, 50));
 		playerMech.SetHealth(3);
@@ -1003,6 +1038,24 @@ b2Vec2 AngerLevel::CalculateAngle(int entityOne, int entityTwo)
 	deltaY = ECS::GetComponent<PhysicsBody>(entityOne).GetBody()->GetPosition().y - ECS::GetComponent<PhysicsBody>(entityTwo).GetBody()->GetPosition().y;
 
 	return b2Vec2(deltaX, deltaY);
+}
+
+void AngerLevel::TestAttackBox()
+{
+	auto& aBox = ECS::GetComponent<PhysicsBody>(attackBox);
+	auto& aBoxSpr = ECS::GetComponent<Sprite>(attackBox);
+	auto& aMech = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
+	if (aMech.GetAttacking() == true)
+	{
+		aBox.GetBody()->SetActive(true);
+		aBoxSpr.SetTransparency(1.f);
+	}
+	else
+	{
+		aBox.GetBody()->SetActive(false);
+		aBoxSpr.SetTransparency(0.f);
+
+	}
 }
 
 void AngerLevel::CrumblingPlatforms(int entity)

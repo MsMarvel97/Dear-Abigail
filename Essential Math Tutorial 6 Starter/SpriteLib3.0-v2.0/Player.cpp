@@ -271,17 +271,12 @@ void Player::AnimationUpdate()
 	{
 		if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetShield())
 		{
-			/*
-			if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetAttacking())
-			{
-				activeAnimation = JUMPATTACK;
-			}
-			else
-			{
-				activeAnimation = JUMPBLOCK;
-			}
-			*/
+
 			activeAnimation = JUMPBLOCK;
+		}
+		else if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetAttacking())
+		{
+			activeAnimation = JUMPATTACK;
 		}
 		else
 		{
@@ -292,17 +287,11 @@ void Player::AnimationUpdate()
 	{
 		if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetShield())
 		{
-			/*
-			if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetAttacking())
-			{
-				activeAnimation = RUNATTACK;
-			}
-			else
-			{
-				activeAnimation = RUNBLOCK;
-			}
-			*/
 			activeAnimation = RUNBLOCK;
+		}
+		else if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetAttacking())
+		{
+			activeAnimation = RUNATTACK;
 		}
 		else
 		{
@@ -313,17 +302,11 @@ void Player::AnimationUpdate()
 	{
 		if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetShield())
 		{
-			/*
-			if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetAttacking())
-			{
-				activeAnimation = IDLEATTACK;
-			}
-			else
-			{
-				activeAnimation = IDLEBLOCK;
-			}
-			*/
 			activeAnimation = IDLEBLOCK;
+		}
+		else if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetAttacking())
+		{
+			activeAnimation = IDLEATTACK;
 		}
 		else
 		{

@@ -23,18 +23,46 @@ void Tutorial::InitScene(float windowWidth, float windowHeight)
 	//SpawnMainPlayer(0.f, 20.f);
 	SpawnMainPlayer(530.f, 10.f);
 
-	SpawnPlatform(140.f, 0.f, 300.f, 10.f, ""); //starting platform
-	SpawnPlatform(285.f, -55.f, 100.f, 10.f, "", 1.f, 90.f); //left pit wall
-	SpawnPlatform(355.f, -55.f, 100.f, 10.f, "", 1.f, 90.f); //right pit wall
-	SpawnPlatform(320.f, -55.f, 70.f, 10.f, ""); //pit floor
-	SpawnPlatform(600.f, 0.f, 500.f, 10.f, ""); //pit exit platform
-	SpawnPlatform(200.f, 142.f, 420.f, 200.f, "");//roof
-	SpawnPlatform(295.f, -45.f, 20.f, 25.f, "");//ledge in pit
-	SpawnPlatform(550.f, 20.f, 35.f, 40.f, "");//ledge before moving platform
-	SpawnPlatform(830.f, 25.f, 40.f, 50.f, "");//ledge to exit after moving platform
-	SpawnPlatform(925.f, 45.f, 150.f, 10.f, "");//exit platform 
+	SpawnPlatform(140.f, 0.f, 300.f, 10.f, "", 0.f); //starting platform
+	SpawnPlatform(285.f, -55.f, 100.f, 10.f, "", 0.f, 90.f); //left pit wall
+	SpawnPlatform(355.f, -55.f, 100.f, 10.f, "", 0.f, 90.f); //right pit wall
+	SpawnPlatform(320.f, -55.f, 70.f, 10.f, "", 0.f); //pit floor
+	SpawnPlatform(600.f, 0.f, 500.f, 10.f, "", 0.f); //pit exit platform
+	SpawnPlatform(200.f, 142.f, 420.f, 200.f, "", 0.f);//roof
+	SpawnPlatform(295.f, -45.f, 20.f, 25.f, "", 0.f);//ledge in pit
+	SpawnPlatform(550.f, 20.f, 35.f, 40.f, "", 0.f);//ledge before moving platform
+	SpawnPlatform(830.f, 25.f, 40.f, 50.f, "", 0.f);//ledge to exit after moving platform
+	SpawnPlatform(925.f, 45.f, 150.f, 10.f, "", 0.f);//exit platform 
 	SpawnTile(975.f, 70.f, "CaveExit.png", true, 2.f, 20.f, 40.f);
 	movingPlatform = SpawnMovingPlatform(650.f, 45.f, 630.f, 740.f, 0.f, 100.f, 10.f); //moving platform leading to exit platform
+
+	//Setting up the background tiles
+	SpawnTile(-90.f, -115.f, "backgrounds/tutorial/tutorial0-0.png", false, 2.f, 160.f, 160.f);
+	SpawnTile(70.f, -115.f, "backgrounds/tutorial/tutorial1-0.png", false, 2.f, 160.f, 160.f);	//layer 0
+	SpawnTile(230.f, -115.f, "backgrounds/tutorial/tutorial2-0.png", false, 2.f, 160.f, 160.f);
+	SpawnTile(390.f, -115.f, "backgrounds/tutorial/tutorial3-0.png", false, 2.f, 160.f, 160.f);
+	SpawnTile(550.f, -115.f, "backgrounds/tutorial/tutorial4-0.png", false, 2.f, 160.f, 160.f);
+	SpawnTile(710.f, -115.f, "backgrounds/tutorial/tutorial5-0.png", false, 2.f, 160.f, 160.f);
+	SpawnTile(870.f, -115.f, "backgrounds/tutorial/tutorial6-0.png", false, 2.f, 160.f, 160.f);
+	SpawnTile(1030.f, -115.f, "backgrounds/tutorial/tutorial7-0.png", false, 2.f, 160.f, 160.f);
+
+	SpawnTile(-90.f, 45.f, "backgrounds/tutorial/tutorial0-1.png", false, 2.f, 160.f, 160.f);
+	SpawnTile(70.f, 45.f, "backgrounds/tutorial/tutorial1-1.png", false, 2.f, 160.f, 160.f);	//layer 1
+	SpawnTile(230.f, 45.f, "backgrounds/tutorial/tutorial2-1.png", false, 2.f, 160.f, 160.f);
+	SpawnTile(390.f, 45.f, "backgrounds/tutorial/tutorial3-1.png", false, 2.f, 160.f, 160.f);
+	SpawnTile(550.f, 45.f, "backgrounds/tutorial/tutorial4-1.png", false, 2.f, 160.f, 160.f);
+	SpawnTile(710.f, 45.f, "backgrounds/tutorial/tutorial5-1.png", false, 2.f, 160.f, 160.f);
+	SpawnTile(870.f, 45.f, "backgrounds/tutorial/tutorial6-1.png", false, 2.f, 160.f, 160.f);
+	SpawnTile(1030.f, 45.f, "backgrounds/tutorial/tutorial7-1.png", false, 2.f, 160.f, 160.f);
+
+	SpawnTile(-90.f, 205.f, "backgrounds/tutorial/tutorial0-1.png", false, 2.f, 160.f, 160.f);
+	SpawnTile(70.f, 205.f, "backgrounds/tutorial/tutorial1-2.png", false, 2.f, 160.f, 160.f);	//layer 2
+	SpawnTile(230.f, 205.f, "backgrounds/tutorial/tutorial2-2.png", false, 2.f, 160.f, 160.f);
+	SpawnTile(390.f, 205.f, "backgrounds/tutorial/tutorial3-2.png", false, 2.f, 160.f, 160.f);
+	SpawnTile(550.f, 205.f, "backgrounds/tutorial/tutorial4-2.png", false, 2.f, 160.f, 160.f);
+	SpawnTile(710.f, 205.f, "backgrounds/tutorial/tutorial5-2.png", false, 2.f, 160.f, 160.f);
+	SpawnTile(870.f, 205.f, "backgrounds/tutorial/tutorial6-2.png", false, 2.f, 160.f, 160.f);
+	SpawnTile(1030.f, 205.f, "backgrounds/tutorial/tutorial7-2.png", false, 2.f, 160.f, 160.f);
 
 	SpawnUI();
 

@@ -343,6 +343,10 @@ b2Vec2 Scene::SpawnShadow(float xPos, float yPos, float min, float max, bool ran
 		else
 		{
 			//sets up melee shadow components
+			fileName = "spritesheets/Squid.png";
+			JSONfile = "SquidMovement.json";
+			ECS::GetComponent<ShadowLoop>(shadowPair.x).InitMeleeShadow(fileName, JSONfile, width, height, &ECS::GetComponent<Sprite>(shadowPair.x),
+				&ECS::GetComponent<AnimationController>(shadowPair.x));
 		}
 
 		ECS::GetComponent<Transform>(shadowPair.x).SetPosition(vec3(30.f, -20.f, 2.f));
@@ -599,6 +603,9 @@ void Scene::SpawnMainPlayer(float xPos, float yPos)
 	ECS::AttachComponent<PhysicsBody>(entity);
 	ECS::AttachComponent<AnimationController>(entity);
 	ECS::AttachComponent<PlayerMechanics>(entity);
+	ECS::AttachComponent<CoolDown>(entity); //anger
+	ECS::AttachComponent<BossLevel>(entity); //anger
+	ECS::AttachComponent<MovingClass>(entity);//anger
 
 	//Sets up the components
 	std::string fileName = "spritesheets/abigailSpritesheet.png";

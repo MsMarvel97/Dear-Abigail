@@ -59,7 +59,6 @@
 #include "ShadowTime.h"
 #include "AttackTrigger.h"
 #include "AttackMechanic.h"
-#include "KnockBackTrigger.h"
 #include "Movement.h"
 #include "KnockBack.h"
 #include "ShadowLoop.h"

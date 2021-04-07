@@ -16,6 +16,9 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 {
 	//Dynamically allocates the register 
 	m_sceneReg = new entt::registry;
+	m_physicsWorld = new b2World(m_gravity);
+	m_physicsWorld->SetContactListener(&listener);
+	SetSceneChange(false, -1);
 
 	//Attach the register 
 	ECS::AttachRegister(m_sceneReg);

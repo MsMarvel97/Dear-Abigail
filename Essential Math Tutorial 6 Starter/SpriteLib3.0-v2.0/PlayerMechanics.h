@@ -22,7 +22,6 @@ public:
 
 	bool GetAttackCoolDown() { return attackCoolDown; };
 
-
 	//Knockback mechanic
 	void RunKnockBackTime();
 
@@ -32,11 +31,14 @@ public:
 
 	void SetCanMove(bool newMove) { canMove = newMove; }; //new one
 
-	//Health and shielding
+	//Health and respawn
 	void HealthLost(); //reduces player health by 1
 
 	void SetHealth(int heal) { hearts = heal; }; //sets health
 	int GetHealth() { return hearts; }; //checks player health
+
+	void SetRespawn(bool respawn) { dead = respawn; }
+	bool GetRespawn() { return dead; };
 
 	//Checkpoint state
 	void SetCheckpoint(bool check) { checkpoint = check; };
@@ -66,6 +68,10 @@ public:
 	//function to check if player is in the air
 	bool GetJumping();
 
+	//delay between hits
+	void RunInvincibility();
+	void SetInvincibilitySequence(bool hitDelay) { invincibilitySequence = hitDelay; };
+	bool GetInvincibility() { return invincibility; };
 
 protected:
 	//vars for shielding
@@ -93,12 +99,19 @@ protected:
 	bool right = false;
 	bool up = false;
 
-	//var for health
+	//var for health and respawn
 	int hearts = 3; //player's life points
+	bool dead = false;
+
 
 	//vars for scene state/progress
 	bool checkpoint = false; //checks if player is in last half of the level
 	bool complete = false; //checks if the player has reached the end of a level
 	bool examinePostcard = false;
+
+	//hit delay variables
+	bool invincibility = false;
+	bool invincibilitySequence = false;
+	float invincibilityStart = 0.f;
 };
 

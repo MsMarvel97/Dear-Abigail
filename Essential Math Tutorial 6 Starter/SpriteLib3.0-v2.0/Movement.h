@@ -13,6 +13,5 @@ public:
 private:
 	bool canMove = true;
 	bool sequenceStart = false;
-	
 };
 

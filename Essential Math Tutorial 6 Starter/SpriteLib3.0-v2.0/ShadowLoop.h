@@ -61,7 +61,7 @@ public:
 	void RangedRoutine(int entity);
 	void MeleeRoutine(int entity);
 
-	void RunShadowTime();
+	void FiringLoop();
 
 	void SetAnimation(int facing, int animation, int entity);
 
@@ -82,7 +82,8 @@ public:
 	int GetShadowAnim() { return animType; };
 
 	void ShadowPause(int entity); //new function
-	void SetShadowPauseSequence(bool newSequnce) { pauseSequenceStart = newSequnce; }; //new setter
+
+	void SetShadowPauseSequence(bool newSequence) { pauseSequenceStart = newSequence; }; //new setter
 
 	float startTime = 0.f;
 	float pauseStartTime = 0.f; //new float used in ShadowPause

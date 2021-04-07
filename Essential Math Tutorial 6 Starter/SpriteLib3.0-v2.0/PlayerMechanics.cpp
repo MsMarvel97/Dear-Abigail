@@ -71,6 +71,7 @@ void PlayerMechanics::RunKnockBackTime()
 	{
 		knockbackStart = Timer::time;
 	}
+
 	float currentTime = Timer::StopWatch(knockbackStart);
 
 	if (knockbackSequence == true) 
@@ -91,6 +92,10 @@ void PlayerMechanics::RunKnockBackTime()
 void PlayerMechanics::HealthLost()
 {
 		hearts--;
+		if (hearts <= 0)
+		{
+			dead = true;
+		}
 }
 
 bool PlayerMechanics::GetJumping()
@@ -104,4 +109,30 @@ bool PlayerMechanics::GetJumping()
 	}
 
 	return jumping;
+}
+
+void PlayerMechanics::RunInvincibility()
+{
+	if (invincibilitySequence == false)
+	{
+		invincibilityStart = Timer::time;
+	}
+
+	float currentTime = Timer::StopWatch(invincibilityStart);
+
+	if (invincibilitySequence == true)
+	{
+
+		if (currentTime < 2)
+		{
+			invincibility = true; //turns on player invincibility for t second(s)
+			std::cout << "I am titaninum!!!\n";
+		}
+		else
+		{
+			invincibility = false; //disables player invincibility
+			invincibilitySequence = false;
+			std::cout << "Invincibility off\n";
+		}
+	}
 }

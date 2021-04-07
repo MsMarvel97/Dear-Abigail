@@ -26,8 +26,8 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 	//Setup MainCamera Entity 
 	SpawnMainCamera(windowWidth, windowHeight);
 	//main player entity 
-	SpawnMainPlayer();
-	ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(0.f, 80.f), true); //beginning
+	SpawnMainPlayer(0.f, 80.f);
+	//ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(0.f, 80.f), true); //beginning
 	//ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(3216.f, 80.f), true); //boss platform
 	//ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(916.f, 90.f), true); //platform D
 	//ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(1844.f, 200.f), true); //random
@@ -57,7 +57,6 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
 	}
 
-	
 	//Boss wall
 	{
 		//Creates entity
@@ -94,6 +93,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 		tempPhsBody.SetRotationAngleDeg(90.f);
 	}
+
 	//Ending Door
 	{
 		//Creates entity
@@ -129,79 +129,79 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
 
-	//Shadow 7(Final Boss)
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-		boss = entity;
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<ShadowLoop>(entity);
-
-		//Sets up components
-		std::string fileName = "S1.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 96, 96);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+	////Shadow 7(Final Boss)
+	//{
+	//	//Creates entity
+	//	auto entity = ECS::CreateEntity();
+	//	boss = entity;
+	//	//Add components
+	//	ECS::AttachComponent<Sprite>(entity);
+	//	ECS::AttachComponent<Transform>(entity);
+	//	ECS::AttachComponent<PhysicsBody>(entity);
+	//	ECS::AttachComponent<ShadowLoop>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(3500.f), float32(250));//(3696.f,120.f)
-
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, ENEMY, PLAYER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
-	}
-	//Final Boss Area Trigger
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
-
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<Trigger*>(entity);
-		//ECS::AttachComponent<ShadowLoop>(entity);
-
-		//Sets up components
-		std::string fileName = "sandFloor.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 480, 500);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(3510.f, 200.f, 5.f));
-		ECS::GetComponent<Trigger*>(entity) = new BossAreaTrigger();
-		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
-		ECS::GetComponent<Trigger*>(entity)->SetShadowZone(1);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(3520.f), float32(200.f));
-
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	}
+	//	//Sets up components
+	//	std::string fileName = "S1.png";
+	//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 96, 96);
+	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
 
+	//	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+	//	float shrinkX = 0.f;
+	//	float shrinkY = 0.f;
+	//	b2Body* tempBody;
+	//	b2BodyDef tempDef;
+	//	tempDef.type = b2_staticBody;
+	//	tempDef.position.Set(float32(3500.f), float32(250));//(3696.f,120.f)
+
+	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+	//	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+	//		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, ENEMY, PLAYER);
+	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	//	ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
+	//}
+	////Final Boss Area Trigger
+	//{
+	//	//Creates entity
+	//	auto entity = ECS::CreateEntity();
+
+	//	//Add components
+	//	ECS::AttachComponent<Sprite>(entity);
+	//	ECS::AttachComponent<Transform>(entity);
+	//	ECS::AttachComponent<PhysicsBody>(entity);
+	//	ECS::AttachComponent<Trigger*>(entity);
+	//	//ECS::AttachComponent<ShadowLoop>(entity);
+
+	//	//Sets up components
+	//	std::string fileName = "sandFloor.png";
+	//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 480, 500);
+	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(3510.f, 200.f, 5.f));
+	//	ECS::GetComponent<Trigger*>(entity) = new BossAreaTrigger();
+	//	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+	//	ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
+	//	ECS::GetComponent<Trigger*>(entity)->SetShadowZone(1);
+	//	ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
+	//	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+	//	float shrinkX = 0.f;
+	//	float shrinkY = 0.f;
+	//	b2Body* tempBody;
+	//	b2BodyDef tempDef;
+	//	tempDef.type = b2_staticBody;
+	//	tempDef.position.Set(float32(3520.f), float32(200.f));
+
+	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+	//	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+	//		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	//}
 	
 	//Set up respawn trigger
 	{
@@ -238,6 +238,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
 		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	}
+
 	//Set up breakable wall
 	{
 		auto entity = ECS::CreateEntity();
@@ -357,21 +358,21 @@ void AngerLevel::SpawnPlatforms()
 void AngerLevel::SpawnCrumblingPlatforms()
 {
 	//int Scene::SpawnCrumblingPlatform(float xPos, float yPos, float width, float height)
-	masterCrumblingPlatforms[0] = SpawnCrumblingPlatform(2640.f, 72.f, 48.f, 32.f); // Crumbling Platform U
-	masterCrumblingPlatforms[1] = SpawnCrumblingPlatform(2736.f, 60.f, 48.f, 32.f); // Crumbling Platform V
-	masterCrumblingPlatforms[2] = SpawnCrumblingPlatform(2864.f, 78.f, 48.f, 32.f); // Crumbling Platform W
-	masterCrumblingPlatforms[3] = SpawnCrumblingPlatform(2960.f, 40.f, 48.f, 32.f); // Crumbling Platform X
+	masterCrumblingPlatforms[0] = SpawnCrumblingPlatform(2640.f, 72.f, 48.f, 32.f, false); // Crumbling Platform U
+	masterCrumblingPlatforms[1] = SpawnCrumblingPlatform(2736.f, 60.f, 48.f, 32.f, false); // Crumbling Platform V
+	masterCrumblingPlatforms[2] = SpawnCrumblingPlatform(2864.f, 78.f, 48.f, 32.f, false); // Crumbling Platform W
+	masterCrumblingPlatforms[3] = SpawnCrumblingPlatform(2960.f, 40.f, 48.f, 32.f, false); // Crumbling Platform X
 
-	masterCrumblingPlatforms[4] = SpawnCrumblingPlatform(3300.f, 150.f, 48.f, 32.f); // Boss Platform 1
-	masterCrumblingPlatforms[5] = SpawnCrumblingPlatform(3380.f, 110.f, 48.f, 32.f); // Boss Platform 2
-	masterCrumblingPlatforms[6] = SpawnCrumblingPlatform(3480.f, 74.f, 48.f, 32.f); // Boss Platform 3
-	masterCrumblingPlatforms[7] = SpawnCrumblingPlatform(3580.f, 110.f, 48.f, 32.f); // Boss Platform 4
-	masterCrumblingPlatforms[8] = SpawnCrumblingPlatform(3680.f, 144.f, 48.f, 32.f); // Boss Platform 5
+	masterCrumblingPlatforms[4] = SpawnCrumblingPlatform(3300.f, 150.f, 48.f, 32.f, false); // Boss Platform 1
+	masterCrumblingPlatforms[5] = SpawnCrumblingPlatform(3380.f, 110.f, 48.f, 32.f, false); // Boss Platform 2
+	masterCrumblingPlatforms[6] = SpawnCrumblingPlatform(3480.f, 74.f, 48.f, 32.f, false); // Boss Platform 3
+	masterCrumblingPlatforms[7] = SpawnCrumblingPlatform(3580.f, 110.f, 48.f, 32.f, false); // Boss Platform 4
+	masterCrumblingPlatforms[8] = SpawnCrumblingPlatform(3680.f, 144.f, 48.f, 32.f, false); // Boss Platform 5
 
 	float bossCoord = 3304.f;
 	for (int i = 9; i < 19; i++) //creates the ground floor of the boss battle (Platform ZA)
 	{
-		masterCrumblingPlatforms[i] = SpawnCrumblingPlatform(bossCoord, 32.f, 48.f, 32.f); 
+		masterCrumblingPlatforms[i] = SpawnCrumblingPlatform(bossCoord, 32.f, 48.f, 32.f, false);
 		bossCoord += 48;
 
 	}
@@ -447,7 +448,7 @@ void AngerLevel::SpawnShadows()
 	//SpawnShadow(float xPos, float yPos, float min, float max, bool ranged, b2Vec2 patrolVel, float xOffset, float yOffset, float width, float height)
 
 	//array for holding shadow b2Vec2s before they can be unpacked
-	b2Vec2 newShadows[6];
+	b2Vec2 newShadows[7];
 
 	//spawning shadows with their associated triggers
 	newShadows[0] = SpawnShadow(337.5f, 70.f, 226.f, 449.f, false, b2Vec2(30.f, 0.f),0.f,0.f);
@@ -456,19 +457,17 @@ void AngerLevel::SpawnShadows()
 	newShadows[3] = SpawnShadow(2096.f, 112.f, 1991.f, 2149.f, false, b2Vec2(30.f, 0.f), 0.f, 0.f); //1991, 2149
 	newShadows[4] = SpawnShadow(1613.f, 40.f, 1438.f, 1789.f, false, b2Vec2(30.f, 0.f), 0.f, 0.f); //1438, 1789
 	newShadows[5] = SpawnShadow(1070.f, 40.f, 960.f, 1147.f, false, b2Vec2(30.f, 0.f), 0.f, 0.f); //960, 1147
+	newShadows[6] = SpawnShadow(3500.f, 250.f, 0.f, 0.f, true, b2Vec2(0.f, 0.f), 20.f, -50.f, 480.f, 500.f);
 
 	//separating all the entities from their triggers and placing them in their respective arrays
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i <= 6; i++)
 	{
 		Separate(newShadows[i], 0);
 	}
 
-	
 
 	bulletWalls[0] = SpawnBulletWall(1011.f, 150.f);
 	bulletWalls[1] = SpawnBulletWall(1111.f, 150.f);
-	/*bulletWalls[2] = SpawnBulletWall(1500.f, 100.f);
-	bulletWalls[3] = SpawnBulletWall(1596.f, 100.f);*/
 	bulletWalls[2] = SpawnBulletWall(1831.f, 120.f);
 }
 
@@ -546,9 +545,9 @@ void AngerLevel::Update()
 	
 	//kinTrig.UpdatePosition();
 	playerMech.RunKnockBackTime();
-
 	playerMech.ActivateShield(); //runs timer for shield
 	ECS::GetComponent<Kinematics>(shield).UpdateTransform(); //shield follows player
+
 	if (playerMech.GetShield())
 	{
 		ECS::GetComponent<Sprite>(shield).SetTransparency(1.f);
@@ -557,8 +556,10 @@ void AngerLevel::Update()
 	{
 		ECS::GetComponent<Sprite>(shield).SetTransparency(0.f);
 	}
+
 	//AngerLevel::CheckShield();
-	AngerLevel::ReattachCamera();
+	ReattachCamera();
+
 	if (playerMech.GetCanMove() == true) //checks to see if the player can move
 	{
 		thePlayer.Update();
@@ -576,12 +577,12 @@ void AngerLevel::Update()
 
 	theCoolDown.GlobalCoolDown();
 	angerBoss.CheckBossStatus();
-	playerMech.RunShadowTime();
+	//playerMech.RunShadowTime();
 
 	//checks to see if the boss is alive and can therefore shoot
 	if (angerBoss.GetBossDefeated() == false) 
 	{
-		AngerLevel::ActivateShadow();
+		ActivateShadow(boss);
 	}
 	else
 	{
@@ -591,7 +592,7 @@ void AngerLevel::Update()
 
 
 	//AngerLevel::MovePlatform();
-	AngerLevel::PlayerDeath();
+	PlayerDeath();
 
 	//win condition(kill boss to open platform)
 	//checks to see if the boss has been defeated and therefore the boss and wall can be destroyed
@@ -621,7 +622,8 @@ void AngerLevel::Update()
 	{
 		ECS::GetComponent<Kinematics>(uiElements[i]).UpdateUI();
 	}
-	AngerLevel::UpdateUI(); 
+
+	UpdateUI(); 
 
 	//shadow contact/pause and shadow animation stuff
 	for (int i = 0; i < 6; i++) 
@@ -787,27 +789,22 @@ void AngerLevel::SpawnBullet(int shadowEntity)
 
 	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
+	ShootBullet(entity);
 }
 
-void AngerLevel::ShootBullet()
+void AngerLevel::ShootBullet(int bullet)
 {
-	auto& bulletBody = ECS::GetComponent<PhysicsBody>(bullet);
-	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
-	float deltaX = 0, deltaY = 0;
-	deltaX = player.GetBody()->GetPosition().x - bulletBody.GetBody()->GetPosition().x;
-	deltaY = player.GetBody()->GetPosition().y - bulletBody.GetBody()->GetPosition().y;
-	float n_deltaX = 0, n_deltaY = 0;
-	n_deltaX = deltaX / (deltaX * deltaX + deltaY * deltaY);
-	n_deltaY = deltaY / (deltaX * deltaX + deltaY * deltaY);
-	bulletBody.GetBody()->SetType(b2BodyType::b2_dynamicBody);
-
+	//shootBulletSound.Play();
+	//shootBulletSound.SetVolume(5.0f);
 	b2Vec2 angle = CalculateAngle(MainEntities::MainPlayer(), bullet);
+
 	float dirAngle = atan(angle.x / angle.y) * (180 / PI);
+
 	ECS::GetComponent<PhysicsBody>(bullet).SetRotationAngleDeg(dirAngle * -1);
+	ECS::GetComponent<PhysicsBody>(bullet).GetBody()->SetLinearVelocity(b2Vec2(angle.x * 100, angle.y * 100));
 
-	bulletBody.GetBody()->SetLinearVelocity(b2Vec2(deltaX * 100000000, deltaY * 100000000));
-
-
+	float x = ECS::GetComponent<PhysicsBody>(bullet).GetVelocity().x;
+	float y = ECS::GetComponent<PhysicsBody>(bullet).GetVelocity().y;
 }
 
 
@@ -879,21 +876,34 @@ void AngerLevel::ShootBullet(int bullet, float degrees)
 }
 
 
-void AngerLevel::ActivateShadow()
+void AngerLevel::ActivateShadow(int shadow)
 {
 	//Checks to see if the appropriate amount of seconds of passed between now and the last shot. 
 	//If so, a bullet is fired from a shadow determined by the player's location.
-	/*auto& theTime = ECS::GetComponent<ShadowTime>(player);
-	auto& theLoc = ECS::GetComponent<ShadowSense>(player);*/
-	auto& playerMech = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
-	if (playerMech.GetFiring() == true)
+	auto& shade = ECS::GetComponent<ShadowLoop>(shadow);
+
+
+	shade.ShadowRoutine(shadow);
+
+	if (shade.GetFiring() && shade.GetShadowSequence())
 	{
-		if (playerMech.GetShadowLoc() == 1)
-		{
-			AngerLevel::SpawnBullet(boss);
-			AngerLevel::ShootBullet();
-		}
-	}	
+		SpawnBullet(shadow);
+	}
+
+	//if (shade.GetFiring() == true)
+	//{
+	//	shade.ShadowRoutine(shadow);
+
+	//	if (shade.GetFiring() && shade.GetShadowSequence())
+	//	{
+	//		SpawnBullet(shadow);
+	//	}
+
+	//	//if (shade.GetShadowLoc() == 1)
+	//	//{
+	//	//	SpawnBullet(boss);
+	//	//}
+	//}	
 }
 
 void AngerLevel::Separate(b2Vec2(newPair), int type)
@@ -901,8 +911,15 @@ void AngerLevel::Separate(b2Vec2(newPair), int type)
 	if (type == 0)
 	{
 		int static shadowID = 0;
-		shadows[shadowID] = newPair.x;
-		sZones[shadowID] = newPair.y;
+		if (shadowID == 6)
+		{
+			boss = newPair.x;
+		}
+		else
+		{
+			shadows[shadowID] = newPair.x;
+			sZones[shadowID] = newPair.y;
+		}
 		shadowID++;
 	}
 	else
@@ -919,20 +936,12 @@ void AngerLevel::PlayerDeath()
 	//auto& playerHealth = ECS::GetComponent<Health>(player);
 	auto& playerMech = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
 	auto& playerBody = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
-	if (playerMech.GetRespawn() == true) //if palyer falls off map
+
+	if (playerMech.GetRespawn() == true) //if player falls off map
 	{
 		playerBody.SetPosition(b2Vec2(50, 50));
 		playerMech.SetHealth(3);
 		playerMech.SetRespawn(false);
-		for (int i = 0; i < 3; i++)
-		{
-			ECS::GetComponent<Sprite>(hearts[i]).SetTransparency(1.f);
-		}
-	}
-	else if (playerMech.GetHealth() <= 0) //if player dies from shadow attack
-	{
-		playerBody.SetPosition(b2Vec2(50, 50));
-		playerMech.SetHealth(3);
 		for (int i = 0; i < 3; i++)
 		{
 			ECS::GetComponent<Sprite>(hearts[i]).SetTransparency(1.f);

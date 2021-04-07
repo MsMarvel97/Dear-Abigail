@@ -20,7 +20,6 @@
 #include "RotationTrigger.h"
 #include "VanishTrigger.h"
 #include "HorizontalScroll.h"
-//#include "CanJump.h"
 #include "CollisionFlag.h"
 #include "FlaggedTrigger.h"
 #include "RecheckConditions.h"
@@ -48,7 +47,7 @@
 #include "MovingClass.h"
 #include "RespawnTrigger.h"
 #include "PlayerMechanics.h"
-
+#include "ToneFire.h"
 
 
 
@@ -76,7 +75,6 @@
 #include "SceneTriggers.h"
 #include "OutburstTrigger.h"
 #include "BreakableWallTrigger.h"
-
 #include "PlatformMechanics.h"
 #include "PlatformTrigger.h"
 

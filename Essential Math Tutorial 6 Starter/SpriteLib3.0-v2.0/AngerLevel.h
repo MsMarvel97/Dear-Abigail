@@ -34,13 +34,13 @@ public:
 
 	//Bullet related functions for the boss
 	void SpawnBullet(int shadowEntity);
-	void ShootBullet();
+	void ShootBullet(int bullet);
 
 	//bullet related functions for the bullet walls
 	void SpawnBullet(int wall, float offsetX, float offsetY);
 	void ShootBullet(int bullet, float degrees);
 
-	void ActivateShadow();
+	void ActivateShadow(int shadow);
 
 	void Separate(b2Vec2(newPair), int type);	
 

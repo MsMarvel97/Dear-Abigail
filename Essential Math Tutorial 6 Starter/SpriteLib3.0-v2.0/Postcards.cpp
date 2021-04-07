@@ -79,16 +79,16 @@ void Postcards::BuildPostcards()
 	switch (visit)
 	{
 	case 0:
-		postcard = SpawnPostcard(0.f, 20.f, "DenialPostcardBack.png");
+		postcard = SpawnPostcard(0.f, 20.f, "GriefPostcardBack.png");
 		break;
 	case 1:
-		postcard = SpawnPostcard(0.f, 20.f, "test.png");
+		postcard = SpawnPostcard(0.f, 20.f, "DenialPostcardBack.png");
 		break;
 	case 2:
-		postcard = SpawnPostcard(0.f, 20.f, "test.png");
+		postcard = SpawnPostcard(0.f, 20.f, "AngerPostcardBack.png");
 		break;
 	default:
-		postcard = SpawnPostcard(0.f, 20.f, "DenialPostcardBack.png");
+		postcard = SpawnPostcard(0.f, 20.f, "DenialPostcardFront.png");
 		break;
 	}
 	nextScene = visit + 1;

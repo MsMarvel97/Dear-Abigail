@@ -64,19 +64,19 @@ public:
 	int SpawnUIElement(float xOffset, float yOffset, float width, float height, std::string sprite);
 
 	//spawn a crumbling platform (PARAMETERS -> Position [x,y], size [w,h])
-	int SpawnCrumblingPlatform(float xPos, float yPos, float width = 48.f, float height = 32.f);
+	int SpawnCrumblingPlatform(float xPos, float yPos, float width = 48.f, float height = 32.f, bool blue = true);
 
 	//spawn a tile or other sprite-only entity (PARAMETERS -> Position [x,y], sprite, end-flag [is this the end of the level?], position [z], size [w, h])
 	void SpawnTile(float xPos, float yPos, std::string sprite, bool endFlag = false, float zPos = 1.f, float width = 256.f, float height = 256.f );
 
 	//spawn a platform (PARAMETERS -> Position [x, y], size [w, h], sprite, transparency, rotation [degrees])
-	void SpawnPlatform(float xPos, float yPos, float width, float height, std::string sprite, float transparency = 1.f, float rotation = 0.f);
+	int SpawnPlatform(float xPos, float yPos, float width, float height, std::string sprite, float transparency = 1.f, float rotation = 0.f);
 
 	//spawns a shadow (PARAMETERS -> Position [x,y], movement boundaries [min, max], patrol velocity, trigger offset [x, y], size [w, h])
 	b2Vec2 SpawnShadow(float xPos, float yPos, float min, float max, bool ranged, b2Vec2 patrolVel, float xOffset = 0.f, float yOffset = -50.f, float width = 32.f, float height = 32.f);
 
 	//spawns a moving platform (PARAMETERS -> Position [x,y], movement boundaries [min, max], type [0 = horizontal, 1 = vertical], size [w,h]) 
-	b2Vec2 SpawnMovingPlatform(float xPos, float yPos, float min, float max, int type, float width, float height);
+	b2Vec2 SpawnMovingPlatform(float xPos, float yPos, float min, float max, int type, float width, float height, std::string sprite ="movingPlatform.png");
 
 	//spawns a bullet wall (PARAMETERS -> Position [x, y], Size [w,h])
 	int SpawnBulletWall(float xPos, float yPos, float width = 16.f, float height = 16.f);
@@ -96,7 +96,9 @@ public:
 	void CheckEndLevel(int sceneID);
 
 	void SpawnSpike(float xPos, float yPos, float width = 16.f, float height = 16.f);
+
 	int SpawnOrb(float xPos, float yPos, float width = 10.f, float height = 10.f);
+
 	//Gets the background color of the scene
 	vec4 GetClearColor() const;
 	//Sets the background color of the scene
@@ -116,7 +118,7 @@ public:
 	//Set window size (makes sure the camera aspect is proper)
 	void SetWindowSize(float windowWidth, float windowHeight);
 protected:
-	//ToneFire::FMODCore fmod;
+	ToneFire::FMODCore fmod;
 	b2World* m_physicsWorld = nullptr;
 	b2Vec2 m_gravity = b2Vec2(float32(0.f), float32(0.f));
 

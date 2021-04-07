@@ -198,7 +198,6 @@
     <ClInclude Include="PhysicsPlaygroundListener.h" />
     <ClInclude Include="PhysicsSystem.h" />
     <ClInclude Include="PixelateEffect.h" />
-    <ClInclude Include="PlatformTrigger.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Postcards.h" />
     <ClInclude Include="PostEffect.h" />
@@ -264,7 +263,6 @@
     <ClCompile Include="CollisionFlag.cpp" />
     <ClCompile Include="CoolDown.cpp" />
     <ClCompile Include="Crumble.cpp" />
-    <ClCompile Include="PlatformMechanics.cpp" />
     <ClCompile Include="DestroyPlatformTrigger.cpp" />
     <ClCompile Include="DenialLevel.cpp" />
     <ClCompile Include="DestroyTrigger.cpp" />
@@ -308,8 +306,8 @@
     <ClCompile Include="PixelateEffect.cpp" />
     <ClCompile Include="PlatformMechanics.cpp" />
     <ClCompile Include="PlatformTrigger.cpp" />
-    <ClCompile Include="PlatformTrigger.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerMechanics.cpp" />
     <ClCompile Include="Postcards.cpp" />
     <ClCompile Include="PostEffect.cpp" />
     <ClCompile Include="RecheckConditions.cpp" />

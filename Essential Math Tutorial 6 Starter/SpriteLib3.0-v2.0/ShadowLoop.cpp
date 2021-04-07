@@ -98,7 +98,7 @@ void ShadowLoop::ShadowRoutine(int entity)
 	SetAnimation(facing, animType, entity);
 }
 
-void ShadowLoop::RunShadowTime()
+void ShadowLoop::FiringLoop()
 {
 }
 
@@ -106,6 +106,33 @@ void ShadowLoop::SetAnimation(int facing, int animation, int entity)
 {
 	int choice = facing + animation;
 	ECS::GetComponent<AnimationController>(entity).SetActiveAnim(choice);
+}
+
+void ShadowLoop::ShadowPause(int entity)
+{
+	auto& shadow = ECS::GetComponent<PhysicsBody>(entity);
+
+	if (pauseSequenceStart == false)
+	{
+		pauseStartTime = Timer::time;
+	}
+	float currentTime = Timer::StopWatch(pauseStartTime);
+
+	if (pauseSequenceStart == true)
+	{
+
+		if (currentTime >= 0 && currentTime <= 4)
+		{
+			shadow.SetVelocity(vec3(0.f, 0.f, 0.f));
+			shadowCanMove = false;
+		}
+		else
+		{
+			shadowCanMove = true;
+			pauseSequenceStart = false;
+		}
+
+	}
 }
 
 void ShadowLoop::ShadowMove(int entity)
@@ -150,11 +177,11 @@ void ShadowLoop::RangedRoutine(int entity)
 	{
 		pauseStartTime = Timer::time;
 	}
+
 	float currentTime = Timer::StopWatch(pauseStartTime);
 
-	if (pauseSequenceStart == true)
+	if (sequenceStart == true)
 	{
-
 		ShadowFacing(entity);
 
 		if (ECS::GetComponent<ShadowLoop>(entity).GetShadowType() == RANGED)

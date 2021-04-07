@@ -8,16 +8,6 @@ void BossLevel::CheckBossStatus()
     }
 }
 
-int BossLevel::GetOrbs()
-{
-    return orbs;
-}
-
-void BossLevel::SetOrbs(int orbsCount)
-{
-    orbs = orbsCount;
-}
-
 void BossLevel::OrbDestroyed()
 {
     orbs--;
@@ -26,9 +16,4 @@ void BossLevel::OrbDestroyed()
 bool BossLevel::GetBossDefeated()
 {
     return bossDefeated;
-}
-
-void BossLevel::SetBossDefeated(bool updateBoss)
-{
-    bossDefeated = updateBoss;
 }

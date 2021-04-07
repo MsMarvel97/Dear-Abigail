@@ -1,6 +1,5 @@
 #include "DenialLevel.h"
 #include "Utilities.h"
-//#include "ToneFire.h"
 
 //Denial constructor
 DenialLevel::DenialLevel(std::string name)
@@ -297,7 +296,6 @@ void DenialLevel::SpawnTiles()
 //This function constructs all the UI elements and stores them in the uiElements array
 void DenialLevel::SpawnUI()
 {
-
 	uiElements[0] = Scene::SpawnUIElement(-120.f, 65.f, 20, 20, "heart.png");
 	uiElements[1] = Scene::SpawnUIElement(-100.f, 65.f, 20, 20, "heart.png");
 	uiElements[2] = Scene::SpawnUIElement(-80.f, 65.f, 20, 20, "heart.png");

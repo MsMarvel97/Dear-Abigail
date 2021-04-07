@@ -1,0 +1,18 @@
+{
+    "Solid":{
+        "Frame0":[1.0,128.0,192.0,1.0],
+        "NumFrames":1,"Repeating":true,"SecsPerFrame":0.25
+    },
+    "Crumble1":{
+        "Frame0":[1.0,256.0,192.0,129.0],"Frame1":[129.0,256.0,384.0,129.0],"Frame2":[257.0,256.0,576.0,129.0],"Frame3":[385.0,256.0,768.0,129.0],
+        "NumFrames":4,"Repeating":false,"SecsPerFrame":0.25
+    },
+    "Crumble2":{
+        "Frame0":[1.0,384.0,192.0,257.0],"Frame1":[129.0,384.0,384.0,257.0],"Frame2":[257.0,384.0,576.0,257.0],"Frame3":[385.0,384.0,768.0,257.0],
+        "NumFrames":4,"Repeating":false,"SecsPerFrame":0.25
+    },
+    "Gone":{
+        "Frame0":[1.0,512.0,192.0,385.0],
+        "NumFrames":1,"Repeating":false,"SecsPerFrame":1
+    }
+}

@@ -60,16 +60,17 @@ void Tutorial::Update()
 		player.Update();
 	}
 
-	if (pMechanics.GetComplete())
-	{
-		SetSceneChange(true, 1);
-	}
+	//if (pMechanics.GetComplete())
+	//{
+	//	SetSceneChange(true, 1);
+	//}
 
-	if (Input::GetKeyDown(Key::C))
-	{
-		SetSceneChange(true, 2);
-	}
+	//if (Input::GetKeyDown(Key::C))
+	//{
+	//	SetSceneChange(true, 2);
+	//}
 
+	CheckEndLevel(3);
 	ECS::GetComponent<Kinematics>(movingPlatform.y).UpdatePosition();
 	ECS::GetComponent<MovingPlatform>(movingPlatform.x).MovePlatform(movingPlatform.x);
 

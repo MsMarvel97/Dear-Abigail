@@ -54,19 +54,37 @@ void CrumblingSequence::Crumble(int ent)
 		}
 		else if (currentTime >= 1 && currentTime < 2)
 		{
+			if (soundFinish == true)
+			{
+				crumbleOne.Play();
+				crumbleOne.SetVolume(5.0f);
+			}
 			ECS::GetComponent<AnimationController>(ent).SetActiveAnim(CRUMBLING);
+			soundFinish = false;
 		}
 
 		else if (currentTime >= 2 && currentTime < 3)
 		{
+			if (soundFinish == false)
+			{
+				crumbleTwo.Play();
+				crumbleTwo.SetVolume(5.0f);
+			}
 			ECS::GetComponent<AnimationController>(ent).SetActiveAnim(CRACKING);
+			soundFinish = true;
 		}
 
 		else if (currentTime >= 3 && currentTime < 5)
 		{
+			if (soundFinish == true)
+			{
+				crumbleThree.Play();
+				crumbleThree.SetVolume(5.0f);
+			}
 			ECS::GetComponent<AnimationController>(ent).SetActiveAnim(GONE);
 			operation = 1;
 			disable = true;
+			soundFinish = false;
 		}
 		else if (currentTime >= 5)
 		{

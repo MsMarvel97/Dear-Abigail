@@ -78,9 +78,9 @@ protected:
 	b2Vec2 playerPos; //track player's position
 
 private:
-	ToneFire::CoreSound shootBulletSound{ "shadowBulletThree.wav",false,false,true };
+	ToneFire::CoreSound shootBulletSound{ "shadowBulletOne.wav",false,false,true };
+	ToneFire::CoreSound shadowBulletTwo{ "shadowBulletTwo.wav",false,false,true };
+
 	ToneFire::CoreSound denialBGM{ "denialBGM.wav", false, false, true };
-	ToneFire::CoreSound crumbleSound{ "crumble.wav", false, false, true };
 	ToneFire::CoreSound abigailHit{ "abigailHitOne.wav", false, false, true };
 };
-

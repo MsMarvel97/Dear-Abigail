@@ -27,7 +27,11 @@ void Postcards::InitScene(float windowWidth, float windowHeight)
 	SpawnMainCamera(windowWidth, windowHeight);
 	SpawnMainPlayer(-64.f, 30.f);
 
-
+	//plays the transition music
+	{
+		transitionBGM.Play();
+		transitionBGM.SetVolume(9.0f);
+	}
 
 
 
@@ -142,7 +146,14 @@ void Postcards::Update()
 		pMechanics.SetComplete(true);
 	}
 
+	//ends music
+	if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetComplete())
+	{
+		transitionBGM.Mute();
+	}
+
 	CheckEndLevel(nextScene);
+
 	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 

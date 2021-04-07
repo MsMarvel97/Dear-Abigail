@@ -11,6 +11,8 @@ void BulletTrigger::OnEnter()
 	Trigger::OnEnter();
 	if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetShield() == true) //checks to see if the player's shield is on
 	{
+		shieldSound.Play();
+		shieldSound.SetVolume(18.0f);
 		std::cout << "Shield protected player. No health lost. \n";
 	}
 
@@ -19,8 +21,6 @@ void BulletTrigger::OnEnter()
 		std::cout << "Player hit by projectile. Health lost. \n";
 		ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).HealthLost();
 		std::cout << "Current Health: " << ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetHealth() << "\n";
-		abigailHit.Play();
-		abigailHit.SetVolume(6.0f);
 
 	}
 

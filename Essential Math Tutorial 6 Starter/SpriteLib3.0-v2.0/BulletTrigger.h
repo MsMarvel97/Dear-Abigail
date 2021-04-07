@@ -12,6 +12,9 @@ public:
 protected:
 	/*ToneFire::CoreSound abigailHit{ "abigailHitOne.wav", false, false, true };*/
 	bool triggered = false;
-	ToneFire::CoreSound abigailHit{ "abigailHitOne.wav", false, false, true };
+
+	//Sound Library and variables
+	ToneFire::CoreSound shieldSound{ "objectVanish.wav", false, false, true };
+
 };
 

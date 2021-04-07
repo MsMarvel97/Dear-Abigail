@@ -113,5 +113,27 @@ protected:
 	bool invincibility = false;
 	bool invincibilitySequence = false;
 	float invincibilityStart = 0.f;
+
+	//Sound variables
+
+	bool soundFinish = true;
+	bool soundFinishAttack = true;
+	int randomSound, randomSoundTwo;
+
+	//shield sounds
+	ToneFire::CoreSound shieldActivate{ "shieldActivate2.wav", false, false, true };
+	ToneFire::CoreSound shieldDeactivate{ "shieldDeActivate.wav", false, false, true };
+	ToneFire::CoreSound shieldSound{ "objectVanish.wav", false, false, true };
+
+	//abigail hit sounds
+	ToneFire::CoreSound abigailHitOne{ "abigailHitOne.wav", false, false, true };
+	ToneFire::CoreSound abigailHitTwo{ "abigailHitTwo.wav", false, false, true };
+	ToneFire::CoreSound abigailHitThree{ "abigailHitThree.wav", false, false, true };
+
+	//abigail attack sounds
+	ToneFire::CoreSound abigailAttackOne{ "abigailAttackOne.wav", false, false, true };
+	ToneFire::CoreSound abigailAttackTwo{ "abigailAttackTwo.wav", false, false, true };
+	ToneFire::CoreSound abigailAttackThree{ "abigailAttackThree.wav", false, false, true };
+
 };
 

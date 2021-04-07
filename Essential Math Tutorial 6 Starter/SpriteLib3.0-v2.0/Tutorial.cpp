@@ -40,6 +40,9 @@ void Tutorial::InitScene(float windowWidth, float windowHeight)
 
 	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
+
+	tutorialBGM.Play();
+	tutorialBGM.SetVolume(10.0f);
 }
 
 void Tutorial::SpawnUI()
@@ -64,13 +67,20 @@ void Tutorial::Update()
 	//{
 	//	SetSceneChange(true, 1);
 	//}
-
 	//if (Input::GetKeyDown(Key::C))
 	//{
 	//	SetSceneChange(true, 2);
 	//}
+	
 
+	//ends music
+	if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetComplete())
+	{
+		tutorialBGM.Mute();
+	}
 	CheckEndLevel(3);
+
+
 	ECS::GetComponent<Kinematics>(movingPlatform.y).UpdatePosition();
 	ECS::GetComponent<MovingPlatform>(movingPlatform.x).MovePlatform(movingPlatform.x);
 

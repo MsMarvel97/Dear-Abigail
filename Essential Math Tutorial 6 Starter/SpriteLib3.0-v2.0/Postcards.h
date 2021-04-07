@@ -19,5 +19,9 @@ protected:
 	int nextScene = 0;
 	int postcardMin = 0;
 	int postcardMax = 0;
+
+	//Sound library
+private: 
+	ToneFire::CoreSound transitionBGM{ "transitionBGM.wav", false, true, true };
 };
 

@@ -25,8 +25,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 	
 	//Setting up background music
 	{
-		//denialBGM.Play();
-		//denialBGM.SetVolume(4.5f);
+		denialBGM.Play();
+		denialBGM.SetVolume(4.5f);
 	}
 	
 	//Spawning camera
@@ -451,6 +451,8 @@ void DenialLevel::CheckEndLevel()
 {
 	if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetComplete())
 	{
+		//stops music here
+		denialBGM.Mute();
 		SetSceneChange(true, 2);
 	}
 }

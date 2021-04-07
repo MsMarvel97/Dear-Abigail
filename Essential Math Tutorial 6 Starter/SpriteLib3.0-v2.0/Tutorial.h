@@ -22,5 +22,8 @@ protected:
 	
 	b2Vec2 movingPlatform;
 	//b2Vec2 movingPlatform;
+
+	//Sound Library
+	ToneFire::CoreSound tutorialBGM{ "tutorialBGM.wav", false, false, true };
 };
 

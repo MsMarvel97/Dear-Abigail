@@ -44,6 +44,12 @@ private:
 	PhysicsBody* physicsBody = nullptr;
 	//Does this player have physics?
 	bool physics = false;
+
+	//Sound library and variables
+	bool soundFinish = true;
+	ToneFire::CoreSound crumbleOne{ "rockCrackOne.wav", false, false, true };
+	ToneFire::CoreSound crumbleTwo{ "rockCrackTwo.wav", false, false, true };
+	ToneFire::CoreSound crumbleThree{ "rockCrackThree.wav", false, false, true };
 };
 
 class MovingPlatform

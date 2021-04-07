@@ -107,5 +107,7 @@ private:
 	bool shadowCanMove = true;
 	Sprite* sprites;
 	AnimationController* animator;
+
+	//Sound Library
 };
 

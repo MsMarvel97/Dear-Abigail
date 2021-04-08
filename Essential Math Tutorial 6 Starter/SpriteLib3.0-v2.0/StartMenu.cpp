@@ -69,9 +69,12 @@ void StartMenu::Update()
 
 void StartMenu::KeyboardDown()
 {
-	if (Input::GetKeyDown(Key::Enter))
+	if (ECS::GetComponent<Sprite>(menus.y).GetTransparency() == 0.f && ECS::GetComponent<Sprite>(menus.x).GetTransparency() == 0.f)
 	{
-		SetSceneChange(true, 1);
+		if (Input::GetKeyDown(Key::Enter))
+		{
+			SetSceneChange(true, 1);
+		}
 	}
 }
 void StartMenu::Separate(b2Vec2 newPair, int type)

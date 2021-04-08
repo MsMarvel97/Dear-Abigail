@@ -747,7 +747,10 @@ void Scene::MenuKeys()
 	}
 	if (Input::GetKey(Key::One))
 	{
-		MenuOperations(1);
+		if (ECS::GetComponent<Sprite>(menus.y).GetTransparency() == 0.f)
+		{
+			MenuOperations(1);
+		}
 	}
 	if (Input::GetKey(Key::Two))
 	{
@@ -755,7 +758,10 @@ void Scene::MenuKeys()
 	}
 	if (Input::GetKey(Key::Three))
 	{
-		MenuOperations(3);
+		if (ECS::GetComponent<Sprite>(menus.y).GetTransparency() == 0.f)
+		{
+			MenuOperations(3);
+		}
 	}
 }
 

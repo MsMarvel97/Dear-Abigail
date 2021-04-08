@@ -111,7 +111,7 @@ void DenialLevel::SpawnPlatforms()
 	for (int i = 0; i <= 4; i++)
 	{
 		static int y = 435.f;
-		SpawnPlatform(1700.f, y, 200.f, 16.f, "PlatformT.png", 1.f, 90.f); //Right wall
+		SpawnPlatform(1700.f, y, 200.f, 16.f, "PlatformT.png", 0.f, 90.f); //Right wall
 		y += 100;
 	}
 

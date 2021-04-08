@@ -565,7 +565,7 @@ void AngerLevel::Update()
 		ECS::GetComponent<Kinematics>(boss.y).UpdatePosition();
 		if (playerMech.GetShield())
 		{
-			ECS::GetComponent<Sprite>(shield).SetTransparency(1.f);
+			ECS::GetComponent<Sprite>(shield).SetTransparency(0.f);
 		}
 		else
 		{

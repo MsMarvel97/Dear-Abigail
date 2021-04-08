@@ -259,7 +259,7 @@ void DenialLevel::SpawnTiles()
 
 	SpawnTile(1664.f, 592.f, "backgrounds/denial7-3.png");// TILE 7-3
 
-	SpawnTile(1920.f, 592.f, "backgrounds/denial0-3.png");// TILE 8-3
+	SpawnTile(1920.f, 592.f, "backgrounds/denial8-3.png");// TILE 8-3
 
 	SpawnTile(2176.f, 592.f, "backgrounds/denial9-3.png");// TILE 9-3
 

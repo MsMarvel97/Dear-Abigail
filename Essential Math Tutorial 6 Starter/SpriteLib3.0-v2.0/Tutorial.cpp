@@ -36,7 +36,7 @@ void Tutorial::InitScene(float windowWidth, float windowHeight)
 	SpawnPlatform(830.f, 25.f, 40.f, 50.f, "", 0.f);//ledge to exit after moving platform
 	SpawnPlatform(925.f, 45.f, 150.f, 10.f, "", 0.f);//exit platform 
 	SpawnTile(975.f, 70.f, "CaveExit.png", true, 2.f, 20.f, 40.f);
-	movingPlatform = SpawnMovingPlatform(650.f, 45.f, 630.f, 740.f, 0.f, 100.f, 10.f); //moving platform leading to exit platform
+	movingPlatform = SpawnMovingPlatform(650.f, 45.f, 630.f, 740.f, 0.f, 100.f, 10.f, "movingplatformtutorial.png"); //moving platform leading to exit platform
 
 	//Setting up the background tiles
 	SpawnTile(-90.f, -115.f, "backgrounds/tutorial/tutorial0-0.png", false, 2.f, 160.f, 160.f);

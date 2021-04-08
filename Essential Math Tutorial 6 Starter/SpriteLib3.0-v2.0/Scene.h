@@ -139,7 +139,7 @@ protected:
 	std::vector<int> wallBullets;
 	std::vector<int> bullets;
 
-	vec4 m_clearColor = vec4(0.15f, 0.33f, 0.58f, 1.f);
+	vec4 m_clearColor = vec4(0.f, 0.f, 0.f, 0.f);
 
 	entt::registry* m_sceneReg = nullptr;	
 	std::string m_name = "Default Name";

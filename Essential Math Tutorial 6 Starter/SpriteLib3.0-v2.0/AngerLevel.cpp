@@ -339,15 +339,15 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 void AngerLevel::SpawnPlatforms()
 {
 	//SpawnPlatform(float xPos, float yPos, float width, float height, std::string sprite, float transparency)
-	SpawnPlatform(96.f, 8.f, 192.f, 16.f, "SamplePlatform.png", 1.f); //Platform A
+	SpawnPlatform(96.f, 8.f, 192.f, 16.f, "SamplePlatform.png", 0.f); //Platform A
 	SpawnPlatform(336.f, 40.f, 224.f, 16.f, "SamplePlatform.png", 1.f); //Platform B
-	SpawnPlatform(608.f, 8.f, 256.f, 16.f, "SamplePlatform.png", 1.f); //Platform C
+	SpawnPlatform(608.f, 8.f, 256.f, 16.f, "SamplePlatform.png", 0.f); //Platform C
 	SpawnPlatform(840.f, 65.f, 240.f, 16.f, "SamplePlatform.png", 1.f); //Platform D
-	SpawnPlatform(700.8f, 24.f, 48.f, 16.f, "SamplePlatform.png",1.f, 90.f); //Platform D_BridgeHelp_
+	SpawnPlatform(700.8f, 32.f, 32.f, 16.f, "SamplePlatform.png",1.f, 90.f); //Platform D_BridgeHelp_
 	SpawnPlatform(732.f, 20.f, 8.f, 8.f, "SamplePlatform.png", 1.f);//Platform D_BridgeHelp_2
-	SpawnPlatform(1056.f, 8.f, 224.f, 16.f, "SamplePlatform.png", 1.f);//Platform E
+	SpawnPlatform(1056.f, 8.f, 224.f, 16.f, "SamplePlatform.png", 0.f);//Platform E
 	SpawnPlatform(1296.f, 40.f, 196.f, 16.f, "SamplePlatform.png", 1.f);//Platform F
-	SpawnPlatform(1616.f, 8.f, 384.f, 16.f, "SamplePlatform.png", 1.f);//Platform M
+	SpawnPlatform(1616.f, 8.f, 384.f, 16.f, "SamplePlatform.png", 0.f);//Platform M
 	SpawnPlatform(1888.f, 40.f, 64.f, 16.f, "SamplePlatform.png", 1.f);//Platform N
 	SpawnPlatform(2064.f, 72.f, 192.f, 16.f, "SamplePlatform.png", 1.f);//Platform O
 	SpawnPlatform(2224.f, 34.f, 64.f, 16.f, "SamplePlatform.png", 1.f);//Platform P
@@ -355,12 +355,12 @@ void AngerLevel::SpawnPlatforms()
 	SpawnPlatform(2448.f, 92.8f, 64.f, 16.f, "SamplePlatform.png", 1.f);//Platform R
 	SpawnPlatform(2544.f, 131.2f, 64.f, 16.f, "SamplePlatform.png", 1.f);//Platform S
 	SpawnPlatform(2528.f, 51.2f, 64.f, 16.f, "SamplePlatform.png", 1.f);//Platform T
-	SpawnPlatform(3216.f, 40.f, 32.f, 16.f, "SamplePlatform.png", 1.f);//Platform Z
+	SpawnPlatform(3216.f, 40.f, 32.f, 16.f, "SamplePlatform.png", 0.f);//Platform Z
 
 	SpawnPlatform(3256.f, 40.f, 48.f, 16.f, "SamplePlatform.png", 1.f);//Platform ZC (connects Z to ZA)
 	orbWall = SpawnPlatform(3268.f, 96.f, 98.f, 8.f, "SamplePlatform.png", 1.f,90.f); //Platform ZD (wall that disappears by destroying an orb)
 
-	SpawnPlatform(3848.f, 72.f, 80.f, 16.f, "SamplePlatform.png", 1.f);//Platform ZB
+	SpawnPlatform(3848.f, 72.f, 80.f, 16.f, "SamplePlatform.png", 0.f);//Platform ZB
 
 	SpawnPlatform(1844.f, -50.f, 50.f, 16.f, "SamplePlatform.png", 0.f);//hidden platform that catches bullets and stops them from falling into infinity
 
@@ -431,9 +431,9 @@ void AngerLevel::SpawnTiles()
 	SpawnTile(3952.f, 336.f, "backgrounds/anger/anger16-2.png");// TILE 16-2
 
 	//water
-	for (int i = 0; i < 18; i++)
+	for (int i = 0; i < 19; i++)
 	{
-		SpawnTile(((-16 + 16 * i) * 16.f) + 112, -200.f, "backgrounds/anger/water.png",256.f,64.f);// TILE 16-2
+		SpawnTile(((-32 + 16 * i) * 16.f) + 112, -176.f, "backgrounds/anger/water.png",256.f,256.f); // TILE WATER
 	}
 
 

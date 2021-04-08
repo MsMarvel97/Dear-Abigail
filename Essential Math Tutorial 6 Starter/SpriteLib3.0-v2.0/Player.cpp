@@ -99,6 +99,7 @@ void Player::InitPlayer(std::string& fileName, std::string& animationJSON, int w
 
 	//Set Default Animation
 	m_animController->SetActiveAnim(IDLERIGHT);
+	m_facing = RIGHT;
 
 }
 

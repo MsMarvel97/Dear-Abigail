@@ -28,16 +28,16 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 	//Plays the music
 	{
-		angerBGM.Play();
-		angerBGM.SetVolume(1.0f);
+		//angerBGM.Play();
+		//angerBGM.SetVolume(1.0f);
 	}
 	//Setup MainCamera Entity 
 	SpawnMainCamera(windowWidth, windowHeight);
 	SpawnMenus();
 	//main player entity 
 	SpawnMainPlayer(0.f, 80.f);
-	//ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(0.f, 80.f), true); //beginning
-	ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(3216.f, 80.f), true); //boss platform
+	////ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(0.f, 80.f), true); //beginning
+	//ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(3216.f, 80.f), true); //boss platform
 	//ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(916.f, 90.f), true); //platform D
 	//ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(1844.f, 200.f), true); //random
 
@@ -138,7 +138,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	//}
 
-	SpawnTile(3860.f, 96.f, "CaveExit.png", true, 2.f, 20.f, 36.f);
+
 
 	////Shadow 7(Final Boss)
 	//{
@@ -356,6 +356,7 @@ void AngerLevel::SpawnPlatforms()
 	SpawnPlatform(2544.f, 131.2f, 64.f, 16.f, "SamplePlatform.png", 1.f);//Platform S
 	SpawnPlatform(2528.f, 51.2f, 64.f, 16.f, "SamplePlatform.png", 1.f);//Platform T
 	SpawnPlatform(3216.f, 40.f, 32.f, 16.f, "SamplePlatform.png", 0.f);//Platform Z
+	SpawnPlatform(2960.f, 40.f, 48.f, 32.f, "SamplePlatform.png"); // Platform X
 
 	SpawnPlatform(3256.f, 40.f, 48.f, 16.f, "SamplePlatform.png", 1.f);//Platform ZC (connects Z to ZA)
 	orbWall = SpawnPlatform(3268.f, 96.f, 98.f, 8.f, "SamplePlatform.png", 1.f,90.f); //Platform ZD (wall that disappears by destroying an orb)
@@ -372,16 +373,15 @@ void AngerLevel::SpawnCrumblingPlatforms()
 	masterCrumblingPlatforms[0] = SpawnCrumblingPlatform(2640.f, 72.f, 48.f, 32.f, false); // Crumbling Platform U
 	masterCrumblingPlatforms[1] = SpawnCrumblingPlatform(2736.f, 60.f, 48.f, 32.f, false); // Crumbling Platform V
 	masterCrumblingPlatforms[2] = SpawnCrumblingPlatform(2864.f, 78.f, 48.f, 32.f, false); // Crumbling Platform W
-	masterCrumblingPlatforms[3] = SpawnCrumblingPlatform(2960.f, 40.f, 48.f, 32.f, false); // Crumbling Platform X
 
-	masterCrumblingPlatforms[4] = SpawnCrumblingPlatform(3300.f, 150.f, 48.f, 32.f, false); // Boss Platform 1
-	masterCrumblingPlatforms[5] = SpawnCrumblingPlatform(3380.f, 110.f, 48.f, 32.f, false); // Boss Platform 2
-	masterCrumblingPlatforms[6] = SpawnCrumblingPlatform(3480.f, 74.f, 48.f, 32.f, false); // Boss Platform 3
-	masterCrumblingPlatforms[7] = SpawnCrumblingPlatform(3580.f, 110.f, 48.f, 32.f, false); // Boss Platform 4
-	masterCrumblingPlatforms[8] = SpawnCrumblingPlatform(3680.f, 144.f, 48.f, 32.f, false); // Boss Platform 5
+	masterCrumblingPlatforms[3] = SpawnCrumblingPlatform(3300.f, 150.f, 48.f, 32.f, false); // Boss Platform 1
+	masterCrumblingPlatforms[4] = SpawnCrumblingPlatform(3380.f, 110.f, 48.f, 32.f, false); // Boss Platform 2
+	masterCrumblingPlatforms[5] = SpawnCrumblingPlatform(3480.f, 74.f, 48.f, 32.f, false); // Boss Platform 3
+	masterCrumblingPlatforms[6] = SpawnCrumblingPlatform(3580.f, 110.f, 48.f, 32.f, false); // Boss Platform 4
+	masterCrumblingPlatforms[7] = SpawnCrumblingPlatform(3680.f, 144.f, 48.f, 32.f, false); // Boss Platform 5
 
 	float bossCoord = 3304.f;
-	for (int i = 9; i < 19; i++) //creates the ground floor of the boss battle (Platform ZA)
+	for (int i = 8; i < 18; i++) //creates the ground floor of the boss battle (Platform ZA)
 	{
 		masterCrumblingPlatforms[i] = SpawnCrumblingPlatform(bossCoord, 32.f, 48.f, 32.f, false);
 		bossCoord += 48;
@@ -429,6 +429,7 @@ void AngerLevel::SpawnTiles()
 	SpawnTile(3440.f, 336.f, "backgrounds/anger/anger14-2.png");// TILE 14-2
 	SpawnTile(3696.f, 336.f, "backgrounds/anger/anger15-2.png");// TILE 15-2
 	SpawnTile(3952.f, 336.f, "backgrounds/anger/anger16-2.png");// TILE 16-2
+	SpawnTile(3860.f, 96.f, "CaveExit.png", true, 2.f, 20.f, 36.f);
 
 	//water
 	for (int i = 0; i < 19; i++)
@@ -469,11 +470,11 @@ void AngerLevel::SpawnShadows()
 	newShadows[2] = SpawnShadow(1344.f, 77.f, 1220.f, 1368.f, false, b2Vec2(30.f, 0.f), 0.f, 0.f); //1220, 1368
 	newShadows[3] = SpawnShadow(2096.f, 112.f, 1991.f, 2149.f, false, b2Vec2(30.f, 0.f), 0.f, 0.f); //1991, 2149
 	newShadows[4] = SpawnShadow(1613.f, 40.f, 1438.f, 1789.f, false, b2Vec2(30.f, 0.f), 0.f, 0.f); //1438, 1789
-	newShadows[5] = SpawnShadow(1070.f, 40.f, 960.f, 1147.f, false, b2Vec2(30.f, 0.f), 0.f, 0.f); //960, 1147
-	newShadows[6] = SpawnShadow(3500.f, 250.f, 0.f, 0.f, true, b2Vec2(0.f, 0.f), 20.f, -50.f, 300, 320.f/*400.f, 420.f*/, true); //Boss
+	//newShadows[4] = SpawnShadow(1070.f, 40.f, 960.f, 1147.f, false, b2Vec2(30.f, 0.f), 0.f, 0.f); //960, 1147
+	newShadows[5] = SpawnShadow(3500.f, 250.f, 0.f, 0.f, true, b2Vec2(0.f, 0.f), 20.f, -50.f, 300, 320.f/*400.f, 420.f*/, true); //Boss
 
 	//separating all the entities from their triggers and placing them in their respective arrays
-	for (int i = 0; i <= 6; i++)
+	for (int i = 0; i <= 5; i++)
 	{
 		Separate(newShadows[i], 0);
 	}
@@ -581,7 +582,7 @@ void AngerLevel::Update()
 		}
 		playerMech.Attacking();
 
-		for (int i = 0; i < 6; i++) //shadows
+		for (int i = 0; i < 5; i++) //shadows
 		{
 			if (ECS::GetComponent<ShadowLoop>(shadows[i]).isShadowAlive == false)
 			{
@@ -647,7 +648,7 @@ void AngerLevel::Update()
 		UpdateUI();
 
 		//shadow contact/pause and shadow animation stuff
-		for (int i = 0; i < 6; i++)
+		for (int i = 0; i < 5; i++)
 		{
 			ECS::GetComponent<ShadowLoop>(shadows[i]).ShadowRoutine(shadows[i]);
 			ECS::GetComponent<Kinematics>(sZones[i]).UpdatePosition();
@@ -929,7 +930,7 @@ void AngerLevel::Separate(b2Vec2(newPair), int type)
 	if (type == 0)
 	{
 		int static shadowID = 0;
-		if (shadowID == 6)
+		if (shadowID == 5)
 		{
 			boss.x = newPair.x;
 			boss.y = newPair.y;

@@ -77,7 +77,7 @@ protected:
 	b2Vec2 playerPos;
 	int player = 0;
 	int camera = 0;
-	int shadows[6]; //shadows
+	int shadows[5]; //shadows
 	int sZones[6]; //shadow area trigger
 	int enemy1 = 0, enemy2 = 0, enemy3 = 0, enemy4 = 0, enemy5 = 0, enemy6 = 0;
 	int bossWall = 0; //aka

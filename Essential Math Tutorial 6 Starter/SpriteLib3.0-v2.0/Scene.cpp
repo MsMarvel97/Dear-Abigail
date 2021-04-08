@@ -745,22 +745,25 @@ void Scene::MenuKeys()
 	{
 		MenuOperations(0);
 	}
-	if (Input::GetKey(Key::One))
+	if (sceneActive == false)
 	{
-		if (ECS::GetComponent<Sprite>(menus.y).GetTransparency() == 0.f)
+		if (Input::GetKey(Key::One))
 		{
-			MenuOperations(1);
+			if (ECS::GetComponent<Sprite>(menus.y).GetTransparency() == 0.f)
+			{
+				MenuOperations(1);
+			}
 		}
-	}
-	if (Input::GetKey(Key::Two))
-	{
-		MenuOperations(2);
-	}
-	if (Input::GetKey(Key::Three))
-	{
-		if (ECS::GetComponent<Sprite>(menus.y).GetTransparency() == 0.f)
+		if (Input::GetKey(Key::Two))
 		{
-			MenuOperations(3);
+			MenuOperations(2);
+		}
+		if (Input::GetKey(Key::Three))
+		{
+			if (ECS::GetComponent<Sprite>(menus.y).GetTransparency() == 0.f)
+			{
+				MenuOperations(3);
+			}
 		}
 	}
 }

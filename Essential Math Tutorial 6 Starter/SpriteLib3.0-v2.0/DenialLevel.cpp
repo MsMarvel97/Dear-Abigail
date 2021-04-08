@@ -25,8 +25,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 	
 	//Setting up background music
 	{
-		//denialBGM.Play();
-		//denialBGM.SetVolume(1.5f);
+		denialBGM.Play();
+		denialBGM.SetVolume(1.5f);
 	}
 	
 	//Spawning camera
@@ -145,7 +145,7 @@ void DenialLevel::SpawnShadows()
 
 	//spawning shadows with their associated triggers
 	newShadows[0] = SpawnShadow(248.f, 88.f, 0.f, 272.f, true, b2Vec2(30.f, 0.f));
-	newShadows[1] = SpawnShadow(545.f, 216.f, 438.f, 698.f, true, b2Vec2(30.f, 0.f));
+	newShadows[1] = SpawnShadow(545.f, 226.f, 438.f, 698.f, true, b2Vec2(30.f, 0.f));
 	newShadows[2] = SpawnShadow(1033.f, 380.f, 794.f, 1252.f, true, b2Vec2(50.f, 10.f));
 	newShadows[3] = SpawnShadow(1752.f, 536.f, 1652.f, 1852.f, true, b2Vec2(30.f, 15.f));
 	newShadows[4] = SpawnShadow(1118.f, 670.f, 950.f, 1286.f, true, b2Vec2(20.f, 0.f));
@@ -166,8 +166,8 @@ void DenialLevel::SpawnMovingPlatforms()
 {
 	b2Vec2 movingPlatforms[2];
 
-	movingPlatforms[0] = SpawnMovingPlatform(392.f, 148.f, 380.f, 670.f, 0, 80.f, 8.f);
-	movingPlatforms[1] = SpawnMovingPlatform(1504.f, 408.f, 408.f, 588.f, 1, 96.f, 16.f);
+	movingPlatforms[0] = SpawnMovingPlatform(392.f, 158.f, 380.f, 670.f, 0, 80.f, 8.f); //horizontally moving platform
+	movingPlatforms[1] = SpawnMovingPlatform(1504.f, 408.f, 408.f, 588.f, 1, 96.f, 16.f); //elevator platform
 
 	for (int i = 0; i <= 1; i++)
 	{
@@ -414,7 +414,6 @@ void DenialLevel::CheckUIConditions()
 			pPhysics.SetPosition(b2Vec2(-450.f, 30.f));
 		}
 		player.SetHealth(3);
-		
 		for (int i = 1; i <= 2; i++)
 		{
 			ECS::GetComponent<Sprite>(uiElements[i]).SetTransparency(1.f);

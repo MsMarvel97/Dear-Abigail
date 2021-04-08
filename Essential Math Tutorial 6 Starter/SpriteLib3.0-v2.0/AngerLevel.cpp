@@ -36,11 +36,6 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 	SpawnMenus();
 	//main player entity 
 	SpawnMainPlayer(0.f, 80.f);
-	////ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(0.f, 80.f), true); //beginning
-	//ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(3216.f, 80.f), true); //boss platform
-	//ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(916.f, 90.f), true); //platform D
-	//ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(1844.f, 200.f), true); //random
-
 	//Set up shield
 	{
 		//Creates entity
@@ -103,77 +98,10 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetRotationAngleDeg(90.f);
 	}
 
-	////Ending Door
-	//{
-	//	//Creates entity
-	//	auto entity = ECS::CreateEntity();
-
-	//	//Add components
-	//	ECS::AttachComponent<Sprite>(entity);
-	//	ECS::AttachComponent<Transform>(entity);
-	//	ECS::AttachComponent<PhysicsBody>(entity);
-
-	//	//Sets up components 
-	//	std::string fileName = "CaveExit.png";
-	//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 20, 36);
-
-	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
-
-	//	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-	//	float shrinkX = 0.f;
-	//	float shrinkY = 0.f;
-	//	b2Body* tempBody;
-	//	b2BodyDef tempDef;
-	//	tempDef.type = b2_staticBody;
-
-	//	tempDef.position.Set(float32(3860.f), float32(96.f));
+	
 
 
-	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-	//	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-	//		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
-	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	//}
-
-
-
-	////Shadow 7(Final Boss)
-	//{
-	//	//Creates entity
-	//	auto entity = ECS::CreateEntity();
-	//	boss = entity;
-	//	//Add components
-	//	ECS::AttachComponent<Sprite>(entity);
-	//	ECS::AttachComponent<Transform>(entity);
-	//	ECS::AttachComponent<PhysicsBody>(entity);
-	//	ECS::AttachComponent<ShadowLoop>(entity);
-
-	//	//Sets up components
-	//	std::string fileName = "S1.png";
-	//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 96, 96);
-	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
-
-
-	//	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-	//	float shrinkX = 0.f;
-	//	float shrinkY = 0.f;
-	//	b2Body* tempBody;
-	//	b2BodyDef tempDef;
-	//	tempDef.type = b2_staticBody;
-	//	tempDef.position.Set(float32(3500.f), float32(250));//(3696.f,120.f)
-
-	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-	//	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-	//		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, ENEMY, PLAYER);
-	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	//	ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
-	//}
+	
 	
 	
 	//Set up respawn trigger
@@ -188,8 +116,8 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 		//Sets up components
 		std::string fileName = "testCube.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 4000, 20);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(1900.f, -40.f, 0.f));
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 4200, 20);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(1800.f, -40.f, 0.f));
 		ECS::GetComponent<Trigger*>(entity) = new RespawnTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
@@ -290,46 +218,6 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 	SpawnTiles();
 	SpawnMovingPlatforms();
 	SpawnShadows();
-	////Final Boss Area Trigger
-	//{
-	//	//Creates entity
-	//	auto entity = ECS::CreateEntity();
-
-	//	//Add components
-	//	ECS::AttachComponent<Sprite>(entity);
-	//	ECS::AttachComponent<Transform>(entity);
-	//	ECS::AttachComponent<PhysicsBody>(entity);
-	//	ECS::AttachComponent<Trigger*>(entity);
-	//	//ECS::AttachComponent<ShadowLoop>(entity);
-
-	//	//Sets up components
-	//	std::string fileName = "sandFloor.png";
-	//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 480, 500);
-	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(3510.f, 200.f, 5.f));
-	//	ECS::GetComponent<Trigger*>(entity) = new ShadowAreaTrigger();
-	//	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-	//	ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(boss.x);
-
-	//	//ECS::GetComponent<Trigger*>(entity)->SetShadowZone(1);
-
-	//	ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
-	//	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
-
-	//	float shrinkX = 0.f;
-	//	float shrinkY = 0.f;
-	//	b2Body* tempBody;
-	//	b2BodyDef tempDef;
-	//	tempDef.type = b2_staticBody;
-	//	tempDef.position.Set(float32(3520.f), float32(200.f));
-
-	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
-
-	//	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-	//		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
-	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	//}
-
 	SpawnSpikes();
 	SpawnOrbs();
 	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
@@ -369,7 +257,6 @@ void AngerLevel::SpawnPlatforms()
 
 void AngerLevel::SpawnCrumblingPlatforms()
 {
-	//int Scene::SpawnCrumblingPlatform(float xPos, float yPos, float width, float height)
 	masterCrumblingPlatforms[0] = SpawnCrumblingPlatform(2640.f, 72.f, 48.f, 32.f, false); // Crumbling Platform U
 	masterCrumblingPlatforms[1] = SpawnCrumblingPlatform(2736.f, 60.f, 48.f, 32.f, false); // Crumbling Platform V
 	masterCrumblingPlatforms[2] = SpawnCrumblingPlatform(2864.f, 78.f, 48.f, 32.f, false); // Crumbling Platform W
@@ -391,7 +278,6 @@ void AngerLevel::SpawnCrumblingPlatforms()
 
 void AngerLevel::SpawnTiles()
 {
-	//void Scene::SpawnTile(float xPos, float yPos, std::string sprite, float width, float height)
 	SpawnTile(-144.f, 80.f, "backgrounds/anger/anger0-1.png", false, -1.f);// TILE 0-1 
 	SpawnTile(112.f, 80.f, "backgrounds/anger/anger1-1.png", false, -1.f);// TILE 1-1 
 	SpawnTile(368.f, 80.f, "backgrounds/anger/anger2-1.png", false, -1.f);// TILE 2-1 
@@ -434,10 +320,8 @@ void AngerLevel::SpawnTiles()
 	//water
 	for (int i = 0; i < 19; i++)
 	{
-		SpawnTile(((-32 + 16 * i) * 16.f) + 112, -176.f, "backgrounds/anger/water.png",256.f,256.f); // TILE WATER
+		SpawnTile(((-32 + 16 * i) * 16.f) + 112, -176.f, "backgrounds/anger/water.png",false, 5.f,256.f,256.f); // TILE WATER
 	}
-
-
 }
 
 void AngerLevel::SpawnUI()
@@ -459,8 +343,6 @@ void AngerLevel::SpawnUI()
 
 void AngerLevel::SpawnShadows()
 {
-	//SpawnShadow(float xPos, float yPos, float min, float max, bool ranged, b2Vec2 patrolVel, float xOffset, float yOffset, float width, float height)
-
 	//array for holding shadow b2Vec2s before they can be unpacked
 	b2Vec2 newShadows[7];
 
@@ -470,7 +352,6 @@ void AngerLevel::SpawnShadows()
 	newShadows[2] = SpawnShadow(1344.f, 77.f, 1220.f, 1368.f, false, b2Vec2(30.f, 0.f), 0.f, 0.f); //1220, 1368
 	newShadows[3] = SpawnShadow(2096.f, 112.f, 1991.f, 2149.f, false, b2Vec2(30.f, 0.f), 0.f, 0.f); //1991, 2149
 	newShadows[4] = SpawnShadow(1613.f, 40.f, 1438.f, 1789.f, false, b2Vec2(30.f, 0.f), 0.f, 0.f); //1438, 1789
-	//newShadows[4] = SpawnShadow(1070.f, 40.f, 960.f, 1147.f, false, b2Vec2(30.f, 0.f), 0.f, 0.f); //960, 1147
 	newShadows[5] = SpawnShadow(3500.f, 250.f, 0.f, 0.f, true, b2Vec2(0.f, 0.f), 20.f, -50.f, 300, 320.f/*400.f, 420.f*/, true); //Boss
 
 	//separating all the entities from their triggers and placing them in their respective arrays
@@ -479,7 +360,6 @@ void AngerLevel::SpawnShadows()
 		Separate(newShadows[i], 0);
 	}
 
-
 	bulletWalls[0] = SpawnBulletWall(1011.f, 150.f);
 	bulletWalls[1] = SpawnBulletWall(1111.f, 150.f);
 	bulletWalls[2] = SpawnBulletWall(1831.f, 120.f);
@@ -487,9 +367,6 @@ void AngerLevel::SpawnShadows()
 
 void AngerLevel::SpawnMovingPlatforms()
 {
-	
-	//b2Vec2 Scene::SpawnMovingPlatform(float xPos, float yPos, float min, float max, int type, float width, float height)
-
 	b2Vec2 movingPlatforms[1];
 
 	movingPlatforms[0] = SpawnMovingPlatform(3056.f, 80.f, 3030.f, 3170.f, 0, 80.f, 8.f, "samplePlatform.png");
@@ -502,7 +379,6 @@ void AngerLevel::SpawnMovingPlatforms()
 
 void AngerLevel::SpawnSpikes()
 {
-	//tempDef.position.Set(float32(1048.f), float32(24.f));
 	SpawnSpike(554.f, 15.f); //mini spike
 	SpawnSpike(633.f, 15.f); //mini spike
 	//SpawnSpike(1048.f, 24.f);
@@ -633,9 +509,6 @@ void AngerLevel::Update()
 		}
 		CheckEndLevel(4);
 
-
-		//playerMech.CheckWallStatus(breakableWalls[0],breakableWallTriggers[0]);
-
 		ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).Update();
 		ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).Update();
 
@@ -689,10 +562,6 @@ void AngerLevel::KeyboardUp()
 void AngerLevel::KeyboardDown()
 {
 	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
-	//auto& canJump = ECS::GetComponent<CanJump>(MainEntities::MainPlayer());
- 
- 
-	//auto& attackComponent = ECS::GetComponent<AttackMechanic>(MainEntities::MainPlayer());
 	auto& shieldSprite = ECS::GetComponent<Sprite>(shield);
 	auto& shieldMech = ECS::GetComponent<ShieldMechanic>(shield);
 	auto& theCoolDown = ECS::GetComponent<CoolDown>(MainEntities::MainPlayer());
@@ -716,36 +585,7 @@ void AngerLevel::KeyboardDown()
 		if (Input::GetKeyDown(Key::E) && playerMech.GetAttackSequence() == false && playerMech.GetShield() == false)
 		{
 			playerMech.SetAttackSequence(true);
-		}
-	
-	
-
- 
-	if (Input::GetKeyDown(Key::M)) {
-		std::cout << "X Pos: " << playerPos.x << std::endl;
-		std::cout << "Y Pos: " << playerPos.y << std::endl << std::endl;
-	}
-	if (Input::GetKeyDown(Key::T))
-	{
-		PhysicsBody::SetDraw(!PhysicsBody::GetDraw());
-	}
-	
-	if (Input::GetKeyDown(Key::C))
-	{
-		float size = ECS::GetComponent<Camera>(MainEntities::MainCamera()).GetOrthoSize().x;
-		vec4 temp = vec4(0.f, 0.f, 0.f, 0.f);
-		if (size == -75.f)
-		{
-			vec4 temp = vec4(-300.f, 300.f, -300.f, 300.f);
-			ECS::GetComponent<Camera>(MainEntities::MainCamera()).SetOrthoSize(temp);
-		}
-		else
-		{
-			temp = vec4(-75.f, 75.f, -75.f, 75.f);
-			ECS::GetComponent<Camera>(MainEntities::MainCamera()).SetOrthoSize(temp);
-		}
-	}
- 
+		} 
 }
 
 void AngerLevel::ReattachCamera()
@@ -754,29 +594,6 @@ void AngerLevel::ReattachCamera()
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 }
 
-//outdated(needs to be fixed or scrapped)
-void AngerLevel::CheckShield() 
-{
-	////checks inputs from the ShieldMechanic and proceeds to turn the shield on or off
-	////auto& playerHealth = ECS::GetComponent<Health>(player);
-	//auto& playerMech = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
-	//if (ECS::GetComponent<ShieldMechanic>(shield).shieldOn == true)
-	//{
-	//	/*ECS::GetComponent<PhysicsBody>(shield).GetBody()->SetActive(true);*/
-	//	//ECS::GetComponent<PhysicsBody>(shield).GetBody()->SetAwake(true);
-	//	ECS::GetComponent<Sprite>(shield).SetTransparency(1.f);
-	//	//shieldActive = true; //currently useless
-	//	playerMech.SetShield(true); //Used by the BulletTrigger to check if the shield is on.
-	//}
-	//else if (ECS::GetComponent<ShieldMechanic>(shield).shieldOn == false)
-	//{
-	//	/*ECS::GetComponent<PhysicsBody>(shield).GetBody()->SetActive(false);*/
-	//	//ECS::GetComponent<PhysicsBody>(shield).GetBody()->SetAwake(false);
-	//	ECS::GetComponent<Sprite>(shield).SetTransparency(0.f);
-	//	//shieldActive = false; //currently useless
-	//	playerMech.SetShield(false); //Used by the BulletTrigger to check if the shield is on.
-	//}
-}
 
 //boss shadow
 void AngerLevel::SpawnBullet(int shadowEntity)

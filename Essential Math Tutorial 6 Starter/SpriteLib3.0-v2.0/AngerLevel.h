@@ -30,7 +30,7 @@ public:
 
 	/*void Defeated();*/
 
-	void CheckShield();
+
 
 	//Bullet related functions for the boss
 	void SpawnBullet(int shadowEntity);

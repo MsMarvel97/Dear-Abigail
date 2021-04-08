@@ -5,9 +5,12 @@ class BossLevel
 public:
 	void CheckBossStatus();
 	void OrbDestroyed();
+	void SetHit(bool damaged) { hit = damaged; };
 	bool GetBossDefeated();
+
 private:
 	bool bossDefeated = false;
-	int orbs = 5;
+	bool hit = false;
+	int orbs = 5;	
 };
 

@@ -133,7 +133,7 @@ void Player::MovementUpdate()
 
 	if (moving.GetMoving() && !moving.GetUp())
 	{
-		if (!Input::GetKey(Key::D) && !Input::GetKey(Key::A))
+		if (!(Input::GetKey(Key::D) || Input::GetKey(Key::RightArrow)) && !(Input::GetKey(Key::A) || Input::GetKey(Key::LeftArrow)))
 		{
 			float passiveMovement = 32.5;
 
@@ -168,7 +168,7 @@ void Player::MovementUpdate()
 		}
 	}
 
-	if (Input::GetKey(Key::A))
+	if (Input::GetKey(Key::A) || Input::GetKey(Key::LeftArrow))
 	{
 		m_facing = LEFT;
 		m_moving = true;
@@ -189,7 +189,7 @@ void Player::MovementUpdate()
 		}
 	}
 
-	if (!Input::GetKey(Key::A))
+	if (!Input::GetKey(Key::A) && !Input::GetKey(Key::LeftArrow))
 	{
 		if (vel < -20.f)
 		{
@@ -203,7 +203,7 @@ void Player::MovementUpdate()
 		}
 	}
 
-	if (Input::GetKey(Key::D))
+	if (Input::GetKey(Key::D) || Input::GetKey(Key::RightArrow))
 	{
 		m_facing = RIGHT;
 		m_moving = true;
@@ -224,7 +224,7 @@ void Player::MovementUpdate()
 		}
 	}
 
-	if (!Input::GetKey(Key::D))
+	if (!Input::GetKey(Key::D) && !Input::GetKey(Key::RightArrow))
 	{
 		if (vel2 > 20.f)
 		{

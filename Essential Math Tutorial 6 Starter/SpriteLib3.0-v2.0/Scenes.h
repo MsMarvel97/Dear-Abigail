@@ -12,5 +12,6 @@
 #include "Crumble.h"
 #include "Postcards.h"
 #include "AngerLevel.h"
+#include "StartMenu.h"
 
 #endif // !__SCENES_H__

@@ -166,15 +166,17 @@ void MovingPlatform::MovePlatformVertical(int entity)
 	auto& platform = ECS::GetComponent<PhysicsBody>(entity);
 	float currentTime = Timer::StopWatch(verticalStart);
 
+	if (platform.GetPosition().y >= max)
+	{
+		platform.SetVelocity(vec3(0.f, 0.f, 0.f));
+		verticalSequence = false;
+	}
+
 	if (verticalSequence == true)
 	{
 		if (platform.GetPosition().y <= max)
 		{
 			platform.SetVelocity(vec3(0.f, 20.f, 0.f));
-		}
-		else
-		{
-			platform.SetVelocity(vec3(0.f, 0.f, 0.f));
 		}
 	}
 

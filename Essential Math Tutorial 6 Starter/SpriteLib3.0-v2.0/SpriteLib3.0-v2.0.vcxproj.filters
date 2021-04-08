@@ -106,6 +106,7 @@
     <ClCompile Include="SceneTriggers.cpp" />
     <ClCompile Include="Tutorial.cpp" />
     <ClCompile Include="PlayerMechanics.cpp" />
+    <ClCompile Include="StartMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AngerLevel.h" />
@@ -214,6 +215,7 @@
     <ClInclude Include="VignetteEffect.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="Xinput.h" />
+    <ClInclude Include="StartMenu.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\imgui\imgui.cpp">

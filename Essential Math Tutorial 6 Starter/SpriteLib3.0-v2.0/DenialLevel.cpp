@@ -25,19 +25,20 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 	
 	//Setting up background music
 	{
-		denialBGM.Play();
-		denialBGM.SetVolume(4.5f);
+		//denialBGM.Play();
+		//denialBGM.SetVolume(4.5f);
 	}
 	
 	//Spawning camera
 	SpawnMainCamera(windowWidth, windowHeight);
+	SpawnMenus();
 
 	//Abigail entity
 	SpawnMainPlayer(-450.f, 30.f);
 	//DEBUGGING POSITIONS\\
 	//tempDef.position.Set(float32(744.5), float32(187.5));
 	//tempDef.position.Set(float32(1550), float32(447));
-	ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2 (1550.f, 447.f), true);
+	//ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2 (1550.f, 447.f), true);
 
 	//resetting vars
 	ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).SetCheckpoint(false);
@@ -55,6 +56,8 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 	SpawnUI();
 	//calling the SpawnMovingPlatforms function to construct the moving platforms
 	SpawnMovingPlatforms();
+
+
 
 	//focusing the camera on the player
 	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
@@ -101,13 +104,17 @@ void DenialLevel::SpawnPlatforms()
 
 	SpawnPlatform(1536.f, 360.f, 64.f, 16.f, "platformR.png", 1.f);//Platform R (floating platform)
 
-	SpawnPlatform(1800.f, 446.f, 80.f, 16.f, "platformS.png", 1.f);//Platform S (floating platform)	
-
-	SpawnPlatform(1968.f, 456.f, 128.f, 16.f, "platformT.png", 1.f);//Platform T (floating platform)	
-
-	SpawnPlatform(1928.f, 616.f, 208.f, 16.f, "platformU.png", 1.f);//Platform U (floating platform)
-
 	SpawnPlatform(845.f, 610.f, 80.f, 10.f, "platformT.png", 1.f);//exit platform
+
+	SpawnPlatform(-520.f, 500.f, 1000.f, 10.f, "", 0.f, 90.f);//Left wall
+	
+	for (int i = 0; i <= 4; i++)
+	{
+		static int y = 435.f;
+		SpawnPlatform(1700.f, y, 200.f, 16.f, "PlatformT.png", 1.f, 90.f); //Right wall
+		y += 100;
+	}
+
 }
 //This function constructs all of the crumbling platforms during scene initialization
 void DenialLevel::SpawnCrumblingPlatforms()
@@ -122,13 +129,11 @@ void DenialLevel::SpawnCrumblingPlatforms()
 
 	cPlatforms[4] = SpawnCrumblingPlatform(1624.f, 384.f);//Platform M6
 
-	cPlatforms[5] = SpawnCrumblingPlatform(1704.f, 416.f);//Platform M7 (crumbling platform)
-
 	//Creates line of crumbling platforms
 	float crumblingX = 1430.f;
 	for (int i = 0; i <= 11; i++)
 	{
-		cPlatforms[i + 6] = SpawnCrumblingPlatform(crumblingX, 580.5);
+		cPlatforms[i + 5] = SpawnCrumblingPlatform(crumblingX, 580.5);
 		crumblingX -= 48;
 	}
 }
@@ -286,63 +291,95 @@ void DenialLevel::SpawnUI()
 //Update loop for Denial level
 void DenialLevel::Update()
 {
-	auto& playerBody = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
-	auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
-	auto& pMechanics = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
-	auto& sprite = ECS::GetComponent<Sprite>(MainEntities::MainPlayer());
-
-	pMechanics.RunKnockBackTime();
-
-	for (int i = 0; i <= 1; i++)
+	if (sceneActive == true)
 	{
-		ECS::GetComponent<Kinematics>(movingTriggers[i]).UpdatePosition();
-		ECS::GetComponent<MovingPlatform>(movingPlatforms[i]).MovePlatform(movingPlatforms[i]);
-	}
+		auto& playerBody = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
+		auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
+		auto& pMechanics = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
+		auto& sprite = ECS::GetComponent<Sprite>(MainEntities::MainPlayer());
 
-	if (pMechanics.GetCanMove() == true)
+		pMechanics.RunKnockBackTime();
+
+		for (int i = 0; i <= 1; i++)
+		{
+			ECS::GetComponent<Kinematics>(movingTriggers[i]).UpdatePosition();
+			ECS::GetComponent<MovingPlatform>(movingPlatforms[i]).MovePlatform(movingPlatforms[i]);
+		}
+
+		if (pMechanics.GetCanMove() == true)
+		{
+			player.Update();
+		}
+
+		fmod.Update();
+
+		for (int i = 0; i <= 16; i++)
+		{
+			ECS::GetComponent<CrumblingSequence>(cPlatforms[i]).Crumble(cPlatforms[i]);
+			CrumblingPlatforms(cPlatforms[i]);
+		}
+
+		for (int i = 0; i <= 4; i++)
+		{
+			ActivateShadow(shadows[i]);
+		}
+
+		for (int i = 0; i <= 4; i++)
+		{
+			ECS::GetComponent<Kinematics>(sZones[i]).UpdatePosition();
+		}
+
+		for (int i = 0; i <= 3; i++)
+		{
+			SpawnBullet(bulletWalls[i], 0, -13);
+		}
+
+		std::cout << playerBody.GetPosition().x << "					" << playerBody.GetPosition().y << std::endl;
+
+		ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
+		ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
+
+		ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).Update();
+		ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).Update();
+
+		for (int i = 0; i <= 4; i++)
+		{
+			ECS::GetComponent<Kinematics>(uiElements[i]).UpdateUI();
+		}
+
+		ECS::GetComponent<Kinematics>(menus.x).UpdateUI();
+		ECS::GetComponent<Kinematics>(menus.y).UpdateUI();
+
+		sprite.SetTransparency(1.f);
+		CheckUIConditions();
+		CheckEndLevel();
+		MenuKeys();
+	}
+	else
 	{
-		player.Update();
+		ECS::GetComponent<Kinematics>(menus.x).UpdateUI();
+		ECS::GetComponent<Kinematics>(menus.y).UpdateUI();
+
+		auto view = m_sceneReg->view<PhysicsBody>();
+		//Finds all active physics bodies and freezes them in place
+		for (auto entity : view)
+		{
+			//Grabs references to each component within view
+			ECS::GetComponent<PhysicsBody>(entity).SetVelocity(vec3(0.f, 0.f, 0.f));
+		}
+
+		auto bullets = m_sceneReg->view<Trigger*>();
+		//Finds all active bullets and deletes them so they don't stay frozen after game is unpaused
+		for (auto entity : bullets)
+		{
+			if (ECS::GetComponent<Trigger*>(entity)->GetBulletTrigger())
+			{
+				PhysicsBody::m_bodiesToDelete.push_back(entity);
+			}
+		}
+
+		MenuKeys();
 	}
-
-	fmod.Update();
-
-	for (int i = 0; i <= 17; i++)
-	{
-		ECS::GetComponent<CrumblingSequence>(cPlatforms[i]).Crumble(cPlatforms[i]);
-		CrumblingPlatforms(cPlatforms[i]);
-	}
-
-	for (int i = 0; i <= 4; i++)
-	{
-		ActivateShadow(shadows[i]);
-	}
-
-	for (int i = 0; i <= 4; i++)
-	{
-		ECS::GetComponent<Kinematics>(sZones[i]).UpdatePosition();
-	}
-
-	for (int i = 0; i <= 3; i++)
-	{
-		SpawnBullet(bulletWalls[i], 0, -13);
-	}
-
-	std::cout << playerBody.GetPosition().x <<  "					" << playerBody.GetPosition().y << std::endl;
-
-	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
-	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
-
-	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).Update();
-	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).Update();
-
-	for (int i = 0; i <= 4; i++)
-	{
-		ECS::GetComponent<Kinematics>(uiElements[i]).UpdateUI();
-	}
-
-	sprite.SetTransparency(1.f);
-	CheckUIConditions();
-	CheckEndLevel();
 }
 //Called in each update to update the shadow loop and call bullet functions
 void DenialLevel::ActivateShadow(int shadow)
@@ -404,7 +441,7 @@ void DenialLevel::CheckUIConditions()
 		ECS::GetComponent<Sprite>(uiElements[4]).SetTransparency(0.f);
 	}
 
-	if (pPhysics.GetPosition().x >= 700.f)
+	if (pPhysics.GetPosition().x >= 1285.f)
 	{
 		player.SetCheckpoint(true);
 	}
@@ -417,7 +454,7 @@ void DenialLevel::CheckEndLevel()
 	{
 		//stops music here
 		denialBGM.Mute();
-		SetSceneChange(true, 3);
+		SetSceneChange(true, 4);
 	}
 }
 //platform for making platforms crumble - pass crumbling platforms to this during the update
@@ -466,6 +503,7 @@ void DenialLevel::SpawnBullet(int shadow)
 	ECS::GetComponent<Trigger*>(entity) = new BulletTrigger();
 	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 	ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
+	ECS::GetComponent<Trigger*>(entity)->SetBulletTrigger(true);
 
 	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
@@ -520,6 +558,8 @@ void DenialLevel::SpawnBullet(int wall, float offsetX, float offsetY)
 		//Creates entity
 		auto entity = ECS::CreateEntity();
 
+		wallBullets.push_back(entity);
+
 		//Add components
 		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
@@ -535,6 +575,7 @@ void DenialLevel::SpawnBullet(int wall, float offsetX, float offsetY)
 		ECS::GetComponent<Trigger*>(entity) = new BulletTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
+		ECS::GetComponent<Trigger*>(entity)->SetBulletTrigger(true);
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);

@@ -20,10 +20,12 @@ void Tutorial::InitScene(float windowWidth, float windowHeight)
 
 	//Sets up aspect ratio for the camera
 	SpawnMainCamera(windowWidth, windowHeight);
-	//SpawnMainPlayer(0.f, 20.f);
-	SpawnMainPlayer(530.f, 10.f);
+	SpawnMenus();
+	SpawnMainPlayer(0.f, 20.f);
+	//SpawnMainPlayer(530.f, 10.f);
 
 	SpawnPlatform(140.f, 0.f, 300.f, 10.f, "", 0.f); //starting platform
+	SpawnPlatform(-5.f, 25.f, 50.f, 10.f, "PlatformT.png", 1.f, 90.f); //left wall so player doesn't fall off the side //ADD AN ART ASSET HERE OR LEAVE THIS INVISIBLE AND ADJUST THE TILE AT THIS LOCATION
 	SpawnPlatform(285.f, -55.f, 100.f, 10.f, "", 0.f, 90.f); //left pit wall
 	SpawnPlatform(355.f, -55.f, 100.f, 10.f, "", 0.f, 90.f); //right pit wall
 	SpawnPlatform(320.f, -55.f, 70.f, 10.f, "", 0.f); //pit floor
@@ -69,8 +71,8 @@ void Tutorial::InitScene(float windowWidth, float windowHeight)
 	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 
-	tutorialBGM.Play();
-	tutorialBGM.SetVolume(10.0f);
+	//tutorialBGM.Play();
+	//tutorialBGM.SetVolume(10.0f);
 }
 
 void Tutorial::SpawnUI()
@@ -82,45 +84,65 @@ void Tutorial::SpawnUI()
 
 void Tutorial::Update()
 {
-	auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
-	auto& pPhysics = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
-	auto& pMechanics = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
-
-	if (pMechanics.GetCanMove() == true)
+	if (sceneActive)
 	{
-		player.Update();
+		auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
+		auto& pPhysics = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
+		auto& pMechanics = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
+
+		if (pMechanics.GetCanMove() == true)
+		{
+			player.Update();
+		}
+
+		//if (pMechanics.GetComplete())
+		//{
+		//	SetSceneChange(true, 1);
+		//}
+		//if (Input::GetKeyDown(Key::C))
+		//{
+		//	SetSceneChange(true, 2);
+		//}
+
+
+		//ends music
+		if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetComplete())
+		{
+			tutorialBGM.Mute();
+		}
+		CheckEndLevel(4);
+
+
+		ECS::GetComponent<Kinematics>(movingPlatform.y).UpdatePosition();
+		ECS::GetComponent<MovingPlatform>(movingPlatform.x).MovePlatform(movingPlatform.x);
+
+		ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
+		ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
+
+		ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).Update();
+		ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).Update();
+
+		for (int i = 0; i <= 2; i++)
+		{
+			ECS::GetComponent<Kinematics>(uiElements[i]).UpdateUI();
+		}
+		MenuKeys();
 	}
 
-	//if (pMechanics.GetComplete())
-	//{
-	//	SetSceneChange(true, 1);
-	//}
-	//if (Input::GetKeyDown(Key::C))
-	//{
-	//	SetSceneChange(true, 2);
-	//}
-	
-
-	//ends music
-	if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetComplete())
+	else
 	{
-		tutorialBGM.Mute();
-	}
-	CheckEndLevel(3);
+		ECS::GetComponent<Kinematics>(menus.x).UpdateUI();
+		ECS::GetComponent<Kinematics>(menus.y).UpdateUI();
 
+		auto view = m_sceneReg->view<PhysicsBody>();
+		//Finds all active physics bodies and freezes them in place
+		for (auto entity : view)
+		{
+			//Grabs references to each component within view
+			ECS::GetComponent<PhysicsBody>(entity).SetVelocity(vec3(0.f, 0.f, 0.f));
+		}
 
-	ECS::GetComponent<Kinematics>(movingPlatform.y).UpdatePosition();
-	ECS::GetComponent<MovingPlatform>(movingPlatform.x).MovePlatform(movingPlatform.x);
-
-	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
-	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
-
-	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).Update();
-	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).Update();
-
-	for (int i = 0; i <= 2; i++)
-	{
-		ECS::GetComponent<Kinematics>(uiElements[i]).UpdateUI();
+		MenuKeys();
 	}
 }
 

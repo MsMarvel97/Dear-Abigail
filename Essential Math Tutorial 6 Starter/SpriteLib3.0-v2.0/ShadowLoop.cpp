@@ -99,10 +99,6 @@ void ShadowLoop::ShadowRoutine(int entity)
 	SetAnimation(facing, animType, entity);
 }
 
-void ShadowLoop::FiringLoop()
-{
-}
-
 void ShadowLoop::SetAnimation(int facing, int animation, int entity)
 {
 	int choice = facing + animation;
@@ -184,13 +180,23 @@ void ShadowLoop::RangedRoutine(int entity)
 	if (sequenceStart == true)
 	{
 		ShadowFacing(entity);
+		shadow.SetVelocity(vec3(0.f, 0.f, 0.f));
+
+
 
 		if (ECS::GetComponent<ShadowLoop>(entity).GetShadowType() == RANGED)
 		{
+			//if (ECS::GetComponent<ShadowLoop>(entity).firstShot && currentTime <= 0.5f)
+			//{
+			//	fire = true;
+			//	firstShot = false;
+			//}
+
 			if (currentTime >= shootingTime)
 			{
 				fire = true;
-				shootingTime += 1.5;
+				pauseStartTime = Timer::time;
+				shootingTime = 1.5;
 			}
 			else
 			{
@@ -198,32 +204,33 @@ void ShadowLoop::RangedRoutine(int entity)
 			}
 		}
 
-		if (currentTime >= 0 && currentTime < 3) //resting
-		{
-			animType = IDLE;
-		}
-		else if (currentTime > 3 && currentTime < 5) //charging 
-		{
-			animType = IDLE;
-		}
+		animType = IDLE;
+		//if (currentTime >= 0 && currentTime < 3) //resting
+		//{
+		//	animType = IDLE;
+		//}
+		//else if (currentTime > 3 && currentTime < 5) //charging 
+		//{
+		//	animType = IDLE;
+		//}
 
-		if (currentTime >= 0 && currentTime < 3) //resting
-		{
-			animType = IDLE;
-		}
-		else if (currentTime > 3 && currentTime < 5) //charging 
-		{
-			animType = IDLE;
-		}
-		else if (currentTime > 5 && currentTime < 7) //attacking
-		{
-			animType = IDLE;
-		}
-		else
-		{
+		//if (currentTime >= 0 && currentTime < 3) //resting
+		//{
+		//	animType = IDLE;
+		//}
+		//else if (currentTime > 3 && currentTime < 5) //charging 
+		//{
+		//	animType = IDLE;
+		//}
+		//else if (currentTime > 5 && currentTime < 7) //attacking
+		//{
+		//	animType = IDLE;
+		//}
+		//else
+		//{
 			currentTime = 0.f;
 			startTime = Timer::time;
-		}
+		/*}*/
 	}
 
 	//This will allow the shadow to move while it is not attacking the player

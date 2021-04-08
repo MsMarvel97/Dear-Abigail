@@ -396,7 +396,6 @@ b2Vec2 Scene::SpawnShadow(float xPos, float yPos, float min, float max, bool ran
 
 		//Sets up components
 		std::string fileName = "sandFloor.png";
-		ECS::GetComponent<Sprite>(shadowPair.y).LoadSprite(fileName, 200, 50);
 
 		ECS::GetComponent<Trigger*>(shadowPair.y) = new ShadowAreaTrigger();
 		ECS::GetComponent<Trigger*>(shadowPair.y)->SetTriggerEntity(shadowPair.y);
@@ -405,6 +404,19 @@ b2Vec2 Scene::SpawnShadow(float xPos, float yPos, float min, float max, bool ran
 		ECS::GetComponent<Kinematics>(shadowPair.y).SetChild(shadowPair.y);
 		ECS::GetComponent<Kinematics>(shadowPair.y).SetParent(shadowPair.x);
 		ECS::GetComponent<Kinematics>(shadowPair.y).SetOffset(xOffset, yOffset);
+
+		if (!bossShadow)
+		{
+			ECS::GetComponent<Sprite>(shadowPair.y).LoadSprite(fileName, 200, 50);
+			ECS::GetComponent<Kinematics>(shadowPair.y).SetOffset(xOffset, yOffset);
+		}
+
+		else
+		{
+			ECS::GetComponent<Sprite>(shadowPair.y).LoadSprite(fileName, 480, 500);
+			ECS::GetComponent<Kinematics>(shadowPair.y).SetOffset(0.f, 0.f);
+		}
+
 
 		ECS::GetComponent<Sprite>(shadowPair.y).SetTransparency(0.f);
 
@@ -588,8 +600,8 @@ b2Vec2 Scene::SpawnPostcard(float xPos, float yPos, std::string postcardBack)
 		ECS::AttachComponent<Kinematics>(postcard.y);
 
 		//Sets up components
-		ECS::GetComponent<Sprite>(postcard.y).LoadSprite(postcardBack, 150.f, 120.f);
-		ECS::GetComponent<Transform>(postcard.y).SetPosition(vec3(0.f, 24.f, 2.f));
+		ECS::GetComponent<Sprite>(postcard.y).LoadSprite(postcardBack, 210.f, 140.f);
+		ECS::GetComponent<Transform>(postcard.y).SetPosition(vec3(0.f, 24.f, 10.f));
 		ECS::GetComponent<Kinematics>(postcard.y).SetParent(MainEntities::MainCamera());
 		ECS::GetComponent<Kinematics>(postcard.y).SetChild(postcard.y);
 		ECS::GetComponent<Kinematics>(postcard.y).SetOffset(0.f, 0.f);
@@ -645,6 +657,55 @@ void Scene::SpawnMainPlayer(float xPos, float yPos)
 	tempPhsBody.SetGravityScale(0.75);
 }
 
+b2Vec2 Scene::SpawnMenus()
+{
+	//pause menu
+	{
+		//Creates entity
+		menus.x = ECS::CreateEntity();
+
+		//Add components
+		ECS::AttachComponent<Sprite>(menus.x);
+		ECS::AttachComponent<Transform>(menus.x);
+		ECS::AttachComponent<Kinematics>(menus.x);
+
+		//Sets up components
+		std::string fileName = "gameMenu.png";
+		ECS::GetComponent<Sprite>(menus.x).LoadSprite(fileName, 270, 150);
+		ECS::GetComponent<Transform>(menus.x).SetPosition(vec3(0.f, 0.f, 15.f));
+
+		//sets additional trigger components if this entity is meant to signal the end of the level
+		ECS::GetComponent<Kinematics>(menus.x).SetChild(menus.x);
+		ECS::GetComponent<Kinematics>(menus.x).SetParent(MainEntities::MainCamera());
+		ECS::GetComponent<Kinematics>(menus.x).SetOffset(0.f, 0.f);
+		ECS::GetComponent<Sprite>(menus.x).SetTransparency(0.f);
+	}
+
+	//help menu
+	{
+		//Creates entity
+		menus.y = ECS::CreateEntity();
+
+		//Add components
+		ECS::AttachComponent<Sprite>(menus.y);
+		ECS::AttachComponent<Transform>(menus.y);
+		ECS::AttachComponent<Kinematics>(menus.y);
+
+		//Sets up components
+		std::string fileName = "HelpScreen.png";
+		ECS::GetComponent<Sprite>(menus.y).LoadSprite(fileName, 270, 150);
+		ECS::GetComponent<Transform>(menus.y).SetPosition(vec3(0.f, 0.f, 15.f));
+
+		//sets additional trigger components if this entity is meant to signal the end of the level
+		ECS::GetComponent<Kinematics>(menus.y).SetChild(menus.y);
+		ECS::GetComponent<Kinematics>(menus.y).SetParent(MainEntities::MainCamera());
+		ECS::GetComponent<Kinematics>(menus.y).SetOffset(0.f, 0.f);
+		ECS::GetComponent<Sprite>(menus.y).SetTransparency(0.f);
+	}
+
+	return menus;
+}
+
 void Scene::SpawnMainCamera(float width, float height)
 {
 	float aspectRatio = width / height;
@@ -675,6 +736,73 @@ void Scene::CheckEndLevel(int sceneID)
 	if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetComplete())
 	{
 		SetSceneChange(true, sceneID);
+	}
+}
+
+void Scene::MenuKeys()
+{
+	if (Input::GetKey(Key::Escape))
+	{
+		MenuOperations(0);
+	}
+	if (Input::GetKey(Key::One))
+	{
+		MenuOperations(1);
+	}
+	if (Input::GetKey(Key::Two))
+	{
+		MenuOperations(2);
+	}
+	if (Input::GetKey(Key::Three))
+	{
+		MenuOperations(3);
+	}
+}
+
+////HANDLES OPERATIONS WITHIN MENUS\\
+//0 = Open the pause menu and pause the game
+//1 = Close the pause menu and resume the game
+//2 = Close the pause menu and open the help menu
+//3 = Exit the game
+void Scene::MenuOperations(int op)
+{
+	auto view = m_sceneReg->view<PhysicsBody>();
+
+	auto bullets = m_sceneReg->view<Trigger*>();
+
+	switch (op)
+	{
+	case 0:
+		ECS::GetComponent<Sprite>(menus.x).SetTransparency(1.f);
+		ECS::GetComponent<Sprite>(menus.y).SetTransparency(0.f);
+		sceneActive = false;
+		break;
+	case 1:
+		ECS::GetComponent<Sprite>(menus.x).SetTransparency(0.f);
+		
+		//Finds all active physics bodies and freezes them in place
+		for (auto entity : view)
+		{
+			//Grabs references to each component within view
+			ECS::GetComponent<PhysicsBody>(entity).SetVelocity(vec3(0.f, 0.f, 0.f));
+		}
+
+		//Finds all active bullets and deletes them so they don't stay frozen after game is unpaused
+		for (auto entity : bullets)
+		{
+			if (ECS::GetComponent<Trigger*>(entity)->GetBulletTrigger())
+			{
+				PhysicsBody::m_bodiesToDelete.push_back(entity);
+			}
+		}
+		sceneActive = true;
+		break;
+	case 2:
+		ECS::GetComponent<Sprite>(menus.x).SetTransparency(0.f);
+		ECS::GetComponent<Sprite>(menus.y).SetTransparency(1.f);
+		break;
+	case 3:
+		exit(0);
 	}
 }
 

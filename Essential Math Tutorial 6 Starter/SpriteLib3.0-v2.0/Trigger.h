@@ -44,11 +44,15 @@ public:
 	void SetSpike(bool newSpike) { spike = newSpike; };
 	bool GetSpike() { return spike; };
 
+	void SetBulletTrigger(bool bullet) { bulletTrigger = bullet; };
+	bool GetBulletTrigger() { return bulletTrigger; };
+
 protected:
 	int m_targetTrigger = 0;
 	int m_triggerEntity;
 	//target of trigger being targeted
 	int m_trueTarget = 0;
+	bool bulletTrigger = false;
 	float scalar = 0;
 	float fixtures = 0;
 	float rotation = 0;

@@ -6,9 +6,9 @@ class BulletTrigger : public Trigger
 	//If the bullet hits the player while the shield is active, no hearts are lost
 public:
 	void OnTrigger() override;
-
 	void OnEnter() override;
 	void OnExit() override;
+
 protected:
 	/*ToneFire::CoreSound abigailHit{ "abigailHitOne.wav", false, false, true };*/
 	bool triggered = false;

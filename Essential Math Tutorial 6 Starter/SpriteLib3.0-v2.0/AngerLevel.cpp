@@ -28,6 +28,7 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 	//Setup MainCamera Entity 
 	SpawnMainCamera(windowWidth, windowHeight);
+	SpawnMenus();
 	//main player entity 
 	SpawnMainPlayer(0.f, 80.f);
 	//ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer()).SetPosition(b2Vec2(0.f, 80.f), true); //beginning
@@ -97,40 +98,40 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetRotationAngleDeg(90.f);
 	}
 
-	//Ending Door
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+	////Ending Door
+	//{
+	//	//Creates entity
+	//	auto entity = ECS::CreateEntity();
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
+	//	//Add components
+	//	ECS::AttachComponent<Sprite>(entity);
+	//	ECS::AttachComponent<Transform>(entity);
+	//	ECS::AttachComponent<PhysicsBody>(entity);
 
-		//Sets up components 
-		std::string fileName = "CaveExit.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 20, 36);
+	//	//Sets up components 
+	//	std::string fileName = "CaveExit.png";
+	//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 20, 36);
 
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
+	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 2.f));
 
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+	//	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
+	//	float shrinkX = 0.f;
+	//	float shrinkY = 0.f;
+	//	b2Body* tempBody;
+	//	b2BodyDef tempDef;
+	//	tempDef.type = b2_staticBody;
 
-		tempDef.position.Set(float32(3860.f), float32(96.f));
+	//	tempDef.position.Set(float32(3860.f), float32(96.f));
 
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	}
+	//	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+	//		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
+	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	//}
 
 	SpawnTile(3860.f, 96.f, "CaveExit.png", true, 2.f, 20.f, 36.f);
 
@@ -214,7 +215,6 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<Trigger*>(entity);
 		ECS::AttachComponent<ShadowLoop>(entity);
 		ECS::AttachComponent<AnimationController>(entity);
 		ECS::AttachComponent<BreakableWall>(entity);
@@ -279,52 +279,51 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 	}
 	
-
 	SpawnUI();
 	SpawnPlatforms();
 	SpawnCrumblingPlatforms();
 	SpawnTiles();
 	SpawnMovingPlatforms();
 	SpawnShadows();
-	//Final Boss Area Trigger
-	{
-		//Creates entity
-		auto entity = ECS::CreateEntity();
+	////Final Boss Area Trigger
+	//{
+	//	//Creates entity
+	//	auto entity = ECS::CreateEntity();
 
-		//Add components
-		ECS::AttachComponent<Sprite>(entity);
-		ECS::AttachComponent<Transform>(entity);
-		ECS::AttachComponent<PhysicsBody>(entity);
-		ECS::AttachComponent<Trigger*>(entity);
-		//ECS::AttachComponent<ShadowLoop>(entity);
+	//	//Add components
+	//	ECS::AttachComponent<Sprite>(entity);
+	//	ECS::AttachComponent<Transform>(entity);
+	//	ECS::AttachComponent<PhysicsBody>(entity);
+	//	ECS::AttachComponent<Trigger*>(entity);
+	//	//ECS::AttachComponent<ShadowLoop>(entity);
 
-		//Sets up components
-		std::string fileName = "sandFloor.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 480, 500);
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(3510.f, 200.f, 5.f));
-		ECS::GetComponent<Trigger*>(entity) = new ShadowAreaTrigger();
-		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
-		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(boss.x);
+	//	//Sets up components
+	//	std::string fileName = "sandFloor.png";
+	//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 480, 500);
+	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(3510.f, 200.f, 5.f));
+	//	ECS::GetComponent<Trigger*>(entity) = new ShadowAreaTrigger();
+	//	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+	//	ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(boss.x);
 
-		//ECS::GetComponent<Trigger*>(entity)->SetShadowZone(1);
+	//	//ECS::GetComponent<Trigger*>(entity)->SetShadowZone(1);
 
-		ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
-		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
-		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+	//	ECS::GetComponent<Sprite>(entity).SetTransparency(0.f);
+	//	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+	//	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
-		float shrinkX = 0.f;
-		float shrinkY = 0.f;
-		b2Body* tempBody;
-		b2BodyDef tempDef;
-		tempDef.type = b2_staticBody;
-		tempDef.position.Set(float32(3520.f), float32(200.f));
+	//	float shrinkX = 0.f;
+	//	float shrinkY = 0.f;
+	//	b2Body* tempBody;
+	//	b2BodyDef tempDef;
+	//	tempDef.type = b2_staticBody;
+	//	tempDef.position.Set(float32(3520.f), float32(200.f));
 
-		tempBody = m_physicsWorld->CreateBody(&tempDef);
+	//	tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
-			float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
-		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
-	}
+	//	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
+	//		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+	//	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	//}
 
 	SpawnSpikes();
 	SpawnOrbs();
@@ -529,130 +528,146 @@ void AngerLevel::SpawnOrbs()
 
 void AngerLevel::Update()
 {
-	auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
-	auto& playerSprite = ECS::GetComponent<Sprite>(MainEntities::MainPlayer());
-	auto& thePlayer = ECS::GetComponent<Player>(MainEntities::MainPlayer());
-	auto& playerShield = ECS::GetComponent<Kinematics>(shield);
-	//auto& shieldThing = ECS::GetComponent<ShieldMechanic>(shield);
-	auto& theCoolDown = ECS::GetComponent<CoolDown>(MainEntities::MainPlayer());
-	auto& angerBoss = ECS::GetComponent<BossLevel>(MainEntities::MainPlayer());
-	auto& bossSprite = ECS::GetComponent<Sprite>(boss.x);
-	auto& bossBody = ECS::GetComponent<PhysicsBody>(boss.x);
-	//auto& kinTrig = ECS::GetComponent<Kinematics>(kinTrigger);
-	auto& playerMech = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
-	
-	if (playerMech.GetCanMove() == true)
+	if (sceneActive)
 	{
-		player.Update();
+		auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
+		auto& playerSprite = ECS::GetComponent<Sprite>(MainEntities::MainPlayer());
+		auto& thePlayer = ECS::GetComponent<Player>(MainEntities::MainPlayer());
+		auto& playerShield = ECS::GetComponent<Kinematics>(shield);
+		//auto& shieldThing = ECS::GetComponent<ShieldMechanic>(shield);
+		auto& theCoolDown = ECS::GetComponent<CoolDown>(MainEntities::MainPlayer());
+		auto& angerBoss = ECS::GetComponent<BossLevel>(MainEntities::MainPlayer());
+		auto& bossSprite = ECS::GetComponent<Sprite>(boss.x);
+		auto& bossBody = ECS::GetComponent<PhysicsBody>(boss.x);
+		//auto& kinTrig = ECS::GetComponent<Kinematics>(kinTrigger);
+		auto& playerMech = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
+
+		if (playerMech.GetCanMove() == true)
+		{
+			player.Update();
+		}
+
+		for (int i = 0; i < 1; i++) //moving platform related
+		{
+			ECS::GetComponent<Kinematics>(movingTriggers[i]).UpdatePosition();
+			ECS::GetComponent<MovingPlatform>(movingPlatforms[i]).MovePlatform(movingPlatforms[i]);
+		}
+
+		//kinTrig.UpdatePosition();
+		playerMech.RunKnockBackTime();
+		playerMech.ActivateShield(); //runs timer for shield
+		ECS::GetComponent<Kinematics>(shield).UpdateTransform(); //shield follows player
+		ECS::GetComponent<Kinematics>(boss.y).UpdatePosition();
+		if (playerMech.GetShield())
+		{
+			ECS::GetComponent<Sprite>(shield).SetTransparency(1.f);
+		}
+		else
+		{
+			ECS::GetComponent<Sprite>(shield).SetTransparency(0.f);
+		}
+
+		//AngerLevel::CheckShield();
+		ReattachCamera();
+
+		if (playerMech.GetCanMove() == true) //checks to see if the player can move
+		{
+			thePlayer.Update();
+		}
+		playerMech.Attacking();
+
+		for (int i = 0; i < 6; i++) //shadows
+		{
+			if (ECS::GetComponent<ShadowLoop>(shadows[i]).isShadowAlive == false)
+			{
+				ECS::GetComponent<PhysicsBody>(shadows[i]).GetBody()->SetActive(false);
+				ECS::GetComponent<Sprite>(shadows[i]).SetTransparency(0.f);
+			}
+		}
+
+		theCoolDown.GlobalCoolDown();
+		angerBoss.CheckBossStatus();
+		//playerMech.RunShadowTime();
+
+		//checks to see if the boss is alive and can therefore shoot
+		if (angerBoss.GetBossDefeated() == false)
+		{
+			ActivateShadow(boss.x);
+		}
+		else
+		{
+			bossSprite.SetTransparency(0.f);
+			bossBody.GetBody()->SetActive(false);
+		}
+
+		//AngerLevel::MovePlatform();
+		PlayerDeath();
+
+		//win condition(kill boss to open platform)
+		//checks to see if the boss has been defeated and therefore the boss and wall can be destroyed
+		if (angerBoss.GetBossDefeated() == true)
+		{
+			if (bossWallDestroyed == false)
+			{
+				PhysicsBody::m_bodiesToDelete.push_back(bossWall);
+				bossWallDestroyed = true;
+			}
+		}
+
+		//for platforms u,v,w,x,b1,b2,b3,b4,b5, and the 10 crumbling platforms that make up the ground of the boss level
+		for (int i = 0; i < 18; i++)
+		{
+			ECS::GetComponent<CrumblingSequence>(masterCrumblingPlatforms[i]).Crumble(masterCrumblingPlatforms[i]);
+			CrumblingPlatforms(masterCrumblingPlatforms[i]);
+		}
+
+		CheckEndLevel(4);
+
+		//playerMech.CheckWallStatus(breakableWalls[0],breakableWallTriggers[0]);
+
+		ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).Update();
+		ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).Update();
+
+		//For UI Elements
+		for (int i = 0; i < 6; i++)
+		{
+			ECS::GetComponent<Kinematics>(uiElements[i]).UpdateUI();
+		}
+
+		UpdateUI();
+
+		//shadow contact/pause and shadow animation stuff
+		for (int i = 0; i < 6; i++)
+		{
+			ECS::GetComponent<ShadowLoop>(shadows[i]).ShadowRoutine(shadows[i]);
+			ECS::GetComponent<Kinematics>(sZones[i]).UpdatePosition();
+			ECS::GetComponent<ShadowLoop>(shadows[i]).ShadowPause(shadows[i]);
+		}
+
+		//for the breakable wall at the beginning of the level
+		ECS::GetComponent<BreakableWall>(breakableWalls[0]).WallRoutine(breakableWalls[0]);
+
+		//bullet walls
+		for (int i = 0; i < 3; i++)
+		{
+			SpawnBullet(bulletWalls[i], 0, -13);
+		}
+
+		playerMech.RunInvincibility(); //invincibility timer
+		MenuKeys();
 	}
 
-	for (int i = 0; i < 1; i++) //moving platform related
-	{
-		ECS::GetComponent<Kinematics>(movingTriggers[i]).UpdatePosition();
-		ECS::GetComponent<MovingPlatform>(movingPlatforms[i]).MovePlatform(movingPlatforms[i]);
-	}
-	
-	//kinTrig.UpdatePosition();
-	playerMech.RunKnockBackTime();
-	playerMech.ActivateShield(); //runs timer for shield
-	ECS::GetComponent<Kinematics>(shield).UpdateTransform(); //shield follows player
-
-	if (playerMech.GetShield())
-	{
-		ECS::GetComponent<Sprite>(shield).SetTransparency(1.f);
-	}
 	else
 	{
-		ECS::GetComponent<Sprite>(shield).SetTransparency(0.f);
+		ECS::GetComponent<Kinematics>(menus.x).UpdateUI();
+		ECS::GetComponent<Kinematics>(menus.y).UpdateUI();
+
+
+
+		MenuKeys();
 	}
-
-	//AngerLevel::CheckShield();
-	ReattachCamera();
-
-	if (playerMech.GetCanMove() == true) //checks to see if the player can move
-	{
-		thePlayer.Update();
-	}
-	playerMech.Attacking();
-
-	for (int i = 0; i < 6; i++) //shadows
-	{
-		if (ECS::GetComponent<ShadowLoop>(shadows[i]).isShadowAlive == false)
-		{
-			ECS::GetComponent<PhysicsBody>(shadows[i]).GetBody()->SetActive(false);
-			ECS::GetComponent<Sprite>(shadows[i]).SetTransparency(0.f);
-		}
-	}
-
-	theCoolDown.GlobalCoolDown();
-	angerBoss.CheckBossStatus();
-	//playerMech.RunShadowTime();
-
-	//checks to see if the boss is alive and can therefore shoot
-	if (angerBoss.GetBossDefeated() == false) 
-	{
-		ActivateShadow(boss.x);
-	}
-	else
-	{
-		bossSprite.SetTransparency(0.f);
-		bossBody.GetBody()->SetActive(false);
-	}
-
-	//AngerLevel::MovePlatform();
-	PlayerDeath();
-
-	//win condition(kill boss to open platform)
-	//checks to see if the boss has been defeated and therefore the boss and wall can be destroyed
-	if (angerBoss.GetBossDefeated() == true) 
-	{
-		if (bossWallDestroyed == false)
-		{
-			PhysicsBody::m_bodiesToDelete.push_back(bossWall);
-			bossWallDestroyed = true;
-		}
-	}
-
-	//for platforms u,v,w,x,b1,b2,b3,b4,b5, and the 10 crumbling platforms that make up the ground of the boss level
-	for (int i = 0; i < 18; i++) 
-	{
-		ECS::GetComponent<CrumblingSequence>(masterCrumblingPlatforms[i]).Crumble(masterCrumblingPlatforms[i]);
-		CrumblingPlatforms(masterCrumblingPlatforms[i]);
-	}
-	CheckEndLevel(3);
-
-	//playerMech.CheckWallStatus(breakableWalls[0],breakableWallTriggers[0]);
-	
-	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).Update();
-	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).Update();
-
-	//For UI Elements
-	for (int i = 0; i < 6; i++)
-	{
-		ECS::GetComponent<Kinematics>(uiElements[i]).UpdateUI();
-	}
-
-	UpdateUI(); 
-
-	//shadow contact/pause and shadow animation stuff
-	for (int i = 0; i < 6; i++) 
-	{
-		ECS::GetComponent<ShadowLoop>(shadows[i]).ShadowRoutine(shadows[i]);
-		ECS::GetComponent<Kinematics>(sZones[i]).UpdatePosition();
-		ECS::GetComponent<ShadowLoop>(shadows[i]).ShadowPause(shadows[i]);
-	}
-
-	//for the breakable wall at the beginning of the level
-	ECS::GetComponent<BreakableWall>(breakableWalls[0]).WallRoutine(breakableWalls[0]);
-
-	//bullet walls
-	for (int i = 0; i < 3; i++)
-	{
-		SpawnBullet(bulletWalls[i], 0, -13);
-	}
-
-	playerMech.RunInvincibility(); //invincibility timer
 }
+
 
 void AngerLevel::KeyboardHold()
 {
@@ -754,7 +769,7 @@ void AngerLevel::CheckShield()
 	//}
 }
 
-//boos shadow
+//boss shadow
 void AngerLevel::SpawnBullet(int shadowEntity)
 {
 	auto& shadowBody = ECS::GetComponent<PhysicsBody>(shadowEntity);
@@ -777,6 +792,7 @@ void AngerLevel::SpawnBullet(int shadowEntity)
 	ECS::GetComponent<Trigger*>(entity) = new BulletTrigger();
 	ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 	ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
+	ECS::GetComponent<Trigger*>(entity)->SetBulletTrigger(true);
 
 	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
@@ -850,6 +866,7 @@ void AngerLevel::SpawnBullet(int wall, float offsetX, float offsetY)
 		ECS::GetComponent<Trigger*>(entity) = new BulletTrigger();
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(MainEntities::MainPlayer());
+		ECS::GetComponent<Trigger*>(entity)->SetBulletTrigger(true);
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
@@ -891,28 +908,12 @@ void AngerLevel::ActivateShadow(int shadow)
 	//If so, a bullet is fired from a shadow determined by the player's location.
 	auto& shade = ECS::GetComponent<ShadowLoop>(shadow);
 
-
 	shade.ShadowRoutine(shadow);
 
 	if (shade.GetFiring() && shade.GetShadowSequence())
 	{
 		SpawnBullet(shadow);
 	}
-
-	//if (shade.GetFiring() == true)
-	//{
-	//	shade.ShadowRoutine(shadow);
-
-	//	if (shade.GetFiring() && shade.GetShadowSequence())
-	//	{
-	//		SpawnBullet(shadow);
-	//	}
-
-	//	//if (shade.GetShadowLoc() == 1)
-	//	//{
-	//	//	SpawnBullet(boss);
-	//	//}
-	//}	
 }
 
 void AngerLevel::Separate(b2Vec2(newPair), int type)

@@ -6,8 +6,6 @@ Postcards::Postcards(std::string name)
 {
 	m_gravity = b2Vec2(0.f, -98.f);
 	m_physicsWorld->SetGravity(m_gravity);
-
-	
 }
 
 void Postcards::InitScene(float windowWidth, float windowHeight)
@@ -25,15 +23,14 @@ void Postcards::InitScene(float windowWidth, float windowHeight)
 
 
 	SpawnMainCamera(windowWidth, windowHeight);
+	SpawnMenus();
 	SpawnMainPlayer(-64.f, 30.f);
 
 	//plays the transition music
 	{
-		transitionBGM.Play();
-		transitionBGM.SetVolume(9.0f);
+		//transitionBGM.Play();
+		//transitionBGM.SetVolume(9.0f);
 	}
-
-
 
 	BuildPostcards();
 	SpawnTile(64.f, 24.f, "CaveExit.png", true, 1.f, 20.f, 40.f);
@@ -81,6 +78,8 @@ void Postcards::InitScene(float windowWidth, float windowHeight)
 
 void Postcards::BuildPostcards()
 {
+
+	//how many times has the player been here?
 	static int visit = 0;
 	b2Vec2 postcard;
 	switch (visit)
@@ -98,7 +97,7 @@ void Postcards::BuildPostcards()
 		postcard = SpawnPostcard(0.f, 20.f, "DenialPostcardFront.png");
 		break;
 	}
-	nextScene = visit + 1;
+	nextScene = visit + 2;
 	Separate(postcard);
 	visit++;
 }
@@ -107,69 +106,101 @@ void Postcards::BuildPostcards()
 
 void Postcards::Update()
 {
-	auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
-	auto& pPhysics = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
-	auto& pMechanics = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
-
-	//how many times has the player been here?
-	static int visit = 0;
-
-	ECS::GetComponent<Kinematics>(postcardMax).UpdateUI();
-
-	if (pMechanics.GetCanMove() == true)
+	if (sceneActive)
 	{
-		player.Update();
-	}
+		auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
+		auto& pPhysics = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
+		auto& pMechanics = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
 
-	fmod.Update();
+		//static int visit = 0;
 
-	if (pMechanics.GetExamine())
-	{
-		static bool maximized = false;
-		static bool contactStep = false;
+		ECS::GetComponent<Kinematics>(postcardMax).UpdateUI();
 
-		if (Input::GetKeyDown(Key::F) && !maximized)
+		if (pMechanics.GetCanMove() == true)
 		{
-			maximized = true;
-			contactStep = true;
-			ECS::GetComponent<Sprite>(postcardMin).SetTransparency(0.f);
-			ECS::GetComponent<Sprite>(postcardMax).SetTransparency(1.f);
-			ECS::GetComponent<Sprite>(uiElements[0]).SetTransparency(1.f);
-			ECS::GetComponent<Sprite>(uiElements[1]).SetTransparency(0.f);
+			player.Update();
 		}
-		if (Input::GetKeyDown(Key::F) && maximized && !contactStep)
+
+		fmod.Update();
+
+		if (pMechanics.GetExamine())
 		{
-			maximized = false;
-			ECS::GetComponent<Sprite>(postcardMin).SetTransparency(1.f);
-			ECS::GetComponent<Sprite>(postcardMax).SetTransparency(0.f);
-			ECS::GetComponent<Sprite>(uiElements[0]).SetTransparency(0.f);
-			ECS::GetComponent<Sprite>(uiElements[1]).SetTransparency(1.f);
+			static bool maximized = false;
+			static bool contactStep = false;
+
+			if (Input::GetKeyDown(Key::F) && !maximized)
+			{
+				maximized = true;
+				contactStep = true;
+				ECS::GetComponent<Sprite>(postcardMin).SetTransparency(0.f);
+				ECS::GetComponent<Sprite>(postcardMax).SetTransparency(1.f);
+				ECS::GetComponent<Sprite>(uiElements[0]).SetTransparency(1.f);
+				ECS::GetComponent<Transform>(uiElements[0]).SetPositionZ(11.f);
+				ECS::GetComponent<Sprite>(uiElements[1]).SetTransparency(0.f);
+				pMechanics.SetCanMove(false);
+			}
+			if (Input::GetKeyDown(Key::F) && maximized && !contactStep)
+			{
+				maximized = false;
+				ECS::GetComponent<Sprite>(postcardMin).SetTransparency(1.f);
+				ECS::GetComponent<Sprite>(postcardMax).SetTransparency(0.f);
+				ECS::GetComponent<Sprite>(uiElements[0]).SetTransparency(0.f);
+				ECS::GetComponent<Sprite>(uiElements[1]).SetTransparency(1.f);
+				pMechanics.SetCanMove(true);
+			}
+			contactStep = false;
 		}
-		contactStep = false;
+
+		if (Input::GetKeyDown(Key::C))
+		{
+			pMechanics.SetComplete(true);
+		}
+
+		//ends music
+		if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetComplete())
+		{
+			transitionBGM.Mute();
+		}
+
+		CheckEndLevel(nextScene);
+
+		ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
+		ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
+
+		ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).Update();
+		ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).Update();
+
+		for (int i = 0; i <= 1; i++)
+		{
+			ECS::GetComponent<Kinematics>(uiElements[i]).UpdateUI();
+		}
+		MenuKeys();
 	}
 
-	if (Input::GetKeyDown(Key::C))
+	else
 	{
-		pMechanics.SetComplete(true);
-	}
+		ECS::GetComponent<Kinematics>(menus.x).UpdateUI();
+		ECS::GetComponent<Kinematics>(menus.y).UpdateUI();
 
-	//ends music
-	if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetComplete())
-	{
-		transitionBGM.Mute();
-	}
+		auto view = m_sceneReg->view<PhysicsBody>();
+		//Finds all active physics bodies and freezes them in place
+		for (auto entity : view)
+		{
+			//Grabs references to each component within view
+			ECS::GetComponent<PhysicsBody>(entity).SetVelocity(vec3(0.f, 0.f, 0.f));
+		}
 
-	CheckEndLevel(nextScene);
+		auto bullets = m_sceneReg->view<Trigger*>();
+		//Finds all active bullets and deletes them so they don't stay frozen after game is unpaused
+		for (auto entity : bullets)
+		{
+			if (ECS::GetComponent<Trigger*>(entity)->GetBulletTrigger())
+			{
+				PhysicsBody::m_bodiesToDelete.push_back(entity);
+			}
+		}
 
-	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
-	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
-
-	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).Update();
-	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).Update();
-
-	for (int i = 0; i <= 1; i++)
-	{
-		ECS::GetComponent<Kinematics>(uiElements[i]).UpdateUI();
+		MenuKeys();
 	}
 }
 

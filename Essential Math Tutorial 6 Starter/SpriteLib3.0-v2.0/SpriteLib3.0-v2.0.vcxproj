@@ -222,6 +222,7 @@
     <ClInclude Include="ShadowV2.h" />
     <ClInclude Include="ShrinkTrigger.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="StartMenu.h" />
     <ClInclude Include="TestBulet.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureManager.h" />
@@ -330,6 +331,7 @@
     <ClCompile Include="ShadowV2.cpp" />
     <ClCompile Include="ShrinkTrigger.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="StartMenu.cpp" />
     <ClCompile Include="TestBulet.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureManager.cpp" />

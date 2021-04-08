@@ -61,7 +61,7 @@ public:
 	void RangedRoutine(int entity);
 	void MeleeRoutine(int entity);
 
-	void FiringLoop();
+	//void SetFirstShot(bool first) { firstShot = first; };
 
 	void SetAnimation(int facing, int animation, int entity);
 
@@ -100,7 +100,8 @@ private:
 	int facing = 0;
 	int animType = 0;
 	int shadowType = 0;
-	float shootingTime = 0.5;
+	float shootingTime = 0.5f;
+	bool firstShot = false;
 	bool boss = false;
 	bool fire = false;
 	bool sequenceStart = false;

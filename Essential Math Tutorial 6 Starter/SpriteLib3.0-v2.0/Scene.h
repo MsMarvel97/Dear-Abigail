@@ -53,7 +53,6 @@ public:
 	int GetNewScene() {	return sceneSwap; };
 	void SetSwap(bool sceneSwap) { swap = sceneSwap; };
 
-
 	//Get the scene registry
 	entt::registry* GetScene() const;
 	//Set the scene registry
@@ -86,8 +85,16 @@ public:
 	//spawn Abigail (PARAMETERS -> Position [x,y])
 	void SpawnMainPlayer(float xPos, float yPos);
 
+	b2Vec2 SpawnMenus();
+
 	//spawn the camera (PARAMETERS -> View [w, h])
 	void SpawnMainCamera(float width, float height);
+
+	//spawn a spike (PARAMETERS -> Position [x,y], size [w,h])
+	void SpawnSpike(float xPos, float yPos, float width = 16.f, float height = 16.f);
+
+	//spawn a shadow orb (PARAMETERS -> Position [x,y], size [w,h])
+	int SpawnOrb(float xPos, float yPos, float width = 10.f, float height = 10.f);
 
 	//to be overridden for separating pairs of entities within each scene
 	virtual void Separate(b2Vec2 newPair, int type) = 0;
@@ -95,9 +102,9 @@ public:
 	//checks if the player has completed the level
 	void CheckEndLevel(int sceneID);
 
-	void SpawnSpike(float xPos, float yPos, float width = 16.f, float height = 16.f);
+	void MenuKeys();
 
-	int SpawnOrb(float xPos, float yPos, float width = 10.f, float height = 10.f);
+	void MenuOperations(int op);
 
 	//Gets the background color of the scene
 	vec4 GetClearColor() const;
@@ -117,13 +124,20 @@ public:
 
 	//Set window size (makes sure the camera aspect is proper)
 	void SetWindowSize(float windowWidth, float windowHeight);
+
 protected:
 	ToneFire::FMODCore fmod;
+	b2Vec2 menus;
+	bool sceneActive = true;
 	b2World* m_physicsWorld = nullptr;
 	b2Vec2 m_gravity = b2Vec2(float32(0.f), float32(0.f));
 
 	bool swap = false;
 	int sceneSwap = 0;
+	
+	std::vector<int> shadowBullets;
+	std::vector<int> wallBullets;
+	std::vector<int> bullets;
 
 	vec4 m_clearColor = vec4(0.15f, 0.33f, 0.58f, 1.f);
 

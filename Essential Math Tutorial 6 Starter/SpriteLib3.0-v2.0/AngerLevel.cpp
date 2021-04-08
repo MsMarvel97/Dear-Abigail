@@ -26,6 +26,11 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 	//Sets up aspect ratio for the camera 
 	float aspectRatio = windowWidth / windowHeight;
 
+	//Plays the music
+	{
+		angerBGM.Play();
+		angerBGM.SetVolume(1.0f);
+	}
 	//Setup MainCamera Entity 
 	SpawnMainCamera(windowWidth, windowHeight);
 	SpawnMenus();
@@ -621,7 +626,12 @@ void AngerLevel::Update()
 			CrumblingPlatforms(masterCrumblingPlatforms[i]);
 		}
 
+		if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetComplete())
+		{
+			angerBGM.Mute();
+		}
 		CheckEndLevel(4);
+
 
 		//playerMech.CheckWallStatus(breakableWalls[0],breakableWallTriggers[0]);
 
@@ -661,8 +671,6 @@ void AngerLevel::Update()
 	{
 		ECS::GetComponent<Kinematics>(menus.x).UpdateUI();
 		ECS::GetComponent<Kinematics>(menus.y).UpdateUI();
-
-
 
 		MenuKeys();
 	}
@@ -819,8 +827,8 @@ void AngerLevel::SpawnBullet(int shadowEntity)
 
 void AngerLevel::ShootBullet(int bullet)
 {
-	//shootBulletSound.Play();
-	//shootBulletSound.SetVolume(5.0f);
+	shadowBulletOne.Play();
+	shadowBulletOne.SetVolume(1.5f);
 	b2Vec2 angle = CalculateAngle(MainEntities::MainPlayer(), bullet);
 
 	float dirAngle = atan(angle.x / angle.y) * (180 / PI);

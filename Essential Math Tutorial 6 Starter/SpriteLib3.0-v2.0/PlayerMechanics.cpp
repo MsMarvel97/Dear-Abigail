@@ -19,7 +19,7 @@ void PlayerMechanics::ActivateShield()
 			if (soundFinish == true)
 			{
 				shieldActivate.Play();
-				shieldActivate.SetVolume(5.0f);
+				shieldActivate.SetVolume(1.0f);
 				std::cout << "shield activated\n";
 			}
 			soundFinish = false;
@@ -31,7 +31,7 @@ void PlayerMechanics::ActivateShield()
 			if (soundFinish == false)
 			{
 				shieldDeactivate.Play();
-				shieldDeactivate.SetVolume(5.0f);
+				shieldDeactivate.SetVolume(3.0f);
 			}
 			soundFinish = true;
 		}
@@ -58,34 +58,35 @@ void PlayerMechanics::Attacking()
 		{
 			isAttacking = true;
 			attackCoolDown = true;
+			soundFinishAttack == true;
 
 			srand(time(NULL));
-
 			randomSoundTwo = rand() % 3 + 1;
-			std::cout << randomSoundTwo;
+			
 			if (soundFinishAttack == true)
 			{ 
-			if (randomSound == 1)
-			{
-				abigailAttackOne.Play();
-				abigailAttackOne.SetVolume(6.0f);
-			}
-			else if (randomSound == 2)
-			{
-				abigailAttackTwo.Play();
-				abigailAttackTwo.SetVolume(6.0f);
-			}
-			else if (randomSound == 3)
-			{
+				std::cout << randomSoundTwo;
+			    if (randomSound == 1)
+				{
+					abigailAttackOne.Play();
+					abigailAttackOne.SetVolume(3.0f);
+				}
+				else if (randomSound == 2)
+				{
+					abigailAttackTwo.Play();
+					abigailAttackTwo.SetVolume(3.0f);
+				}
+				else if (randomSound == 3)
+				{
 				abigailAttackThree.Play();
-				abigailAttackThree.SetVolume(6.0f);
+				abigailAttackThree.SetVolume(3.0f);
+				}
 			}
-			}
+			soundFinishAttack = false;
 		}
 		else if (currentTime >= 1)
 		{
 			isAttacking = false;
-			soundFinishAttack = false;
 		}
 
 		if (currentTime >= 1.5)
@@ -138,17 +139,17 @@ void PlayerMechanics::HealthLost()
 		if (randomSound == 1)
 		{
 			abigailHitOne.Play();
-			abigailHitOne.SetVolume(6.0f);
+			abigailHitOne.SetVolume(1.5f);
 		}
 		else if (randomSound == 2)
 		{
 			abigailHitTwo.Play();
-			abigailHitTwo.SetVolume(6.0f);
+			abigailHitTwo.SetVolume(1.5f);
 		}
 		else if (randomSound == 3)
 		{
 			abigailHitThree.Play();
-			abigailHitThree.SetVolume(6.0f);
+			abigailHitThree.SetVolume(1.5f);
 		}
 
 		if (hearts <= 0)

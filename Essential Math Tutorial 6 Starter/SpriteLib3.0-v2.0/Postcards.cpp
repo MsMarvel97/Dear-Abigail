@@ -29,7 +29,7 @@ void Postcards::InitScene(float windowWidth, float windowHeight)
 	//plays the transition music
 	{
 		//transitionBGM.Play();
-		//transitionBGM.SetVolume(9.0f);
+		//transitionBGM.SetVolume(1.5f);
 	}
 
 	BuildPostcards();

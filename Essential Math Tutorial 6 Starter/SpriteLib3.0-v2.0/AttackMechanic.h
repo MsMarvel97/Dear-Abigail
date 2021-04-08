@@ -18,5 +18,7 @@ private:
 	bool inRange = false;
 	int shadow = 0;
 	bool sequenceStart = false;
+
+	//Sound Library
 };
 

@@ -20,5 +20,8 @@ public:
 	bool isBoss = false;
 protected:
 
+	//Sound Library
+
+
 };
 

@@ -72,7 +72,7 @@ void Tutorial::InitScene(float windowWidth, float windowHeight)
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 
 	//tutorialBGM.Play();
-	//tutorialBGM.SetVolume(10.0f);
+	//tutorialBGM.SetVolume(1.5f);
 }
 
 void Tutorial::SpawnUI()

@@ -117,4 +117,11 @@ protected:
 	int tutorialOrb = 0;
 
 	int bulletWalls[3];
+
+	private:
+		//Sounds
+		ToneFire::CoreSound shadowBulletOne{ "shadowBulletOne.wav",false,false,true };
+		ToneFire::CoreSound shadowBulletTwo{ "shadowBulletTwo.wav",false,false,true };
+		ToneFire::CoreSound angerBGM{ "angerBGM.wav", false, true, true };
+
 };

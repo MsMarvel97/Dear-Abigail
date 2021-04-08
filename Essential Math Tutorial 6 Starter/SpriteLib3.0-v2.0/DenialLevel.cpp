@@ -26,7 +26,7 @@ void DenialLevel::InitScene(float windowWidth, float windowHeight)
 	//Setting up background music
 	{
 		//denialBGM.Play();
-		//denialBGM.SetVolume(4.5f);
+		//denialBGM.SetVolume(1.5f);
 	}
 	
 	//Spawning camera
@@ -528,8 +528,8 @@ void DenialLevel::SpawnBullet(int shadow)
 //Shoots bullets spawned by shadows
 void DenialLevel::ShootBullet(int bullet)
 {
-	//shootBulletSound.Play();
-	//shootBulletSound.SetVolume(5.0f);
+	shadowBulletOne.Play();
+	shadowBulletOne.SetVolume(2.5f);
 	b2Vec2 angle = CalculateAngle(MainEntities::MainPlayer(), bullet);
 
 	float dirAngle = atan(angle.x / angle.y) * (180 / PI);

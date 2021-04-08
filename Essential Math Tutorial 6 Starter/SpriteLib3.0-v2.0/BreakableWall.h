@@ -24,5 +24,12 @@ private:
 	int animType = 0;
 	Sprite* sprites;
 	AnimationController* animator;
+
+	//Sounds
+
+	bool soundFinish = true;
+	ToneFire::CoreSound crumbleOne{ "rockCrackOne.wav", false, false, true };
+	ToneFire::CoreSound crumbleTwo{ "rockCrackTwo.wav", false, false, true };
+	ToneFire::CoreSound crumbleThree{ "rockCrackThree.wav", false, false, true };
 };
 

@@ -57,7 +57,7 @@ void CrumblingSequence::Crumble(int ent)
 			if (soundFinish == true)
 			{
 				crumbleOne.Play();
-				crumbleOne.SetVolume(5.0f);
+				crumbleOne.SetVolume(2.5f);
 			}
 			ECS::GetComponent<AnimationController>(ent).SetActiveAnim(CRUMBLING);
 			soundFinish = false;
@@ -68,7 +68,7 @@ void CrumblingSequence::Crumble(int ent)
 			if (soundFinish == false)
 			{
 				crumbleTwo.Play();
-				crumbleTwo.SetVolume(5.0f);
+				crumbleTwo.SetVolume(2.5f);
 			}
 			ECS::GetComponent<AnimationController>(ent).SetActiveAnim(CRACKING);
 			soundFinish = true;
@@ -79,7 +79,7 @@ void CrumblingSequence::Crumble(int ent)
 			if (soundFinish == true)
 			{
 				crumbleThree.Play();
-				crumbleThree.SetVolume(5.0f);
+				crumbleThree.SetVolume(2.5f);
 			}
 			ECS::GetComponent<AnimationController>(ent).SetActiveAnim(GONE);
 			operation = 1;

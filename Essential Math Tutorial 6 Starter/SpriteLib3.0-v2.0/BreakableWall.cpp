@@ -51,15 +51,33 @@ void BreakableWall::WallRoutine(int entity)
 		else if (health == 2)
 		{
 			SetAnimation(1, entity);
+			if (soundFinish == true)
+			{
+				crumbleOne.Play();
+				crumbleOne.SetVolume(1.5f);
+			}
+			soundFinish = false;
 		}
 		else if (health == 1)
 		{
 			SetAnimation(2, entity);
+			if (soundFinish == false)
+			{
+				crumbleTwo.Play();
+				crumbleTwo.SetVolume(1.5f);
+			}
+			soundFinish = true;
 		}
 		else if (health == 0)
 		{
 			SetAnimation(3, entity);
 			wallDestroyed = true;
+
+			if (soundFinish == true)
+			{
+				crumbleThree.Play();
+				crumbleThree.SetVolume(1.5f);
+			}
 		}
 	}
 	else

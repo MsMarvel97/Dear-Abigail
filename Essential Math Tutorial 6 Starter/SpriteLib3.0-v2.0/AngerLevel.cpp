@@ -379,8 +379,8 @@ void AngerLevel::SpawnMovingPlatforms()
 
 void AngerLevel::SpawnSpikes()
 {
-	SpawnSpike(554.f, 15.f); //mini spike
-	SpawnSpike(633.f, 15.f); //mini spike
+	SpawnSpike(554.f, 15.f, 16.0f, 16.0f, "SpikeChop.png"); //mini spike
+	SpawnSpike(633.f, 15.f, 16.0f, 16.0f, "SpikeChop.png"); //mini spike
 	//SpawnSpike(1048.f, 24.f);
 	int spikeXLoc = 818;
 	for (int i = 0; i < 4; i++)

@@ -91,7 +91,7 @@ public:
 	void SpawnMainCamera(float width, float height);
 
 	//spawn a spike (PARAMETERS -> Position [x,y], size [w,h])
-	void SpawnSpike(float xPos, float yPos, float width = 16.f, float height = 16.f);
+	void SpawnSpike(float xPos, float yPos, float width = 16.f, float height = 16.f, std::string fileName = "Spike.png");
 
 	//spawn a shadow orb (PARAMETERS -> Position [x,y], size [w,h])
 	int SpawnOrb(float xPos, float yPos, float width = 10.f, float height = 10.f);

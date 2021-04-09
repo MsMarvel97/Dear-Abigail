@@ -815,7 +815,7 @@ void Scene::MenuOperations(int op)
 	}
 }
 
-void Scene::SpawnSpike(float xPos, float yPos, float width, float height)
+void Scene::SpawnSpike(float xPos, float yPos, float width, float height, std::string fileName)
 {
 	//Creates entity
 	auto entity = ECS::CreateEntity();
@@ -827,7 +827,6 @@ void Scene::SpawnSpike(float xPos, float yPos, float width, float height)
 	ECS::AttachComponent<Trigger*>(entity);
 
 	//Sets up components
-	std::string fileName = "Spike.png";
 	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, width, height);
 	ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
 	ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 1.f));

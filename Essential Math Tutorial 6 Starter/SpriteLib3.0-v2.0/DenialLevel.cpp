@@ -291,13 +291,13 @@ void DenialLevel::SpawnUI()
 //Update loop for Denial level
 void DenialLevel::Update()
 {
+	auto& playerBody = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
+	auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
+	auto& pMechanics = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
+	auto& sprite = ECS::GetComponent<Sprite>(MainEntities::MainPlayer());
+
 	if (sceneActive == true)
 	{
-		auto& playerBody = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
-		auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
-		auto& pMechanics = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
-		auto& sprite = ECS::GetComponent<Sprite>(MainEntities::MainPlayer());
-
 		pMechanics.RunKnockBackTime();
 
 		for (int i = 0; i <= 1; i++)
@@ -334,8 +334,6 @@ void DenialLevel::Update()
 			SpawnBullet(bulletWalls[i], 0, -13);
 		}
 
-		std::cout << playerBody.GetPosition().x << "					" << playerBody.GetPosition().y << std::endl;
-
 		ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 		ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 
@@ -355,19 +353,22 @@ void DenialLevel::Update()
 		CheckEndLevel();
 		MenuKeys();
 	}
+	//pausing the game
 	else
 	{
 		ECS::GetComponent<Kinematics>(menus.x).UpdateUI();
 		ECS::GetComponent<Kinematics>(menus.y).UpdateUI();
 
+		//gets a view of all the physics bodies in the registry
 		auto view = m_sceneReg->view<PhysicsBody>();
 		//Finds all active physics bodies and freezes them in place
 		for (auto entity : view)
 		{
-			//Grabs references to each component within view
+			//Sets the velocity of all physics bodies to 0 to stop their movement
 			ECS::GetComponent<PhysicsBody>(entity).SetVelocity(vec3(0.f, 0.f, 0.f));
 		}
 
+		//gets a view of all triggers in the registry
 		auto bullets = m_sceneReg->view<Trigger*>();
 		//Finds all active bullets and deletes them so they don't stay frozen after game is unpaused
 		for (auto entity : bullets)
@@ -378,6 +379,7 @@ void DenialLevel::Update()
 			}
 		}
 
+		pMechanics.SetShieldSequence(false);
 		MenuKeys();
 	}
 }
@@ -453,7 +455,7 @@ void DenialLevel::CheckEndLevel()
 	{
 		//stops music here
 		denialBGM.Mute();
-		SetSceneChange(true, 4);
+		SetSceneChange(true, 5);
 	}
 }
 //platform for making platforms crumble - pass crumbling platforms to this during the update
@@ -649,16 +651,5 @@ void DenialLevel::KeyboardUp()
 
 void DenialLevel::KeyboardDown()
 {
-	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
-	float speed = 1.f;
-	b2Vec2 vel = b2Vec2(0.f, 0.f);
 
-	playerVel = player.GetVelocity();
-	playerPos = player.GetPosition();
-
-	if (Input::GetKeyDown(Key::M))
-	{
-		std::cout << "X Pos: " << playerPos.x << std::endl;
-		std::cout << "Y Pos: " << playerPos.y << std::endl << std::endl;
-	}
 }

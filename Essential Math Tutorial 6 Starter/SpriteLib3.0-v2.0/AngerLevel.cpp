@@ -28,8 +28,8 @@ void AngerLevel::InitScene(float windowWidth, float windowHeight)
 
 	//Plays the music
 	{
-		//angerBGM.Play();
-		//angerBGM.SetVolume(1.0f);
+		angerBGM.Play();
+		angerBGM.SetVolume(1.0f);
 	}
 	//Setup MainCamera Entity 
 	SpawnMainCamera(windowWidth, windowHeight);
@@ -405,26 +405,22 @@ void AngerLevel::SpawnOrbs()
 	ECS::GetComponent<Trigger*>(tutorialOrb)->SetTriggerEntity(tutorialOrb);
 	ECS::GetComponent<Trigger*>(tutorialOrb)->AddTargetEntity(MainEntities::MainPlayer());
 	ECS::GetComponent<Trigger*>(tutorialOrb)->AddTargetEntity(orbWall);
-	std::cout << ECS::GetComponent<Trigger*>(tutorialOrb)->GetTargetEntities().size() << "\n";
 }
 
 void AngerLevel::Update()
 {
+	auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
+	auto& playerSprite = ECS::GetComponent<Sprite>(MainEntities::MainPlayer());
+	auto& pMechanics = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
+	auto& playerShield = ECS::GetComponent<Kinematics>(shield);
+	auto& theCoolDown = ECS::GetComponent<CoolDown>(MainEntities::MainPlayer());
+	auto& angerBoss = ECS::GetComponent<BossLevel>(MainEntities::MainPlayer());
+	auto& bossSprite = ECS::GetComponent<Sprite>(boss.x);
+	auto& bossBody = ECS::GetComponent<PhysicsBody>(boss.x);
+
 	if (sceneActive)
 	{
-		auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
-		auto& playerSprite = ECS::GetComponent<Sprite>(MainEntities::MainPlayer());
-		auto& thePlayer = ECS::GetComponent<Player>(MainEntities::MainPlayer());
-		auto& playerShield = ECS::GetComponent<Kinematics>(shield);
-		//auto& shieldThing = ECS::GetComponent<ShieldMechanic>(shield);
-		auto& theCoolDown = ECS::GetComponent<CoolDown>(MainEntities::MainPlayer());
-		auto& angerBoss = ECS::GetComponent<BossLevel>(MainEntities::MainPlayer());
-		auto& bossSprite = ECS::GetComponent<Sprite>(boss.x);
-		auto& bossBody = ECS::GetComponent<PhysicsBody>(boss.x);
-		//auto& kinTrig = ECS::GetComponent<Kinematics>(kinTrigger);
-		auto& playerMech = ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer());
-
-		if (playerMech.GetCanMove() == true)
+		if (pMechanics.GetCanMove() == true)
 		{
 			player.Update();
 		}
@@ -436,11 +432,11 @@ void AngerLevel::Update()
 		}
 
 		//kinTrig.UpdatePosition();
-		playerMech.RunKnockBackTime();
-		playerMech.ActivateShield(); //runs timer for shield
+		pMechanics.RunKnockBackTime();
+		pMechanics.ActivateShield(); //runs timer for shield
 		ECS::GetComponent<Kinematics>(shield).UpdateTransform(); //shield follows player
 		ECS::GetComponent<Kinematics>(boss.y).UpdatePosition();
-		if (playerMech.GetShield())
+		if (pMechanics.GetShield())
 		{
 			ECS::GetComponent<Sprite>(shield).SetTransparency(0.f);
 		}
@@ -452,11 +448,11 @@ void AngerLevel::Update()
 		//AngerLevel::CheckShield();
 		ReattachCamera();
 
-		if (playerMech.GetCanMove() == true) //checks to see if the player can move
+		if (pMechanics.GetCanMove() == true) //checks to see if the player can move
 		{
-			thePlayer.Update();
+			player.Update();
 		}
-		playerMech.Attacking();
+		pMechanics.Attacking();
 
 		for (int i = 0; i < 5; i++) //shadows
 		{
@@ -469,7 +465,6 @@ void AngerLevel::Update()
 
 		theCoolDown.GlobalCoolDown();
 		angerBoss.CheckBossStatus();
-		//playerMech.RunShadowTime();
 
 		//checks to see if the boss is alive and can therefore shoot
 		if (angerBoss.GetBossDefeated() == false)
@@ -482,7 +477,6 @@ void AngerLevel::Update()
 			bossBody.GetBody()->SetActive(false);
 		}
 
-		//AngerLevel::MovePlatform();
 		PlayerDeath();
 
 		//win condition(kill boss to open platform)
@@ -507,7 +501,8 @@ void AngerLevel::Update()
 		{
 			angerBGM.Mute();
 		}
-		CheckEndLevel(4);
+
+		CheckEndLevel(5);
 
 		ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).Update();
 		ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).Update();
@@ -537,7 +532,7 @@ void AngerLevel::Update()
 			SpawnBullet(bulletWalls[i], 0, -13);
 		}
 
-		playerMech.RunInvincibility(); //invincibility timer
+		pMechanics.RunInvincibility(); //invincibility timer
 		MenuKeys();
 	}
 
@@ -546,6 +541,7 @@ void AngerLevel::Update()
 		ECS::GetComponent<Kinematics>(menus.x).UpdateUI();
 		ECS::GetComponent<Kinematics>(menus.y).UpdateUI();
 
+		pMechanics.SetShieldSequence(false);
 		MenuKeys();
 	}
 }

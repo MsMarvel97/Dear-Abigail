@@ -13,5 +13,6 @@
 #include "Postcards.h"
 #include "AngerLevel.h"
 #include "StartMenu.h"
+#include "EndScreen.h"
 
 #endif // !__SCENES_H__

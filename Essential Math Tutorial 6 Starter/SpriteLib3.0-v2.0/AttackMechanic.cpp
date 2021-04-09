@@ -14,7 +14,6 @@ void AttackMechanic::Attacking() //runs a timer for when the player is in an att
 		if (currentTime > 3)
 		{
 			isAttacking = false;
-			std::cout << "Attack end\n";
 			setSequenceStart(false);
 		}
 		else

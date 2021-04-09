@@ -248,7 +248,7 @@ int Scene::SpawnCrumblingPlatform(float xPos, float yPos, float width, float hei
 	return entity;
 }
 
-void Scene::SpawnTile(float xPos, float yPos, std::string sprite, bool endFlag, float zPos, float width, float height)
+int Scene::SpawnTile(float xPos, float yPos, std::string sprite, bool endFlag, float zPos, float width, float height)
 {
 	//Creates entity
 	auto entity = ECS::CreateEntity();
@@ -276,6 +276,7 @@ void Scene::SpawnTile(float xPos, float yPos, std::string sprite, bool endFlag, 
 		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
 		ECS::GetComponent<PhysicsBody>(entity) = PhysicsBody(entity, tempBody, width, height, vec2(0.f, 0.f), true, TRIGGER, PLAYER);
 	}
+	return entity;
 }
 
 int Scene::SpawnPlatform(float xPos, float yPos, float width, float height, std::string sprite, float transparency, float rotation)

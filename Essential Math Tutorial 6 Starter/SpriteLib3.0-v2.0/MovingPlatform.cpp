@@ -82,8 +82,6 @@
 //		tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
 //		tempPhsBody.SetGravityScale(1.f);
 //		tempPhsBody.SetMass(float(100.f));
-//		std::cout << tempPhsBody.GetMass() << "\n";
-//		tempPhsBody.SetGravityScale(0.5f);
 //	}
 //
 //	//background

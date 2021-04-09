@@ -34,22 +34,6 @@ void Postcards::InitScene(float windowWidth, float windowHeight)
 
 	BuildPostcards();
 	SpawnTile(64.f, 24.f, "CaveExit.png", true, 1.f, 20.f, 40.f);
-
-	////Spawn exit
-	//{
-	//	//Creates entity
-	//	auto entity = ECS::CreateEntity();
-
-	//	//Add components
-	//	ECS::AttachComponent<Sprite>(entity);
-	//	ECS::AttachComponent<Transform>(entity);
-
-	//	//Sets up components
-	//	std::string fileName = "CaveExit.png";
-	//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 20.f, 40.f);
-	//	ECS::GetComponent<Transform>(entity).SetPosition(vec3(64.f, 24.f, 2.f));
-	//}
-
 	SpawnPlatform(0.f, 0.f, 256.f, 10.f, "none", 0.f);
 	SpawnPlatform(112.f, 0.f, 512.f, 10.f, "none", 0.f, 90.f);
 	SpawnPlatform(-112.f, 0.f, 512.f, 10.f, "none", 0.f, 90.f);

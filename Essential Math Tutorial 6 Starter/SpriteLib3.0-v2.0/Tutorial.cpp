@@ -95,22 +95,13 @@ void Tutorial::Update()
 			player.Update();
 		}
 
-		//if (pMechanics.GetComplete())
-		//{
-		//	SetSceneChange(true, 1);
-		//}
-		//if (Input::GetKeyDown(Key::C))
-		//{
-		//	SetSceneChange(true, 2);
-		//}
-
-
 		//ends music
 		if (ECS::GetComponent<PlayerMechanics>(MainEntities::MainPlayer()).GetComplete())
 		{
 			tutorialBGM.Mute();
 		}
-		CheckEndLevel(4);
+
+		CheckEndLevel(5);
 
 
 		ECS::GetComponent<Kinematics>(movingPlatform.y).UpdatePosition();

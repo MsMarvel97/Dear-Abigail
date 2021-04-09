@@ -107,6 +107,7 @@
     <ClCompile Include="Tutorial.cpp" />
     <ClCompile Include="PlayerMechanics.cpp" />
     <ClCompile Include="StartMenu.cpp" />
+    <ClCompile Include="EndScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AngerLevel.h" />
@@ -216,6 +217,7 @@
     <ClInclude Include="Window.h" />
     <ClInclude Include="Xinput.h" />
     <ClInclude Include="StartMenu.h" />
+    <ClInclude Include="EndScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\imgui\imgui.cpp">

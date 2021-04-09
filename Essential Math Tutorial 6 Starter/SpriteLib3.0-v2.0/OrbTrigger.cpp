@@ -6,7 +6,6 @@ void OrbTrigger::OnEnter()
 	Trigger::OnEnter();
 	if (ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetAttacking() == true)
 	{
-		std::cout << "Orb destroyed\n";
 		orbVanish.Play();
 		orbVanish.SetVolume(2.5f);
 		ECS::GetComponent<BossLevel>(m_targetEntities[0]).OrbDestroyed();

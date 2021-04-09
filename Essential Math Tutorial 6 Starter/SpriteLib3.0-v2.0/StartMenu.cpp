@@ -20,26 +20,10 @@ void StartMenu::InitScene(float windowWidth, float windowHeight)
 	SpawnMainCamera(windowWidth, windowHeight);
 	SpawnMenus();
 
-	////Setup MainCamera Entity
-	//{
-	//	//Creates Camera entity
-	//	auto entity = ECS::CreateEntity();
-	//	ECS::SetIsMainCamera(entity, true);
-
-	//	//Creates new orthographic camera
-	//	ECS::AttachComponent<Camera>(entity);
-	//	ECS::AttachComponent<HorizontalScroll>(entity);
-	//	ECS::AttachComponent<VerticalScroll>(entity);
-
-	//	vec4 temp = vec4(-75.f, 75.f, -75.f, 75.f);
-	//	ECS::GetComponent<Camera>(entity).SetOrthoSize(temp);
-	//	ECS::GetComponent<Camera>(entity).SetWindowSize(vec2(float(windowWidth), float(windowHeight)));
-	//	ECS::GetComponent<Camera>(entity).Orthographic(aspectRatio, temp.x, temp.y, temp.z, temp.w, -100.f, 100.f);
-
-	//	//Attaches Camera for Side Scrolling
-	//	ECS::GetComponent<HorizontalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
-	//	ECS::GetComponent<VerticalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
-	//}
+	{
+		menuBGM.Play();
+		menuBGM.SetVolume(1.0f);
+	}
 
 	{
 		auto entity = ECS::CreateEntity();
@@ -74,6 +58,7 @@ void StartMenu::KeyboardDown()
 		if (Input::GetKeyDown(Key::Enter))
 		{
 			SetSceneChange(true, 1);
+			menuBGM.Mute();
 		}
 	}
 }

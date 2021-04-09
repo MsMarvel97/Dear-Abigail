@@ -66,7 +66,7 @@ public:
 	int SpawnCrumblingPlatform(float xPos, float yPos, float width = 48.f, float height = 32.f, bool blue = true);
 
 	//spawn a tile or other sprite-only entity (PARAMETERS -> Position [x,y], sprite, end-flag [is this the end of the level?], position [z], size [w, h])
-	void SpawnTile(float xPos, float yPos, std::string sprite, bool endFlag = false, float zPos = 1.f, float width = 256.f, float height = 256.f );
+	int SpawnTile(float xPos, float yPos, std::string sprite, bool endFlag = false, float zPos = 1.f, float width = 256.f, float height = 256.f );
 
 	//spawn a platform (PARAMETERS -> Position [x, y], size [w, h], sprite, transparency, rotation [degrees])
 	int SpawnPlatform(float xPos, float yPos, float width, float height, std::string sprite, float transparency = 1.f, float rotation = 0.f);

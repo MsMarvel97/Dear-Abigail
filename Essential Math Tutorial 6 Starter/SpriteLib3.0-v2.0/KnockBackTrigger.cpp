@@ -36,8 +36,10 @@ void KnockBackTrigger::OnEnter()
 		if (ECS::GetComponent<ShadowLoop>(m_triggerEntity).GetShadowAnim() == 0 || ECS::GetComponent<ShadowLoop>(m_triggerEntity).GetShadowAnim() == 6)
 		{
 			ECS::GetComponent<ShadowLoop>(m_triggerEntity).isShadowAlive = false;
-			std::cout << "Shadow attacked\n";
+			ghostDeath.Play();
+			ghostDeath.SetVolume(0.5f);
 		}
+
 		else //player is attacking when the shadow is attacking and shadow deals damage to player
 		{
 			//ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).canMove = false;
@@ -77,7 +79,6 @@ void KnockBackTrigger::OnEnter()
 			ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).SetInvincibilitySequence(true); //starts temporary invincibility timer
 		}		
 	}	
-	std::cout << "Current Health: " << ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetHealth() << "\n";
 }
 
 void KnockBackTrigger::OnExit()

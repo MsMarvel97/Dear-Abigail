@@ -155,6 +155,7 @@
     <ClInclude Include="CollisionFlag.h" />
     <ClInclude Include="CoolDown.h" />
     <ClInclude Include="Crumble.h" />
+    <ClInclude Include="EndScreen.h" />
     <ClInclude Include="PlatformMechanics.h" />
     <ClInclude Include="DestroyPlatformTrigger.h" />
     <ClInclude Include="DenialLevel.h" />
@@ -269,6 +270,7 @@
     <ClCompile Include="DestroyTrigger.cpp" />
     <ClCompile Include="ECS.cpp" />
     <ClCompile Include="EffectManager.cpp" />
+    <ClCompile Include="EndScreen.cpp" />
     <ClCompile Include="EndTrigger.cpp" />
     <ClCompile Include="FirstCreation.cpp" />
     <ClCompile Include="FlaggedTrigger.cpp" />

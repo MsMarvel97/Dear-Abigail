@@ -8,7 +8,8 @@ public:
 	void OnTrigger() override;
 	void OnEnter() override;
 	void OnExit() override;
-protected:
+private:
+	ToneFire::CoreSound ghostDeath{ "ghostDeathTwo.wav", false, false, true };
 };
 
 class BossShadow : public Trigger

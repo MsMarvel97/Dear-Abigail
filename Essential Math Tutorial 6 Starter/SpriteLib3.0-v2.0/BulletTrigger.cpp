@@ -13,15 +13,11 @@ void BulletTrigger::OnEnter()
 	{
 		shieldSound.Play();
 		shieldSound.SetVolume(3.5f);
-		std::cout << "Shield protected player. No health lost. \n";
 	}
 
 	else //runs if player shield isn't on when the bullet hits the player
 	{
-		std::cout << "Player hit by projectile. Health lost. \n";
 		ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).HealthLost();
-		std::cout << "Current Health: " << ECS::GetComponent<PlayerMechanics>(m_targetEntities[0]).GetHealth() << "\n";
-
 	}
 
 	PhysicsBody::m_bodiesToDelete.push_back(m_triggerEntity);
